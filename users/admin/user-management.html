@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="../../styles/css/global.css">
+</head>
+<body>
+    <div class="container"> 
+        <h1>User Management</h1>
+        
+        <table>
+            <tr>
+                <th colspan="3">Current Users</th>
+                <th colspan="3">Actions</th>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>Status</th>
+            </tr>
+            <tr>
+                <script>
+                const users = [
+                    { name: 'Llaguno, Marinel', role: 'Admin', status: 'Active' },
+                    { name: 'Prestoza, Andrea', role: 'Inspector', status: 'Inactive' },
+                    { name: 'Nazario, Clarrise', role: 'Inspector', status: 'Active' }
+                ];
+
+                users.forEach(user => {
+                    document.write(`
+                        <tr>
+                            <td>${user.name}</td>
+                            <td>${user.role}</td>
+                            <td>${user.status}</td>
+                            <td>
+                                <div class="actions-button">
+                                    <button onclick="action('edit', '${user.name}')">Edit</button>
+                                    <button onclick="action('disable', '${user.name}')">Disable</button>
+                                    <button onclick="action('delete', '${user.name}')">Delete</button>
+                                </div>
+                            </td>
+                        </tr>
+                    `);
+                });
+                </script>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
+
+<script>
+function action(type, name) {
+    switch (type) {
+        case 'edit':
+            
+            break;
+        case 'disable':
+            
+            break;
+        case 'delete':
+            
+            break;
+    }
+
+    alert(`${type} action for ${name}`);
+}
+</script>
