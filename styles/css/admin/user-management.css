@@ -45,6 +45,7 @@ td, th {
   padding-top: 100px;
   width: 100%;
   height: 100%;
+  margin: 130px auto;
 }
 
 .modal-content {
@@ -80,7 +81,7 @@ body.modal-open::before {
 }
 
 .modal {
-  z-index: 1; /* make sure modal stays above the blur */
+  z-index: 1;
 }
 
 .toast {
