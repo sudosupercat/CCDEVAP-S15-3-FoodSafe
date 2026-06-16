@@ -11,16 +11,19 @@
     <h1>User Management</h1>
 
     <div class="container"> 
+        <div class="table-wrapper">
         <table>
             <tr>
                 <th colspan="4">Current Users</th>
-                <th colspan="1">Actions</th>
+                <!-- <th colspan="1">Actions</th>  -->
             </tr>
             <tr>
                 <th>Name</th>
                 <th>Role</th>
                 <th>District</th>
                 <th>Status</th>
+                <!-- ano mas magandang layout.. kasama current user or dito.. -->
+                <th colspan="1">Actions</th> 
             </tr>
                 <script>
                 const users = [
@@ -50,6 +53,7 @@
                 });
                 </script>
         </table>
+        </div>
     </div>
 
     <div id="toast" class="toast hidden">
