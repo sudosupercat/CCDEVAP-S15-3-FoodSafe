@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
     <link rel="stylesheet" href="../../styles/css/global.css">
-    <link rel="stylesheet" href="../../styles/css/user-management.css">
+    <link rel="stylesheet" href="../../styles/css/admin/user-management.css">
 </head>
 <body>
+    <h1>User Management</h1>
+
     <div class="container"> 
-        <h1>User Management</h1>
-        
         <table>
             <tr>
                 <th colspan="4">Current Users</th>
-                <th colspan="3">Actions</th>
+                <th colspan="1">Actions</th>
             </tr>
             <tr>
                 <th>Name</th>
@@ -22,12 +22,12 @@
                 <th>District</th>
                 <th>Status</th>
             </tr>
-            <tr>
                 <script>
                 const users = [
-                    { name: 'Llaguno, Marinel', role: 'Admin', status: 'Active'},
-                    { name: 'Prestoza, Andrea', role: 'Inspector', status: 'Inactive', district: 'NCR' },
-                    { name: 'Nazario, Clarrise', role: 'Inspector', status: 'Active', district: 'Region 1' }
+                    { name: 'User 1', role: 'Admin', status: 'Active'},
+                    { name: 'User 2', role: 'Inspector', status: 'Inactive', district: 'NCR' },
+                    { name: 'User 3', role: 'Inspector', status: 'Inactive', district: 'Region 1' },
+                    { name: 'User 4', role: 'Inspector', status: 'Active', district: 'Region 3' }
                 ];
 
                 const districts = ['NCR', 'Region 1', 'Region 2', 'Region 3', 'Region 4A', 'Region 4B', 'Region 5', 'Region 6', 'Region 7', 'Region 8', 'Region 9', 'Region 10', 'Region 11', 'Region 12', 'CAR', 'CARAGA'];
@@ -49,7 +49,6 @@
                     `);
                 });
                 </script>
-            </tr>
         </table>
     </div>
 
@@ -70,14 +69,8 @@
             <form id="edit-form">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required><br><br>
-                <label for="role">Role:</label>
-                <select id="role" name="role" required>
-                    <option value="Admin">Admin</option>
-                    <option value="Inspector">Inspector</option>
-                </select><br><br>
-                <!-- this will be a searchable dropdown with all the regions in the country -->
                 <label for="district">District:</label>
-                <select id="district" name="district" required>
+                <select id="district" name="district">
                     <option value="">Select District</option>
                     <script>
                         districts.forEach(district => {
@@ -102,43 +95,48 @@ function action(type, name) {
             let modal = document.getElementById("edit-modal");
             let span = document.getElementsByClassName("close")[0];
             modal.style.display = "block";
+            document.body.classList.add("modal-open");
+
             span.onclick = function() {
-            modal.style.display = "none";
+                modal.style.display = "none";
+                document.body.classList.remove("modal-open");
             }
+
             window.onclick = function(event) {
                 if (event.target == modal) {
                     modal.style.display = "none";
+                    document.body.classList.remove("modal-open");
                 }
             }
 
             document.getElementById("name").value = user.name;
-            document.getElementById("role").value = user.role;
             document.getElementById("district").value = user.district || '';
 
             document.getElementById("edit-form").onsubmit = function(e) {
                 e.preventDefault();
                 user.name = document.getElementById("name").value;
-                user.role = document.getElementById("role").value;
                 user.district = document.getElementById("district").value;
                 modal.style.display = "none";
-                showToast("success", "User edit successful.", `User has been updated.`);
+                document.body.classList.remove("modal-open");
+                showToast("success", "User edit successful.", "User has been updated.");
             }
+
             break;
         case 'status':
             var button = document.getElementById(`status-btn-${user.name}`);
             if (user.status === "Active") {
                 user.status = "Disabled";
                 button.textContent = "Enable";
-                showToast("success", "User status updated.", `User is now disabled.`);
+                showToast("success", "User status updated.", "User is now disabled.");
             } else {
                 user.status = "Active";
                 button.textContent = "Disable";
-                showToast("success", "User status updated.", `User is now activated.`);
+                showToast("success", "User status updated.", "User is now activated.");
             }
             break;
         case 'delete':
             var button = document.getElementById(`delete-btn-${user.name}`);
-            showToast("success", "User Deleted.", `User has been deleted.`);
+            showToast("success", "User Deleted.", "User has been deleted.");
             break;
     }
 }
@@ -158,3 +156,28 @@ function showToast(type, title, message) {
     }, 3000);
 }
 </script>
+
+<!-- <div id="toast" class="toast hidden">
+    <div class="toast-text">
+        <strong id="toast-title">Toast Title</strong>
+        <p id="toast-message">Toast Message</p>
+</div>
+
+<script>
+function showToast(type, title, message) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-title').textContent = title;
+    document.getElementById('toast-message').textContent = message;
+    
+    toast.classList.remove('success', 'error');
+    toast.classList.remove('hidden');
+    toast.classList.add(type);
+    
+    setTimeout(() => {
+        toast.classList.add('hidden')
+        toast.classList.remove(type);
+    }, 3000);
+}
+</script>
+
+showToast("success", "User edit successful.", "User has been updated."); -->
