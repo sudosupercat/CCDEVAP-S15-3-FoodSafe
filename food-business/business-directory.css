@@ -1,0 +1,50 @@
+body{
+    background-color: #3d00bc;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h1{
+    color: #ff751f;
+    text-align: center;
+    font-size: 4rem;
+}
+
+table{
+    color: white;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+th, td{
+    padding: 12px;
+}
+
+td{
+    border: 2px solid white;
+}
+
+th{
+    border: 2px solid black;
+}
+
+.button-option{
+    text-decoration: none;
+    color: orange;
+    background-color: white;
+    border-radius: 20px;
+    padding: 7px 15px 7px 15px;
+    border: 3px solid black;
+    font-weight: bold;
+
+}
+
+.search-add-entry{
+    margin: 20px 0px 20px 0px
+}
+
+input{
+    padding: 7px 15px 7px 15px;
+    border-radius: 20px;
+    border: 3px solid black;
+    width: 70%
+}

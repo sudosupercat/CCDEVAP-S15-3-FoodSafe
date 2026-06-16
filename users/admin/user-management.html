@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Management</title>
+    <link rel="stylesheet" href="../../styles/css/global.css">
+    <link rel="stylesheet" href="../../styles/css/admin/user-management.css">
+</head>
+<body>
+    <h1>User Management</h1>
+
+    <div class="container"> 
+        <div class="table-wrapper">
+        <table>
+            <tr>
+                <th colspan="4">Current Users</th>
+                <!-- <th colspan="1">Actions</th>  -->
+            </tr>
+            <tr>
+                <th>Name</th>
+                <th>Role</th>
+                <th>District</th>
+                <th>Status</th>
+                <!-- ano mas magandang layout.. kasama current user or dito.. -->
+                <th colspan="1">Actions</th> 
+            </tr>
+                <script>
+                const users = [
+                    { name: 'User 1', role: 'Admin', status: 'Active'},
+                    { name: 'User 2', role: 'Inspector', status: 'Inactive', district: 'NCR' },
+                    { name: 'User 3', role: 'Inspector', status: 'Inactive', district: 'Region 1' },
+                    { name: 'User 4', role: 'Inspector', status: 'Active', district: 'Region 3' }
+                ];
+
+                const districts = ['NCR', 'Region 1', 'Region 2', 'Region 3', 'Region 4A', 'Region 4B', 'Region 5', 'Region 6', 'Region 7', 'Region 8', 'Region 9', 'Region 10', 'Region 11', 'Region 12', 'CAR', 'CARAGA'];
+
+                users.forEach(user => {
+                    document.write(`
+                        <tr>
+                            <td>${user.name}</td>
+                            <td>${user.role}</td>
+                            <td>${user.district || 'N/A' }</td>
+                            <td>${user.status}</td>
+                            <td>
+                                <div class="actions-button">
+                                    <button onclick="action('edit', '${user.name}')" id="edit-btn-${user.name}">Edit</button>
+                                    <button onclick="action('status', '${user.name}')" id="status-btn-${user.name}">${user.status === 'Active' ? 'Disable' : 'Enable'}</button>
+                                    <button onclick="action('delete', '${user.name}')" id="delete-btn-${user.name}">Delete</button></div>
+                            </td>
+                        </tr>
+                    `);
+                });
+                </script>
+        </table>
+        </div>
+    </div>
+
+    <div id="toast" class="toast hidden">
+    <div class="toast-text">
+        <strong id="toast-title">Toast Title</strong>
+        <p id="toast-message">Toast Message</p>
+    </div>
+</div>
+
+<!-- Edit Modal -->
+<div id="edit-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Edit Form</h2>
+            <form id="edit-form">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+                <label for="district">District:</label>
+                <select id="district" name="district">
+                    <option value="">Select District</option>
+                    <script>
+                        districts.forEach(district => {
+                            document.write(`<option value="${district}">${district}</option>`);
+                        });
+                    </script>
+                </select><br><br>
+                <button type="submit">Save Changes</button>
+            </form>
+    </div>
+</div>
+
+
+<script>
+function action(type, name) {
+
+    const user = users.find(u => u.name === name);
+
+    switch (type) {
+        case 'edit':
+            var button = document.getElementById(`edit-btn-${user.name}`);
+            let modal = document.getElementById("edit-modal");
+            let span = document.getElementsByClassName("close")[0];
+            modal.style.display = "block";
+            document.body.classList.add("modal-open");
+
+            span.onclick = function() {
+                modal.style.display = "none";
+                document.body.classList.remove("modal-open");
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                    document.body.classList.remove("modal-open");
+                }
+            }
+
+            document.getElementById("name").value = user.name;
+            document.getElementById("district").value = user.district || '';
+
+            document.getElementById("edit-form").onsubmit = function(e) {
+                e.preventDefault();
+                user.name = document.getElementById("name").value;
+                user.district = document.getElementById("district").value;
+                modal.style.display = "none";
+                document.body.classList.remove("modal-open");
+                showToast("success", "User edit successful.", "User has been updated.");
+            }
+
+            break;
+        case 'status':
+            var button = document.getElementById(`status-btn-${user.name}`);
+            if (user.status === "Active") {
+                user.status = "Disabled";
+                button.textContent = "Enable";
+                showToast("success", "User status updated.", "User is now disabled.");
+            } else {
+                user.status = "Active";
+                button.textContent = "Disable";
+                showToast("success", "User status updated.", "User is now activated.");
+            }
+            break;
+        case 'delete':
+            var button = document.getElementById(`delete-btn-${user.name}`);
+            showToast("success", "User Deleted.", "User has been deleted.");
+            break;
+    }
+}
+
+function showToast(type, title, message) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-title').textContent = title;
+    document.getElementById('toast-message').textContent = message;
+    
+    toast.classList.remove('success', 'error');
+    toast.classList.remove('hidden');
+    toast.classList.add(type);
+    
+    setTimeout(() => {
+        toast.classList.add('hidden')
+        toast.classList.remove(type);
+    }, 3000);
+}
+</script>
+</body>
+</html>
+
+<!-- <div id="toast" class="toast hidden">
+    <div class="toast-text">
+        <strong id="toast-title">Toast Title</strong>
+        <p id="toast-message">Toast Message</p>
+</div>
+
+<script>
+function showToast(type, title, message) {
+    const toast = document.getElementById('toast');
+    document.getElementById('toast-title').textContent = title;
+    document.getElementById('toast-message').textContent = message;
+    
+    toast.classList.remove('success', 'error');
+    toast.classList.remove('hidden');
+    toast.classList.add(type);
+    
+    setTimeout(() => {
+        toast.classList.add('hidden')
+        toast.classList.remove(type);
+    }, 3000);
+}
+</script>
+
+showToast("success", "User edit successful.", "User has been updated."); -->
