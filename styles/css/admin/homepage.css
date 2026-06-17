@@ -30,6 +30,7 @@ body {
 }
 
 .title-text {
+    color: #ffffff;
     font-size: 7rem;
     font-weight: 500;
     margin-bottom: 8px;
@@ -91,6 +92,10 @@ body {
     } to {
         opacity: 1;
     }
+}
+
+body.theme-dark-custom {
+    background-image: url(../../../src/images/darkmodebg.png);
 }
 
 /*mobile*/

@@ -1,186 +1,402 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>FoodSafe - File a Report</title>
+
+    <link rel="stylesheet" href="../../styles/css/login-style.css">
+
+
+    <link rel="stylesheet" href="../../styles/css/global.css">
+
     <link rel="stylesheet" href="../../styles/css/public/user-complaints.css">
+
 </head>
+
 <body class="public-report-page">
 
+
+
     <header>
+
         <div class="logo-area">
-            <span class="logo-icon">lg8</span>
-            <span>FoodSafe</span>
+
+    <img src="../../src/images/logo.png" alt="FoodSafe Logo" class="logo-img">
+
+    <span>FoodSafe</span>
+
+</div>
+
         </div>
+
         <nav>
+
             <div class="toggle-container">
+
                 <span>Dark</span>
+
                 <label class="switch">
+
                     <input type="checkbox" id="darkModeToggle" checked>
+
                     <span class="slider"></span>
+
                 </label>
+
             </div>
+
             <a href="#directory">Directory</a>
+
             <a href="complaint.html">Report</a>
+
             <a href="../../views/login.html">Login</a>
+
         </nav>
+
     </header>
 
+
+
     <main class="report-main">
+
         <section class="report-left-title">
+
             <h1>
+
                 <span class="text-white">File a</span>
+
                 <span class="text-orange">Report</span>
+
             </h1>
+
         </section>
+
+
 
         <section class="report-right-form">
+
             <form id="complaintForm">
-                
+
+
+
                 <div class="form-line anon-container">
+
                     <label class="checkbox-label">
+
                         <input type="checkbox" id="anonymousToggle">
+
                         <span>Report anonymously?</span>
+
                     </label>
+
                 </div>
+
+
 
                 <div class="form-line split-row" id="nameFieldsRow">
+
                     <div class="input-group">
+
                         <label for="firstName">First Name</label>
+
                         <input type="text" id="firstName" class="public-input">
+
                     </div>
+
                     <div class="input-group">
+
                         <label for="lastName">Last Name</label>
+
                         <input type="text" id="lastName" class="public-input">
+
                     </div>
+
                 </div>
 
+
+
                 <div class="form-line">
+
                     <div class="input-group">
+
                         <label for="email">Email</label>
+
                         <input type="email" id="email" class="public-input" required>
+
                     </div>
+
                 </div>
 
+
+
                 <div class="form-line">
+
                     <div class="input-group">
+
                         <label for="contactNo">Contact #</label>
+
                         <input type="text" id="contactNo" class="public-input" required>
+
                     </div>
+
                 </div>
 
+
+
                 <div class="form-line">
+
                     <div class="input-group">
+
                         <label for="businessName">Food business to report</label>
+
                         <input type="text" id="businessName" class="public-input" required>
+
                     </div>
+
                 </div>
 
+
+
                 <div class="form-line">
+
                     <div class="input-group">
+
                         <label for="businessAddress">Food business address</label>
+
                         <input type="text" id="businessAddress" class="public-input" required>
+
                     </div>
+
                 </div>
 
+
+
                 <div class="form-line">
+
                     <div class="input-group">
+
                         <label for="violationType">Type of violations committed</label>
+
                         <div class="public-select-wrapper">
+
                             <select id="violationType" class="public-select" required>
+
                                 <option value="" disabled selected hidden>Select Violation Type</option>
+
                                 <option value="Cross-contamination">Cross-contamination</option>
+
                                 <option value="Bare-Hand Contact with Ready to Eat Food">Bare-Hand Contact with Ready to Eat Food</option>
+
                                 <option value="Improper Cooking Temperatures">Improper Cooking Temperatures</option>
+
                                 <option value="Failure to Rapidly Cool or Reheat Foods">Failure to Rapidly Cool or Reheat Foods</option>
+
                                 <option value="Poor Handwashing Practices">Poor Handwashing Practices</option>
+
                                 <option value="Improper Food Storage Temperatures">Improper Food Storage Temperatures</option>
+
                                 <option value="Pest Infestation">Pest Infestation</option>
+
                                 <option value="Expired Food Items">Expired Food Items</option>
+
                                 <option value="Dirty Kitchen Equipment">Dirty Kitchen Equipment</option>
+
                                 <option value="Improper Dishwashing Techniques">Improper Dishwashing Techniques</option>
+
                                 <option value="Cluttered or Dirty Floors">Cluttered or Dirty Floors</option>
+
                                 <option value="Inadequate Food Protection">Inadequate Food Protection</option>
+
                                 <option value="Improper Employee Hygiene">Improper Employee Hygiene</option>
+
                                 <option value="Unapproved Food Resources">Unapproved Food Resources</option>
+
                                 <option value="Unclean Restrooms">Unclean Restrooms</option>
+
                                 <option value="Grease Buildup in Exhaust Systems">Grease Buildup in Exhaust Systems</option>
+
                                 <option value="Failure to Properly Label Allergens">Failure to Properly Label Allergens</option>
+
                                 <option value="Inadequate Training for Employees">Inadequate Training for Employees</option>
+
                             </select>
+
                         </div>
+
                     </div>
+
                 </div>
 
+
+
                 <div class="form-line">
+
                     <div class="input-group">
+
                         <label for="additionalDetails">Additional details</label>
+
                         <textarea id="additionalDetails" class="public-textarea" rows="5" required></textarea>
+
                     </div>
+
                 </div>
+
+
 
                 <div class="form-line btn-container-right">
+
                     <button type="submit" class="public-submit-btn">Submit</button>
+
                 </div>
 
+
+
             </form>
+
         </section>
+
     </main>
 
+
+
     <div id="toast" class="toast hidden">
+
         <div class="toast-text">
+
             <strong id="toast-title">Notification</strong>
+
             <p id="toast-message">Message text content.</p>
+
         </div>
+
     </div>
 
+
+
     <script>
+
+
+
+        const darkToggle = document.getElementById('darkModeToggle');
+
+        if (darkToggle) darkToggle.checked = false; 
+
+
+
+        darkToggle.addEventListener('change', function() {
+
+            if (this.checked) {
+
+                document.body.classList.add('dark-mode');
+
+            } else {
+
+                document.body.classList.remove('dark-mode');
+
+            }
+
+        });
+
+
+
         const anonToggle = document.getElementById('anonymousToggle');
+
         const firstName = document.getElementById('firstName');
+
         const lastName = document.getElementById('lastName');
 
+
+
         anonToggle.addEventListener('change', function() {
+
             if (this.checked) {
+
                 firstName.value = '';
+
                 lastName.value = '';
+
                 firstName.disabled = true;
+
                 lastName.disabled = true;
+
                 firstName.placeholder = "Anonymous";
+
                 lastName.placeholder = "Anonymous";
+
             } else {
+
                 firstName.disabled = false;
+
                 lastName.disabled = false;
+
                 firstName.placeholder = "";
+
                 lastName.placeholder = "";
+
             }
+
         });
+
+
 
         document.getElementById('complaintForm').addEventListener('submit', function(e) {
+
             e.preventDefault();
-            
+
+
+
             showToast("success", "Report Successfully Submitted", "Your complaint has been successfully delivered to the FoodSafe tracking matrix.");
+
             this.reset();
-            
+
+
+
             firstName.disabled = false;
+
             lastName.disabled = false;
+
             firstName.placeholder = "";
+
             lastName.placeholder = "";
+
         });
 
+
+
         function showToast(type, title, message) {
+
             const toast = document.getElementById('toast');
+
             document.getElementById('toast-title').textContent = title;
+
             document.getElementById('toast-message').textContent = message;
-            
+
+
+
             toast.classList.remove('success', 'error', 'hidden');
+
             toast.classList.add(type);
-            
+
+
+
             setTimeout(() => {
+
                 toast.classList.add('hidden');
+
                 toast.classList.remove(type);
+
             }, 4000);
+
         }
+
     </script>
+
 </body>
+
 </html>

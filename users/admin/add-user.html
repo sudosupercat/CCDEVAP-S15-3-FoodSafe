@@ -12,14 +12,14 @@
 
     <header>
         <div class="logo-area">
-            <span class="logo-icon">lg8</span>
-            <span>FoodSafe</span>
-        </div>
+    <img src="../../src/images/logo.png" alt="FoodSafe Logo" class="logo-img">
+    <span>FoodSafe</span>
+</div>
         <nav>
             <div class="toggle-container">
                 <span>Dark</span>
                 <label class="switch">
-                    <input type="checkbox" id="darkModeToggle" checked>
+                    <input type="checkbox" id="darkModeToggle">
                     <span class="slider"></span>
                 </label>
             </div>
@@ -80,14 +80,25 @@
     </div>
 </main>
 
-    <div id="toast" class="toast hidden">
-        <div class="toast-text">
+    <div id="toast" class="custom-toast hidden">
+        <div class="custom-toast-text">
             <strong id="toast-title">Notification</strong>
             <p id="toast-message">Message text content.</p>
         </div>
     </div>
 
     <script>
+        const darkToggle = document.getElementById('darkModeToggle');
+        if (darkToggle) darkToggle.checked = false; 
+
+        darkToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        });
+
         document.getElementById('addUserForm').addEventListener('submit', function(e) {
             e.preventDefault();
             

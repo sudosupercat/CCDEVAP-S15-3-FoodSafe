@@ -40,6 +40,7 @@ body {
 }
 
 .main-content h1 {
+    color: #ffffff;
     font-size: 4rem;
     font-weight: 500;
     margin-bottom: 20px;
@@ -177,6 +178,28 @@ body {
     color: #ffffff;
     text-decoration: none;
     margin: 0 5px;
+}
+
+
+body.theme-dark-custom .main-section {
+    background-image: url(../../../src/images/darkmodebg.png);
+}
+
+body.theme-dark-custom .hazard-text-container,
+body.theme-dark-custom .site-footer {
+    background-color: #12103a !important;
+}
+
+body.theme-dark-custom .review-text-container {
+    background-color: #1a0b35 !important;
+}
+
+body.theme-dark-custom .review-text-container h2 {
+    color: #ff751f !important; 
+}
+
+body.theme-dark-custom .btn-dark:hover {
+    background-color: #ffffff !important;
 }
 
 @media (max-width: 768px) {
