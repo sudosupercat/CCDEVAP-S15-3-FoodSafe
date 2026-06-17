@@ -134,7 +134,7 @@ body.modal-open::before {
   z-index: 0;
 }
 
-.custom-toast {
+.toast {
   font-family: Arial;
   color: white;
   position: fixed;
@@ -148,24 +148,24 @@ body.modal-open::before {
   z-index: 9999;
 }
 
-.custom-toast.hidden {
+.toast.hidden {
   display: none;
 }
 
-.custom-toast.success {
+.toast.success {
   background-color: green;
 }
 
-.custom-toast.error {
+.toast.error {
   background-color: red;
 }
 
-.custom-toast-text strong {
+.toast-text strong {
   display: block;
   font-size: 14px;
 }
 
-.custom-toast-text p {
+.toast-text p {
   margin: 2px 0 0;
   font-size: 12px;
   opacity: 0.85;
