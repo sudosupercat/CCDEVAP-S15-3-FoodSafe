@@ -10,13 +10,14 @@ h2 {
     color: #3d00bc;
     font-weight: bold;
     text-align: center;
+    font-size: 35px;
 }
 
 .container {
     background-color: orange;
     display: flex;
     flex-direction: column;
-    width: 600px;
+    width: 800px;
     height: 100vh;
     background-repeat: repeat;
     box-sizing: border-box;
@@ -29,16 +30,30 @@ h2 {
     padding: 10px 10px;
     border: 3px solid;
     border-radius: 8px;
-    font-size: 14px;
+    font-size: 18px;
     margin: 10px auto;    
     background-color: white; 
     display: block;
 }
 
 #details-container {
-    flex: 1;         
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     padding: 30px;
     color: white;
+    margin: 20px 50px;
+}
+
+#details-container h3 {
+    font-size: 30px;
+    align-items: center;
+}
+
+#details-container p {
+    font-size: 20px;
+    margin: 20px 0;
+    line-height: 1.5;
 }
 
 .close {
@@ -104,6 +119,7 @@ button {
   padding: 7px 15px 7px 15px;
   border: 3px solid black;
   font-weight: bold;
+  margin-top: 50px;
 }
 
 button:hover, .actions-button button:hover {
@@ -111,6 +127,11 @@ button:hover, .actions-button button:hover {
   border-radius: 20px;
   background-color: rgb(204, 135, 8);
   cursor: pointer;
+}
+
+.actions-button button {
+    font-size: 18px;
+    padding: 12px 28px;
 }
 
 .btn-reviewed{
