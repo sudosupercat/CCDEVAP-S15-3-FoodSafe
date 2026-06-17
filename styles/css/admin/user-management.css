@@ -244,9 +244,11 @@ header {
   font-size: 1.2rem;
 }
 
-.logo-icon { 
-  font-size: 1.5rem;
-  letter-spacing: -2px;
+.logo-img {
+    height: 1.5em;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
 }
 
 nav {

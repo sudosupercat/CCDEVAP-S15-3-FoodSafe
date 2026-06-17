@@ -49,11 +49,11 @@ header {
     font-size: 1.3rem;
 }
 
-.logo-icon {
-    background-color: var(--accent-orange);
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 0.9rem;
+.logo-img {
+    height: 1.5em;
+    width: auto;
+    object-fit: contain;
+    vertical-align: middle;
 }
 
 nav {
