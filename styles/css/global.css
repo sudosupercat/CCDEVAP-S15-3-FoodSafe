@@ -1,4 +1,44 @@
+body{
+    font-family: Helvetica, sans-serif;
+}
+
 .navbar-foodsafe-custom{
     background-color: #39149b;
     color: white;
+}
+
+.table-custom{
+    width: 90%;
+    margin: 0px auto;
+    border: 3px solid black;
+}
+
+.button-option{
+    text-decoration: none;
+    color: orange;
+    background-color: white;
+    border-radius: 20px;
+    padding: 7px 15px;
+    border: 3px solid black;
+    font-weight: bold;
+    margin: 5px 5px;
+}
+
+.search-add-entry{
+    margin: 20px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.search-box{
+    padding: 7px 5px;
+    border-radius: 20px;
+    border: 3px solid black;
+    width: 70%
+}
+
+h1{
+    color: #ff751f;
+    text-align: center;
+    font-size: 3rem;
 }

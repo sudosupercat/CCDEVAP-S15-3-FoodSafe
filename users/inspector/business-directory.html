@@ -1,26 +1,25 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Business Directory</title>
+        <title>FoodSafe - Business Directory</title>
         <link rel="stylesheet" href="business-directory.css">
         <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.css">
         <link rel="stylesheet" href="../../styles/css/global.css">
+        <script src="../../styles/js/popper.min.js"></script>
         <script src="../../styles/js/nav-bar.js"></script>
         <script src="../../styles/js/jquery-3.7.1.min.js"></script>
         <script src="../../styles/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
     </head>
     <body>
-        <div id="navBar">
-
-        </div>
-        <h1>Food Business Directory</h1>
+        <div id="navBar"></div>
+        <h1 class="mt-4 mb-4 font-weight-bold">Food Business Directory</h1>
         <div class="search-add-entry">
-             <input placeholder="Search businesses" type="search">
+             <input type="search" class="search-box" placeholder="Search businesses">
              <a class="button-option" href="edit_business.php">Search</a>
              <a class="button-option" href="edit_business.php">Add Entry</a>
         </div>
-        <div class="inspector-table">
-            <table>
+        <div class="table-custom">
+            <table class="table table-striped">
                 <tr style="background-color: white; color: black;">
                     <th>License No.</th>
                     <th>Business Name</th>
