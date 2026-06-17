@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodSafe - Home</title>
+    <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        .bg-custom-purple {
+            background-color: #3b0997;
+        }
+        
+        .bg-custom-orange {
+            background-color: #f38020;
+        }
+
+        .text-custom-orange {
+            color: #f38020;
+        }
+
+        .halftone-pattern {
+            background-image: radial-gradient(rgba(255, 255, 255, 0.08) 2px, transparent 2px);
+            background-size: 16px 16px;
+        }
+
+        .hero-section {
+            min-height: 60vh;
+        }
+
+        .search-input {
+            border-radius: 50px;
+            padding: 20px 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .review-image-bg {
+            background-image: url('restaurant-placeholder.jpg'); 
+            background-size: cover;
+            background-position: center;
+            min-height: 300px;
+        }
+
+        .restaurant-name-banner {
+            background-color: rgba(59, 9, 151, 0.85); /* Translucent purple */
+        }
+
+        .btn-dark-purple {
+            background-color: #2a0470;
+            color: #ffffff;
+            border-radius: 50px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-dark-purple:hover {
+            background-color: #1a024a;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="d-flex flex-column min-vh-100">
+
+    <header class="bg-custom-purple halftone-pattern text-white d-flex flex-column hero-section">
+        
+        <div id="navbar-placeholder"></div>
+
+        <div class="flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center px-3 py-5">
+            <h1 class="display-4 font-weight-bold mb-3">
+                More than <span class="text-custom-orange">176</span> restaurants<br>inspected for the people.
+            </h1>
+            <p class="h4 font-weight-normal mb-5">Find out if it's as clean as it is from the outside.</p>
+            
+            <form action="search.html" method="GET" class="w-100" style="max-width: 650px;">
+                <input type="text" name="query" class="form-control form-control-lg search-input border-0" placeholder="Ate Rica's..." required>
+            </form>
+        </div>
+    </header>
+
+    <section class="row no-gutters">
+        <div class="col-12 col-md-6 bg-white d-flex align-items-center justify-content-center p-5">
+            <h2 class="display-5 font-weight-bold" style="color: #2a0470; letter-spacing: -1px;">
+                See the latest restaurant<br>we reviewed.
+            </h2>
+        </div>
+        
+        <div class="col-12 col-md-6 review-image-bg position-relative">
+            <div class="restaurant-name-banner position-absolute fixed-bottom p-3 h4 mb-0">
+                The Fowler Fine Diner
+            </div>
+        </div>
+    </section>
+
+    <section class="row no-gutters">
+        <div class="col-12 col-md-8 bg-custom-purple text-white d-flex align-items-center justify-content-center p-5">
+            <h2 class="display-4 font-weight-bold mb-0">
+                Spotted a <span class="text-custom-orange">hazard?</span>
+            </h2>
+        </div>
+        
+        <div class="col-12 col-md-4 bg-custom-orange d-flex align-items-center justify-content-center p-5">
+            <a href="report.html" class="btn btn-dark-purple px-5 py-3 font-weight-bold h5 mb-0">File a report.</a>
+        </div>
+    </section>
+
+    <footer class="bg-custom-purple text-white text-center py-4 mt-auto">
+        Company Name - Copyright 2026 | <a href="#" class="text-white">About</a> | <a href="#" class="text-white">Contact Us</a>
+    </footer>
+</body>
+</html>

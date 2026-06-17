@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodSafe - Home</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #3b0997;
+        }
+
+        .search-section {
+            background-color: #2c0083;
+            color: white;
+            display: flex;
+            flex-direction: row;
+            min-height: 12vh;
+        }
+
+        .search-content {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+
+        .search-form {
+            display: flex;
+            width: 100%;
+            max-width: 800px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 30px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.2rem;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .sortby-form {
+            display: flex;
+            width: 100%;
+            max-width: 200px;
+        }
+
+        .sortby-select {
+            width: 100%;
+            padding: 20px 30px;
+            border-radius: 50px;
+            border: none;
+            font-size: 1.2rem;
+            outline: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+<body>
+    <div class="search-section">
+        <div class="search-content">
+            <form action="search.html" method="GET" class="search-form">
+                <input type="text" name="query" class="search-input" placeholder="Ate Rica's..." required>
+            </form>
+
+            <form action="search.html" method="GET" class="sortby-form">
+                <input type="select" name="query" class="sortby-select" placeholder="Ate Rica's..." required>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+
