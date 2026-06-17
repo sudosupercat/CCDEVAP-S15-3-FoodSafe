@@ -125,14 +125,14 @@ input:checked + .slider:before {
 
 /* Main Layout */
 main {
-    padding: 28px 20px;
+    padding: 20px 20px;
     min-height: calc(100vh - 140px);
 }
 
 /* Page Header */
 .page-header {
     background-color: #ffffff;
-    padding: 28px 28px;
+    padding: 24px 28px;
     margin-bottom: 20px;
 }
 
@@ -140,4 +140,59 @@ main {
     font-size: 2 rem;
     color: var(--accent-orange);
     font-weight: bold;
+}
+
+/* Status Cards */
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.stat-box1, .stat-box2 {
+    background-color: #ffff;
+    border: 3px solid #000000;
+    padding: 20px;
+    border-radius: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.stat-box1 h2 {
+    color: #00bf3c;
+    font-size: 3rem;
+    margin-bottom: 5px;
+}
+
+.stat-box2 h2 {
+    color: var(--accent-orange);
+    font-size: 3rem;
+    margin-bottom: 5px;
+}
+
+.stat-box1 p, .stat-box2 p{
+    font-size: 1rem;
+}
+
+/* Charts Card */
+.charts-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 40px;
+}
+
+.chart-box1, .chart-box2 {
+    background-color: #ffff;
+    border: 3px solid #000000;
+    padding: 20px;
+    border-radius: 20px;
+    width: 700px;
+    text-align: center;
+}
+
+.chart-box1 h2, .chart-box2 h2 {
+    color: var(--accent-orange);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
 }

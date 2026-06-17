@@ -146,6 +146,12 @@ main {
     font-weight: 700;
 }
 
+.form-right img {
+    max-width: 100%;
+    height: fit-content;
+    z-index: 0; /* put it behind */
+}
+
 .form-group {
     margin-bottom: 1.5rem;
     display: flex;
