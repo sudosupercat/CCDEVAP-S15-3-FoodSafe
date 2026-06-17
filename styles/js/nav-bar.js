@@ -37,14 +37,13 @@ function showNavBar(){
     }
 
     const navBarHTML = `
-        <nav class="navbar navbar-expand-lg navbar-dark navbar-foodsafe-custom">
+        <nav class="navbar navbar-expand-lg navbar-dark navbar-foodsafe-custom sticky-top">
             <div class="container-fluid">
                 <img src="${basePath}src/images/logo.png" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
-                <a class="navbar-brand" href="#">FoodSafe</a>
+                <a class="navbar-brand font-weight-bold" href="#">FoodSafe</a>
 
                 <button class="navbar-toggler" type="button" 
-                        data-toggle="collapse" data-target="#navbar-items"
-                        aria-controls="navbar-items" aria-expanded="false" aria-label="Toggle navigation">
+                        data-toggle="collapse" data-target="#navbar-items">
                 <span class="navbar-toggler-icon"></span>
                 </button>
 
@@ -71,15 +70,23 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeSwitcher = document.getElementById('themeSwitcher');
 
     themeSwitcher.addEventListener('change', function () {
-      if (this.checked) {
+      if(this.checked) {
         document.body.classList.add('theme-dark-custom', 'text-white');
         document.querySelectorAll('table').forEach(table => {
             table.classList.add('table-dark');
         });
-      } else {
+        document.querySelectorAll('.form-container').forEach(div => {
+            div.classList.add('theme-dark-custom');
+        });
+
+      }
+      else{
         document.body.classList.remove('theme-dark-custom', 'text-white');
         document.querySelectorAll('table').forEach(table => {
             table.classList.remove('table-dark');
+        });
+        document.querySelectorAll('.form-container').forEach(div => {
+            div.classList.remove('theme-dark-custom');
         });
     }
     });

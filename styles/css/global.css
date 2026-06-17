@@ -15,10 +15,18 @@ body{
     color: white;
 }
 
+.form-container{
+    background-color: white;
+    width: 90%;
+    border-radius: 20px;
+    padding: 7px 15px;
+    margin: auto;
+}
+
 .table-custom{
     width: 90%;
     margin: 0px auto;
-    border: 3px solid black;
+    border: 1px solid black;
 }
 
 .theme-dark-custom,

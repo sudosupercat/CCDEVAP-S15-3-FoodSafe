@@ -64,19 +64,22 @@ main {
 }
 
 .stat-box1 h2 {
-    color: #00bf3c;
+    color: green;
     font-size: 3rem;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
 .stat-box2 h2 {
     color: var(--accent-orange);
     font-size: 3rem;
+    font-weight: bold;
     margin-bottom: 5px;
 }
 
 .stat-box1 p, .stat-box2 p{
     font-size: 1rem;
+    font-weight: bold;
 }
 
 /* Charts Card */
@@ -99,6 +102,7 @@ main {
 .chart-box1 h2, .chart-box2 h2 {
     color: var(--accent-orange);
     font-size: 1.5rem;
+    font-weight: bold;
     margin-bottom: 20px;
 }
 
