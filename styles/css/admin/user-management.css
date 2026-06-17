@@ -199,6 +199,11 @@ body.admin-page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  overflow-x: hidden;
+}
+
+body.admin-page * {
+  box-sizing: border-box;
 }
 
 header {
@@ -300,13 +305,21 @@ input:checked + .slider:before {
 .form-container-wrapper {
   display: flex;
   flex: 1;
+  justify-content: center;
   align-items: center;
-  padding: 40px 60px;
+  padding: 40px 20px;
+  width: 100%;
+}
+
+.form-center-box {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
 }
 
 .form-left {
-  width: 45%;
-  max-width: 500px;
+  width: 100%;
 }
 
 .page-title-orange {
@@ -314,7 +327,8 @@ input:checked + .slider:before {
   font-size: 3rem;
   font-weight: 700;
   margin-bottom: 2rem;
-  justify-content: flex-start;
+  text-align: center;
+  justify-content: center;
 }
 
 .custom-fg {
@@ -325,7 +339,7 @@ input:checked + .slider:before {
 
 .custom-fg label {
   color: #ffffff;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
   font-weight: 500;
 }
@@ -375,6 +389,13 @@ input:checked + .slider:before {
   -moz-appearance: none;
 }
 
+.btn-center-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+}
+
 .action-btn-submit {
   background-color: #ffffff;
   color: #ff751f;
@@ -395,20 +416,17 @@ input:checked + .slider:before {
 }
 
 @media only screen and (max-width: 768px) {
-  .form-container-wrapper {
-    padding: 20px;
-    justify-content: center;
+  header {
+    padding: 15px 20px;
   }
-  .form-left {
-    width: 100%;
+  nav {
+    gap: 15px;
+  }
+  nav a {
+    font-size: 1rem;
   }
   .page-title-orange {
     font-size: 2.3rem;
-    text-align: center;
-    justify-content: center;
-  }
-  .custom-fg label {
-    font-size: 1.2rem;
   }
   .action-btn-submit {
     width: 100%;
