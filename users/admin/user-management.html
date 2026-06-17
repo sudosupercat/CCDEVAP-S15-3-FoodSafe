@@ -53,7 +53,8 @@
                                     <div class="actions-button">
                                         <button onclick="action('edit', '${user.userID}')" id="edit-btn-${user.userID}">Edit</button>
                                         <button onclick="action('status', '${user.userID}')" id="status-btn-${user.userID}" class="${user.status === 'Active' ? 'btn-disable' : 'btn-enable'}">${user.status === 'Active' ? 'Disable' : 'Enable'}</button>
-                                        <button onclick="action('delete', '${user.userID}')" id="delete-btn-${user.userID}">Delete</button></div>
+                                        <button onclick="action('delete', '${user.userID}')" id="delete-btn-${user.userID}">Delete</button>
+                                    </div>
                                 </td>
                             </tr>
                         `);

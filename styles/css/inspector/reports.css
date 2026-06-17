@@ -1,0 +1,123 @@
+body {
+    /* delete pag may global na */
+    background-color: #3d00bc;
+    display: flex;
+    margin: 0;
+    font-family: Arial;
+}
+
+h2 {
+    color: #3d00bc;
+    font-weight: bold;
+    text-align: center;
+}
+
+.container {
+    background-color: orange;
+    display: flex;
+    flex-direction: column;
+    width: 600px;
+    height: 100vh;
+    background-repeat: repeat;
+    box-sizing: border-box;
+    padding-bottom: 20px;
+}
+
+#search-input, .reports {
+    width: 80%;
+    box-sizing: border-box;
+    padding: 10px 10px;
+    border: 3px solid;
+    border-radius: 8px;
+    font-size: 14px;
+    margin: 10px auto;    
+    background-color: white; 
+    display: block;
+}
+
+#details-container {
+    flex: 1;         
+    padding: 30px;
+    color: white;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.toast {
+  font-family: Arial;
+  color: white;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 14px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 9999;
+}
+
+.toast.hidden {
+  display: none;
+}
+
+.toast.pending {
+  background-color: orange;
+}
+
+.toast.reviewed {
+  background-color: green;
+}
+
+.toast.dismissed {
+  background-color: red;
+}
+
+.toast-text strong {
+  display: block;
+  font-size: 14px;
+}
+
+.toast-text p {
+  margin: 2px 0 0;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+button {
+  text-decoration: none;
+  color:  rgb(204, 135, 8);
+  background-color: white;
+  border-radius: 20px;
+  padding: 7px 15px 7px 15px;
+  border: 3px solid black;
+  font-weight: bold;
+}
+
+button:hover, .actions-button button:hover {
+  color:whitesmoke;
+  border-radius: 20px;
+  background-color: rgb(204, 135, 8);
+  cursor: pointer;
+}
+
+.btn-reviewed{
+    color: green;
+    
+}
+
+.btn-dismissed {
+    color: red;
+}
