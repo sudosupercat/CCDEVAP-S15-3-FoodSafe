@@ -1,7 +1,7 @@
 const mockRestaurants = [
     { name: "Ate Rica's Bacsilog", violations: 2, date: "June 12, 2026", grade: "A", image: "../../src/images/atericas.jpg" },
     { name: "Natsu", violations: 61, date: "April 04, 2026", grade: "C", image: "../../src/images/natsu.jpg" },
-    { name: "Yardstick Coffee", violations: 28, date: "May 21, 2026", grade: "B", image: "../../src/images/yardstick.jpg" },
+    { name: "Yardstick Coffee", violations: 28, date: "June 14, 2026", grade: "B", image: "../../src/images/yardstick.jpg" },
     { name: "Zark's Burgers", violations: 85, date: "May 30, 2026", grade: "F", image: "../../src/images/zarks.jpg" }
 ];
 

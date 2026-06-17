@@ -142,7 +142,7 @@ body {
 
 @media (max-width: 768px) {
     .search-section {
-        padding: 20px; /* Gives breathing room from the edge of the phone */
+        padding: 20px;
     }
     .search-form {
         flex-direction: column; 
@@ -161,7 +161,7 @@ body {
 
     .resto-image {
         width: 100%;
-        height: 200px; /* Locks the mobile image height so it stays a perfect banner */
+        height: 200px;
         border-right: none;
         border-bottom: 3px solid #000000;
     }

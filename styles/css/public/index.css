@@ -68,11 +68,11 @@ body {
 
 .latest-review {
     display: flex;
-    flex-wrap: wrap; 
+    flex-wrap: wrap;
 }
 
 .review-text-container {
-    flex: 1; 
+    flex: 1;
     min-width: 300px;
     padding: 60px 40px;
     display: flex;
@@ -89,11 +89,17 @@ body {
     letter-spacing: -1px;
 }
 
+.review-link-wrapper {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    text-decoration: none;
+}
+
 .review-image-container {
-    flex: 1; 
-    min-width: 600px;
+    width: 100%;
     min-height: 350px;
-    background-image: url('../../../src/images/yardstick.jpg');
+    background-image: url(../../../src/images/yardstick.jpg);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -180,9 +186,9 @@ body {
     .main-content p { 
         font-size: 1.2rem; 
     }
-    
+
     .review-text-container h2 { 
-        font-size: 2.5rem; text-align: center; 
+        font-size: 2.2rem; text-align: center; 
     }
 
     .hazard-text-container h2 { 
