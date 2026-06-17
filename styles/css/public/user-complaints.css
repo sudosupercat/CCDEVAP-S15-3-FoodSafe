@@ -8,26 +8,29 @@
     --font-family: Arial, Helvetica, sans-serif;
 }
 
+body.dark-mode {
+    --bg-purple: #12103a;
+    --nav-bg: #0b0924;
+}
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-
 body, input, select, textarea, button {
     font-family: var(--font-family);
 }
-
 
 body.public-report-page {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-    background-color: var(--bg-purple); /* Ensures form context is visible */
+    background-color: var(--bg-purple);
     color: var(--text-white);
+    transition: background-color 0.3s ease;
 }
-
 
 header {
     background-color: var(--nav-bg);
@@ -35,6 +38,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.3s ease;
 }
 
 .logo-area {
@@ -69,7 +73,6 @@ nav a {
 nav a:hover {
     color: var(--accent-orange);
 }
-
 
 .toggle-container {
     display: flex;
@@ -110,14 +113,13 @@ nav a:hover {
     border-radius: 50%;
 }
 
-input:checked + .slider {
+body.dark-mode input:checked + .slider {
     background-color: var(--accent-orange);
 }
 
-input:checked + .slider:before {
+body.dark-mode input:checked + .slider:before {
     transform: translateX(18px);
 }
-
 
 .report-main {
     display: flex;
@@ -290,7 +292,6 @@ input:checked + .slider:before {
     color: var(--input-bg);
 }
 
-
 .toast {
     color: var(--text-white);
     position: fixed;
@@ -324,7 +325,6 @@ input:checked + .slider:before {
     font-size: 13px;
     opacity: 0.9;
 }
-
 
 @media only screen and (max-width: 992px) {
     header {
