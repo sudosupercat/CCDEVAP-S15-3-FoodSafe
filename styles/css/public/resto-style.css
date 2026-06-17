@@ -1,4 +1,15 @@
-@import url("login-style.css");
+body.resto-rating-page {
+    background-color: var(--bg-purple);
+    min-height: 100vh;
+}
+
+.brand-panel {
+    background-color: var(--bg-purple);
+}
+
+.inspections-bar {
+    background-color: var(--nav-bg);
+}
 
 body.resto-rating-page {
   background-color: var(--bg-purple);
