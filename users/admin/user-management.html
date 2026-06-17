@@ -12,58 +12,66 @@
 
     <div class="container"> 
         <div class="table-wrapper">
-        <table>
+        <table id="user-man-table">
             <tr>
-                <th colspan="4">Current Users</th>
-                <!-- <th colspan="1">Actions</th>  -->
+                <th colspan="7">Current Users</th>
             </tr>
             <tr>
-                <th>Name</th>
+                <th>User ID</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
                 <th>Role</th>
                 <th>District</th>
                 <th>Status</th>
-                <!-- ano mas magandang layout.. kasama current user or dito.. -->
-                <th colspan="1">Actions</th> 
+                <th colspan="3">Actions</th> 
             </tr>
                 <script>
                 const users = [
-                    { name: 'User 1', role: 'Admin', status: 'Active'},
-                    { name: 'User 2', role: 'Inspector', status: 'Inactive', district: 'NCR' },
-                    { name: 'User 3', role: 'Inspector', status: 'Inactive', district: 'Region 1' },
-                    { name: 'User 4', role: 'Inspector', status: 'Active', district: 'Region 3' }
+                    { userID: '1', email: 'marinel_llaguno@admin.com', firstName: 'Marinel', lastName: 'Llaguno', role: 'Admin', status: 'Active', deleteFlag: '0'},
+                    { userID: '2', email: 'matthew_lucas@inspector.com', firstName: 'Matthew Gabriel', lastName: 'Lucas',  role: 'Inspector', status: 'Inactive', district: 'NCR', deleteFlag: '0'},
+                    { userID: '3', email: 'miguel_monterola@inspector.com', firstName: 'Miguel Alvin', lastName: 'Monterola', role: 'Inspector', status: 'Inactive', district: 'Region 1', deleteFlag: '0' },
+                    { userID: '4', email: 'clarisse_nazario@inspector.com', firstName: 'Clarisse', lastName: 'Nazario',  role: 'Inspector', status: 'Active', district: 'Region 3', deleteFlag: '0' },
+                    { userID: '5', email: 'andrea_prestoza@inspector.com', firstName: 'Andrea Mae', lastName: 'Prestoza', role: 'Inspector', status: 'Active', district: 'CAR', deleteFlag: '0' }
                 ];
 
                 const districts = ['NCR', 'Region 1', 'Region 2', 'Region 3', 'Region 4A', 'Region 4B', 'Region 5', 'Region 6', 'Region 7', 'Region 8', 'Region 9', 'Region 10', 'Region 11', 'Region 12', 'CAR', 'CARAGA'];
 
                 users.forEach(user => {
-                    document.write(`
-                        <tr>
-                            <td>${user.name}</td>
-                            <td>${user.role}</td>
-                            <td>${user.district || 'N/A' }</td>
-                            <td>${user.status}</td>
-                            <td>
-                                <div class="actions-button">
-                                    <button onclick="action('edit', '${user.name}')" id="edit-btn-${user.name}">Edit</button>
-                                    <button onclick="action('status', '${user.name}')" id="status-btn-${user.name}">${user.status === 'Active' ? 'Disable' : 'Enable'}</button>
-                                    <button onclick="action('delete', '${user.name}')" id="delete-btn-${user.name}">Delete</button></div>
-                            </td>
-                        </tr>
-                    `);
+                    if (user.deleteFlag == 0) {
+                        const fullName = `${user.firstName} ${user.lastName}`;
+                        document.write(`
+                            <tr>
+                                <td>${user.userID}</td>
+                                <td>${user.email}</td>
+                                <td>${user.firstName}</td>
+                                <td>${user.lastName}</td>
+                                <td>${user.role}</td>
+                                <td>${user.district || 'N/A' }</td>
+                                <td>${user.status}</td>
+                                <td>
+                                    <div class="actions-button">
+                                        <button onclick="action('edit', '${user.userID}')" id="edit-btn-${user.userID}">Edit</button>
+                                        <button onclick="action('status', '${user.userID}')" id="status-btn-${user.userID}" class="${user.status === 'Active' ? 'btn-disable' : 'btn-enable'}">${user.status === 'Active' ? 'Disable' : 'Enable'}</button>
+                                        <button onclick="action('delete', '${user.userID}')" id="delete-btn-${user.userID}">Delete</button></div>
+                                </td>
+                            </tr>
+                        `);
+                    }
                 });
+
+                
                 </script>
         </table>
         </div>
     </div>
 
     <div id="toast" class="toast hidden">
-    <div class="toast-text">
-        <strong id="toast-title">Toast Title</strong>
-        <p id="toast-message">Toast Message</p>
+        <div class="toast-text">
+            <strong id="toast-title">Toast Title</strong>
+            <p id="toast-message">Toast Message</p>
+        </div>
     </div>
-</div>
-</body>
-</html>
 
 <!-- Edit Modal -->
 <div id="edit-modal" class="modal">
@@ -71,8 +79,12 @@
         <span class="close">&times;</span>
         <h2>Edit Form</h2>
             <form id="edit-form">
-                <label for="name">Name:</label>
-                <input type="text" id="name" name="name" required><br><br>
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required><br><br>
+                <label for="firstName">First Name:</label>
+                <input type="text" id="firstName" name="firstName" required><br><br>
+                <label for="lastName">Last Name:</label>
+                <input type="text" id="lastName" name="lastName" required><br><br>
                 <label for="district">District:</label>
                 <select id="district" name="district">
                     <option value="">Select District</option>
@@ -89,13 +101,13 @@
 
 
 <script>
-function action(type, name) {
+function action(type, id) {
 
-    const user = users.find(u => u.name === name);
+    const user = users.find(u => u.userID === id);
 
     switch (type) {
         case 'edit':
-            var button = document.getElementById(`edit-btn-${user.name}`);
+            var button = document.getElementById(`edit-btn-${user.userID}`);
             let modal = document.getElementById("edit-modal");
             let span = document.getElementsByClassName("close")[0];
             modal.style.display = "block";
@@ -113,12 +125,16 @@ function action(type, name) {
                 }
             }
 
-            document.getElementById("name").value = user.name;
+            document.getElementById("email").value = user.email;
+            document.getElementById("firstName").value = user.firstName;
+            document.getElementById("lastName").value = user.lastName;
             document.getElementById("district").value = user.district || '';
 
             document.getElementById("edit-form").onsubmit = function(e) {
                 e.preventDefault();
-                user.name = document.getElementById("name").value;
+                user.email = document.getElementById("email").value;
+                user.firstName = document.getElementById("firstName").value;
+                user.lastName = document.getElementById("lastName").value;
                 user.district = document.getElementById("district").value;
                 modal.style.display = "none";
                 document.body.classList.remove("modal-open");
@@ -127,19 +143,24 @@ function action(type, name) {
 
             break;
         case 'status':
-            var button = document.getElementById(`status-btn-${user.name}`);
+            var button = document.getElementById(`status-btn-${user.userID}`);
             if (user.status === "Active") {
                 user.status = "Disabled";
                 button.textContent = "Enable";
+                button.classList.remove('btn-disable');
+                button.classList.add('btn-enable');
                 showToast("success", "User status updated.", "User is now disabled.");
             } else {
                 user.status = "Active";
                 button.textContent = "Disable";
+                button.classList.remove('btn-enable');
+                button.classList.add('btn-disable');
                 showToast("success", "User status updated.", "User is now activated.");
             }
             break;
         case 'delete':
-            var button = document.getElementById(`delete-btn-${user.name}`);
+            user.deleteFlag = '1';
+            var button = document.getElementById(`delete-btn-${user.userID}`).closest('tr').remove();
             showToast("success", "User Deleted.", "User has been deleted.");
             break;
     }
@@ -160,6 +181,8 @@ function showToast(type, title, message) {
     }, 3000);
 }
 </script>
+</body>
+</html>
 
 <!-- <div id="toast" class="toast hidden">
     <div class="toast-text">
