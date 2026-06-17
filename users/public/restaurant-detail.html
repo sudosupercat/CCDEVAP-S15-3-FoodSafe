@@ -6,18 +6,56 @@
     <title>FoodSafe - The Fowler Fine Diner</title>
     <link rel="stylesheet" href="../../styles/css/login-style.css">
     <link rel="stylesheet" href="../../styles/css/public/resto-style.css">
+    <style>
+        .page-exit-btn {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            width: 45px;
+            height: 45px;
+            background-color: rgba(11, 9, 36, 0.85);
+            color: #ffffff;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 2000;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            outline: none;
+        }
+
+        .page-exit-btn:hover {
+            background-color: #ff9800;
+            border-color: #ff9800;
+            transform: scale(1.08);
+            box-shadow: 0 6px 16px rgba(255, 152, 0, 0.4);
+        }
+
+        @media only screen and (max-width: 768px) {
+            .page-exit-btn {
+                top: 15px;
+                right: 15px;
+                width: 38px;
+                height: 38px;
+                font-size: 1.25rem;
+            }
+        }
+    </style>
 </head>
 <body class="resto-rating-page">
 
+    <button class="page-exit-btn" onclick="exitRestoPage()" title="Back to Discovery">✕</button>
+
     <div class="hero-section">
-        
         <div class="hero-left-img">
             <img src="../../src/images/sample-resto.jpg" alt="The Fowler Fine Diner">
         </div>
-        
-        
         <div class="hero-right-content">
-            
             <div class="brand-panel">
                 <span class="high-standard-tag">High Standard</span>
                 <h1 class="resto-title">The Fowler Fine Diner</h1>
@@ -25,7 +63,6 @@
                     123 Culinary Boulevard, Food District 📍
                 </a>
             </div>
-            
             <div class="hero-right-bottom-rating">
                 <h2 class="rating-title">Inspection Rating</h2>
                 <div class="rating-circle">4.5</div>
@@ -83,7 +120,7 @@
 
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal-window">
-            <button class="close-modal-btn" onclick="closeModal()">&times;</button>
+            <button class="close-modal-btn" onclick="closeModal()">×</button>
             <div class="modal-header">
                 <h3 id="modalDate" class="modal-date">Inspection Details</h3>
                 <div class="modal-scores">
@@ -98,7 +135,15 @@
         </div>
     </div>
 
+    <footer class="site-footer">
+        FoodSafe - Copyright 2026
+    </footer>
+
     <script>
+        function exitRestoPage() {
+            window.history.back();
+        }
+
         function openModal(date, hours, rating, gradeClass, violations) {
             document.getElementById('modalDate').textContent = `Inspection: ${date}`;
             

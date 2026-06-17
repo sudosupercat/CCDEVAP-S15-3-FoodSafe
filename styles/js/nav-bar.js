@@ -32,7 +32,7 @@ function showNavBar(){
     else if (path.includes("login")){
         basePath = "../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="../login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
         `;
     }
 
