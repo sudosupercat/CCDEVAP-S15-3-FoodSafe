@@ -3,6 +3,21 @@ body {
   background-color: #3d00bc;
 }
 
+
+
+body.theme-dark-custom .container {
+  background-color: #644419;
+}
+
+body.theme-dark-custom h2 {
+  color: white;
+}
+
+body.theme-dark-custom .reports p, body.theme-dark-custom .reports {
+  background-color: #1c1850;
+  color: white;
+}
+
 .page-content {
   display: flex;
   flex-direction: row;
