@@ -1,3 +1,22 @@
+body.theme-dark-custom .header {
+    background-color: #1c1850;
+}
+
+body.theme-dark-custom .picker label, body.theme-dark-custom .stat-box .label  {
+    color: white;
+}
+
+body.theme-dark-custom select, body.theme-dark-custom .stat-box {
+    background-color: #1c1850;
+    color: white;
+    border-color: white;
+}
+
+/* body.theme-dark-custom .chart {
+    background-color: #6d67c09c;
+    border-color: white;
+} */
+
 body {
   font-family: Helvetica;
   background-color: #3d00bc;

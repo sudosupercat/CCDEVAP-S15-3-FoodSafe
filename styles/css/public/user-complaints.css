@@ -1,26 +1,21 @@
-
-:root {
-    --bg-purple: #3100b9;
-    --nav-bg: #1f0075;
-    --text-white: #ffffff;
-    --accent-orange: #ff751f;
-    --input-bg: #ffffff;
-    --font-family: Arial, Helvetica, sans-serif;
-}
-
 body.dark-mode {
-    --bg-purple: #12103a;
-    --nav-bg: #0b0924;
+    --bg-purple: #12103a;      
+    --nav-bg: #0b0924;         
+    --input-bg: #1f1b51;       
+    --text-white: #e2dfeb;    
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+body.dark-mode .public-input,
+body.dark-mode .public-textarea,
+body.dark-mode .public-select {
+    color: #ffffff;
+    background-color: var(--input-bg);
 }
 
-body, input, select, textarea, button {
-    font-family: var(--font-family);
+
+body.dark-mode .report-left-title .text-white {
+    color: #ffffff;
 }
 
 body.public-report-page {
@@ -325,6 +320,7 @@ body.dark-mode input:checked + .slider:before {
     font-size: 13px;
     opacity: 0.9;
 }
+
 
 @media only screen and (max-width: 992px) {
     header {
