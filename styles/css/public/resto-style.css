@@ -20,15 +20,7 @@ body.resto-rating-page * {
   min-height: 550px;
 }
 
-.split-left-image {
-  width: 50%;
-  background-image: url("../../src/images/sample-resto.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.split-right-content {
+.split-left-content {
   width: 50%;
   display: flex;
   flex-direction: column;
@@ -97,6 +89,14 @@ body.resto-rating-page * {
   font-weight: bold;
 }
 
+.split-right-image {
+  width: 50%;
+  background-image: url("../../src/images/sample-resto.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .inspections-bar {
   background-color: var(--nav-bg);
   width: 100%;
@@ -151,10 +151,13 @@ body.resto-rating-page * {
 }
 
 .inspect-meta {
-  color: #000000;
   font-size: 1.1rem;
   display: flex;
   gap: 40px;
+}
+
+.meta-label {
+  color: #000000;
 }
 
 .stat-num, .stat-letter {
@@ -270,27 +273,14 @@ body.resto-rating-page * {
 
 @media only screen and (max-width: 992px) {
   .split-viewport {
-    flex-direction: column;
+    flex-direction: column-reverse;
     height: auto;
   }
-  .split-left-image, .split-right-content {
+  .split-left-content, .split-right-image {
     width: 100%;
   }
-  .split-left-image {
+  .split-right-image {
     height: 300px;
   }
   .brand-panel {
-    padding: 40px 20px;
-    text-align: center;
-    align-items: center;
-  }
-  .rating-panel {
-    padding: 30px 0;
-  }
-  .resto-title, .inspections-bar h2 {
-    font-size: 2.6rem;
-  }
-  .inspection-block {
-    width: 100%;
-  }
-}
+    padding:
