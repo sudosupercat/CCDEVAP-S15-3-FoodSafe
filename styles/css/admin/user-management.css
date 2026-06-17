@@ -194,15 +194,127 @@ button:hover, .actions-button button:hover {
 
 /* [initial, subject to change] additions for add-user */ 
 body.admin-page {
-  background-color: var(--bg-purple, #3100b9);
+  background-color: #3100b9;
   margin-top: 0 !important; 
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+header {
+  background-color: #1f0075;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  width: 100%;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #ffffff;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.logo-icon { 
+  font-size: 1.5rem;
+  letter-spacing: -2px;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 1.1rem;
+}
+
+nav a:hover {
+  color: #5c3fac;
+}
+
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.toggle-container span {
+  color: #ffffff;
+  font-size: 0.9rem;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #3100b9;
+}
+
+input:checked + .slider:before {
+  transform: translateX(24px);
+}
+
+.form-container-wrapper {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  padding: 40px 60px;
+}
+
+.form-left {
+  width: 45%;
+  max-width: 500px;
 }
 
 .page-title-orange {
-  color: var(--accent-orange, #ff751f);
+  color: #ff751f;
   font-size: 3rem;
   font-weight: 700;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  justify-content: flex-start;
 }
 
 .custom-fg {
@@ -212,7 +324,7 @@ body.admin-page {
 }
 
 .custom-fg label {
-  color: var(--accent-orange, #ff751f);
+  color: #ffffff;
   font-size: 1.4rem;
   margin-bottom: 0.5rem;
   font-weight: 500;
@@ -224,20 +336,36 @@ body.admin-page {
   height: auto;
   border: none;
   border-radius: 50px;
-  background-color: var(--input-bg, #ffffff);
+  background-color: #ffffff;
   color: #333333;
   font-size: 1rem;
   outline: none;
   box-shadow: none;
 }
 
+.select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.select-wrapper::after {
+  content: "▼";
+  font-size: 0.8rem;
+  color: #333333;
+  position: absolute;
+  right: 25px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
 .custom-select-pill {
   width: 100%;
-  padding: 0 25px;
-  height: 54px;
+  padding: 15px 25px;
+  height: auto;
   border: none;
   border-radius: 50px;
-  background-color: var(--input-bg, #ffffff);
+  background-color: #ffffff;
   color: #333333;
   font-size: 1rem;
   outline: none;
@@ -248,9 +376,9 @@ body.admin-page {
 }
 
 .action-btn-submit {
-  background-color: var(--input-bg, #ffffff);
-  color: var(--accent-orange, #ff751f);
-  border: 2px solid var(--input-bg, #ffffff);
+  background-color: #ffffff;
+  color: #ff751f;
+  border: 2px solid #ffffff;
   padding: 12px 50px;
   border-radius: 50px;
   font-size: 1.2rem;
@@ -261,14 +389,23 @@ body.admin-page {
 
 .action-btn-submit:hover {
   background-color: transparent;
-  color: var(--input-bg, #ffffff);
+  color: #ffffff;
   text-decoration: none;
+  border: 2px solid #ffffff;
 }
 
 @media only screen and (max-width: 768px) {
+  .form-container-wrapper {
+    padding: 20px;
+    justify-content: center;
+  }
+  .form-left {
+    width: 100%;
+  }
   .page-title-orange {
     font-size: 2.3rem;
     text-align: center;
+    justify-content: center;
   }
   .custom-fg label {
     font-size: 1.2rem;
