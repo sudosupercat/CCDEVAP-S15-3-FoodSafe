@@ -1,4 +1,20 @@
 /* addition for the user complaints */ 
+:root{
+    --bg-purple: #3100b9;
+    --nav-bg: #1f0075;
+    --text-white: #ffffff;
+    --accent-orange: #ff751f;
+    --input-bg: #ffffff;
+    --font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family) !important;
+}
 
 body.public-report-page {
 
