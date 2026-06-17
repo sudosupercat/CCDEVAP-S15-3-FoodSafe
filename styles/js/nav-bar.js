@@ -34,6 +34,11 @@ function showNavBar(){
         navItems = `
             <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
         `;
+    } else {
+        navItems = `
+            <li class="nav-item"><a class="nav-link" href="users/publicpublic/complaint.html">Report</a></li>
+            <li class="nav-item"><a class="nav-link" href="users/public/login.html">Login</a></li>
+        `;
     }
 
     const navBarHTML = `
