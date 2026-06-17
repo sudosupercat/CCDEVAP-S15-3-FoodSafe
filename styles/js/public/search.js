@@ -14,6 +14,12 @@ searchForm.addEventListener('submit', function(event) {
     event.preventDefault();
 });
 
+const urlParams = new URLSearchParams(window.location.search);
+const passedQuery = urlParams.get('query');
+if (passedQuery) {
+    searchInput.value = passedQuery;
+}
+
 function updateResults() {
     const query = searchInput.value.toLowerCase();
     const sortOrder = sortSelect.value;
@@ -23,16 +29,19 @@ function updateResults() {
     );
 
     filteredRestos.sort((a, b) => {
+        let result = 0;
+
         if (sortOrder === 'az') {
-            return a.name.localeCompare(b.name);
+            result = a.name.localeCompare(b.name);
         } else if (sortOrder === 'za') {
-            return b.name.localeCompare(a.name);
+            result = b.name.localeCompare(a.name);
         } else if (sortOrder === 'violow-hi') {
-            return  a.violations - b.violations;
+            result = a.violations - b.violations;
         } else if (sortOrder === 'viohi-low') {
-            return  b.violations - a.violations;
+            result = b.violations - a.violations;
         }
-        return 0;
+
+        return result;
     });
 
     resultsContainer.innerHTML = ''; 
