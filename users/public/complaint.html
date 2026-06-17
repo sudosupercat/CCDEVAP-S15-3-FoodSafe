@@ -14,38 +14,39 @@
 </head>
 <body class="public-report-page">
 
-    <header class="navbar navbar-expand-md navbar-light bg-light" id="navBar">
-        <div class="container-fluid">
-            
-            <div class="logo-area d-flex align-items-center">
+    <header class="navbar navbar-expand-md navbar-light bg-light" id="navBar" style="display: flex !important; flex-direction: column !important;">
+    <div class="container-fluid d-flex flex-column flex-md-row justify-content-md-between align-items-center w-100">
+        
+        <div class="logo-area d-flex align-items-center justify-content-between w-100 w-md-auto">
+            <div class="d-flex align-items-center">
                 <img src="../../src/images/logo.png" alt="FoodSafe Logo" class="logo-img" style="height: 40px; margin-right: 10px;">
                 <span class="navbar-brand mb-0 h1">FoodSafe</span>
             </div>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#foodSafeNav" aria-controls="foodSafeNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler d-md-none" type="button" data-toggle="collapse" data-target="#foodSafeNav" aria-controls="foodSafeNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-
-            <div class="collapse navbar-collapse justify-content-end" id="foodSafeNav">
-                <nav class="navbar-nav align-items-center">
-                    
-                    <div class="nav-item toggle-container d-flex align-items-center mr-md-4 my-2 my-md-0">
-                        <span class="mr-2">Dark</span>
-                        <label class="switch mb-0">
-                            <input type="checkbox" id="darkModeToggle">
-                            <span class="slider"></span>
-                        </label>
-                    </div>
-
-                    <a class="nav-link px-3" href="#directory">Directory</a>
-                    <a class="nav-link px-3" href="complaint.html">Report</a>
-                    <a class="nav-link px-3" href="../../views/login.html">Login</a>
-                    
-                </nav>
-            </div>
-
         </div>
-    </header>
+
+        <div class="collapse navbar-collapse justify-content-md-end w-100 w-md-auto" id="foodSafeNav">
+            <nav class="navbar-nav d-flex flex-column flex-md-row align-items-center pt-3 pt-md-0">
+                
+                <div class="nav-item toggle-container d-flex align-items-center mr-md-4 my-2 my-md-0">
+                    <span class="mr-2">Dark</span>
+                    <label class="switch mb-0">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <a class="nav-link px-3 py-2 py-md-0" href="#directory">Directory</a>
+                <a class="nav-link px-3 py-2 py-md-0" href="complaint.html">Report</a>
+                <a class="nav-link px-3 py-2 py-md-0" href="../login.html">Login</a>
+                
+            </nav>
+        </div>
+
+    </div>
+</header>
 
     <main class="report-main">
         <section class="report-left-title">
