@@ -99,7 +99,7 @@ body {
 .review-image-container {
     width: 100%;
     min-height: 350px;
-    background-image: url(../../../src/images/yardstick.jpg); /* Assumed path from context */
+    background-image: url(../../../src/images/yardstick.jpg);
     background-size: cover;
     background-position: center;
     position: relative;
@@ -179,8 +179,19 @@ body {
 }
 
 @media (max-width: 768px) {
-    .main-content h1 { font-size: 2.8rem; }
-    .main-content p { font-size: 1.2rem; }
-    .review-text-container h2 { font-size: 2.2rem; text-align: center; }
-    .hazard-text-container h2 { font-size: 2.5rem; text-align: center; }
+    .main-content h1 { 
+        font-size: 2.8rem; 
+    }
+
+    .main-content p { 
+        font-size: 1.2rem; 
+    }
+
+    .review-text-container h2 { 
+        font-size: 2.2rem; text-align: center; 
+    }
+
+    .hazard-text-container h2 { 
+        font-size: 2.5rem; text-align: center; 
+    }
 }
