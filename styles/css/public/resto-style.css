@@ -1,7 +1,7 @@
 @import url("login-style.css");
 
 body.resto-rating-page {
-  background-color: #3d00bc;
+  background-color: var(--bg-purple);
   margin: 0 !important;
   font-family: Arial, sans-serif;
   min-height: 100vh;
@@ -39,7 +39,7 @@ body.resto-rating-page * {
 .brand-panel {
   height: 60%;
   width: 100%;
-  background-color: #3d00bc;
+  background-color: var(--bg-purple);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -82,7 +82,7 @@ body.resto-rating-page * {
 }
 
 .rating-title {
-  color: #3d00bc;
+  color: var(--bg-purple);
   font-size: 1.8rem;
   margin: 0 0 1rem 0;
   font-weight: 700;
@@ -102,7 +102,7 @@ body.resto-rating-page * {
 }
 
 .inspections-bar {
-  background-color: #1f0075;
+  background-color: var(--nav-bg);
   width: 100%;
   padding: 25px 0;
   display: flex;
@@ -147,7 +147,7 @@ body.resto-rating-page * {
 }
 
 .inspect-date {
-  color: #3d00bc;
+  color: var(--bg-purple);
   font-size: 1.6rem;
   font-weight: 700;
   margin-bottom: 1rem;
@@ -237,7 +237,7 @@ body.resto-rating-page * {
 }
 
 .modal-date {
-  color: #3d00bc;
+  color: var(--bg-purple);
   font-size: 1.8rem;
   font-weight: 700;
   margin: 0 0 10px 0;
@@ -259,7 +259,7 @@ body.resto-rating-page * {
 .modal-body h4 {
   font-size: 1.3rem;
   margin: 0 0 10px 0;
-  color: #1f0075;
+  color: var(--nav-bg);
 }
 
 .modal-body ul {
