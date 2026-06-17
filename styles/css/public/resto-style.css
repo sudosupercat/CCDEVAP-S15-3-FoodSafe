@@ -5,26 +5,49 @@ body.resto-rating-page {
   margin: 0 !important;
   font-family: var(--font-family);
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 
 body.resto-rating-page * {
   box-sizing: border-box;
 }
 
-.split-viewport {
-  display: flex;
+header.main-navbar {
   width: 100%;
-  height: calc(100vh - 61px); 
-  min-height: 550px;
+  background-color: var(--nav-bg);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
 }
 
-.split-left-content {
+.hero-section {
+  display: flex;
+  width: 100%;
+  height: 65vh;
+  min-height: 450px;
+}
+
+
+.hero-left-img {
+  width: 50%;
+  height: 100%;
+}
+
+.hero-left-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
+.hero-right-content {
   width: 50%;
   display: flex;
   flex-direction: column;
+  height: 100%;
 }
+
 
 .brand-panel {
   height: 60%;
@@ -60,8 +83,10 @@ body.resto-rating-page * {
   width: fit-content;
 }
 
-.rating-panel {
+
+.hero-right-bottom-rating {
   height: 40%;
+  width: 100%;
   background-color: var(--text-white);
   display: flex;
   flex-direction: column;
@@ -89,13 +114,6 @@ body.resto-rating-page * {
   font-weight: bold;
 }
 
-.split-right-image {
-  width: 50%;
-  background-image: url("../../src/images/sample-resto.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 .inspections-bar {
   background-color: var(--nav-bg);
@@ -116,7 +134,6 @@ body.resto-rating-page * {
 }
 
 .inspections-container {
-  width: 100%;
   max-width: 1300px;
   margin: 0 auto;
   padding: 60px 40px;
@@ -127,6 +144,7 @@ body.resto-rating-page * {
   flex-wrap: wrap;
   gap: 30px;
 }
+
 
 .inspection-block {
   background-color: var(--text-white);
@@ -151,13 +169,10 @@ body.resto-rating-page * {
 }
 
 .inspect-meta {
+  color: #000000;
   font-size: 1.1rem;
   display: flex;
   gap: 40px;
-}
-
-.meta-label {
-  color: #000000;
 }
 
 .stat-num, .stat-letter {
@@ -167,10 +182,12 @@ body.resto-rating-page * {
   margin-left: 5px;
 }
 
+/* Color scaling identifiers */
 .grade-a { color: #2e7d32 !important; }
 .grade-b { color: #43a047 !important; }
 .grade-c { color: #f57c00 !important; }
 .grade-f { color: #d32f2f !important; }
+
 
 .modal-overlay {
   position: fixed;
@@ -178,7 +195,7 @@ body.resto-rating-page * {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(31, 0, 117, 0.4);
+  background-color: rgba(31, 0, 117, 0.6);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   display: flex;
@@ -271,16 +288,30 @@ body.resto-rating-page * {
   line-height: 1.4;
 }
 
+
 @media only screen and (max-width: 992px) {
-  .split-viewport {
-    flex-direction: column-reverse;
+  .hero-section {
+    flex-direction: column;
     height: auto;
   }
-  .split-left-content, .split-right-image {
+  .hero-left-img, .hero-right-content {
     width: 100%;
   }
-  .split-right-image {
+  .hero-left-img {
     height: 300px;
   }
   .brand-panel {
-    padding:
+    padding: 40px 20px;
+    text-align: center;
+    align-items: center;
+  }
+  .hero-right-bottom-rating {
+    padding: 30px 0;
+  }
+  .resto-title, .inspections-bar h2 {
+    font-size: 2.6rem;
+  }
+  .inspection-block {
+    width: 100%;
+  }
+}
