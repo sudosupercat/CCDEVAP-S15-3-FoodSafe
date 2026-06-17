@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodSafe - Home</title>
+    <link rel="stylesheet" href="../../styles/css/public/search.css">
+</head>
+<body>
+    <div class="search-section">
+        <div class="search-content">
+            <form action="search.html" method="GET" class="search-form" id="searchForm">
+                <input type="text" name="query" class="search-input" id="searchInput" placeholder="Ate Rica's..." required>
+                <select name="sort" class="sortby-select" id="sortSelect">
+                    <option value="az">Sort by: A-Z</option>
+                    <option value="za">Sort by: Z-A</option>
+                    <option value="violow-hi">Sort by: Violations ↑</option>
+                    <option value="viohi-low">Sort by: Violations ↓</option>
+                </select>
+            </form>
+        </div>
+    </div>
+
+    <div class="results-section">
+        <div id="results-container" class="results-container">
+        </div>
+    </div>
+
+    <script src="../../styles/js/public/search.js"></script>
+</body>
+</html>
+
