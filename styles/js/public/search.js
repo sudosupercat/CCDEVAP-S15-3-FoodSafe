@@ -41,7 +41,8 @@ function updateResults() {
         resultsContainer.innerHTML = '<p style="color:#ffffff; text-align:center; font-size:1.2rem; font-weight:bold;">No restaurants found matching your search.</p>';
     } else {
         filteredRestos.forEach(resto => {
-            const card = document.createElement('div');
+            const card = document.createElement('a');
+            card.href = "restaurant-detail.html";
             card.className = 'restaurant-card';
 
             let gradeColor = '';

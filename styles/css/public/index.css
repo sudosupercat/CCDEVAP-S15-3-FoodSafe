@@ -16,7 +16,7 @@ body {
 }
 
 .main-section {
-    background-image: url(src/images/homepagebg.png);
+    background-image: url(../../../src/images/homepagebg.png);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -91,9 +91,9 @@ body {
 
 .review-image-container {
     flex: 1; 
-    min-width: 300px;
+    min-width: 600px;
     min-height: 350px;
-    background-image: url('src/images/yardstick.jpg');
+    background-image: url('../../../src/images/yardstick.jpg');
     background-size: cover;
     background-position: center;
     position: relative;
@@ -116,7 +116,7 @@ body {
 }
 
 .hazard-text-container {
-    flex: 2; /* Take up 2 parts of the space (66%) */
+    flex: 2;
     min-width: 300px;
     background-color: #3b0997;
     color: #ffffff;
@@ -129,6 +129,8 @@ body {
 .hazard-text-container h2 {
     font-size: 3.5rem;
     font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -1px;
 }
 
 .hazard-action-container {
@@ -171,8 +173,19 @@ body {
 }
 
 @media (max-width: 768px) {
-    .main-content h1 { font-size: 2.8rem; }
-    .main-content p { font-size: 1.2rem; }
-    .review-text-container h2 { font-size: 2.2rem; text-align: center; }
-    .hazard-text-container h2 { font-size: 2.5rem; text-align: center; }
+    .main-content h1 { 
+        font-size: 2.8rem; 
+    }
+
+    .main-content p { 
+        font-size: 1.2rem; 
+    }
+    
+    .review-text-container h2 { 
+        font-size: 2.5rem; text-align: center; 
+    }
+
+    .hazard-text-container h2 { 
+        font-size: 2.5rem; text-align: center; 
+    }
 }

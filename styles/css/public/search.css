@@ -85,7 +85,7 @@ body {
     justify-content: space-between;
     align-items: stretch;
     color: #2a0470;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); 
+    text-decoration: none;
     transition: transform 0.2s ease;
     overflow: hidden;
     height: 160px;
@@ -140,7 +140,7 @@ body {
     align-self: center;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
     .search-section {
         padding: 20px; /* Gives breathing room from the edge of the phone */
     }
