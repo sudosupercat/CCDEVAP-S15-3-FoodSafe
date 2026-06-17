@@ -18,6 +18,7 @@ function showNavBar(){
         navItems = `
             <li class="nav-item"><a class="nav-link" href="../inspector/dashboard.html">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="../inspector/inspection-entry.html">Log Entry</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inspector/business-directory.html">Business Directory</a></li>
             <li class="nav-item"><a class="nav-link" href="../login.html">Logout</a></li>
         `
     }
@@ -35,7 +36,6 @@ function showNavBar(){
         `;
     }
 
-
     const navBarHTML = `
         <nav class="navbar navbar-expand-lg navbar-dark navbar-foodsafe-custom">
             <div class="container-fluid">
@@ -49,19 +49,18 @@ function showNavBar(){
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbar-items">
-                    <div class="d-flex ml-auto align-items-center">
-                        <div class="custom-control custom-switch ml-auto">
-                            <input type="checkbox" class="custom-control-input" id="themeSwitcher">
-                            <label class="custom-control-label" for="themeSwitcher">Dark Mode</label>
-                        </div>
-                        <ul class="navbar-nav ml-auto">
-                            ${navItems}
-                        </ul>
+                    <div class="custom-control custom-switch mb-2">
+                        <input type="checkbox" class="custom-control-input" id="themeSwitcher">
+                        <label class="custom-control-label" for="themeSwitcher">Dark Mode</label>
                     </div>
+                    <ul class="navbar-nav ml-auto">
+                        ${navItems}
+                    </ul>
                 </div>
             </div>
         </nav>
         `;
+
     document.getElementById("navBar").innerHTML = navBarHTML;
 }
 
