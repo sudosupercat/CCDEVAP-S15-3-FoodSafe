@@ -174,13 +174,6 @@ body {
     margin-top: auto;
 }
 
-.site-footer a {
-    color: #ffffff;
-    text-decoration: none;
-    margin: 0 5px;
-}
-
-
 body.theme-dark-custom .main-section {
     background-image: url(../../../src/images/darkmodebg.png);
 }

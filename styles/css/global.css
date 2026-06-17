@@ -2,6 +2,14 @@ body{
     font-family: Helvetica, sans-serif;
 }
 
+.site-footer {
+    background-color: #3b0997;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: auto;
+}
+
 .navbar-foodsafe-custom{
     background-color: #39149b;
     color: white;
@@ -13,7 +21,8 @@ body{
     border: 3px solid black;
 }
 
-.theme-dark-custom{
+.theme-dark-custom,
+.theme-dark-custom .site-footer {
     background-color: #12103a;
 }
 
