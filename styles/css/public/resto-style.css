@@ -1,14 +1,5 @@
 @import url("login-style.css");
 
-:root{
-    --bg-purple: #3100b9;
-    --nav-bg: #1f0075;
-    --text-white: #ffffff;
-    --accent-orange: #ff751f;
-    --input-bg: #ffffff;
-    --font-family: Arial, Helvetica, sans-serif;
-}
-
 body.resto-rating-page {
   background-color: var(--bg-purple);
   margin: 0 !important;
