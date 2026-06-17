@@ -36,7 +36,7 @@ function showNavBar(){
         `;
     } else {
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="users/publicpublic/complaint.html">Report</a></li>
+            <li class="nav-item"><a class="nav-link" href="users/public/complaint.html">Report</a></li>
             <li class="nav-item"><a class="nav-link" href="users/public/login.html">Login</a></li>
         `;
     }
