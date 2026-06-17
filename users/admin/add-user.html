@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="FoodSafe Add User Page">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../styles/css/global.css">
+    <link rel="stylesheet" href="../../styles/css/admin/user-management.css">
+    <title>FoodSafe - Add User</title>
+</head>
+<body class="admin-page">
+
+    <header>
+        <div class="logo-area">
+            <span class="logo-icon">lg8</span>
+            <span>FoodSafe</span>
+        </div>
+        <nav>
+            <div class="toggle-container">
+                <span>Dark</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="../login.html">Logout</a>
+        </nav>
+    </header>
+
+    <main class="form-container-wrapper">
+    <div class="form-center-box">
+        <section class="form-left">
+            <h1 class="page-title-orange">Add New User</h1>
+            
+            <form id="addUserForm">
+                <div class="custom-fg">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" class="custom-input" required>
+                </div>
+                
+                <div class="custom-fg">
+                    <label for="lastName">Surname</label>
+                    <input type="text" id="lastName" class="custom-input" required>
+                </div>
+
+                <div class="custom-row">
+                    <div class="custom-fg flex-1">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" class="custom-input" required>
+                    </div>
+                    <div class="custom-fg flex-1">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="custom-input" required>
+                    </div>
+                </div>
+
+                <div class="custom-fg">
+                    <label for="region">District Name</label>
+                    <div class="select-wrapper">
+                        <select id="region" class="custom-select-pill" required>
+                            <option value="" disabled selected hidden>Select District</option>
+                            <option value="NCR">NCR</option>
+                            <option value="Region 1">Region 1</option>
+                            <option value="Region 2">Region 2</option>
+                            <option value="Region 3">Region 3</option>
+                            <option value="Region 4A">Region 4A</option>
+                            <option value="Region 4B">Region 4B</option>
+                            <option value="Region 5">Region 5</option>
+                            <option value="CAR">CAR</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="btn-left-wrapper">
+                    <button type="submit" class="action-btn-submit">Add User</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
+
+    <div id="toast" class="toast hidden">
+        <div class="toast-text">
+            <strong id="toast-title">Notification</strong>
+            <p id="toast-message">Message text content.</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('addUserForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const firstName = document.getElementById('firstName').value.trim();
+            const lastName = document.getElementById('lastName').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const region = document.getElementById('region').value;
+
+            if (firstName && lastName && email && region) {
+                showToast("success", "User Registration Successful", `${firstName} ${lastName} has been added safely.`);
+                document.getElementById('addUserForm').reset();
+            } else {
+                showToast("error", "Registration Failed", "Please ensure all fields are filled accurately.");
+            }
+        });
+
+        function showToast(type, title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-message').textContent = message;
+            
+            toast.classList.remove('success', 'error', 'hidden');
+            toast.classList.add(type);
+            
+            setTimeout(() => {
+                toast.classList.add('hidden');
+                toast.classList.remove(type);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

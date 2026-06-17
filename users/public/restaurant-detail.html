@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodSafe - The Fowler Fine Diner</title>
+    <link rel="stylesheet" href="../../styles/css/public/resto-style.css">
+</head>
+<body class="resto-rating-page">
+
+    <div class="hero-section">
+        
+        <div class="hero-left-img">
+            <img src="../../src/images/sample-resto.jpg" alt="The Fowler Fine Diner">
+        </div>
+        
+        
+        <div class="hero-right-content">
+            
+            <div class="brand-panel">
+                <span class="high-standard-tag">High Standard</span>
+                <h1 class="resto-title">The Fowler Fine Diner</h1>
+                <a href="https://maps.google.com" target="_blank" class="gmaps-link">
+                    123 Culinary Boulevard, Food District 📍
+                </a>
+            </div>
+            
+            <div class="hero-right-bottom-rating">
+                <h2 class="rating-title">Inspection Rating</h2>
+                <div class="rating-circle">4.5</div>
+            </div>
+        </div>
+    </div>
+
+    <header class="inspections-bar">
+        <h2>Inspections</h2>
+    </header>
+
+    <main class="inspections-container">
+        <div class="inspections-grid">
+            <div class="inspection-block" onclick="openModal('June 4, 2026', '6', 'B', 'grade-b', ['Cross-contamination', 'Dirty Kitchen Equipment'])">
+                <div class="inspect-date">June 4, 2026</div>
+                <div class="inspect-meta">
+                    <span>Number of Violations: <strong class="stat-num grade-b">6</strong></span>
+                    <span>Overall Rating: <strong class="stat-letter grade-b">B</strong></span>
+                </div>
+            </div>
+
+            <div class="inspection-block" onclick="openModal('May 18, 2026', '4', 'A', 'grade-a', ['None - Perfect Score'])">
+                <div class="inspect-date">May 18, 2026</div>
+                <div class="inspect-meta">
+                    <span>Number of Violations: <strong class="stat-num grade-a">4</strong></span>
+                    <span>Overall Rating: <strong class="stat-letter grade-a">A</strong></span>
+                </div>
+            </div>
+
+            <div class="inspection-block" onclick="openModal('April 12, 2026', '8', 'C', 'grade-c', ['Improper Food Storage Temperatures', 'Cluttered or Dirty Floors'])">
+                <div class="inspect-date">April 12, 2026</div>
+                <div class="inspect-meta">
+                    <span>Number of Violations: <strong class="stat-num grade-c">8</strong></span>
+                    <span>Overall Rating: <strong class="stat-letter grade-c">C</strong></span>
+                </div>
+            </div>
+
+            <div class="inspection-block" onclick="openModal('March 01, 2026', '5', 'A', 'grade-a', ['Minor Dust on Exhaust vents'])">
+                <div class="inspect-date">March 01, 2026</div>
+                <div class="inspect-meta">
+                    <span>Number of Violations: <strong class="stat-num grade-a">5</strong></span>
+                    <span>Overall Rating: <strong class="stat-letter grade-a">A</strong></span>
+                </div>
+            </div>
+
+            <div class="inspection-block" onclick="openModal('Jan 15, 2026', '9', 'F', 'grade-f', ['Pest Infestation', 'Bare-Hand Contact with Ready to Eat Food', 'Failure to Rapidly Cool or Reheat Foods'])">
+                <div class="inspect-date">January 15, 2026</div>
+                <div class="inspect-meta">
+                    <span>Number of Violations: <strong class="stat-num grade-f">9</strong></span>
+                    <span>Overall Rating: <strong class="stat-letter grade-f">F</strong></span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal-window">
+            <button class="close-modal-btn" onclick="closeModal()">&times;</button>
+            <div class="modal-header">
+                <h3 id="modalDate" class="modal-date">Inspection Details</h3>
+                <div class="modal-scores">
+                    <span>Hours: <strong id="modalHours"></strong></span>
+                    <span>Rating: <strong id="modalRating"></strong></span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <h4>Violations Logged:</h4>
+                <ul id="modalViolationsList"></ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openModal(date, hours, rating, gradeClass, violations) {
+            document.getElementById('modalDate').textContent = `Inspection: ${date}`;
+            
+            const hoursElem = document.getElementById('modalHours');
+            const ratingElem = document.getElementById('modalRating');
+            
+            hoursElem.textContent = hours;
+            ratingElem.textContent = rating;
+            
+            hoursElem.className = gradeClass;
+            ratingElem.className = gradeClass;
+
+            const listContainer = document.getElementById('modalViolationsList');
+            listContainer.innerHTML = '';
+            
+            violations.forEach(violation => {
+                const li = document.createElement('li');
+                li.textContent = violation;
+                listContainer.appendChild(li);
+            });
+
+            const overlay = document.getElementById('modalOverlay');
+            overlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const overlay = document.getElementById('modalOverlay');
+            overlay.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        document.getElementById('modalOverlay').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

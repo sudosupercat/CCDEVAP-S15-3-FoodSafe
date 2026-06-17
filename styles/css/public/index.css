@@ -1,0 +1,197 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.text-orange {
+    color: #f38020;
+}
+
+.main-section {
+    background-image: url(../../../src/images/homepagebg.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-color: #3b0997;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    min-height: 80vh;
+}
+
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.main-content h1 {
+    font-size: 4rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+    line-height: 1.1;
+}
+
+.main-content p {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 40px;
+}
+
+.search-form {
+    width: 100%;
+    max-width: 650px;
+}
+
+.search-input {
+    width: 100%;
+    padding: 20px 30px;
+    border-radius: 50px;
+    border: none;
+    font-size: 1.2rem;
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.latest-review {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.review-text-container {
+    flex: 1;
+    min-width: 300px;
+    padding: 60px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+}
+
+.review-text-container h2 {
+    font-size: 3rem;
+    font-weight: 500;
+    color: #2a0470;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.review-link-wrapper {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    text-decoration: none;
+}
+
+.review-image-container {
+    width: 100%;
+    min-height: 350px;
+    background-image: url(../../../src/images/yardstick.jpg);
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.restaurant-name-banner {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(59, 9, 151, 0.85);
+    color: #ffffff;
+    padding: 15px 30px;
+    font-size: 1.5rem;
+}
+
+.report-hazard {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.hazard-text-container {
+    flex: 2;
+    min-width: 300px;
+    background-color: #3b0997;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+}
+
+.hazard-text-container h2 {
+    font-size: 3.5rem;
+    font-weight: 500;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.hazard-action-container {
+    flex: 1;
+    min-width: 300px;
+    background-color: #f38020;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 80px 40px;
+}
+
+.btn-dark {
+    background-color: #2a0470;
+    color: #ffffff;
+    padding: 25px 60px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.btn-dark:hover {
+    background-color: #1a024a;
+}
+
+.site-footer {
+    background-color: #3b0997;
+    color: #ffffff;
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: auto;
+}
+
+.site-footer a {
+    color: #ffffff;
+    text-decoration: none;
+    margin: 0 5px;
+}
+
+@media (max-width: 768px) {
+    .main-content h1 { 
+        font-size: 2.8rem; 
+    }
+
+    .main-content p { 
+        font-size: 1.2rem; 
+    }
+
+    .review-text-container h2 { 
+        font-size: 2.2rem; text-align: center; 
+    }
+
+    .hazard-text-container h2 { 
+        font-size: 2.5rem; text-align: center; 
+    }
+}
