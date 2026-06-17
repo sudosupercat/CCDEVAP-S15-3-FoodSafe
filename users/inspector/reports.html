@@ -5,86 +5,110 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reports</title>
     <link rel="stylesheet" href="../../styles/css/global.css">
+    <!-- delete if may global na for nav -->
+    <link rel="stylesheet" href="../../styles/css/login-style.css"> 
     <link rel="stylesheet" href="../../styles/css/inspector/reports.css">
 </head>
 <body>
-    <div class="container">
-        <h2>Incoming Reports</h2>
-
-        <input type="text" placeholder="Search for a complaint..." id="search-input" onkeyup="searchReports()">
-        
-        <div id="reports-container">
-            <script>
-                const reports = [
-                    {
-                        reportID: '1001',
-                        establishment: 'Jollibee - Taft',
-                        violation: 'Unclean Restrooms',
-                        date: 'January 27, 2026',
-                        description: 'Restroom floors were dirty and lacked soap dispensers.',
-                        status: 'pending'
-                    },
-                    {
-                        reportID: '1002',
-                        establishment: 'McDonald\'s - Taft',
-                        violation: 'Food Safety Violation',
-                        date: 'April 28, 2026',
-                        description: 'Food was observed being handled without gloves.',
-                        status: 'pending'
-                    },
-                    {
-                        reportID: '1003',
-                        establishment: 'KFC - Taft',
-                        violation: 'Pest Infestation',
-                        date: 'May 29, 2026',
-                        description: 'Several cockroaches were seen near the kitchen area.',
-                        status: 'pending'
-                    },
-                    {
-                        reportID: '1004',
-                        establishment: 'Wendy\'s - MOA',
-                        violation: 'Unclean Restrooms',
-                        date: 'May 30, 2026',
-                        description: 'Several cockroaches were seen near the kitchen area.',
-                        status: 'pending'
-                    }
-                ]   
-
-                const container = document.getElementById('reports-container');
-
-                reports.forEach(report => {
-                    container.innerHTML += `
-                        <div class="reports" onclick="reportDetails('${report.reportID}')">
-                            <p>Report #${report.reportID} : ${report.establishment}</p>
-                            <p>Violation: ${report.violation}</p>
-                            <p>Status: ${report.status}</p>
-                        </div>
-                `});
-            </script>
-
+    <header>
+        <div class="logo-area">
+            <span class="logo-icon">lg8</span>
+            <span>FoodSafe</span>
         </div>
-    </div>
-
-    <div id="toast" class="toast hidden">
-        <div class="toast-text">
-            <strong id="toast-title">Toast Title</strong>
-            <p id="toast-message">Toast Message</p>
-        </div>
-    </div>
-
-    <div id="details-container">
-            <h3>Report Details</h3>
-            <p>Report ID: <span id="detail-reportID"></span></p>
-            <p>Establishment: <span id="detail-establishment"></span></p>
-            <p>Date: <span id="detail-date"></span></p>
-
-            <p>Violation: <span id="detail-violation"></span></p>
-            <p>Description: <span id="detail-desc"></span></p>
-            <div class="actions-button">
-                <button onclick="showToast('pending', 'Changed Status', 'Report marked pending.') ">Pending</button>
-                <button onclick="showToast('reviewed', 'Changed Status', 'Report marked reviewed.')" class="btn-reviewed">Reviewed</button>
-                <button onclick="showToast('dismissed', 'Changed Status', 'Report marked dismissed.')" class="btn-dismissed">Dismissed</button>
+        <nav>
+            <div class="toggle-container">
+                <span>Dark</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" checked>
+                    <span class="slider"></span>
+                </label>
             </div>
+            <a href="homepage.html">Homepage</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="../login.html">Logout</a>
+        </nav>
+    </header>
+
+    <div class="page-content">
+        <div class="container">
+            <h2>Incoming Reports</h2>
+
+            <input type="text" placeholder="Search for a complaint..." id="search-input" onkeyup="searchReports()">
+            
+            <div id="reports-container">
+                <script>
+                    const reports = [
+                        {
+                            reportID: '1001',
+                            establishment: 'Jollibee - Taft',
+                            violation: 'Unclean Restrooms',
+                            date: 'January 27, 2026',
+                            description: 'Restroom floors were dirty and lacked soap dispensers.',
+                            status: 'pending'
+                        },
+                        {
+                            reportID: '1002',
+                            establishment: 'McDonald\'s - Taft',
+                            violation: 'Food Safety Violation',
+                            date: 'April 28, 2026',
+                            description: 'Food was observed being handled without gloves.',
+                            status: 'pending'
+                        },
+                        {
+                            reportID: '1003',
+                            establishment: 'KFC - Taft',
+                            violation: 'Pest Infestation',
+                            date: 'May 29, 2026',
+                            description: 'Several cockroaches were seen near the kitchen area.',
+                            status: 'pending'
+                        },
+                        {
+                            reportID: '1004',
+                            establishment: 'Wendy\'s - MOA',
+                            violation: 'Unclean Restrooms',
+                            date: 'May 30, 2026',
+                            description: 'Several cockroaches were seen near the kitchen area.',
+                            status: 'pending'
+                        }
+                    ]   
+
+                    const container = document.getElementById('reports-container');
+
+                    reports.forEach(report => {
+                        container.innerHTML += `
+                            <div class="reports" onclick="reportDetails('${report.reportID}')">
+                                <p>Report #${report.reportID} : ${report.establishment}</p>
+                                <p>Violation: ${report.violation}</p>
+                                <p>Status: ${report.status}</p>
+                            </div>
+                    `});
+                </script>
+
+            </div>
+        </div>
+    
+
+        <div id="toast" class="toast hidden">
+            <div class="toast-text">
+                <strong id="toast-title">Toast Title</strong>
+                <p id="toast-message">Toast Message</p>
+            </div>
+        </div>
+
+        <div id="details-container">
+                <h3>Report Details</h3>
+                <p>Report ID: <span id="detail-reportID"></span></p>
+                <p>Establishment: <span id="detail-establishment"></span></p>
+                <p>Date: <span id="detail-date"></span></p>
+
+                <p>Violation: <span id="detail-violation"></span></p>
+                <p>Description: <span id="detail-desc"></span></p>
+                <div class="actions-button">
+                    <button onclick="showToast('pending', 'Changed Status', 'Report marked pending.') ">Pending</button>
+                    <button onclick="showToast('reviewed', 'Changed Status', 'Report marked reviewed.')" class="btn-reviewed">Reviewed</button>
+                    <button onclick="showToast('dismissed', 'Changed Status', 'Report marked dismissed.')" class="btn-dismissed">Dismissed</button>
+                </div>
+        </div>
     </div>
     
 
