@@ -1,11 +1,10 @@
 body {
-  font-family: Arial;
-  color: white;
-  /* delete pag may global background na */
-  background-color: #3d00bc;; 
+  font-family: Helvetica;
+  background-color: #3d00bc;
 }
 
 h1 {
+  color: orange;
   display: flex;
   justify-content: center;
   margin-top: 40px;
@@ -22,15 +21,18 @@ th {
   background-color: white;
   border: 1px solid;
   padding: 8px;
+  text-align: center;
 }
 
 td {
+  color: white;
   background-color: transparent;
   border: 1px solid;
   padding: 8px;
 }
 
 .table-wrapper {
+  width: 100%;
   max-width: 100%;
   overflow-x: auto;
 }
@@ -44,6 +46,10 @@ td {
 }
 
 .actions-button {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: nowrap;
   padding: 8px;
 }
 
@@ -100,7 +106,7 @@ td {
   cursor: pointer;
 }
 
-.toast-close {
+.custom-toast-close {
   text-decoration: none;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.541);
@@ -119,7 +125,7 @@ body.modal-open::before {
   z-index: 0;
 }
 
-.toast {
+.custom-toast {
   font-family: Arial;
   color: white;
   position: fixed;
@@ -133,24 +139,24 @@ body.modal-open::before {
   z-index: 9999;
 }
 
-.toast.hidden {
+.custom-toast.hidden {
   display: none;
 }
 
-.toast.success {
+.custom-toast.success {
   background-color: green;
 }
 
-.toast.error {
+.custom-toast.error {
   background-color: red;
 }
 
-.toast-text strong {
+.custom-toast-text strong {
   display: block;
   font-size: 14px;
 }
 
-.toast-text p {
+.custom-toast-text p {
   margin: 2px 0 0;
   font-size: 12px;
   opacity: 0.85;

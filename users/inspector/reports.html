@@ -4,30 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reports</title>
+    <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../styles/css/global.css">
-    <!-- delete if may global na for nav -->
-    <link rel="stylesheet" href="../../styles/css/login-style.css"> 
     <link rel="stylesheet" href="../../styles/css/inspector/reports.css">
+    <script src="../../styles/js/nav-bar.js"></script>
+    <script src="../../styles/js/jquery-3.7.1.min.js"></script>
+    <script src="../../styles/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
 </head>
 <body>
-    <header>
-        <div class="logo-area">
-            <span class="logo-icon">lg8</span>
-            <span>FoodSafe</span>
-        </div>
-        <nav>
-            <div class="toggle-container">
-                <span>Dark</span>
-                <label class="switch">
-                    <input type="checkbox" id="darkModeToggle" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <a href="homepage.html">Homepage</a>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="../login.html">Logout</a>
-        </nav>
-    </header>
+    <div id="navBar"></div>
 
     <div class="page-content">
         <div class="container">
@@ -88,7 +73,7 @@
         </div>
     
 
-        <div id="toast" class="toast hidden">
+        <div id="toast" class="custom-toast hidden">
             <div class="toast-text">
                 <strong id="toast-title">Toast Title</strong>
                 <p id="toast-message">Toast Message</p>
@@ -141,25 +126,32 @@
             document.getElementById('detail-desc').innerHTML = report.description;
         }
 
+        let toastTimeout;
+
         function showToast(type, title, message) {
             const toast = document.getElementById('toast');
+
             document.getElementById('toast-title').textContent = title;
             document.getElementById('toast-message').textContent = message;
-            
+
             toast.classList.remove('pending', 'reviewed', 'dismissed');
             toast.classList.remove('hidden');
             toast.classList.add(type);
-            
-            setTimeout(() => {
-                toast.classList.add('hidden')
+
+            clearTimeout(toastTimeout);
+
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('hidden');
                 toast.classList.remove(type);
             }, 5000);
         }
 
         function hideToast() {
             const toast = document.getElementById('toast');
+
             toast.classList.add('hidden');
             toast.classList.remove('pending', 'reviewed', 'dismissed');
+
             clearTimeout(toastTimeout);
         }
     </script>

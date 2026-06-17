@@ -1,8 +1,7 @@
 body {
-    /* delete pag may global na */
-    background-color: #3d00bc;;
+  font-family: Helvetica;
+  background-color: #3d00bc;
 }
-
 h1 {
     color: orange;
     font-weight: bold;
