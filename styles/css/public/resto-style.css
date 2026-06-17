@@ -1,200 +1,195 @@
-body {
+@import url("login-style.css");
+
+body.resto-rating-page {
+  background-color: #3d00bc;
+  margin: 0 !important;
   font-family: Arial, sans-serif;
-  color: white;
-  background-color: #3d00bc; 
+  min-height: 100vh;
 }
 
-h1 {
+body.resto-rating-page * {
+  box-sizing: border-box;
+}
+
+.hero-section {
   display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
-
-table {
-  border-collapse: collapse;
   width: 100%;
-  min-width: 500px;
+  height: 65vh;
+  min-height: 450px;
 }
 
-th {
-  color: black;
-  background-color: white;
-  border: 1px solid;
-  padding: 8px;
+.hero-left-img {
+  width: 50%;
+  height: 100%;
 }
 
-td {
-  background-color: transparent;
-  border: 1px solid;
-  padding: 8px;
-}
-
-.table-wrapper {
-  max-width: 100%;
-  overflow-x: auto;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px 40px;
-  overflow-x: auto;
-}
-
-.actions-button {
-  padding: 8px;
-}
-
-.modal {
-  display: none; 
-  position: fixed;
-  z-index: 1; 
-  left: 0;
-  top: 0;
-  padding-top: auto;
+.hero-left-img img {
   width: 100%;
   height: 100%;
-  margin: auto;
-}
-
-.modal-content {
-  color: black;
-  background-color: whitesmoke;
-  margin: 10% auto;
-  padding: 20px;
-  border: 1px solid;
-  width: 500px;
-  justify-content: center;
-}
-
-.modal-content select{
-  padding: 5px 10px;
-  margin-right: 8px;
-  border: 1px solid rgb(100, 100, 100);
-  border-radius: 8px;
-}
-
-.modal-content option {
-  color: grey;  
-}
-
-.modal-content option:checked {
-  background-color: #cc8708;
-  color: white;
-}
-
-.close {
-  color: #aaaaaa;
-  float: right;
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-  color: #000;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-.toast-close {
-  text-decoration: none;
-  cursor: pointer;
-  color: rgba(0, 0, 0, 0.541);
-  float: right;
-  font-size: 20px;
-  font-weight: bold;
-  align-self: flex-start 
-}
-
-body.modal-open::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  z-index: 0;
-}
-
-.toast {
-  font-family: Arial, sans-serif;
-  color: white;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  padding: 14px 20px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  z-index: 9999;
-}
-
-.toast.hidden {
-  display: none;
-}
-
-.toast.success {
-  background-color: #2e7d32;
-}
-
-.toast.error {
-  background-color: #d32f2f;
-}
-
-.toast-text strong {
+  object-fit: cover;
   display: block;
-  font-size: 14px;
 }
 
-.toast-text p {
-  margin: 2px 0 0;
-  font-size: 12px;
-  opacity: 0.85;
+.hero-right-content {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
 }
 
-#edit-form label {
-  font-weight: bold;
-}
-
-#edit-form input,
-#edit-form select {
+.brand-panel {
+  height: 60%;
   width: 100%;
-  box-sizing: border-box;
-  padding: 10px 10px;
-  border: 1px solid rgb(100, 100, 100);
-  border-radius: 8px;
-  font-size: 14px;
+  background-color: #3d00bc;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 60px;
 }
 
-button {
-  text-decoration: none;
-  color: #cc8708;
+.high-standard-tag {
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.5rem;
+}
+
+.resto-title {
+  color: white;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.1;
+}
+
+.gmaps-link {
+  color: white;
+  font-size: 1.1rem;
+  text-decoration: underline;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.hero-right-bottom-rating {
+  height: 40%;
+  width: 100%;
   background-color: white;
-  border-radius: 20px;
-  padding: 7px 15px;
-  border: 3px solid black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.rating-title {
+  color: #3d00bc;
+  font-size: 1.8rem;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.rating-circle {
+  background-color: #cc8708;
+  color: white;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
-button:hover, .actions-button button:hover {
-  color: whitesmoke;
-  border-radius: 20px;
-  background-color: #cc8708;
+.inspections-bar {
+  background-color: #1f0075;
+  width: 100%;
+  padding: 25px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+}
+
+.inspections-bar h2 {
+  color: #cc8708;
+  font-size: 3.5rem;
+  font-weight: 800;
+  margin: 0;
+  text-align: center;
+}
+
+.inspections-container {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 60px 40px;
+}
+
+.inspections-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.inspection-block {
+  background-color: white;
+  width: calc(50% - 15px);
+  border-radius: 12px;
+  padding: 30px;
   cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-.btn-enable {
-  color: #2e7d32;
+.inspection-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
 }
 
-.btn-disable {
-  color: #d32f2f;
+.inspect-date {
+  color: #3d00bc;
+  font-size: 1.6rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-/* Custom Grade Color Extensions */
+.inspect-meta {
+  color: #000000;
+  font-size: 1.1rem;
+  display: flex;
+  gap: 40px;
+}
+
+.stat-num, .stat-letter {
+  font-size: 2.2rem;
+  font-weight: 800;
+  vertical-align: middle;
+  margin-left: 5px;
+}
+
 .grade-a { color: #2e7d32 !important; }
 .grade-b { color: #43a047 !important; }
 .grade-c { color: #f57c00 !important; }
 .grade-f { color: #d32f2f !important; }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(31, 0, 117, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.modal-overlay.active {
+  opacity: 1;
+  pointer-
