@@ -4,28 +4,18 @@
         <meta name="keywords" content="FoodSafe, Inspector, Dashboard ">
         <meta name="author" content="CCDEVAP Group 3">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../../styles/css/dashboard.css">
+        <link rel="icon" type="image/png" href="../../src/images/logo-tab.png">
+        <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../../styles/css/global.css">
+        <link rel="stylesheet" href="../../styles/css/inspector/dashboard.css">
+        <script src="../../styles/js/nav-bar.js"></script>
+        <script src="../../styles/js/jquery-3.7.1.min.js"></script>
+        <script src="../../styles/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
         <title>FoodSafe Inspector Dashboard</title>
     </head>
     <body class="inspector-dashboard">
         <header>
-            <div class="logo-area">
-                <span class="logo-icon">lg8</span>
-                <span>FoodSafe</span>
-            </div>
-            <nav>
-                <div class="toggle-container">
-                    <span>Dark</span>
-                    <label class="switch">
-                        <input type="checkbox" id="darkModeToggle" checked>
-                        <span class="slider"></span>
-                    </label>
-                </div>
-                <a href="#directory">Directory</a>
-                <a href="#report">Report</a>
-                <a href="#login">Login</a>
-            </nav>
-            
+            <div id="navBar"></div>   
         </header>
             <div class="page-header">
                 <h1>Inspector Dashboard</h1>
@@ -46,16 +36,20 @@
                 <div class="chart-box1">
                     <h2>Inspections Per Month</h2>
                     <!-- Placeholder for chart -->
-                    <div class="chart-placeholder">[Chart Here]</div>
+                    <div class="chart-placeholder">
+                        <canvas id="inspectionsChart"></canvas>
+                    </div>
                 </div>
                 <div class="chart-box2">
                     <h2>Grade Distribution</h2>
                     <!-- Placeholder for chart -->
-                    <div class="chart-placeholder">[Chart Here]</div>
+                    <div class="chart-placeholder">
+                        <canvas id="gradeDistributionChart"></canvas>
+                    </div>
                 </div>
             </section>
             
         </main>
-        //Add footer here if needed
+        <script src="../../script/inspectorDashboard.js"></script>
     </body>
 </html>

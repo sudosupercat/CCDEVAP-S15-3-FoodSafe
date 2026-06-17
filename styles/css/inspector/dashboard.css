@@ -1,0 +1,98 @@
+/* CSS variables for consistent themes */
+:root{
+    --bg-purple: #3100b9 !important; 
+    --nav-bg: #1f0075;
+    --text-white: #ffffff;
+    --accent-orange: #ff751f;
+    --input-bg: #ffffff;
+    --font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--font-family) !important;
+}
+
+body{
+    background-color: var(--bg-purple);
+    min-height: 100vh; /* full screen height */
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden; /* prevent horizontal scroll */
+}
+/* Main Layout */
+main {
+    padding: 20px 20px;
+    min-height: calc(100vh - 140px);
+}
+
+/* Page Header */
+.page-header {
+    background-color: #ffffff;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    font-size: 2 rem;
+    color: var(--accent-orange);
+    font-weight: bold;
+}
+
+/* Status Cards */
+.stats-row {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+}
+
+.stat-box1, .stat-box2 {
+    background-color: #ffff;
+    border: 2px solid #000000;
+    padding: 20px;
+    border-radius: 20px;
+    width: 300px;
+    text-align: center;
+}
+
+.stat-box1 h2 {
+    color: #00bf3c;
+    font-size: 3rem;
+    margin-bottom: 5px;
+}
+
+.stat-box2 h2 {
+    color: var(--accent-orange);
+    font-size: 3rem;
+    margin-bottom: 5px;
+}
+
+.stat-box1 p, .stat-box2 p{
+    font-size: 1rem;
+}
+
+/* Charts Card */
+.charts-row {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 40px;
+}
+
+.chart-box1, .chart-box2 {
+    background-color: #ffff;
+    border: 2px solid #000000;
+    padding: 20px;
+    border-radius: 20px;
+    width: 700px;
+    text-align: center;
+}
+
+.chart-box1 h2, .chart-box2 h2 {
+    color: var(--accent-orange);
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+}
