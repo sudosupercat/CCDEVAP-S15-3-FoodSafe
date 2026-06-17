@@ -191,3 +191,89 @@ button:hover, .actions-button button:hover {
 .btn-disable {
   color: red;
 }
+
+/* [initial, subject to change] additions for add-user */ 
+body.admin-page {
+  background-color: var(--bg-purple, #3100b9);
+  margin-top: 0 !important; 
+}
+
+.page-title-orange {
+  color: var(--accent-orange, #ff751f);
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.custom-fg {
+  margin-bottom: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.custom-fg label {
+  color: var(--accent-orange, #ff751f);
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.custom-input, .custom-input:focus {
+  width: 100%;
+  padding: 15px 25px;
+  height: auto;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--input-bg, #ffffff);
+  color: #333333;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: none;
+}
+
+.custom-select-pill {
+  width: 100%;
+  padding: 0 25px;
+  height: 54px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--input-bg, #ffffff);
+  color: #333333;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+
+.action-btn-submit {
+  background-color: var(--input-bg, #ffffff);
+  color: var(--accent-orange, #ff751f);
+  border: 2px solid var(--input-bg, #ffffff);
+  padding: 12px 50px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.action-btn-submit:hover {
+  background-color: transparent;
+  color: var(--input-bg, #ffffff);
+  text-decoration: none;
+}
+
+@media only screen and (max-width: 768px) {
+  .page-title-orange {
+    font-size: 2.3rem;
+    text-align: center;
+  }
+  .custom-fg label {
+    font-size: 1.2rem;
+  }
+  .action-btn-submit {
+    width: 100%;
+  }
+}
