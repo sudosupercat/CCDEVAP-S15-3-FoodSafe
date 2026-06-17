@@ -90,10 +90,13 @@ body {
     overflow: hidden;
     height: 160px;
     border: 2px solid #000000; 
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .restaurant-card:hover {
     transform: translateY(-5px);
+    text-decoration: none;
 }
 
 .resto-image {
@@ -116,10 +119,11 @@ body {
     font-size: 1.8rem;
     margin-bottom: 10px;
     color: #2a0470; 
+    font-weight: 700;
 }
 
 .resto-info .violations-text {
-    color: #f38020; /* ADDED: Orange text specifically for violations */
+    color: #f38020;
     font-weight: bold;
     margin-bottom: 5px;
     font-size: 1.1rem;
@@ -156,7 +160,7 @@ body {
         flex-direction: column;
         align-items: center;
         text-align: center;
-        height: auto
+        height: auto;
     }
 
     .resto-image {
@@ -164,14 +168,19 @@ body {
         height: 200px;
         border-right: none;
         border-bottom: 3px solid #000000;
-    }
+    } 
 
     .resto-info {
-        padding: 25px 15px 0px 15px;
+        padding: 25px 15px 0px 15px; 
+    }
+
+    .resto-info .inspection-text {
+        margin-bottom: 0;
     }
 
     .resto-grade {
         font-size: 6.2rem;
-        margin: 10px 0;
+        margin: 18px 0px;
+        line-height: 0.8; 
     }
 }
