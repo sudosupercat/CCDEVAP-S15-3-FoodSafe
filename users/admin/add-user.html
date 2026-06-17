@@ -29,50 +29,56 @@
     </header>
 
     <main class="form-container-wrapper">
-        <div class="form-center-box">
-            <section class="form-left">
-                <h1 class="page-title-orange">Add New User</h1>
+    <div class="form-center-box">
+        <section class="form-left">
+            <h1 class="page-title-orange">Add New User</h1>
+            
+            <form id="addUserForm">
+                <div class="custom-fg">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" class="custom-input" required>
+                </div>
                 
-                <form id="addUserForm">
-                    <div class="custom-fg">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" class="custom-input" required>
-                    </div>
-                    
-                    <div class="custom-fg">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" class="custom-input" required>
-                    </div>
+                <div class="custom-fg">
+                    <label for="lastName">Surname</label>
+                    <input type="text" id="lastName" class="custom-input" required>
+                </div>
 
-                    <div class="custom-fg">
+                <div class="custom-row">
+                    <div class="custom-fg flex-1">
                         <label for="email">Email</label>
                         <input type="email" id="email" class="custom-input" required>
                     </div>
-
-                    <div class="custom-fg">
-                        <label for="region">Region</label>
-                        <div class="select-wrapper">
-                            <select id="region" class="custom-select-pill" required>
-                                <option value="" disabled selected hidden>Select Region</option>
-                                <option value="NCR">NCR</option>
-                                <option value="Region 1">Region 1</option>
-                                <option value="Region 2">Region 2</option>
-                                <option value="Region 3">Region 3</option>
-                                <option value="Region 4A">Region 4A</option>
-                                <option value="Region 4B">Region 4B</option>
-                                <option value="Region 5">Region 5</option>
-                                <option value="CAR">CAR</option>
-                            </select>
-                        </div>
+                    <div class="custom-fg flex-1">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" class="custom-input" required>
                     </div>
+                </div>
 
-                    <div class="btn-center-wrapper">
-                        <button type="submit" class="action-btn-submit">Add User</button>
+                <div class="custom-fg">
+                    <label for="region">District Name</label>
+                    <div class="select-wrapper">
+                        <select id="region" class="custom-select-pill" required>
+                            <option value="" disabled selected hidden>Select District</option>
+                            <option value="NCR">NCR</option>
+                            <option value="Region 1">Region 1</option>
+                            <option value="Region 2">Region 2</option>
+                            <option value="Region 3">Region 3</option>
+                            <option value="Region 4A">Region 4A</option>
+                            <option value="Region 4B">Region 4B</option>
+                            <option value="Region 5">Region 5</option>
+                            <option value="CAR">CAR</option>
+                        </select>
                     </div>
-                </form>
-            </section>
-        </div>
-    </main>
+                </div>
+
+                <div class="btn-left-wrapper">
+                    <button type="submit" class="action-btn-submit">Add User</button>
+                </div>
+            </form>
+        </section>
+    </div>
+</main>
 
     <div id="toast" class="toast hidden">
         <div class="toast-text">
