@@ -2,15 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="FoodSafe Admin - Add New User">
-    <meta name="keywords" content="FoodSafe, Admin, Add User">
-    <meta name="author" content="CCDEVAP Group 3">
+    <meta name="description" content="FoodSafe Add User Page">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodSafe Admin - Add New User</title>
-    
-    <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../styles/css/global.css">
     <link rel="stylesheet" href="../../styles/css/admin/user-management.css">
+    <title>FoodSafe - Add User</title>
 </head>
 <body class="admin-page">
 
@@ -27,66 +23,57 @@
                     <span class="slider"></span>
                 </label>
             </div>
-            <a href="../public/index.html#directory">Directory</a>
-            <a href="../public/index.html#report">Report</a>
-            <a href="user-management.html">User Management</a>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="../login.html">Logout</a>
         </nav>
     </header>
 
-    <main class="container py-5">
-        <div class="row justify-content-center">
-            <div class="col-12 col-md-10 col-lg-8 form-left-custom">
+    <main class="form-container-wrapper">
+        <section class="form-left">
+            <h1 class="page-title-orange">Add New User</h1>
+            
+            <form id="addUserForm">
+                <div class="custom-fg">
+                    <label for="firstName">First Name</label>
+                    <input type="text" id="firstName" class="custom-input" required>
+                </div>
                 
-                <h1 class="page-title-orange">Add New User</h1>
-                
-                <form id="addUserForm" class="mt-4">
-                    <div class="form-group custom-fg">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" class="form-control custom-input" placeholder="Enter first name" required>
-                    </div>
+                <div class="custom-fg">
+                    <label for="lastName">Last Name</label>
+                    <input type="text" id="lastName" class="custom-input" required>
+                </div>
 
-                    <div class="form-group custom-fg">
-                        <label for="lastName">Surname</label>
-                        <input type="text" id="lastName" class="form-control custom-input" placeholder="Enter surname" required>
-                    </div>
+                <div class="custom-fg">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="custom-input" required>
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group col-md-6 custom-fg">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" class="form-control custom-input" placeholder="Enter email address" required>
-                        </div>
-                        <div class="form-group col-md-6 custom-fg">
-                            <label for="password">Password</label>
-                            <input type="password" id="password" class="form-control custom-input" placeholder="Enter password" required>
-                        </div>
-                    </div>
-
-                    <div class="form-group custom-fg">
-                        <label for="district">District Name</label>
-                        <select id="district" class="form-control custom-select-pill" required>
-                            <option value="" disabled selected hidden>Select District</option>
-                            <script>
-                                const districts = ['NCR', 'Region 1', 'Region 2', 'Region 3', 'Region 4A', 'Region 4B', 'Region 5', 'Region 6', 'Region 7', 'Region 8', 'Region 9', 'Region 10', 'Region 11', 'Region 12', 'CAR', 'CARAGA'];
-                                districts.forEach(district => {
-                                    document.write(`<option value="${district}">${district}</option>`);
-                                });
-                            </script>
+                <div class="custom-fg">
+                    <label for="region">Region</label>
+                    <div class="select-wrapper">
+                        <select id="region" class="custom-select-pill" required>
+                            <option value="" disabled selected hidden>Select Region</option>
+                            <option value="NCR">NCR</option>
+                            <option value="Region 1">Region 1</option>
+                            <option value="Region 2">Region 2</option>
+                            <option value="Region 3">Region 3</option>
+                            <option value="Region 4A">Region 4A</option>
+                            <option value="Region 4B">Region 4B</option>
+                            <option value="Region 5">Region 5</option>
+                            <option value="CAR">CAR</option>
                         </select>
                     </div>
+                </div>
 
-                    <div class="mt-4">
-                        <button type="submit" class="action-btn-submit">Submit</button>
-                    </div>
-                </form>
-
-            </div>
-        </div>
+                <button type="submit" class="action-btn-submit">Add User</button>
+            </form>
+        </section>
     </main>
 
     <div id="toast" class="toast hidden">
         <div class="toast-text">
-            <strong id="toast-title">Toast Title</strong>
-            <p id="toast-message">Toast Message</p>
+            <strong id="toast-title">Notification</strong>
+            <p id="toast-message">Message text content.</p>
         </div>
     </div>
 
@@ -94,24 +81,17 @@
         document.getElementById('addUserForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // Extract the user processing data fields
             const firstName = document.getElementById('firstName').value.trim();
             const lastName = document.getElementById('lastName').value.trim();
             const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
-            const district = document.getElementById('district').value;
+            const region = document.getElementById('region').value;
 
-            // Basic client-side logic validations simulating success/error scenarios
-            if (password.length < 6) {
-                showToast("error", "Registration Failed", "Password must be at least 6 characters long.");
-                return;
+            if (firstName && lastName && email && region) {
+                showToast("success", "User Registration Successful", `${firstName} ${lastName} has been added safely.`);
+                document.getElementById('addUserForm').reset();
+            } else {
+                showToast("error", "Registration Failed", "Please ensure all fields are filled accurately.");
             }
-
-            // Simulating successful save storage operation metrics
-            showToast("success", "Action Successful", `${firstName} ${lastName} has been added to the registry.`);
-            
-            // Clean up internal data fields after execution loop
-            document.getElementById('addUserForm').reset();
         });
 
         function showToast(type, title, message) {
