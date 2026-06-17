@@ -32,19 +32,21 @@ function showNavBar(){
                 <a class="navbar-brand font-weight-bold" href="#">FoodSafe</a>
 
                 <button class="navbar-toggler" type="button" 
-                        data-toggle="collapse" data-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        data-toggle="collapse" data-target="#navbar-items"
+                        aria-controls="navbar-items" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbar-items">
-                    <div class="custom-control custom-switch">
-                        <input type="checkbox" class="custom-control-input" id="themeSwitcher">
-                        <label class="custom-control-label" for="themeSwitcher">Dark Mode</label>
+                    <div class="d-flex ml-auto align-items-center">
+                        <div class="custom-control custom-switch ml-auto">
+                            <input type="checkbox" class="custom-control-input" id="themeSwitcher">
+                            <label class="custom-control-label" for="themeSwitcher">Dark Mode</label>
+                        </div>
+                        <ul class="navbar-nav ml-auto">
+                            ${navItems}
+                        </ul>
                     </div>
-                    <ul class="navbar-nav ml-auto">
-                        ${navItems}
-                    </ul>
                 </div>
             </div>
         </nav>
@@ -60,9 +62,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     themeSwitcher.addEventListener('change', function () {
       if (this.checked) {
-        document.body.classList.add('bg-dark', 'text-white');
+        document.body.classList.add('theme-dark-custom', 'text-white');
+        document.querySelectorAll('table').forEach(table => {
+            table.classList.add('table-dark');
+        });
       } else {
-        document.body.classList.remove('bg-dark', 'text-white');
-      }
+        document.body.classList.remove('theme-dark-custom', 'text-white');
+        document.querySelectorAll('table').forEach(table => {
+            table.classList.remove('table-dark');
+        });
+    }
     });
 });

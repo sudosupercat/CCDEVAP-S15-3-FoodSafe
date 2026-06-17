@@ -13,6 +13,10 @@ body{
     border: 3px solid black;
 }
 
+.theme-dark-custom{
+    background-color: #12103a;
+}
+
 .button-option{
     text-decoration: none;
     color: orange;
