@@ -218,3 +218,238 @@ main {
         max-width: 100%;
     }
 }
+
+/* addition for the user complaints */ 
+body.public-report-page {
+  display: flex;
+  flex-direction: column;
+}
+
+.report-main {
+  display: flex;
+  flex: 1;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 60px;
+  align-items: center;
+  gap: 50px;
+}
+
+.report-left-title {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.report-left-title h1 {
+  font-size: 4.5rem;
+  font-weight: 800;
+  line-height: 1.1;
+  display: flex;
+  flex-direction: column;
+}
+
+.report-left-title .text-white {
+  color: var(--text-white);
+}
+
+.report-left-title .text-orange {
+  color: var(--accent-orange);
+}
+
+.report-right-form {
+  width: 60%;
+  background: transparent;
+  padding: 20px 0;
+}
+
+.form-line {
+  margin-bottom: 1.2rem;
+  width: 100%;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input-group label {
+  color: var(--text-white);
+  font-size: 1.1rem;
+  margin-bottom: 0.4rem;
+  font-weight: 500;
+}
+
+.public-input {
+  width: 100%;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--input-bg);
+  color: #333333;
+  font-size: 1rem;
+  outline: none;
+}
+
+.public-textarea {
+  width: 100%;
+  padding: 16px 22px;
+  border: none;
+  border-radius: 20px;
+  background-color: var(--input-bg);
+  color: #333333;
+  font-size: 1rem;
+  outline: none;
+  resize: vertical;
+}
+
+.split-row {
+  display: flex;
+  gap: 20px;
+}
+
+.split-row .input-group {
+  flex: 1;
+}
+
+.anon-container {
+  padding: 5px 2px;
+}
+
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text-white);
+  font-size: 1.1rem;
+  cursor: pointer;
+}
+
+.checkbox-label input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--accent-orange);
+  cursor: pointer;
+}
+
+.public-select-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.public-select-wrapper::after {
+  content: "▼";
+  font-size: 0.8rem;
+  color: #333333;
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.public-select {
+  width: 100%;
+  padding: 14px 22px;
+  border: none;
+  border-radius: 50px;
+  background-color: var(--input-bg);
+  color: #333333;
+  font-size: 1rem;
+  outline: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  cursor: pointer;
+}
+
+.btn-container-right {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  margin-top: 1.5rem;
+}
+
+.public-submit-btn {
+  background-color: var(--input-bg);
+  color: var(--accent-orange);
+  border: 2px solid var(--input-bg);
+  padding: 12px 60px;
+  border-radius: 50px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.public-submit-btn:hover {
+  background-color: transparent;
+  color: var(--input-bg);
+}
+
+.toast {
+  color: var(--text-white);
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  padding: 15px 25px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 99999;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+.toast.hidden {
+  display: none;
+}
+
+.toast.success {
+  background-color: #2e7d32;
+}
+
+.toast-text strong {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 2px;
+}
+
+.toast-text p {
+  margin: 0;
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+@media only screen and (max-width: 992px) {
+  .report-main {
+    flex-direction: column;
+    padding: 30px 20px;
+    gap: 20px;
+  }
+  .report-left-title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  .report-left-title h1 {
+    font-size: 3.2rem;
+    align-items: center;
+  }
+  .report-right-form {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 576px) {
+  .split-row {
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+  .public-submit-btn {
+    width: 100%;
+  }
+}
