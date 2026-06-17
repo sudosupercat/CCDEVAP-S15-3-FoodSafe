@@ -3,35 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Fowler Fine Diner</title>
+    <title>FoodSafe - The Fowler Fine Diner</title>
     <link rel="stylesheet" href="../../styles/css/public/resto-style.css">
 </head>
 <body class="resto-rating-page">
 
-    <div class="hero-section">
-        <div class="hero-left">
-            <span class="high-standard-tag">High Standard</span>
-            <h1 class="resto-title">The Fowler Fine Diner</h1>
-            <a href="https://maps.google.com" target="_blank" class="gmaps-link">
-                123 Culinary Boulevard, Food District 📍
-            </a>
+    <header>
+        <div class="logo-area">
+            <span class="logo-icon">lg8</span>
+            <span>FoodSafe</span>
         </div>
-        <div class="hero-right">
-            <div class="hero-right-top-img">
-                <img src="../../src/images/sample-resto.jpg" alt="The Fowler Fine Diner">
+        <nav>
+            <div class="toggle-container">
+                <span>Dark</span>
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle" checked>
+                    <span class="slider"></span>
+                </label>
             </div>
-            <div class="hero-right-bottom-rating">
+            <a href="#directory">Directory</a>
+            <a href="complaint.html">Report</a>
+            <a href="../../views/login.html">Login</a>
+        </nav>
+    </header>
+
+    <main class="split-viewport">
+        <section class="split-left-image"></section>
+
+        <section class="split-right-content">
+            <div class="brand-panel">
+                <span class="high-standard-tag">High Standard</span>
+                <h1 class="resto-title">The Fowler Fine Diner</h1>
+                <a href="http://maps.google.com" target="_blank" class="gmaps-link">
+                    123 Culinary Boulevard, Food District 📍
+                </a>
+            </div>
+
+            <div class="rating-panel">
                 <h2 class="rating-title">Inspection Rating</h2>
                 <div class="rating-circle">4.5</div>
             </div>
-        </div>
+        </section>
+    </main>
+
+    <div class="inspections-bar">
+        <h2>Inspections</h2>
     </div>
 
-    <header class="inspections-bar">
-        <h2>Inspections</h2>
-    </header>
-
-    <main class="inspections-container">
+    <section class="inspections-container">
         <div class="inspections-grid">
             <div class="inspection-block" onclick="openModal('June 4, 2026', '6', 'B', 'grade-b', ['Cross-contamination', 'Dirty Kitchen Equipment'])">
                 <div class="inspect-date">June 4, 2026</div>
@@ -73,11 +92,11 @@
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal-window">
-            <button class="close-modal-btn" onclick="closeModal()">&times;</button>
+            <button class="close-modal-btn" onclick="closeModal()">×</button>
             <div class="modal-header">
                 <h3 id="modalDate" class="modal-date">Inspection Details</h3>
                 <div class="modal-scores">
@@ -95,13 +114,11 @@
     <script>
         function openModal(date, hours, rating, gradeClass, violations) {
             document.getElementById('modalDate').textContent = `Inspection: ${date}`;
-            
             const hoursElem = document.getElementById('modalHours');
             const ratingElem = document.getElementById('modalRating');
             
             hoursElem.textContent = hours;
             ratingElem.textContent = rating;
-            
             hoursElem.className = gradeClass;
             ratingElem.className = gradeClass;
 
@@ -114,21 +131,17 @@
                 listContainer.appendChild(li);
             });
 
-            const overlay = document.getElementById('modalOverlay');
-            overlay.classList.add('active');
+            document.getElementById('modalOverlay').classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            const overlay = document.getElementById('modalOverlay');
-            overlay.classList.remove('active');
+            document.getElementById('modalOverlay').classList.remove('active');
             document.body.style.overflow = '';
         }
 
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
+            if (e.target === this) closeModal();
         });
     </script>
 </body>
