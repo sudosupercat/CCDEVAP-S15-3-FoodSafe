@@ -1,59 +1,58 @@
-body {
-    /* delete pag may global na */
-    background-color: #3d00bc;
-    display: flex;
-    margin: 0;
-    font-family: Arial;
+.page-content {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
 }
 
 h2 {
-    color: #3d00bc;
-    font-weight: bold;
-    text-align: center;
-    font-size: 35px;
+  color: #3d00bc;
+  font-weight: bold;
+  text-align: center;
+  font-size: 35px;
+  margin-top: 40px;
 }
 
 .container {
-    background-color: orange;
-    display: flex;
-    flex-direction: column;
-    width: 800px;
-    height: 100vh;
-    background-repeat: repeat;
-    box-sizing: border-box;
-    padding-bottom: 20px;
+  background-color: orange;
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  height: 100vh;
+  background-repeat: repeat;
+  box-sizing: border-box;
+  padding-bottom: 20px;
 }
 
 #search-input, .reports {
-    width: 80%;
-    box-sizing: border-box;
-    padding: 10px 10px;
-    border: 3px solid;
-    border-radius: 8px;
-    font-size: 18px;
-    margin: 10px auto;    
-    background-color: white; 
-    display: block;
+  width: 80%;
+  box-sizing: border-box;
+  padding: 10px 10px;
+  border: 3px solid;
+  border-radius: 8px;
+  font-size: 18px;
+  margin: 10px auto;    
+  background-color: white; 
+  display: block;
 }
 
 #details-container {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 30px;
-    color: white;
-    margin: 20px 50px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  color: white;
+  margin: 20px 50px;
 }
 
 #details-container h3 {
-    font-size: 30px;
-    align-items: center;
+  font-size: 30px;
+  align-items: center;
 }
 
 #details-container p {
-    font-size: 20px;
-    margin: 20px 0;
-    line-height: 1.5;
+  font-size: 20px;
+  margin: 20px 0;
+  line-height: 1.5;
 }
 
 .close {
