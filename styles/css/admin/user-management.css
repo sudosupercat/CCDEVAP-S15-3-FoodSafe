@@ -195,6 +195,7 @@ button:hover, .actions-button button:hover {
 /* [initial, subject to change] additions for add-user */ 
 body.admin-page {
   background-color: #3100b9;
+  margin: 0 !important;
   margin-top: 0 !important; 
   min-height: 100vh;
   display: flex;
