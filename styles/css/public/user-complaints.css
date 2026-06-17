@@ -1,3 +1,23 @@
+body.dark-mode {
+    --bg-purple: #12103a;      
+    --nav-bg: #0b0924;         
+    --input-bg: #1f1b51;       
+    --text-white: #e2dfeb;    
+}
+
+
+body.dark-mode .public-input,
+body.dark-mode .public-textarea,
+body.dark-mode .public-select {
+    color: #ffffff;
+    background-color: var(--input-bg);
+}
+
+
+body.dark-mode .report-left-title .text-white {
+    color: #ffffff;
+}
+
 body.public-report-page {
     display: flex;
     flex-direction: column;
