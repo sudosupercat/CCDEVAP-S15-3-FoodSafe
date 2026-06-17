@@ -1,3 +1,13 @@
+:root {
+  --bg-purple: #3100b9;
+  --nav-bg: #1f0075;
+}
+
+body.dark-mode {
+  --bg-purple: #12103a;
+  --nav-bg: #0b0924;
+}
+
 body {
   font-family: Helvetica;
   background-color: #3d00bc;
@@ -76,7 +86,6 @@ td {
 }
 
 .modal-content select{
-  /* background-color: rgb(52, 51, 51); */
   padding: 5px 10px;
   margin-right: 8px;
   border: 1px solid rgb(100, 100, 100);
@@ -201,15 +210,15 @@ button:hover, .actions-button button:hover {
   color: red;
 }
 
-/* [initial, subject to change] additions for add-user */ 
 body.admin-page {
-  background-color: #3100b9;
+  background-color: var(--bg-purple);
   margin: 0 !important;
   margin-top: 0 !important; 
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   overflow-x: hidden;
+  transition: background-color 0.3s ease;
 }
 
 body.admin-page * {
@@ -217,12 +226,13 @@ body.admin-page * {
 }
 
 header {
-  background-color: #1f0075;
+  background-color: var(--nav-bg);
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
   width: 100%;
+  transition: background-color 0.3s ease;
 }
 
 .logo-area {
@@ -272,12 +282,19 @@ nav a:hover {
   display: inline-block;
   width: 50px;
   height: 26px;
+  cursor: pointer;
 }
 
 .switch input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0;
-  width: 0;
-  height: 0;
+  z-index: 2;
+  cursor: pointer;
+  margin: 0;
 }
 
 .slider {
@@ -290,6 +307,8 @@ nav a:hover {
   background-color: #ccc;
   transition: .4s;
   border-radius: 34px;
+  z-index: 1;
+  pointer-events: none;
 }
 
 .slider:before {
@@ -304,11 +323,11 @@ nav a:hover {
   border-radius: 50%;
 }
 
-input:checked + .slider {
-  background-color: #3100b9;
+body.dark-mode input:checked + .slider {
+  background-color: #ff751f;
 }
 
-input:checked + .slider:before {
+body.dark-mode input:checked + .slider:before {
   transform: translateX(24px);
 }
 
