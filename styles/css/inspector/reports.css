@@ -1,3 +1,8 @@
+body {
+  font-family: Helvetica;
+  background-color: #3d00bc;
+}
+
 .page-content {
   display: flex;
   flex-direction: row;
@@ -16,7 +21,7 @@ h2 {
   background-color: orange;
   display: flex;
   flex-direction: column;
-  width: 800px;
+  width: 750px;
   height: 100vh;
   background-repeat: repeat;
   box-sizing: border-box;
@@ -55,7 +60,7 @@ h2 {
   line-height: 1.5;
 }
 
-.toast-close {
+.custom-toast-close {
   text-decoration: none;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.541);
@@ -65,7 +70,7 @@ h2 {
   align-self: flex-start 
 }
 
-.toast {
+.custom-toast {
   font-family: Arial;
   color: white;
   position: fixed;
@@ -79,28 +84,28 @@ h2 {
   z-index: 9999;
 }
 
-.toast.hidden {
+.custom-toast.hidden {
   display: none;
 }
 
-.toast.pending {
+.custom-toast.pending {
   background-color: orange;
 }
 
-.toast.reviewed {
+.custom-toast.reviewed {
   background-color: green;
 }
 
-.toast.dismissed {
+.custom-toast.dismissed {
   background-color: red;
 }
 
-.toast-text strong {
+.custom-toast-text strong {
   display: block;
   font-size: 14px;
 }
 
-.toast-text p {
+.custom-toast-text p {
   margin: 2px 0 0;
   font-size: 12px;
   opacity: 0.85;
