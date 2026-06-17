@@ -14,13 +14,14 @@
         <title>FoodSafe Login</title>
     </head>
     <body class="login-page">
+        
         <header>
             <div id="navBar"></div>
         </header>
         <main>
         <section class="form-left">
             <h1>Welcome Back!</h1>
-            <form id="loginForm" action="" method="POST">
+            <form id="loginForm" action="" method="POST" novalidate>
                 <div class="form-group">
                     <label id="emailLabel" for="email">E-mail</label>
                     <input type="email" id="email" required>
@@ -28,14 +29,26 @@
                 <div class="form-group">
                     <label id="passwordLabel" for="password">Password:</label>
                     <input type="password" id="password" required >
+                    
+                    <div class="togglePw">
+                        <input type="checkbox" id="showPw">
+                        <label for="showPw">Show Password</label>
+                    </div>
                 </div>
                 <button type="submit" class="login-btn">Log-in</button>
             </form>
         </section>
+        <div id="toast" class="custom-toast hidden">
+            <div class="toast-text">
+                <strong id="toast-title">Toast Title</strong>
+                <p id="toast-message">Toast Message</p>
+            </div>
+            <span class="toast-close" onclick="hideToast()">&times;</span>
+        </div>
         <section class="form-right">
             <img src="../src/images/loginbg.png" alt="Login Illustration">
-        </section>    
+        </section>   
         </main>
-        <script src="../script/loginpage.js"></script>
+        <script src="../styles/js/loginpage.js"></script>
     </body>
 </html>
