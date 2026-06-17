@@ -3,32 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Fowler Fine Diner</title>
+    <title>FoodSafe - The Fowler Fine Diner</title>
     <link rel="stylesheet" href="../../styles/css/public/resto-style.css">
 </head>
 <body class="resto-rating-page">
 
-    <header>
-        <div class="logo-area">
-            <span class="logo-icon">lg8</span>
-            <span>FoodSafe</span>
+    <div class="hero-section">
+        
+        <div class="hero-left-img">
+            <img src="../../src/images/sample-resto.jpg" alt="The Fowler Fine Diner">
         </div>
-        <nav>
-            <div class="toggle-container">
-                <span>Dark</span>
-                <label class="switch">
-                    <input type="checkbox" id="darkModeToggle" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <a href="#directory">Directory</a>
-            <a href="complaint.html">Report</a>
-            <a href="../../views/login.html">Login</a>
-        </nav>
-    </header>
-
-    <main class="split-viewport">
-        <section class="split-left-content">
+        
+        
+        <div class="hero-right-content">
+            
             <div class="brand-panel">
                 <span class="high-standard-tag">High Standard</span>
                 <h1 class="resto-title">The Fowler Fine Diner</h1>
@@ -36,67 +24,65 @@
                     123 Culinary Boulevard, Food District 📍
                 </a>
             </div>
-
-            <div class="rating-panel">
+            
+            <div class="hero-right-bottom-rating">
                 <h2 class="rating-title">Inspection Rating</h2>
                 <div class="rating-circle">4.5</div>
             </div>
-        </section>
-
-        <section class="split-right-image"></section>
-    </main>
-
-    <div class="inspections-bar">
-        <h2>Inspections</h2>
+        </div>
     </div>
 
-    <section class="inspections-container">
+    <header class="inspections-bar">
+        <h2>Inspections</h2>
+    </header>
+
+    <main class="inspections-container">
         <div class="inspections-grid">
             <div class="inspection-block" onclick="openModal('June 4, 2026', '6', 'B', 'grade-b', ['Cross-contamination', 'Dirty Kitchen Equipment'])">
                 <div class="inspect-date">June 4, 2026</div>
                 <div class="inspect-meta">
-                    <span class="meta-label">Number of Hours: <strong class="stat-num grade-b">6</strong></span>
-                    <span class="meta-label">Overall Rating: <strong class="stat-letter grade-b">B</strong></span>
+                    <span>Number of Hours: <strong class="stat-num grade-b">6</strong></span>
+                    <span>Overall Rating: <strong class="stat-letter grade-b">B</strong></span>
                 </div>
             </div>
 
             <div class="inspection-block" onclick="openModal('May 18, 2026', '4', 'A', 'grade-a', ['None - Perfect Score'])">
                 <div class="inspect-date">May 18, 2026</div>
                 <div class="inspect-meta">
-                    <span class="meta-label">Number of Hours: <strong class="stat-num grade-a">4</strong></span>
-                    <span class="meta-label">Overall Rating: <strong class="stat-letter grade-a">A</strong></span>
+                    <span>Number of Hours: <strong class="stat-num grade-a">4</strong></span>
+                    <span>Overall Rating: <strong class="stat-letter grade-a">A</strong></span>
                 </div>
             </div>
 
             <div class="inspection-block" onclick="openModal('April 12, 2026', '8', 'C', 'grade-c', ['Improper Food Storage Temperatures', 'Cluttered or Dirty Floors'])">
                 <div class="inspect-date">April 12, 2026</div>
                 <div class="inspect-meta">
-                    <span class="meta-label">Number of Hours: <strong class="stat-num grade-c">8</strong></span>
-                    <span class="meta-label">Overall Rating: <strong class="stat-letter grade-c">C</strong></span>
+                    <span>Number of Hours: <strong class="stat-num grade-c">8</strong></span>
+                    <span>Overall Rating: <strong class="stat-letter grade-c">C</strong></span>
                 </div>
             </div>
 
             <div class="inspection-block" onclick="openModal('March 01, 2026', '5', 'A', 'grade-a', ['Minor Dust on Exhaust vents'])">
                 <div class="inspect-date">March 01, 2026</div>
                 <div class="inspect-meta">
-                    <span class="meta-label">Number of Hours: <strong class="stat-num grade-a">5</strong></span>
-                    <span class="meta-label">Overall Rating: <strong class="stat-letter grade-a">A</strong></span>
+                    <span>Number of Hours: <strong class="stat-num grade-a">5</strong></span>
+                    <span>Overall Rating: <strong class="stat-letter grade-a">A</strong></span>
                 </div>
             </div>
 
             <div class="inspection-block" onclick="openModal('Jan 15, 2026', '9', 'F', 'grade-f', ['Pest Infestation', 'Bare-Hand Contact with Ready to Eat Food', 'Failure to Rapidly Cool or Reheat Foods'])">
                 <div class="inspect-date">January 15, 2026</div>
                 <div class="inspect-meta">
-                    <span class="meta-label">Number of Hours: <strong class="stat-num grade-f">9</strong></span>
-                    <span class="meta-label">Overall Rating: <strong class="stat-letter grade-f">F</strong></span>
+                    <span>Number of Hours: <strong class="stat-num grade-f">9</strong></span>
+                    <span>Overall Rating: <strong class="stat-letter grade-f">F</strong></span>
                 </div>
             </div>
         </div>
-    </section>
+    </main>
 
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal-window">
-            <button class="close-modal-btn" onclick="closeModal()">×</button>
+            <button class="close-modal-btn" onclick="closeModal()">&times;</button>
             <div class="modal-header">
                 <h3 id="modalDate" class="modal-date">Inspection Details</h3>
                 <div class="modal-scores">
@@ -114,11 +100,13 @@
     <script>
         function openModal(date, hours, rating, gradeClass, violations) {
             document.getElementById('modalDate').textContent = `Inspection: ${date}`;
+            
             const hoursElem = document.getElementById('modalHours');
             const ratingElem = document.getElementById('modalRating');
             
             hoursElem.textContent = hours;
             ratingElem.textContent = rating;
+            
             hoursElem.className = gradeClass;
             ratingElem.className = gradeClass;
 
@@ -131,17 +119,21 @@
                 listContainer.appendChild(li);
             });
 
-            document.getElementById('modalOverlay').classList.add('active');
+            const overlay = document.getElementById('modalOverlay');
+            overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            document.getElementById('modalOverlay').classList.remove('active');
+            const overlay = document.getElementById('modalOverlay');
+            overlay.classList.remove('active');
             document.body.style.overflow = '';
         }
 
         document.getElementById('modalOverlay').addEventListener('click', function(e) {
-            if (e.target === this) closeModal();
+            if (e.target === this) {
+                closeModal();
+            }
         });
     </script>
 </body>
