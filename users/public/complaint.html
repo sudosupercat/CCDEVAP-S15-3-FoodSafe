@@ -136,6 +136,18 @@
     </div>
 
     <script>
+
+        const darkToggle = document.getElementById('darkModeToggle');
+        if (darkToggle) darkToggle.checked = false; 
+
+        darkToggle.addEventListener('change', function() {
+            if (this.checked) {
+                document.body.classList.add('dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+            }
+        });
+        
         const anonToggle = document.getElementById('anonymousToggle');
         const firstName = document.getElementById('firstName');
         const lastName = document.getElementById('lastName');
