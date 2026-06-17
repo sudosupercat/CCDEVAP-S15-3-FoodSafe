@@ -15,7 +15,38 @@
 </head>
 <body class="public-report-page">
 
-    <header id="navBar"></header>
+    <header class="navbar navbar-expand-md navbar-light bg-light">
+    <div class="container-fluid">
+        
+        <div class="logo-area d-flex align-items-center">
+            <img src="../../src/images/logo.png" alt="FoodSafe Logo" class="logo-img" style="height: 40px; margin-right: 10px;">
+            <span class="navbar-brand mb-0 h1">FoodSafe</span>
+        </div>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#foodSafeNav" aria-controls="foodSafeNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-end" id="foodSafeNav">
+            <nav class="navbar-nav align-items-center">
+                
+                <div class="nav-item toggle-container d-flex align-items-center mr-md-4 my-2 my-md-0">
+                    <span class="mr-2">Dark</span>
+                    <label class="switch mb-0">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <a class="nav-link px-3" href="#directory">Directory</a>
+                <a class="nav-link px-3" href="complaint.html">Report</a>
+                <a class="nav-link px-3" href="../../views/login.html">Login</a>
+                
+            </nav>
+        </div>
+
+    </div>
+</header>
 
     <main class="report-main">
         <section class="report-left-title">
