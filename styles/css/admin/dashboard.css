@@ -54,7 +54,7 @@ option {
     padding: 20px;
     width: 400px;
     text-align: center;
-    border: 3px solid black;
+    border: 3px solid;
     font-size: 35px;
     font-weight: bold;
 }
@@ -106,16 +106,18 @@ option {
 @media (max-width: 768px) {
     .header {
         display: flex;
-        flex-direction: row;
-        align-items: left;
-        text-align: left;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
     }
 
     .header h1 {
         font-size: 30px;
+        margin-left: 0;
     }
 
     .header-pickers {
+        margin-left: 0;
         gap: 15px;
         justify-content: center;
     }
