@@ -7,28 +7,13 @@
     <link rel="stylesheet" href="../../styles/css/login-style.css">
     <link rel="stylesheet" href="../../styles/css/global.css">
     <link rel="stylesheet" href="../../styles/css/public/user-complaints.css">
+    
+    <script src="../../styles/js/jquery-3.7.1.min.js"></script>
+    <script src="../../styles/js/nav-bar.js"></script>
 </head>
 <body class="public-report-page">
 
-    <header>
-        <div class="logo-area">
-    <img src="../../src/images/logo.png" alt="FoodSafe Logo" class="logo-img">
-    <span>FoodSafe</span>
-</div>
-        </div>
-        <nav>
-            <div class="toggle-container">
-                <span>Dark</span>
-                <label class="switch">
-                    <input type="checkbox" id="darkModeToggle" checked>
-                    <span class="slider"></span>
-                </label>
-            </div>
-            <a href="#directory">Directory</a>
-            <a href="complaint.html">Report</a>
-            <a href="../../views/login.html">Login</a>
-        </nav>
-    </header>
+    <header id="navBar"></header>
 
     <main class="report-main">
         <section class="report-left-title">
@@ -139,17 +124,8 @@
     </div>
 
     <script>
-
-        const darkToggle = document.getElementById('darkModeToggle');
-        if (darkToggle) darkToggle.checked = false; 
-
-        darkToggle.addEventListener('change', function() {
-            if (this.checked) {
-                document.body.classList.add('dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-            }
-        });
+        // EDIT 3: Removed the old darkToggle event code completely from here 
+        // because it lives globally in your nav-bar.js engine now!
         
         const anonToggle = document.getElementById('anonymousToggle');
         const firstName = document.getElementById('firstName');
