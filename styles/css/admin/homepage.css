@@ -94,6 +94,10 @@ body {
     }
 }
 
+body.theme-dark-custom {
+    background-image: url(../../../src/images/darkmodebg.png);
+}
+
 /*mobile*/
 
 @media (max-width: 768px) {

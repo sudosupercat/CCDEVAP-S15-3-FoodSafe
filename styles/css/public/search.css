@@ -144,6 +144,40 @@ body {
     align-self: center;
 }
 
+body.theme-dark-custom {
+    background-color: #12103a !important;
+}
+
+body.theme-dark-custom .search-section {
+    background-color: #0b0928 !important;
+}
+
+body.theme-dark-custom .restaurant-card {
+    background-color: #1a0b35 !important;
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+}
+
+body.theme-dark-custom .restaurant-card:hover {
+    color: #ffffff !important;
+}
+
+body.theme-dark-custom .resto-image {
+    border-color: #0d051e !important;
+}
+
+body.theme-dark-custom .resto-info h3 {
+    color: #ffffff !important;
+}
+
+body.theme-dark-custom .resto-info .violations-text {
+    color: #c4c4c4 !important;
+}
+
+body.theme-dark-custom .resto-info .inspection-text {
+    color: #d6cadd !important;
+}
+
 @media (max-width: 768px) {
     .search-section {
         padding: 20px;
