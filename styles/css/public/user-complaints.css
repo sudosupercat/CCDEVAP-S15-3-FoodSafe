@@ -1,5 +1,5 @@
-/* addition for the user complaints */ 
-:root{
+
+:root {
     --bg-purple: #3100b9;
     --nav-bg: #1f0075;
     --text-white: #ffffff;
@@ -8,708 +8,359 @@
     --font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Base styles */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--font-family) !important;
 }
+
+
+body, input, select, textarea, button {
+    font-family: var(--font-family);
+}
+
 
 body.public-report-page {
-
-
-  display: flex;
-
-
-  flex-direction: column;
-
-
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: var(--bg-purple); /* Ensures form context is visible */
+    color: var(--text-white);
 }
 
 
+header {
+    background-color: var(--nav-bg);
+    padding: 15px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
 
+.logo-area {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.logo-icon {
+    background-color: var(--accent-orange);
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+nav a {
+    color: var(--text-white);
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+nav a:hover {
+    color: var(--accent-orange);
+}
+
+
+.toggle-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 22px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px; width: 16px;
+    left: 3px; bottom: 3px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--accent-orange);
+}
+
+input:checked + .slider:before {
+    transform: translateX(18px);
+}
 
 
 .report-main {
-
-
-  display: flex;
-
-
-  flex: 1;
-
-
-  width: 100%;
-
-
-  max-width: 1400px;
-
-
-  margin: 0 auto;
-
-
-  padding: 40px 60px;
-
-
-  align-items: center;
-
-
-  gap: 50px;
-
-
+    display: flex;
+    flex: 1;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 40px 60px;
+    align-items: center;
+    gap: 50px;
 }
-
-
-
-
 
 .report-left-title {
-
-
-  width: 40%;
-
-
-  display: flex;
-
-
-  flex-direction: column;
-
-
-  justify-content: center;
-
-
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
-
-
-
-
 
 .report-left-title h1 {
-
-
-  font-size: 4.5rem;
-
-
-  font-weight: 800;
-
-
-  line-height: 1.1;
-
-
-  display: flex;
-
-
-  flex-direction: column;
-
-
+    font-size: 4.5rem;
+    font-weight: 800;
+    line-height: 1.1;
+    display: flex;
+    flex-direction: column;
 }
-
-
-
-
 
 .report-left-title .text-white {
-
-
-  color: var(--text-white);
-
-
+    color: var(--text-white);
 }
-
-
-
-
 
 .report-left-title .text-orange {
-
-
-  color: var(--accent-orange);
-
-
+    color: var(--accent-orange);
 }
-
-
-
-
 
 .report-right-form {
-
-
-  width: 60%;
-
-
-  background: transparent;
-
-
-  padding: 20px 0;
-
-
+    width: 60%;
+    background: transparent;
+    padding: 20px 0;
 }
-
-
-
-
 
 .form-line {
-
-
-  margin-bottom: 1.2rem;
-
-
-  width: 100%;
-
-
+    margin-bottom: 1.2rem;
+    width: 100%;
 }
-
-
-
-
 
 .input-group {
-
-
-  display: flex;
-
-
-  flex-direction: column;
-
-
-  width: 100%;
-
-
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
-
-
-
-
 
 .input-group label {
-
-
-  color: var(--text-white);
-
-
-  font-size: 1.1rem;
-
-
-  margin-bottom: 0.4rem;
-
-
-  font-weight: 500;
-
-
+    color: var(--text-white);
+    font-size: 1.1rem;
+    margin-bottom: 0.4rem;
+    font-weight: 500;
 }
 
-
-
-
+.public-input:disabled, .public-textarea:disabled {
+    background-color: rgba(255, 255, 255, 0.6);
+    cursor: not-allowed;
+    color: #777777;
+}
 
 .public-input {
-
-
-  width: 100%;
-
-
-  padding: 14px 22px;
-
-
-  border: none;
-
-
-  border-radius: 50px;
-
-
-  background-color: var(--input-bg);
-
-
-  color: #333333;
-
-
-  font-size: 1rem;
-
-
-  outline: none;
-
-
+    width: 100%;
+    padding: 14px 22px;
+    border: none;
+    border-radius: 50px;
+    background-color: var(--input-bg);
+    color: #333333;
+    font-size: 1rem;
+    outline: none;
 }
-
-
-
-
 
 .public-textarea {
-
-
-  width: 100%;
-
-
-  padding: 16px 22px;
-
-
-  border: none;
-
-
-  border-radius: 20px;
-
-
-  background-color: var(--input-bg);
-
-
-  color: #333333;
-
-
-  font-size: 1rem;
-
-
-  outline: none;
-
-
-  resize: vertical;
-
-
+    width: 100%;
+    padding: 16px 22px;
+    border: none;
+    border-radius: 20px;
+    background-color: var(--input-bg);
+    color: #333333;
+    font-size: 1rem;
+    outline: none;
+    resize: vertical;
 }
-
-
-
-
 
 .split-row {
-
-
-  display: flex;
-
-
-  gap: 20px;
-
-
+    display: flex;
+    gap: 20px;
 }
-
-
-
-
 
 .split-row .input-group {
-
-
-  flex: 1;
-
-
+    flex: 1;
 }
-
-
-
-
 
 .anon-container {
-
-
-  padding: 5px 2px;
-
-
+    padding: 5px 2px;
 }
-
-
-
-
 
 .checkbox-label {
-
-
-  display: flex;
-
-
-  align-items: center;
-
-
-  gap: 10px;
-
-
-  color: var(--text-white);
-
-
-  font-size: 1.1rem;
-
-
-  cursor: pointer;
-
-
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-white);
+    font-size: 1.1rem;
+    cursor: pointer;
 }
-
-
-
-
 
 .checkbox-label input[type="checkbox"] {
-
-
-  width: 18px;
-
-
-  height: 18px;
-
-
-  accent-color: var(--accent-orange);
-
-
-  cursor: pointer;
-
-
+    width: 18px;
+    height: 18px;
+    accent-color: var(--accent-orange);
+    cursor: pointer;
 }
-
-
-
-
 
 .public-select-wrapper {
-
-
-  position: relative;
-
-
-  width: 100%;
-
-
+    position: relative;
+    width: 100%;
 }
-
-
-
-
 
 .public-select-wrapper::after {
-
-
-  content: "▼";
-
-
-  font-size: 0.8rem;
-
-
-  color: #333333;
-
-
-  position: absolute;
-
-
-  right: 22px;
-
-
-  top: 50%;
-
-
-  transform: translateY(-50%);
-
-
-  pointer-events: none;
-
-
+    content: "▼";
+    font-size: 0.8rem;
+    color: #333333;
+    position: absolute;
+    right: 22px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
 }
-
-
-
-
 
 .public-select {
-
-
-  width: 100%;
-
-
-  padding: 14px 22px;
-
-
-  border: none;
-
-
-  border-radius: 50px;
-
-
-  background-color: var(--input-bg);
-
-
-  color: #333333;
-
-
-  font-size: 1rem;
-
-
-  outline: none;
-
-
-  appearance: none;
-
-
-  -webkit-appearance: none;
-
-
-  -moz-appearance: none;
-
-
-  cursor: pointer;
-
-
+    width: 100%;
+    padding: 14px 45px 14px 22px; 
+    border: none;
+    border-radius: 50px;
+    background-color: var(--input-bg);
+    color: #333333;
+    font-size: 1rem;
+    outline: none;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
 }
-
-
-
-
 
 .btn-container-right {
-
-
-  display: flex;
-
-
-  justify-content: flex-end;
-
-
-  width: 100%;
-
-
-  margin-top: 1.5rem;
-
-
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    margin-top: 1.5rem;
 }
-
-
-
-
 
 .public-submit-btn {
-
-
-  background-color: var(--input-bg);
-
-
-  color: var(--accent-orange);
-
-
-  border: 2px solid var(--input-bg);
-
-
-  padding: 12px 60px;
-
-
-  border-radius: 50px;
-
-
-  font-size: 1.2rem;
-
-
-  font-weight: bold;
-
-
-  cursor: pointer;
-
-
-  transition: 0.3s ease;
-
-
+    background-color: var(--input-bg);
+    color: var(--accent-orange);
+    border: 2px solid var(--input-bg);
+    padding: 12px 60px;
+    border-radius: 50px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s ease;
 }
-
-
-
-
 
 .public-submit-btn:hover {
-
-
-  background-color: transparent;
-
-
-  color: var(--input-bg);
-
-
+    background-color: transparent;
+    color: var(--input-bg);
 }
-
-
-
 
 
 .toast {
-
-
-  color: var(--text-white);
-
-
-  position: fixed;
-
-
-  bottom: 25px;
-
-
-  right: 25px;
-
-
-  padding: 15px 25px;
-
-
-  border-radius: 8px;
-
-
-  display: flex;
-
-
-  align-items: center;
-
-
-  gap: 12px;
-
-
-  z-index: 99999;
-
-
-  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-
-
+    color: var(--text-white);
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    z-index: 99999;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
-
-
-
-
 
 .toast.hidden {
-
-
-  display: none;
-
-
+    display: none;
 }
-
-
-
-
 
 .toast.success {
-
-
-  background-color: #2e7d32;
-
-
+    background-color: #2e7d32;
 }
-
-
-
-
 
 .toast-text strong {
-
-
-  display: block;
-
-
-  font-size: 14px;
-
-
-  margin-bottom: 2px;
-
-
+    display: block;
+    font-size: 14px;
+    margin-bottom: 2px;
 }
-
-
-
-
 
 .toast-text p {
-
-
-  margin: 0;
-
-
-  font-size: 13px;
-
-
-  opacity: 0.9;
-
-
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.9;
 }
-
-
-
 
 
 @media only screen and (max-width: 992px) {
-
-
-  .report-main {
-
-
-    flex-direction: column;
-
-
-    padding: 30px 20px;
-
-
-    gap: 20px;
-
-
-  }
-
-
-  .report-left-title {
-
-
-    width: 100%;
-
-
-    text-align: center;
-
-
-    margin-bottom: 10px;
-
-
-  }
-
-
-  .report-left-title h1 {
-
-
-    font-size: 3.2rem;
-
-
-    align-items: center;
-
-
-  }
-
-
-  .report-right-form {
-
-
-    width: 100%;
-
-
-  }
-
-
+    header {
+        padding: 15px 20px;
+    }
+    .report-main {
+        flex-direction: column;
+        padding: 30px 20px;
+        gap: 20px;
+    }
+    .report-left-title {
+        width: 100%;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    .report-left-title h1 {
+        font-size: 3.2rem;
+        align-items: center;
+    }
+    .report-right-form {
+        width: 100%;
+    }
 }
 
-
-
-
-
 @media only screen and (max-width: 576px) {
-
-
-  .split-row {
-
-
-    flex-direction: column;
-
-
-    gap: 1.2rem;
-
-
-  }
-
-
-  .public-submit-btn {
-
-
-    width: 100%;
-
-
-  }
-
-
+    nav {
+        gap: 12px;
+    }
+    nav a {
+        font-size: 0.9rem;
+    }
+    .split-row {
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+    .public-submit-btn {
+        width: 100%;
+    }
 }
