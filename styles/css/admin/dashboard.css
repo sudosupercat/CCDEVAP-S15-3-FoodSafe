@@ -7,6 +7,7 @@ h1 {
     color: orange;
     font-weight: bold;
     margin-left: 50px;
+    margin-top: 10px;
 }
 
 .header {
@@ -28,6 +29,7 @@ h1 {
 .picker label {
     font-size: 30px;
     font-weight: bold;
+    margin-top: 10px;
 }
 
 select {

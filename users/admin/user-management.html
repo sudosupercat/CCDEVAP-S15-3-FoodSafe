@@ -92,115 +92,123 @@
             <strong id="toast-title">Toast Title</strong>
             <p id="toast-message">Toast Message</p>
         </div>
+        <span class="toast-close" onclick="hideToast()">&times;</span>
     </div>
 
-<!-- Edit Modal -->
-<div id="edit-modal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Edit Form</h2>
-            <form id="edit-form">
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email" required><br><br>
-                <label for="firstName">First Name:</label>
-                <input type="text" id="firstName" name="firstName" required><br><br>
-                <label for="lastName">Last Name:</label>
-                <input type="text" id="lastName" name="lastName" required><br><br>
-                <label for="district">District:</label>
-                <select id="district" name="district">
-                    <option value="">Select District</option>
-                    <script>
-                        districts.forEach(district => {
-                            document.write(`<option value="${district}">${district}</option>`);
-                        });
-                    </script>
-                </select><br><br>
-                <button type="submit">Save Changes</button>
-            </form>
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Edit Form</h2>
+                <form id="edit-form">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required><br><br>
+                    <label for="firstName">First Name:</label>
+                    <input type="text" id="firstName" name="firstName" required><br><br>
+                    <label for="lastName">Last Name:</label>
+                    <input type="text" id="lastName" name="lastName" required><br><br>
+                    <label for="district">District:</label>
+                    <select id="district" name="district">
+                        <option value="">Select District</option>
+                        <script>
+                            districts.forEach(district => {
+                                document.write(`<option value="${district}">${district}</option>`);
+                            });
+                        </script>
+                    </select><br><br>
+                    <button type="submit">Save Changes</button>
+                </form>
+        </div>
     </div>
-</div>
 
 
-<script>
-function action(type, id) {
+    <script>
+    function action(type, id) {
 
-    const user = users.find(u => u.userID === id);
+        const user = users.find(u => u.userID === id);
 
-    switch (type) {
-        case 'edit':
-            var button = document.getElementById(`edit-btn-${user.userID}`);
-            let modal = document.getElementById("edit-modal");
-            let span = document.getElementsByClassName("close")[0];
-            modal.style.display = "block";
-            document.body.classList.add("modal-open");
+        switch (type) {
+            case 'edit':
+                var button = document.getElementById(`edit-btn-${user.userID}`);
+                let modal = document.getElementById("edit-modal");
+                let span = document.getElementsByClassName("close")[0];
+                modal.style.display = "block";
+                document.body.classList.add("modal-open");
 
-            span.onclick = function() {
-                modal.style.display = "none";
-                document.body.classList.remove("modal-open");
-            }
-
-            window.onclick = function(event) {
-                if (event.target == modal) {
+                span.onclick = function() {
                     modal.style.display = "none";
                     document.body.classList.remove("modal-open");
                 }
-            }
 
-            document.getElementById("email").value = user.email;
-            document.getElementById("firstName").value = user.firstName;
-            document.getElementById("lastName").value = user.lastName;
-            document.getElementById("district").value = user.district || '';
+                window.onclick = function(event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                        document.body.classList.remove("modal-open");
+                    }
+                }
 
-            document.getElementById("edit-form").onsubmit = function(e) {
-                e.preventDefault();
-                user.email = document.getElementById("email").value;
-                user.firstName = document.getElementById("firstName").value;
-                user.lastName = document.getElementById("lastName").value;
-                user.district = document.getElementById("district").value;
-                modal.style.display = "none";
-                document.body.classList.remove("modal-open");
-                showToast("success", "User edit successful.", "User has been updated.");
-            }
+                document.getElementById("email").value = user.email;
+                document.getElementById("firstName").value = user.firstName;
+                document.getElementById("lastName").value = user.lastName;
+                document.getElementById("district").value = user.district || '';
 
-            break;
-        case 'status':
-            var button = document.getElementById(`status-btn-${user.userID}`);
-            if (user.status === "Active") {
-                user.status = "Disabled";
-                button.textContent = "Enable";
-                button.classList.remove('btn-disable');
-                button.classList.add('btn-enable');
-                showToast("success", "User status updated.", "User is now disabled.");
-            } else {
-                user.status = "Active";
-                button.textContent = "Disable";
-                button.classList.remove('btn-enable');
-                button.classList.add('btn-disable');
-                showToast("success", "User status updated.", "User is now activated.");
-            }
-            break;
-        case 'delete':
-            user.deleteFlag = '1';
-            var button = document.getElementById(`delete-btn-${user.userID}`).closest('tr').remove();
-            showToast("success", "User Deleted.", "User has been deleted.");
-            break;
+                document.getElementById("edit-form").onsubmit = function(e) {
+                    e.preventDefault();
+                    user.email = document.getElementById("email").value;
+                    user.firstName = document.getElementById("firstName").value;
+                    user.lastName = document.getElementById("lastName").value;
+                    user.district = document.getElementById("district").value;
+                    modal.style.display = "none";
+                    document.body.classList.remove("modal-open");
+                    showToast("success", "User edit successful.", "User has been updated.");
+                }
+
+                break;
+            case 'status':
+                var button = document.getElementById(`status-btn-${user.userID}`);
+                if (user.status === "Active") {
+                    user.status = "Disabled";
+                    button.textContent = "Enable";
+                    button.classList.remove('btn-disable');
+                    button.classList.add('btn-enable');
+                    showToast("success", "User status updated.", "User is now disabled.");
+                } else {
+                    user.status = "Active";
+                    button.textContent = "Disable";
+                    button.classList.remove('btn-enable');
+                    button.classList.add('btn-disable');
+                    showToast("success", "User status updated.", "User is now activated.");
+                }
+                break;
+            case 'delete':
+                user.deleteFlag = '1';
+                var button = document.getElementById(`delete-btn-${user.userID}`).closest('tr').remove();
+                showToast("success", "User Deleted.", "User has been deleted.");
+                break;
+        }
     }
-}
 
-function showToast(type, title, message) {
-    const toast = document.getElementById('toast');
-    document.getElementById('toast-title').textContent = title;
-    document.getElementById('toast-message').textContent = message;
-    
-    toast.classList.remove('success', 'error');
-    toast.classList.remove('hidden');
-    toast.classList.add(type);
-    
-    setTimeout(() => {
-        toast.classList.add('hidden')
-        toast.classList.remove(type);
-    }, 3000);
-}
+    function showToast(type, title, message) {
+        const toast = document.getElementById('toast');
+        document.getElementById('toast-title').textContent = title;
+        document.getElementById('toast-message').textContent = message;
+        
+        toast.classList.remove('success', 'error');
+        toast.classList.remove('hidden');
+        toast.classList.add(type);
+        
+        setTimeout(() => {
+            toast.classList.add('hidden')
+            toast.classList.remove(type);
+        }, 3000);
+    }
+
+        function hideToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('hidden');
+            toast.classList.remove('pending', 'reviewed', 'dismissed');
+            clearTimeout(toastTimeout);
+        }
 </script>
 </body>
 </html>

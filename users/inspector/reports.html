@@ -93,6 +93,7 @@
                 <strong id="toast-title">Toast Title</strong>
                 <p id="toast-message">Toast Message</p>
             </div>
+            <span class="toast-close" onclick="hideToast()">&times;</span>
         </div>
 
         <div id="details-container">
@@ -153,6 +154,13 @@
                 toast.classList.add('hidden')
                 toast.classList.remove(type);
             }, 5000);
+        }
+
+        function hideToast() {
+            const toast = document.getElementById('toast');
+            toast.classList.add('hidden');
+            toast.classList.remove('pending', 'reviewed', 'dismissed');
+            clearTimeout(toastTimeout);
         }
     </script>
 </body>
