@@ -12,7 +12,8 @@ h1{
 table{
     color: white;
     border-collapse: collapse;
-    width: 100%;
+    width: 90%;
+    margin: 0px auto;
 }
 
 th, td{
@@ -39,7 +40,9 @@ th{
 }
 
 .search-add-entry{
-    margin: 20px 0px 20px 0px
+    margin: 20px 0px 20px 0px;
+    display: flex;
+    justify-content: center;
 }
 
 input{
