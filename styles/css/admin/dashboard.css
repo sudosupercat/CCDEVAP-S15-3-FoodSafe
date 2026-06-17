@@ -1,6 +1,12 @@
+body {
+    /* delete pag may global na */
+    background-color: purple;
+}
+
 h1 {
     color: orange;
-
+    font-weight: bold;
+    margin-left: 50px;
 }
 
 .header {
@@ -8,22 +14,140 @@ h1 {
     display: flex;
 }
 
+.header-pickers {
+    display: flex;
+    margin-left: auto; 
+}
+
 .picker {
     display: flex;
     flex-direction: column;
-    margin: 10px;
-    align-items: flex-end;
+    margin: 10px 30px;
 }
 
 .picker label {
     font-size: 30px;
+    font-weight: bold;
 }
 
 select {
     border-color: rgb(92, 0, 128);
     border-radius: 8px;
+    padding: 4px;
+    width: 200px;
 }
 
 option {
     width: 100%;
+}
+
+.stats {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 20px;
+}
+ 
+.stat-box {
+    background-color:white;
+    border-radius: 20px;
+    padding: 20px;
+    width: 400px;
+    text-align: center;
+    border: 3px solid black;
+    font-size: 35px;
+    font-weight: bold;
+}
+ 
+.stat-box .total-created {
+    color: green;
+}
+
+.stat-box .total-disabled {
+    color: rgb(230, 200, 66);
+}
+
+.stat-box .total-deleted {
+    color: red;
+}
+ 
+.stat-box .label {
+    font-size: 15px;
+    color: black;
+    margin-top: 5px;
+}
+
+.chart {
+    background-color: white;
+    border-radius: 20px;
+    border: 3px solid black;
+    height: 600px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 10px;
+    margin-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+}
+
+.chart h4 {
+    color: orange;
+    font-weight: bold;
+    padding-top: 10px;
+}
+
+.chart-canvas{
+    position: relative;
+    flex: 1;    
+    min-height: 0;
+}
+
+@media (max-width: 768px) {
+    .header {
+        display: flex;
+        flex-direction: row;
+        align-items: left;
+        text-align: left;
+    }
+
+    .header h1 {
+        font-size: 30px;
+    }
+
+    .header-pickers {
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .picker {
+        margin: 10px 30px;
+        align-items: center;
+    }
+
+    .picker label {
+        font-size: 18px;
+    }
+
+    select {
+        min-width: 90px;
+        width: auto;
+        font-size: 13px;
+    }
+
+    /* .stats {
+        flex-direction: column;
+        align-items: center;
+        margin: 15px;
+    } */
+
+    .stat-box {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    .chart {
+        height: 350px;
+        margin: 10px;
+    }
 }

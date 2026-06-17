@@ -4,18 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reports</title>
-    <link rel="stylesheet" href="../../styles/css/global.css">
-    <link rel="stylesheet" href="../../styles/css/admin/dashboard.css">
     <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/ui-lightness/jquery-ui.css">
     <script src="../../styles/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="../../styles/css/global.css">
+    <link rel="stylesheet" href="../../styles/css/admin/dashboard.css">
 </head>
 <body>
-    
     <div class="header">
         <h1>Web Analytics <br>Dashboard</h1>
         
+        <div class="header-pickers">
         <div class="picker">
             <label for="year">Year:</label>
             <select id="yearPicker" name="yearPicker"></select>
@@ -25,9 +24,8 @@
             <label for="month">Month:</label>
             <select id="monthPicker" name="monthPicker"></select>
         </div>
+        </div>
     </div>
-    
-    <h3>User Account Statistics</h3>
 
     <div class="container-fluid">
 
@@ -39,24 +37,33 @@
 
             <div class="stat-box">
                 <div class="total-disabled">7</div>
-                <div class="label">Users-Disabled</div>
+                <div class="label">Total Users Disabled</div>
             </div>
 
             <div class="stat-box">
                 <div class="total-deleted">7</div>
-                <div class="label">Users-Disabled</div>
+                <div class="label">Total Users Deleted</div>
             </div>
         </div>
     
         <div class="row">
             <div class="col-lg-6">
-                <h4>Passed Inspection Trend</h4>
-                <canvas id="lineChart"></canvas>
+                <div class="chart">
+                    <h4>Inspection Trend</h4>
+                     <div class="chart-canvas">
+                        <canvas id="lineChart"></canvas>
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-6">
-                <h4>Ratio of Violations</h4>
-                <canvas id="pieChart"></canvas>
+                <div class="chart">
+                    <h4>Ratio of Violations (in %)</h4>
+                    <div class="chart-canvas">
+                        <canvas id="pieChart"></canvas>
+                    </div>
+                    
+                </div>
             </div>
 
         </div>
