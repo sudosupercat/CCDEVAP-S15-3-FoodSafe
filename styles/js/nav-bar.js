@@ -19,6 +19,7 @@ function showNavBar(){
             <li class="nav-item"><a class="nav-link" href="../inspector/dashboard.html">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="../inspector/inspection-entry.html">Log Entry</a></li>
             <li class="nav-item"><a class="nav-link" href="../inspector/business-directory.html">Business Directory</a></li>
+             <li class="nav-item"><a class="nav-link" href="../inspector/reports.html">Reports</a></li>
             <li class="nav-item"><a class="nav-link" href="../login.html">Logout</a></li>
         `
     }
@@ -37,7 +38,7 @@ function showNavBar(){
     } else {
         navItems = `
             <li class="nav-item"><a class="nav-link" href="users/public/complaint.html">Report</a></li>
-            <li class="nav-item"><a class="nav-link" href="users/public/login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="users/login.html">Login</a></li>
         `;
     }
 
