@@ -1,17 +1,13 @@
 
 document.addEventListener("DOMContentLoaded", () => {
-    //Hide/show grade/switch fields
+    //Enable/disable grade/switch fields
     const autoRatingSwitch = document.getElementById('autoRatingSwitch');
 
     autoRatingSwitch.addEventListener('change', function () {
-        const hidden = this.checked;
-
-        if(this.checked){
-            $("#container-score-grade").hide();
-        }
-        else{
-            $("#container-score-grade").show();
-        }
+    const disable = this.checked;
+    document.querySelectorAll('#score, #grade-pass, #grade-fail').forEach(el => {
+        el.disabled = disable;
+        });
     });
 
     //Set date max attribute to current day
