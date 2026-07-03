@@ -11,7 +11,7 @@ body{
 }
 
 .navbar-foodsafe-custom{
-    background-color: #1f0075;
+    background-color: #39149b;
     color: white;
 }
 
@@ -26,6 +26,7 @@ body{
 .table-custom{
     width: 90%;
     margin: 0px auto;
+    border: 1px solid black;
 }
 
 .theme-dark-custom,
@@ -35,12 +36,13 @@ body{
 
 .button-option{
     text-decoration: none;
-    color: rgb(222, 144, 0);
+    color: orange;
     background-color: white;
     border-radius: 20px;
-    padding: 3px 15px;
+    padding: 7px 15px;
     border: 3px solid black;
     font-weight: bold;
+    margin: 5px 5px;
 }
 
 .search-add-entry{

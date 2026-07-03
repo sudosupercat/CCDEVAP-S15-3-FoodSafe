@@ -11,17 +11,16 @@ function showNavBar(){
         basePath = "../../";
         navItems = `
             <li class="nav-item"><a class="nav-link" href="../admin/dashboard.html">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inspector/business-directory.html">Business Directory</a></li>
         `;
     }
     else if(path.includes("/inspector/")){
         basePath = "../../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="../inspector/dashboard.html"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inspector/inspection-entry.html"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inspector/business-directory.html"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inspector/reports.html"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>
-            <li class="nav-item"><a class="nav-link" href="../login.html"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inspector/dashboard.html">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inspector/inspection-entry.html">Log Entry</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inspector/business-directory.html">Business Directory</a></li>
+             <li class="nav-item"><a class="nav-link" href="../inspector/reports.html">Reports</a></li>
+            <li class="nav-item"><a class="nav-link" href="../login.html">Logout</a></li>
         `
     }
     else if(path.includes("/public/")){
@@ -46,20 +45,20 @@ function showNavBar(){
     const navBarHTML = `
         <nav class="navbar navbar-expand-lg navbar-dark navbar-foodsafe-custom sticky-top">
             <div class="container-fluid">
-                <img src="${basePath}src/images/logo.png" width="30" height="30" class="d-inline-block align-text-top me-2" alt="">
-                <a class="navbar-brand fw-bold" href="#">FoodSafe</a>
+                <img src="${basePath}src/images/logo.png" width="30" height="30" class="d-inline-block align-top mr-2" alt="">
+                <a class="navbar-brand font-weight-bold" href="#">FoodSafe</a>
 
                 <button class="navbar-toggler" type="button" 
-                        data-bs-toggle="collapse" data-bs-target="#navbar-items">
+                        data-toggle="collapse" data-target="#navbar-items">
                 <span class="navbar-toggler-icon"></span>
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbar-items">
-                    <div class="form-check form-switch mb-2">
-                        <input type="checkbox" class="form-check-input" id="themeSwitcher">
-                        <label class="form-check-label" for="themeSwitcher">Dark Mode</label>
+                    <div class="custom-control custom-switch mb-2">
+                        <input type="checkbox" class="custom-control-input" id="themeSwitcher">
+                        <label class="custom-control-label" for="themeSwitcher">Dark Mode</label>
                     </div>
-                    <ul class="navbar-nav ms-auto">
+                    <ul class="navbar-nav ml-auto">
                         ${navItems}
                     </ul>
                 </div>
