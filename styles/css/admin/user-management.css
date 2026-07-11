@@ -1,5 +1,5 @@
 :root {
-  --bg-purple: #3100b9;
+  --bg-purple: #dee5ff;
   --nav-bg: #1f0075;
 }
 
@@ -10,7 +10,7 @@ body.dark-mode {
 
 body {
   font-family: Helvetica;
-  background-color: #3d00bc;
+  background-color: #dee5ff;
 }
 
 h1 {

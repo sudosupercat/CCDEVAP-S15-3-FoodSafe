@@ -4,11 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
-    <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.css">
+   <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../styles/css/global.css">
+    <link rel="stylesheet" href="../../styles/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
+    <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
     <script src="../../styles/js/nav-bar.js"></script>
     <script src="../../styles/js/jquery-3.7.1.min.js"></script>
-    <script src="../../styles/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+    <script src="../../styles/js/dataTables.min.js"></script>
+    <script src="../../styles/js/admin/users.js"></script>
     <link rel="stylesheet" href="../../styles/css/admin/user-management.css">
 </head>
 <body>
@@ -17,8 +21,8 @@
     <h1>User Management</h1>
 
     <div class="container"> 
-        <div class="table-wrapper">
-        <table id="user-man-table">
+        <table id="user-man-table" class="table table-striped">
+            <thead>
             <tr>
                 <th colspan="7">Current Users</th>
             </tr>
@@ -32,6 +36,8 @@
                 <th>Status</th>
                 <th colspan="3">Actions</th> 
             </tr>
+            </thead>
+            <tbody>
                 <script>
                 const users = [
                     { userID: '1', email: 'marinel_llaguno@admin.com', firstName: 'Marinel', lastName: 'Llaguno', role: 'Admin', status: 'Active', deleteFlag: '0'},
@@ -66,11 +72,21 @@
                         `);
                     }
                 });
-
-                
                 </script>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>User ID</th>
+                <th>Email</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th>District</th>
+                <th>Status</th>
+                <th colspan="3">Actions</th> 
+            </tr>
+            </tfoot>
         </table>
-        </div>
     </div>
 
     <div id="toast" class="custom-toast hidden">
