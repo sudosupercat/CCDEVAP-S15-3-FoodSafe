@@ -4,17 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.min.css">
-    <script src="../../styles/bootstrap-4.6.2-dist/js/bootstrap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- delete if may global na for nav
-    <link rel="stylesheet" href="../../styles/css/login-style.css">  -->
-    <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../styles/css/global.css">
+    <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../styles/css/admin/dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
     <script src="../../styles/js/nav-bar.js"></script>
     <script src="../../styles/js/jquery-3.7.1.min.js"></script>
-    <script src="../../styles/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
-    <link rel="stylesheet" href="../../styles/css/admin/dashboard.css">
 </head>
 <body>
     <div id="navBar"></div>
