@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../../styles/css/global.css">
-    <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../../styles/css/admin/dashboard.css">
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/global.css">
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
-    <script src="../../styles/js/nav-bar.js"></script>
-    <script src="../../styles/js/jquery-3.7.1.min.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/nav-bar.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/admin/dashboard.css">
 </head>
 <body>
     <div id="navBar"></div>
@@ -19,34 +19,35 @@
     <div class="header">
         <h1>Web Analytics <br>Dashboard</h1>
         
-        <div class="header-pickers">
-        <div class="picker">
-            <label for="year">Year:</label>
-            <select id="yearPicker" name="yearPicker"></select>
-        </div>
+        <form action="/CCDEVAP-S15-3-FoodSafe/controller/admin-controller.php" method="GET">
+            <div class="picker">
+                <label for="year">Year:</label>
+                <select id="yearPicker" name="yearPicker"></select>
+            </div>
 
-        <div class="picker">
-            <label for="month">Month:</label>
-            <select id="monthPicker" name="monthPicker"></select>
-        </div>
-        </div>
+            <div class="picker">
+                <label for="month">Month:</label>
+                <select id="monthPicker" name="monthPicker"></select>
+            </div>
+            <button type="submit" id="picker-btn">Submit</button>
+        </form>
     </div>
 
     <div class="container-fluid">
 
         <div class="stats">
             <div class="stat-box">
-                <div class="total-created">21</div>
+                <div class="total-created"><?php echo $userCounts->created?></div>
                 <div class="label">Total Created Users</div>
             </div>
 
             <div class="stat-box">
-                <div class="total-disabled">7</div>
+                <div class="total-disabled"><?php echo $userCounts->disabled?></div>
                 <div class="label">Total Users Disabled</div>
             </div>
 
             <div class="stat-box">
-                <div class="total-deleted">7</div>
+                <div class="total-deleted"><?php echo $userCounts->deleted?></div>
                 <div class="label">Total Users Deleted</div>
             </div>
         </div>
@@ -78,7 +79,7 @@
         FoodSafe - Copyright 2026
     </footer>
 
-    <script src="../../styles/js/admin/admin-charts.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/admin/admin-charts.js"></script>
 
     <script>
         let yearSelect = document.getElementById('yearPicker');
@@ -93,16 +94,20 @@
             yearPicker.appendChild(option);
         }
 
+        let monthSelect = document.getElementById('monthPicker');
+
         const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
-        let monthSelect = document.getElementById('monthPicker');
-        let currMonth = today.getMonth();
+        var allMonths = document.createElement('option');
+        allMonths.value = '';
+        allMonths.innerHTML = 'None';
+        allMonths.selected = true;
+        monthPicker.appendChild(allMonths);
+
         months.forEach((month,i)=> {
             var option = document.createElement('option');
             option.value = option.innerHTML = i;
             option.innerHTML = month;
-            if (i === currMonth)
-                option.selected = true;
             monthPicker.appendChild(option);
         })
     </script>

@@ -19,7 +19,7 @@ body.theme-dark-custom select, body.theme-dark-custom .stat-box {
 
 body {
   font-family: Helvetica;
-  background-color: #3d00bc;
+  background-color: #dee5ff;
 }
 h1 {
     color: orange; 
@@ -31,23 +31,40 @@ h1 {
 .header {
     background-color: white;
     display: flex;
+    align-items: flex-start;
 }
 
-.header-pickers {
+.header form {
     display: flex;
-    margin-left: auto; 
+    align-items: flex-end;
+    margin-left: auto;
 }
 
-.picker {
+.picker, #picker-btn {
     display: flex;
     flex-direction: column;
-    margin: 10px 30px;
+    margin: 5px 15px;
 }
 
 .picker label {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: bold;
     margin-top: 10px;
+}
+
+#picker-btn {
+    align-self: flex-end;
+    padding: 5px 15px;
+    background-color:#9b47fc ;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+#picker-btn:hover {
+    background-color: #ca9bff;
 }
 
 select {
