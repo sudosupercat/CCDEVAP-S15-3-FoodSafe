@@ -8,7 +8,7 @@ function getInspectorCounts($pdo, $year, $month) {
     $monthFilter = "";
     $params = [$year];
 
-    //If no month is selected, display year result
+    # If no month is selected, display year result
     if ($month != '') {
         $monthFilter = " AND MONTH(createdAt) = ?";
         $params[] = $month + 1;
@@ -50,6 +50,57 @@ function getInspectorCounts($pdo, $year, $month) {
     return $result;
 }
 
+// USER MANAGEMENT
+function getUsers($pdo) {
+    $sql = $pdo->query("SELECT u.userID, u.email, u.firstName, u.lastName, u.role, u.districtID, d.name as districtName, u.status, u.deleteFlag
+                        FROM users u
+                        LEFT JOIN districts d 
+                        ON u.districtID = d.districtID;");
+    $users = $sql->fetchAll(PDO::FETCH_ASSOC);
 
+    return $users;
+}
+
+function getDistricts($pdo) {
+    $sql = $pdo->query("SELECT districtID, name FROM districts;");
+    $districts = $sql->fetchAll(PDO::FETCH_ASSOC);
+
+    return $districts;
+}
+
+function editUser($pdo, $userID) {
+
+}
+
+function updateStatus($pdo, $userID) {
+    $sql_curr = $pdo->prepare("SELECT status
+                        FROM users
+                        WHERE userID = ?;");
+    $sql_curr->execute([$userID]);
+    $user = $sql_curr->fetch(PDO::FETCH_ASSOC);
+
+    if ($user['status'] == 1) {
+        $editStatus = 0;
+    } else {
+        $editStatus = 1;
+    }
+
+    $sql_new = $pdo->prepare("UPDATE users
+                            SET status = ?
+                            WHERE userID = ?;");
+
+    $result = $sql_new->execute([$editStatus, $userID]);
+
+    return $result;
+}
+
+function deleteUser($pdo, $userID) {
+    $sql = $pdo->prepare("UPDATE users
+                        SET deleteFlag = 1
+                        WHERE userID = ?;");
+    $result = $sql->execute([$userID]);
+
+    return $result;
+}
 
 ?>
