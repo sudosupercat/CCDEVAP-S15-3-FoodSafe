@@ -19,7 +19,7 @@
     <div class="header">
         <h1>Web Analytics <br>Dashboard</h1>
         
-        <form action="/CCDEVAP-S15-3-FoodSafe/controller/admin-dashboard.php" method="GET">
+        <form action="/CCDEVAP-S15-3-FoodSafe/controller/adminDashboard.controller.php" method="GET">
             <div class="picker">
                 <label for="year">Year:</label>
                 <select id="yearPicker" name="yearPicker"></select>

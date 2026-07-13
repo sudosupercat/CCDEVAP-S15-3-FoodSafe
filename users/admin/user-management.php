@@ -58,13 +58,13 @@
                         #TO EDIT!!!!!!
                         echo "<button type='button' class='btn-edit' </button>";
                         echo "
-                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/admin-users.php'>
+                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php'>
                             <input type='hidden' name='action' value='update'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='{$statusClass}'>{$statusAction}</button>
                         </form>";
                         echo "
-                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/admin-users.php'>
+                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php'>
                             <input type='hidden' name='action' value='delete'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='btn-delete'>Delete</button>

@@ -1,5 +1,5 @@
 <?php
-require '../model/admin-model.php';
+require '../model/admin.model.php';
 
 $year = $_GET['yearPicker'] ?? date('Y');
 $month = $_GET['monthPicker'] ?? '';
