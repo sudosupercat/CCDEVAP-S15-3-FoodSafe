@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Management</title>
-    <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../../styles/css/global.css">
-    <link rel="stylesheet" href="../../styles/css/dataTables.dataTables.min.css">
-    <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../../styles/css/admin/user-management.css">
-    <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
-    <script src="../../styles/js/nav-bar.js"></script>
-    <script src="../../styles/js/jquery-3.7.1.min.js"></script>
-    <script src="../../styles/js/dataTables.min.js"></script>
-    <script src="../../styles/js/admin/users.js"></script>
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/global.css">
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/dataTables.dataTables.min.css">
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/admin/user-management.css">
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/nav-bar.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/jquery-3.7.1.min.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/tyles/js/dataTables.min.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/admin/users.js"></script>
 </head>
 <body>
     <div id="navBar"></div>
@@ -24,7 +24,7 @@
         <table id="user-man-table" class="table table-striped">
             <thead>
             <tr>
-                <th colspan="7">Current Users</th>
+                <th colspan="8">Current Users</th>
             </tr>
             <tr>
                 <th>User ID</th>
@@ -38,41 +38,46 @@
             </tr>
             </thead>
             <tbody>
-                <script>
-                const users = [
-                    { userID: '1', email: 'marinel_llaguno@admin.com', firstName: 'Marinel', lastName: 'Llaguno', role: 'Admin', status: 'Active', deleteFlag: '0'},
-                    { userID: '2', email: 'matthew_lucas@inspector.com', firstName: 'Matthew Gabriel', lastName: 'Lucas',  role: 'Inspector', status: 'Inactive', district: 'NCR', deleteFlag: '0'},
-                    { userID: '3', email: 'miguel_monterola@inspector.com', firstName: 'Miguel Alvin', lastName: 'Monterola', role: 'Inspector', status: 'Inactive', district: 'Region 1', deleteFlag: '0' },
-                    { userID: '4', email: 'clarisse_nazario@inspector.com', firstName: 'Clarisse', lastName: 'Nazario',  role: 'Inspector', status: 'Active', district: 'Region 3', deleteFlag: '0' },
-                    { userID: '5', email: 'andrea_prestoza@inspector.com', firstName: 'Andrea Mae', lastName: 'Prestoza', role: 'Inspector', status: 'Active', district: 'CAR', deleteFlag: '0' }
-                ];
+                <?php
+                foreach ($users as $user) {
+                    if ($user['deleteFlag'] == 0) {
+                        $statusLabel = $user['status'] ? 'Active' : 'Inactive';
+                        $statusAction = $user['status'] ? 'Disable' : 'Enable';
+                        $statusClass = $user['status'] ? 'btn-disable' : 'btn-enable';
 
-                const districts = ['NCR', 'Region 1', 'Region 2', 'Region 3', 'Region 4A', 'Region 4B', 'Region 5', 'Region 6', 'Region 7', 'Region 8', 'Region 9', 'Region 10', 'Region 11', 'Region 12', 'CAR', 'CARAGA'];
-
-                users.forEach(user => {
-                    if (user.deleteFlag == 0) {
-                        const fullName = `${user.firstName} ${user.lastName}`;
-                        document.write(`
-                            <tr>
-                                <td>${user.userID}</td>
-                                <td>${user.email}</td>
-                                <td>${user.firstName}</td>
-                                <td>${user.lastName}</td>
-                                <td>${user.role}</td>
-                                <td>${user.district || 'N/A' }</td>
-                                <td>${user.status}</td>
-                                <td>
-                                    <div class="actions-button">
-                                        <button onclick="action('edit', '${user.userID}')" id="edit-btn-${user.userID}">Edit</button>
-                                        <button onclick="action('status', '${user.userID}')" id="status-btn-${user.userID}" class="${user.status === 'Active' ? 'btn-disable' : 'btn-enable'}">${user.status === 'Active' ? 'Disable' : 'Enable'}</button>
-                                        <button onclick="action('delete', '${user.userID}')" id="delete-btn-${user.userID}">Delete</button>
-                                    </div>
-                                </td>
-                            </tr>
-                        `);
+                        echo "<tr>";
+                        echo "<td>" . htmlspecialchars($user['userID']) . "</td>";
+                        echo "<td>" . htmlspecialchars($user['email']) . "</td>";
+                        echo "<td>" . htmlspecialchars($user['firstName']) . "</td>";
+                        echo "<td>" . htmlspecialchars($user['lastName']) . "</td>";
+                        echo "<td>" . htmlspecialchars($user['role']) . "</td>";
+                        echo "<td>" . htmlspecialchars($user['districtName']) . "</td>";
+                        echo "<td>" . htmlspecialchars($statusLabel) . "</td>";
+                        echo "<td>";
+                        echo "<div class='actions-button'>";
+                        echo "
+                        <form method='GET' action='/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php'>
+                            <input type='hidden' name='action' value='edit'>
+                            <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
+                            <button type='submit' class='btn-edit'>Edit</button>
+                        </form>";
+                        echo "
+                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php'>
+                            <input type='hidden' name='action' value='update'>
+                            <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
+                            <button type='submit' class='{$statusClass}'>{$statusAction}</button>
+                        </form>";
+                        echo "
+                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php'>
+                            <input type='hidden' name='action' value='delete'>
+                            <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
+                            <button type='submit' class='btn-delete'>Delete</button>
+                        </form>";
+                        echo "</td>";
+                        echo "</tr>";
                     }
-                });
-                </script>
+                }
+                ?>
             </tbody>
             <tfoot>
             <tr>
@@ -83,7 +88,7 @@
                 <th>Role</th>
                 <th>District</th>
                 <th>Status</th>
-                <th colspan="3">Actions</th> 
+                <th colspan="3">Actions</th>  
             </tr>
             </tfoot>
         </table>
@@ -101,25 +106,30 @@
     <div id="edit-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Edit Form</h2>
-                <form id="edit-form">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required><br><br>
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" required><br><br>
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" required><br><br>
-                    <label for="district">District:</label>
-                    <select id="district" name="district">
-                        <option value="">Select District</option>
-                        <script>
-                            districts.forEach(district => {
-                                document.write(`<option value="${district}">${district}</option>`);
-                            });
-                        </script>
-                    </select><br><br>
-                    <button type="submit">Save Changes</button>
-                </form>
+            <h2>Edit User</h2>
+            <form id="edit-form" method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" id="edit-userID" name="userID" value="<?= $selectedUser['userID'] ?? '' ?>">
+
+                <label for="edit-email">Email:</label><br>
+                <input type="email" id="edit-email" name="email" value="<?= $selectedUser['email'] ?? '' ?>" required><br><br>
+
+                <label for="edit-firstName">First Name:</label><br>
+                <input type="text" id="edit-firstName" name="firstName" value="<?= $selectedUser['firstName'] ?? '' ?>" required><br><br>
+
+                <label for="edit-lastName">Last Name:</label><br>
+                <input type="text" id="edit-lastName" name="lastName" value="<?= $selectedUser['lastName'] ?? '' ?>" required><br><br>
+
+                <label for="edit-district">District:</label><br>
+                <select id="edit-district" name="districtID">
+                    <option value="">Select District</option>
+                    <?php foreach ($districts as $district): ?>
+                        <option value="<?= $district['districtID'] ?>"<?= ($selectedUser['districtID'] == $district['districtID']) ? 'selected' : '' ?>><?= htmlspecialchars($district['name']) ?></option>
+                    <?php endforeach; ?>
+                </select><br><br>
+
+                <button type="submit">Save Changes</button>
+            </form>
         </div>
     </div>
 
@@ -128,85 +138,39 @@
     </footer>
 
     <script>
-    function action(type, id) {
+        let modal = document.getElementById("edit-modal");
+        let span = document.getElementsByClassName("close")[0];
+        <?php if (isset($selectedUser)): ?>
+        document.getElementById("edit-modal").style.display = "block";
+        document.body.classList.add("modal-open");
+        <?php endif; ?>
 
-        const user = users.find(u => u.userID === id);
-
-        switch (type) {
-            case 'edit':
-                var button = document.getElementById(`edit-btn-${user.userID}`);
-                let modal = document.getElementById("edit-modal");
-                let span = document.getElementsByClassName("close")[0];
-                modal.style.display = "block";
-                document.body.classList.add("modal-open");
-
-                span.onclick = function() {
-                    modal.style.display = "none";
-                    document.body.classList.remove("modal-open");
-                }
-
-                window.onclick = function(event) {
-                    if (event.target == modal) {
-                        modal.style.display = "none";
-                        document.body.classList.remove("modal-open");
-                    }
-                }
-
-                document.getElementById("email").value = user.email;
-                document.getElementById("firstName").value = user.firstName;
-                document.getElementById("lastName").value = user.lastName;
-                document.getElementById("district").value = user.district || '';
-
-                document.getElementById("edit-form").onsubmit = function(e) {
-                    e.preventDefault();
-                    user.email = document.getElementById("email").value;
-                    user.firstName = document.getElementById("firstName").value;
-                    user.lastName = document.getElementById("lastName").value;
-                    user.district = document.getElementById("district").value;
-                    modal.style.display = "none";
-                    document.body.classList.remove("modal-open");
-                    showToast("success", "User edit successful.", "User has been updated.");
-                }
-
-                break;
-            case 'status':
-                var button = document.getElementById(`status-btn-${user.userID}`);
-                if (user.status === "Active") {
-                    user.status = "Disabled";
-                    button.textContent = "Enable";
-                    button.classList.remove('btn-disable');
-                    button.classList.add('btn-enable');
-                    showToast("success", "User status updated.", "User is now disabled.");
-                } else {
-                    user.status = "Active";
-                    button.textContent = "Disable";
-                    button.classList.remove('btn-enable');
-                    button.classList.add('btn-disable');
-                    showToast("success", "User status updated.", "User is now activated.");
-                }
-                break;
-            case 'delete':
-                user.deleteFlag = '1';
-                var button = document.getElementById(`delete-btn-${user.userID}`).closest('tr').remove();
-                showToast("success", "User Deleted.", "User has been deleted.");
-                break;
+        span.onclick = function() {
+            modal.style.display = "none";
+            document.body.classList.remove("modal-open");
         }
-    }
 
-    function showToast(type, title, message) {
-        const toast = document.getElementById('toast');
-        document.getElementById('toast-title').textContent = title;
-        document.getElementById('toast-message').textContent = message;
-        
-        toast.classList.remove('success', 'error');
-        toast.classList.remove('hidden');
-        toast.classList.add(type);
-        
-        setTimeout(() => {
-            toast.classList.add('hidden')
-            toast.classList.remove(type);
-        }, 3000);
-    }
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.classList.remove("modal-open");
+            }
+        }
+
+        function showToast(type, title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-message').textContent = message;
+            
+            toast.classList.remove('success', 'error');
+            toast.classList.remove('hidden');
+            toast.classList.add(type);
+            
+            setTimeout(() => {
+                toast.classList.add('hidden')
+                toast.classList.remove(type);
+            }, 3000);
+        }
 
         function hideToast() {
             const toast = document.getElementById('toast');
@@ -217,28 +181,3 @@
 </script>
 </body>
 </html>
-
-<!-- <div id="toast" class="toast hidden">
-    <div class="toast-text">
-        <strong id="toast-title">Toast Title</strong>
-        <p id="toast-message">Toast Message</p>
-</div>
-
-<script>
-function showToast(type, title, message) {
-    const toast = document.getElementById('toast');
-    document.getElementById('toast-title').textContent = title;
-    document.getElementById('toast-message').textContent = message;
-    
-    toast.classList.remove('success', 'error');
-    toast.classList.remove('hidden');
-    toast.classList.add(type);
-    
-    setTimeout(() => {
-        toast.classList.add('hidden')
-        toast.classList.remove(type);
-    }, 3000);
-}
-</script>
-
-showToast("success", "User edit successful.", "User has been updated."); -->

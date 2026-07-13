@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reports</title>
-    <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="../../styles/css/global.css">
-    <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="../../styles/css/inspector/reports.css">
-    <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
-    <script src="../../styles/js/nav-bar.js"></script>
-    <script src="../../styles/js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/global.css">
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/inspector/reports.css">
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/nav-bar.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <div id="navBar"></div>
@@ -22,54 +22,17 @@
             <input type="text" placeholder="Search for a complaint..." id="search-input" onkeyup="searchReports()">
             
             <div id="reports-container">
-                <script>
-                    const reports = [
-                        {
-                            reportID: '1001',
-                            establishment: 'Jollibee - Taft',
-                            violation: 'Unclean Restrooms',
-                            date: 'January 27, 2026',
-                            description: 'Restroom floors were dirty and lacked soap dispensers.',
-                            status: 'pending'
-                        },
-                        {
-                            reportID: '1002',
-                            establishment: 'McDonald\'s - Taft',
-                            violation: 'Food Safety Violation',
-                            date: 'April 28, 2026',
-                            description: 'Food was observed being handled without gloves.',
-                            status: 'pending'
-                        },
-                        {
-                            reportID: '1003',
-                            establishment: 'KFC - Taft',
-                            violation: 'Pest Infestation',
-                            date: 'May 29, 2026',
-                            description: 'Several cockroaches were seen near the kitchen area.',
-                            status: 'pending'
-                        },
-                        {
-                            reportID: '1004',
-                            establishment: 'Wendy\'s - MOA',
-                            violation: 'Unclean Restrooms',
-                            date: 'May 30, 2026',
-                            description: 'Several cockroaches were seen near the kitchen area.',
-                            status: 'pending'
+                <?php
+                    foreach ($reports as $report) {
+                        if ($report['status'] == 'Pending') {
+                        echo '<a href="?reportID=' . htmlspecialchars($report['reportID']) . '" class="reports">';
+                        echo '<p>Report Date: ' . htmlspecialchars(date('F j, Y', strtotime($report['date']))) . ' - ' . htmlspecialchars($report['establishment']) . '</p>';
+                        echo '<p>Violation: ' . htmlspecialchars($report['title']) . '</p>';
+                        echo '<p>Status: ' . htmlspecialchars($report['status']) . '</p>';
+                        echo '</a>';
                         }
-                    ]   
-
-                    const container = document.getElementById('reports-container');
-
-                    reports.forEach(report => {
-                        container.innerHTML += `
-                            <div class="reports" onclick="reportDetails('${report.reportID}')">
-                                <p>Report #${report.reportID} : ${report.establishment}</p>
-                                <p>Violation: ${report.violation}</p>
-                                <p>Status: ${report.status}</p>
-                            </div>
-                    `});
-                </script>
-
+                    }
+                ?>
             </div>
         </div>
     
@@ -84,17 +47,37 @@
 
         <div id="details-container">
                 <h3>Report Details</h3>
-                <p>Report ID: <span id="detail-reportID"></span></p>
-                <p>Establishment: <span id="detail-establishment"></span></p>
-                <p>Date: <span id="detail-date"></span></p>
+                <?php if (isset($selectedReport)): ?>
+                <p>Report ID: <?= htmlspecialchars($selectedReport['reportID']) ?></p>
+                <p>Establishment: <?= htmlspecialchars($selectedReport['establishment']) ?></p>
+                <p>Date: <?= htmlspecialchars(date('F j, Y', strtotime($selectedReport['date']))) ?></p>
+                <p>Violation: <?= htmlspecialchars($selectedReport['title']) ?></p>
+                <p>Description: <?= htmlspecialchars($selectedReport['description']) ?></p>
 
-                <p>Violation: <span id="detail-violation"></span></p>
-                <p>Description: <span id="detail-desc"></span></p>
                 <div class="actions-button">
-                    <button onclick="showToast('pending', 'Changed Status', 'Report marked pending.') ">Pending</button>
-                    <button onclick="showToast('reviewed', 'Changed Status', 'Report marked reviewed.')" class="btn-reviewed">Reviewed</button>
-                    <button onclick="showToast('dismissed', 'Changed Status', 'Report marked dismissed.')" class="btn-dismissed">Dismissed</button>
+                    <!-- <button onclick="showToast('reviewed', 'Changed Status', 'Report marked reviewed.')" class="btn-reviewed">Reviewed</button>
+                    <button onclick="showToast('dismissed', 'Changed Status', 'Report marked dismissed.')" class="btn-dismissed">Dismissed</button> -->
+                        <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspectorReports.controller.php">
+                            <input type="hidden" name="action" value="update">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($selectedReport['reportID']) ?>">
+                            <input type="hidden" name="status" value="Reviewed">
+
+                            <button type="submit">Reviewed</button>
+                        </form>
+
+                        <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspectorReports.controller.php">
+                            <input type="hidden" name="action" value="update">
+                            <input type="hidden" name="id" value="<?= htmlspecialchars($selectedReport['reportID']) ?>">
+                            <input type="hidden" name="status" value="Dismissed">
+
+                            <button type="submit">Dismissed</button>
+                        </form>
                 </div>
+                <?php else: ?>
+
+                <p>Select a report.</p>
+
+                <?php endif; ?>
         </div>
     </div>
     
@@ -119,15 +102,6 @@
                 }
             }
             )
-        }
-
-        function reportDetails(id) {
-            const report = reports.find(r => r.reportID === id);
-            document.getElementById('detail-reportID').innerHTML = report.reportID;
-            document.getElementById('detail-establishment').innerHTML = report.establishment;
-            document.getElementById('detail-date').innerHTML = report.date;
-            document.getElementById('detail-violation').innerHTML = report.violation;
-            document.getElementById('detail-desc').innerHTML = report.description;
         }
 
         let toastTimeout;
