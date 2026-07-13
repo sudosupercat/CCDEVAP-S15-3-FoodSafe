@@ -1,8 +1,10 @@
 <?php
+require 'db.php';
+
 class FoodBusiness {
     private $pdo;
 
-    public $restaurantId;
+    public $foodBusinessId;
     public $licenseNo;
     public $name;
     public $address;
@@ -48,6 +50,39 @@ class FoodBusiness {
         
         return $restaurants;
     }
-    
+	
+	public function insertRow($foodBusiness){
+        try {
+            $stmt = $this->pdo->prepare("INSERT INTO restaurants (licenseNo, name, address, contactNo, maps, image, status, districtID)
+                                        VALUES (:licenseNo, :name, :address, :contactNo, :maps, :image, :status, :districtID)");
+            $stmt->execute([
+                ':licenseNo' => $foodBusiness->licenseNo,
+                ':name' => $foodBusiness->name,
+                ':address' => $foodBusiness->address,
+                ':contactNo' => $foodBusiness->contactNo,
+                ':maps' => $foodBusiness->maps,
+                ':image' => $foodBusiness->image,
+                ':status' => $foodBusiness->status,
+                ':districtID' => $foodBusiness->districtID
+                ]);
+            echo "Record updated successfully";
+            }
+        catch(PDOException $e) {
+            echo "Error updating record: " .$stmt . "<br>" . $e->getMessage();
+            }
+	}
+	
+	// For now, delete will set the delete flag of the row to 1
+	public function deleteRow($rowId){
+        try {
+            $stmt = $this->pdo->prepare("UPDATE restaurants SET status = 1 WHERE restoID = :rowId");
+            $stmt->execute(['rowId' => $rowId]);
+            echo "Record updated successfully";
+            }
+        catch(PDOException $e) {
+            echo "Error updating record: " .$stmt . "<br>" . $e->getMessage();
+            }
+    }
+                
 }
 ?>

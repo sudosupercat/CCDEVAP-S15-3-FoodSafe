@@ -28,7 +28,7 @@ function showNavBar(){
         basePath = "../../";
         navItems = `
             <li class="nav-item"><a class="nav-link" href="../public/complaint.html">Report</a></li>
-            <li class="nav-item"><a class="nav-link" href="../login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="../login.html"><span><i class="bi bi-box-arrow-right me-1"></i></span>Login</a></li>
         `;
     }
     else if (path.includes("login")){
