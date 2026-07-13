@@ -6,12 +6,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" href="../../src/images/logo-tab.png">
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
         <link rel="stylesheet" href="../../styles/css/inspector/dashboard.css">
         <link rel="stylesheet" href="../../styles/css/global.css">
         <script src="../../styles/js/nav-bar.js"></script>
         <script src="../../styles/js/jquery-3.7.1.min.js"></script>
-        <script src="../../styles/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+        <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
         <title>FoodSafe Inspector Dashboard</title>
     </head>
     <body class="inspector-dashboard">

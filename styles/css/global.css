@@ -3,7 +3,7 @@ body{
 }
 
 .site-footer {
-    background-color: #3b0997;
+    background-color: #1f0075;
     color: #ffffff;
     text-align: center;
     padding: 30px 20px;
@@ -30,7 +30,7 @@ body{
 
 .theme-dark-custom,
 .theme-dark-custom .site-footer {
-    background-color: #12103a;
+    background-color: #3100b9;
 }
 
 .button-option{
