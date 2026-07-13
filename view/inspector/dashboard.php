@@ -15,7 +15,7 @@
         <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
         <title>FoodSafe Inspector Dashboard</title>
     </head>
-    <body class="inspector-dashboard">
+    <body>
         <header>
             <div id="navBar"></div>   
         </header>

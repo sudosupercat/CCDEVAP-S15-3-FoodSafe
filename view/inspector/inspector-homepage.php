@@ -25,9 +25,9 @@
 
         <div class="button-container">
             <div class="button-row">
-                <a href="business-directory.html" class="btn-pill">Food Business Directory</a>
-                <a href="reports.html" class="btn-pill">Report Dashboard</a>
-                <a href="inspection-entry.html" class="btn-pill">Log Entry</a>
+                <a href="business-directory.php" class="btn-pill">Food Business Directory</a>
+                <a href="reports.php" class="btn-pill">Report Dashboard</a>
+                <a href="inspection-entry.php" class="btn-pill">Log Entry</a>
             </div>
         </div>
     </main>

@@ -27,8 +27,8 @@ function showNavBar(){
     else if(path.includes("/public/")){
         basePath = "../../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="../public/complaint.php">Report</a></li>
-            <li class="nav-item"><a class="nav-link" href="../login.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/public/complaint.php"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/login.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Login</a></li>
         `;
     }
     else if (path.includes("login")){
@@ -38,8 +38,8 @@ function showNavBar(){
         `;
     } else {
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="users/public/complaint.php">Report</a></li>
-            <li class="nav-item"><a class="nav-link" href="users/login.php"><span><i class="bi bi-lock me-1"></i></span>Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="view/public/complaint.php"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>
+            <li class="nav-item"><a class="nav-link" href="view/login.php"><span><i class="bi bi-lock me-1"></i></span>Login</a></li>
         `;
     }
 
