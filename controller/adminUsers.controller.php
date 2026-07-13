@@ -35,6 +35,6 @@ if (isset($_POST['action']) && $_POST['action'] === 'delete' && isset($_POST['id
 // USER MANAGEMENT -- READ
 $users = getUsers($pdo);
 
-require '../users/admin/user-management.php';
+require '../view/admin/user-management.php';
 
 ?>
