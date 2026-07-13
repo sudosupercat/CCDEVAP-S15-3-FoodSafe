@@ -55,8 +55,12 @@
                         echo "<td>" . htmlspecialchars($statusLabel) . "</td>";
                         echo "<td>";
                         echo "<div class='actions-button'>";
-                        #TO EDIT!!!!!!
-                        echo "<button type='button' class='btn-edit' </button>";
+                        echo "
+                        <form method='GET' action='/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php'>
+                            <input type='hidden' name='action' value='edit'>
+                            <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
+                            <button type='submit' class='btn-edit'>Edit</button>
+                        </form>";
                         echo "
                         <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php'>
                             <input type='hidden' name='action' value='update'>
@@ -102,25 +106,30 @@
     <div id="edit-modal" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
-            <h2>Edit Form</h2>
-                <form id="edit-form">
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" required><br><br>
-                    <label for="firstName">First Name:</label>
-                    <input type="text" id="firstName" name="firstName" required><br><br>
-                    <label for="lastName">Last Name:</label>
-                    <input type="text" id="lastName" name="lastName" required><br><br>
-                    <label for="district">District:</label>
-                    <select id="district" name="district">
-                        <option value="">Select District</option>
-                        <?php
-                            foreach($districts as $district) {
-                                echo "<option value='" . $district['districtID'] . "'>" . htmlspecialchars($district['name']) . "</option>";
-                            }
-                        ?>
-                    </select><br><br>
-                    <button type="submit">Save Changes</button>
-                </form>
+            <h2>Edit User</h2>
+            <form id="edit-form" method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php">
+                <input type="hidden" name="action" value="edit">
+                <input type="hidden" id="edit-userID" name="userID" value="<?= $selectedUser['userID'] ?? '' ?>">
+
+                <label for="edit-email">Email:</label><br>
+                <input type="email" id="edit-email" name="email" value="<?= $selectedUser['email'] ?? '' ?>" required><br><br>
+
+                <label for="edit-firstName">First Name:</label><br>
+                <input type="text" id="edit-firstName" name="firstName" value="<?= $selectedUser['firstName'] ?? '' ?>" required><br><br>
+
+                <label for="edit-lastName">Last Name:</label><br>
+                <input type="text" id="edit-lastName" name="lastName" value="<?= $selectedUser['lastName'] ?? '' ?>" required><br><br>
+
+                <label for="edit-district">District:</label><br>
+                <select id="edit-district" name="districtID">
+                    <option value="">Select District</option>
+                    <?php foreach ($districts as $district): ?>
+                        <option value="<?= $district['districtID'] ?>"<?= ($selectedUser['districtID'] == $district['districtID']) ? 'selected' : '' ?>><?= htmlspecialchars($district['name']) ?></option>
+                    <?php endforeach; ?>
+                </select><br><br>
+
+                <button type="submit">Save Changes</button>
+            </form>
         </div>
     </div>
 
@@ -129,21 +138,39 @@
     </footer>
 
     <script>
+        let modal = document.getElementById("edit-modal");
+        let span = document.getElementsByClassName("close")[0];
+        <?php if (isset($selectedUser)): ?>
+        document.getElementById("edit-modal").style.display = "block";
+        document.body.classList.add("modal-open");
+        <?php endif; ?>
 
-    function showToast(type, title, message) {
-        const toast = document.getElementById('toast');
-        document.getElementById('toast-title').textContent = title;
-        document.getElementById('toast-message').textContent = message;
-        
-        toast.classList.remove('success', 'error');
-        toast.classList.remove('hidden');
-        toast.classList.add(type);
-        
-        setTimeout(() => {
-            toast.classList.add('hidden')
-            toast.classList.remove(type);
-        }, 3000);
-    }
+        span.onclick = function() {
+            modal.style.display = "none";
+            document.body.classList.remove("modal-open");
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                document.body.classList.remove("modal-open");
+            }
+        }
+
+        function showToast(type, title, message) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toast-title').textContent = title;
+            document.getElementById('toast-message').textContent = message;
+            
+            toast.classList.remove('success', 'error');
+            toast.classList.remove('hidden');
+            toast.classList.add(type);
+            
+            setTimeout(() => {
+                toast.classList.add('hidden')
+                toast.classList.remove(type);
+            }, 3000);
+        }
 
         function hideToast() {
             const toast = document.getElementById('toast');

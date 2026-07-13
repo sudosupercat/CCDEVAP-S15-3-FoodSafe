@@ -4,7 +4,14 @@ require '../model/admin.model.php';
 // USER MANAGEMENT -- EDIT USER
 $districts = getDistricts($pdo);
 if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['id'])) {
-    editUser($pdo, $_GET['id']);
+    $selectedUser = getUserByID($pdo, $_GET['id']);
+}
+
+if(isset($_POST['action']) && $_POST['action'] === 'edit') {
+    editUser($pdo, $_POST['userID'], $_POST['email'], $_POST['firstName'], $_POST['lastName'], $_POST['districtID']);
+
+    header('Location: /CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php');
+    exit();
 }
 
 // USER MANAGEMENT -- UPDATE STATUS

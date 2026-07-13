@@ -68,8 +68,23 @@ function getDistricts($pdo) {
     return $districts;
 }
 
-function editUser($pdo, $userID) {
+function getUserByID($pdo, $userID) {
+    $sql = $pdo->prepare("SELECT u.userID, u.email, u.firstName, u.lastName, u.role, u.districtID, d.name as districtName, u.status, u.deleteFlag
+                        FROM users u
+                        LEFT JOIN districts d 
+                        ON u.districtID = d.districtID
+                        WHERE u.userID = ?;");
+    $sql->execute([$userID]);
+    return $sql->fetch(PDO::FETCH_ASSOC);
+}
 
+function editUser($pdo, $userID, $email, $firstName, $lastName, $districtID) {
+    $sql = $pdo->prepare("UPDATE users
+                        SET email = ?, firstName = ?, lastName = ?, districtID = ?
+                        WHERE userID = ?;");
+    $sql_new = $sql->execute([$email, $firstName, $lastName, $districtID, $userID]);
+
+    return $sql_new;
 }
 
 function updateStatus($pdo, $userID) {
