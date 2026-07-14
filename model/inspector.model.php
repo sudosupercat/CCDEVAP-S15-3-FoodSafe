@@ -1,9 +1,10 @@
 <?php
-require '../config/db.php';
+require __DIR__ . '/../config/db.php';
 
 //READ
-function getReports($pdo, $userID) {
-    $sql = $pdo->prepare("SELECT rp.reportID, r.name as establishment, rq.title, rp.createdAt as date, rp.status
+function getReports($pdo, $userID, $role) {
+    if ($role == 'Inspector') {
+        $sql = $pdo->prepare("SELECT rp.reportID, r.name as establishment, rq.title, rp.createdAt as date, rp.status
                     FROM reports rp
                     JOIN restaurants r ON rp.restoID = r.restoID
                     JOIN requirements rq ON rp.requirementCode = rq.requirementCode
@@ -11,9 +12,18 @@ function getReports($pdo, $userID) {
                     JOIN users u ON d.districtID = u.districtID
                     WHERE u.userID = ?
                     ORDER BY rp.createdAt;");
-    $sql->execute([$userID]);
-
-    return $sql->fetchAll(PDO::FETCH_ASSOC);
+        $sql->execute([$userID]);
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+    } else {
+        $sql = $pdo->query("SELECT rp.reportID, r.name as establishment, rq.title, rp.createdAt as date, rp.status
+                    FROM reports rp
+                    JOIN restaurants r ON rp.restoID = r.restoID
+                    JOIN requirements rq ON rp.requirementCode = rq.requirementCode
+                    ORDER BY rp.createdAt;");
+        $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+    }
+    
+    return $result;
 }
 
 // READ -- Selected

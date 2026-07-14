@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/global.css">
     <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/inspector/reports.css">
+    <link rel="icon" type="image/x-icon" href="/CCDEVAP-S15-3-FoodSafe/src/images/logo-tab.png">
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/nav-bar.js"></script>
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/jquery-3.7.1.min.js"></script>
@@ -40,13 +41,13 @@
                 <h3>Report Details</h3>
                 <?php if (isset($selectedReport)): ?>
                 <p>Report ID: <?= htmlspecialchars($selectedReport['reportID']) ?></p>
-                <p>Establishment: <?= htmlspecialchars($selectedReport['establishment']) ?></p>
                 <p>Date: <?= htmlspecialchars(date('F j, Y', strtotime($selectedReport['date']))) ?></p>
+                <p>Establishment: <?= htmlspecialchars($selectedReport['establishment']) ?></p>
                 <p>Violation: <?= htmlspecialchars($selectedReport['title']) ?></p>
                 <p>Description: <?= htmlspecialchars($selectedReport['description']) ?></p>
 
                 <div class="actions-button">
-                    <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspectorReports.controller.php">
+                    <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspector/inspectorReports.controller.php">
                             <input type="hidden" name="action" value="update">
                             <input type="hidden" name="id" value="<?php echo htmlspecialchars($selectedReport['reportID']) ?>">
                             <input type="hidden" name="status" value="Reviewed">
@@ -54,7 +55,7 @@
                             <button type="submit">Reviewed</button>
                     </form>
 
-                    <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspectorReports.controller.php">
+                    <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspector/inspectorReports.controller.php">
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" name="id" value="<?php echo htmlspecialchars($selectedReport['reportID']) ?>">
                         <input type="hidden" name="status" value="Dismissed">

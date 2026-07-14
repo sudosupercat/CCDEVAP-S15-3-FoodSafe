@@ -12,6 +12,7 @@
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/nav-bar.js"></script>
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/admin/dashboard.css">
+    <link rel="icon" type="image/x-icon" href="/CCDEVAP-S15-3-FoodSafe/src/images/logo-tab.png">
 </head>
 <body>
     <div id="navBar"></div>
@@ -19,7 +20,7 @@
     <div class="header">
         <h1>Web Analytics <br>Dashboard</h1>
         
-        <form action="/CCDEVAP-S15-3-FoodSafe/controller/adminDashboard.controller.php" method="GET">
+        <form action="/CCDEVAP-S15-3-FoodSafe/controller/admin/adminDashboard.controller.php" method="GET">
             <div class="picker">
                 <label for="year">Year:</label>
                 <select id="yearPicker" name="yearPicker"></select>
@@ -79,8 +80,6 @@
         FoodSafe - Copyright 2026
     </footer>
 
-    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/admin/admin-charts.js"></script>
-
     <script>
         let yearSelect = document.getElementById('yearPicker');
         const today = new Date();
@@ -110,6 +109,13 @@
             option.innerHTML = month;
             monthPicker.appendChild(option);
         })
+
+        let passedRow = <?php echo $passInspecCount; ?>;
+        let failedRow = <?php echo $failInspecCount; ?>;
+
+        let violationRow = <?php echo $violationCount; ?>;
+        console.log(violationRow);
     </script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/admin/admin-charts.js"></script>
 </body>
 </html>

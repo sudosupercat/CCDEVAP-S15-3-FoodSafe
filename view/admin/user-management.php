@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
     <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/admin/user-management.css">
+    <link rel="icon" type="image/x-icon" href="/CCDEVAP-S15-3-FoodSafe/src/images/logo-tab.png">
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/nav-bar.js"></script>
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/jquery-3.7.1.min.js"></script>
@@ -21,6 +22,7 @@
     <h1>User Management</h1>
 
     <div class="container">
+        <div class="table-wrapper">
         <table id="user-man-table" class="table table-striped">
             <thead>
             <tr>
@@ -56,19 +58,19 @@
                         echo "<td>";
                         echo "<div class='actions-button'>";
                         echo "
-                        <form method='GET' action='/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php'>
+                        <form method='GET' action='/CCDEVAP-S15-3-FoodSafe/controller/admin/adminUsers.controller.php'>
                             <input type='hidden' name='action' value='edit'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='btn-edit'>Edit</button>
                         </form>";
                         echo "
-                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php'>
+                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/admin/adminUsers.controller.php'>
                             <input type='hidden' name='action' value='update'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='{$statusClass}'>{$statusAction}</button>
                         </form>";
                         echo "
-                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php'>
+                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/admin/adminUsers.controller.php'>
                             <input type='hidden' name='action' value='delete'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='btn-delete'>Delete</button>
@@ -93,6 +95,7 @@
             </tfoot>
         </table>
     </div>
+    </div>
 
     <div id="toast" class="custom-toast hidden">
         <div class="toast-text">
@@ -107,7 +110,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Edit User</h2>
-            <form id="edit-form" method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php">
+            <form id="edit-form" method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/admin/adminUsers.controller.php">
                 <input type="hidden" name="action" value="edit">
                 <input type="hidden" id="edit-userID" name="userID" value="<?php echo $selectedUser['userID'] ?? '' ?>">
 
