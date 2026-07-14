@@ -1,6 +1,6 @@
 :root {
   --bg-purple: #dee5ff;
-  --nav-bg: #1f0075;
+  --nav-bg: #2c0083;
 }
 
 body.dark-mode {
@@ -8,13 +8,19 @@ body.dark-mode {
   --nav-bg: #0b0924;
 }
 
+.site-footer {
+  margin-top: auto;
+}
+
 body {
   font-family: Helvetica;
+  min-height: 100%;
   background-color: #dee5ff;
 }
 
 h1 {
   color: orange;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   margin-top: 40px;
@@ -66,7 +72,7 @@ td {
 .modal {
   display: none; 
   position: fixed;
-  z-index: 1; 
+  z-index: 2; 
   left: 0;
   top: 0;
   padding-top: auto;
@@ -131,7 +137,7 @@ body.modal-open::before {
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-  z-index: 0;
+  z-index: 1;
 }
 
 .custom-toast {

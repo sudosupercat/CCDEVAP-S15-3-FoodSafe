@@ -12,6 +12,20 @@ body.theme-dark-custom select, body.theme-dark-custom .stat-box {
     border-color: white;
 }
 
+:root {
+  --bg-purple: #dee5ff;
+  --nav-bg: #1f0075;
+}
+
+body.dark-mode {
+  --bg-purple: #12103a;
+  --nav-bg: #0b0924;
+}
+
+.site-footer {
+  margin-top: auto;
+}
+
 /* body.theme-dark-custom .chart {
     background-color: #6d67c09c;
     border-color: white;
@@ -20,6 +34,7 @@ body.theme-dark-custom select, body.theme-dark-custom .stat-box {
 body {
   font-family: Helvetica;
   background-color: #dee5ff;
+  min-height: 100%;
 }
 h1 {
     color: orange; 

@@ -11,13 +11,13 @@ $homepageData = $controller->getData();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FoodSafe - Home</title>
-    <link rel="icon" type="image/png" href="src/images/logo-tab.png">
-    <link rel="stylesheet" href="styles/bootstrap-4.6.2-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="styles/css/global.css">
-    <link rel="stylesheet" href="styles/css/public/index.css">
-    <script src="styles/js/jquery-3.7.1.min.js"></script>
-    <script src="styles/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
-    <script src="styles/js/nav-bar.js"></script>
+    <link rel="icon" type="image/png" href="../../src/images/logo-tab.png">
+    <link rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../styles/css/global.css">
+    <link rel="stylesheet" href="../../styles/css/public/index.css">
+    <script src="../../styles/js/jquery-3.7.1.min.js"></script>
+    <script src="../../styles/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+    <script src="../../styles/js/nav-bar.js"></script>
 </head>
 <body>
     <div id="navBar"></div>
@@ -27,7 +27,7 @@ $homepageData = $controller->getData();
             <h1>More than <span class="text-orange"><?php echo htmlspecialchars($homepageData['totalRestaurants']); ?></span> restaurants<br>inspected for the people.</h1>
             <p>Find out if it's as clean as it is from the outside.</p>
 
-            <form action="view/public/search.php" method="GET" class="search-form">
+            <form action="search.php" method="GET" class="search-form">
                 <input type="text" name="query" class="search-input" placeholder="<?php echo htmlspecialchars($homepageData['randomPlaceholder']); ?>" required>
             </form>
         </div>

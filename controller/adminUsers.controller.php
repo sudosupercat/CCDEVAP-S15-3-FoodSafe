@@ -10,7 +10,7 @@ if (isset($_GET['action']) && $_GET['action'] === 'edit' && isset($_GET['id'])) 
 if(isset($_POST['action']) && $_POST['action'] === 'edit') {
     editUser($pdo, $_POST['userID'], $_POST['email'], $_POST['firstName'], $_POST['lastName'], $_POST['districtID']);
 
-    header('Location: /CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php');
+    header('Location: /CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php?toast=edit');
     exit();
 }
 
@@ -19,7 +19,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'update' && isset($_POST['id
 
     updateStatus($pdo, $_POST['id']);
 
-    header('Location: /CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php');
+    header('Location: /CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php?toast=update');
     exit();
 }
 
@@ -28,13 +28,13 @@ if (isset($_POST['action']) && $_POST['action'] === 'delete' && isset($_POST['id
 
     deleteUser($pdo, $_POST['id']);
 
-    header('Location: /CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php');
+    header('Location: /CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php?toast=delete');
     exit();
 }
 
 // USER MANAGEMENT -- READ
 $users = getUsers($pdo);
 
-require '../users/admin/user-management.php';
+require '../view/admin/user-management.php';
 
 ?>

@@ -5,39 +5,42 @@
         <meta name="author" content="CCDEVAP Group 3">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="icon" type="image/png" href="../src/images/logo-tab.png">
-        <link rel="stylesheet" href="../styles/bootstrap-4.6.2-dist/css/bootstrap.css">
-        <link rel="stylesheet" href="../styles/css/global.css">
+        <link rel="stylesheet" href="../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
+        <link rel="stylesheet" href="../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
         <link rel="stylesheet" href="../styles/css/login-style.css">
+        <link rel="stylesheet" href="../styles/css/global.css">
         <script src="../styles/js/nav-bar.js"></script>
         <script src="../styles/js/jquery-3.7.1.min.js"></script>
-        <script src="../styles/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
+        <script src="../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
         <title>FoodSafe Login</title>
     </head>
-    <body class="login-page">
+    <body>
         
         <header>
             <div id="navBar"></div>
         </header>
         <main>
-        <section class="form-left">
-            <h1>Welcome Back!</h1>
-            <form id="loginForm" action="" method="POST" novalidate>
-                <div class="form-group">
-                    <label id="emailLabel" for="email">E-mail</label>
-                    <input type="email" id="email" required>
-                </div>
-                <div class="form-group">
-                    <label id="passwordLabel" for="password">Password:</label>
-                    <input type="password" id="password" required >
-                    
-                    <div class="togglePw">
-                        <input type="checkbox" id="showPw">
-                        <label for="showPw">Show Password</label>
+        <section class="col-lg-6 form-left d-flex align-items-center justify-content-center">
+            <div class="p-4 w-100" style="max-width: 420px;">
+                <h1 class="fw-bold mb-4">Welcome Back!</h1>
+                <form id="loginForm" action="" method="POST" novalidate>
+                    <div class="form-group">
+                        <label id="emailLabel" for="email">E-mail</label>
+                        <input type="email" id="email" required>
                     </div>
-                </div>
-                <button type="submit" class="login-btn">Log-in</button>
-            </form>
-        </section>
+                    <div class="form-group">
+                        <label id="passwordLabel" for="password">Password:</label>
+                        <input type="password" id="password" required >
+
+                        <div class="togglePw">
+                            <input type="checkbox" id="showPw">
+                            <label for="showPw">Show Password</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="login-btn">Log-in</button>
+                </form>
+            </div>
+        </section class="col-lg-6 form-right d-none d-lg-block">
         <div id="toast" class="custom-toast hidden">
             <div class="toast-text">
                 <strong id="toast-title">Toast Title</strong>

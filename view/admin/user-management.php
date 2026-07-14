@@ -12,7 +12,7 @@
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/nav-bar.js"></script>
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/jquery-3.7.1.min.js"></script>
-    <script src="/CCDEVAP-S15-3-FoodSafe/tyles/js/dataTables.min.js"></script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/dataTables.min.js"></script>
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/admin/users.js"></script>
 </head>
 <body>
@@ -20,7 +20,7 @@
 
     <h1>User Management</h1>
 
-    <div class="container"> 
+    <div class="container">
         <table id="user-man-table" class="table table-striped">
             <thead>
             <tr>
@@ -109,22 +109,22 @@
             <h2>Edit User</h2>
             <form id="edit-form" method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/adminUsers.controller.php">
                 <input type="hidden" name="action" value="edit">
-                <input type="hidden" id="edit-userID" name="userID" value="<?= $selectedUser['userID'] ?? '' ?>">
+                <input type="hidden" id="edit-userID" name="userID" value="<?php echo $selectedUser['userID'] ?? '' ?>">
 
                 <label for="edit-email">Email:</label><br>
-                <input type="email" id="edit-email" name="email" value="<?= $selectedUser['email'] ?? '' ?>" required><br><br>
+                <input type="email" id="edit-email" name="email" value="<?php echo $selectedUser['email'] ?? '' ?>" required><br><br>
 
                 <label for="edit-firstName">First Name:</label><br>
-                <input type="text" id="edit-firstName" name="firstName" value="<?= $selectedUser['firstName'] ?? '' ?>" required><br><br>
+                <input type="text" id="edit-firstName" name="firstName" value="<?php echo $selectedUser['firstName'] ?? '' ?>" required><br><br>
 
                 <label for="edit-lastName">Last Name:</label><br>
-                <input type="text" id="edit-lastName" name="lastName" value="<?= $selectedUser['lastName'] ?? '' ?>" required><br><br>
+                <input type="text" id="edit-lastName" name="lastName" value="<?php echo $selectedUser['lastName'] ?? '' ?>" required><br><br>
 
                 <label for="edit-district">District:</label><br>
                 <select id="edit-district" name="districtID">
                     <option value="">Select District</option>
                     <?php foreach ($districts as $district): ?>
-                        <option value="<?= $district['districtID'] ?>"<?= ($selectedUser['districtID'] == $district['districtID']) ? 'selected' : '' ?>><?= htmlspecialchars($district['name']) ?></option>
+                        <option value="<?php echo $district['districtID'] ?>"<?php echo ($selectedUser['districtID'] == $district['districtID']) ? 'selected' : '' ?>><?php echo htmlspecialchars($district['name']) ?></option>
                     <?php endforeach; ?>
                 </select><br><br>
 
@@ -132,10 +132,6 @@
             </form>
         </div>
     </div>
-
-    <footer class="site-footer">
-        FoodSafe - Copyright 2026
-    </footer>
 
     <script>
         let modal = document.getElementById("edit-modal");
@@ -157,27 +153,55 @@
             }
         }
 
+        let toastTimeout;
+        
+        <?php
+        $toastMessages = [
+            "edit" => "User has been edited.",
+            "update" => "User status has been updated.",
+            "delete" => "User has been deleted."
+        ];
+
+        if (isset($_GET['toast']) && isset($toastMessages[$_GET['toast']])):
+        ?>
+
         function showToast(type, title, message) {
             const toast = document.getElementById('toast');
+
             document.getElementById('toast-title').textContent = title;
             document.getElementById('toast-message').textContent = message;
-            
+
             toast.classList.remove('success', 'error');
             toast.classList.remove('hidden');
             toast.classList.add(type);
-            
-            setTimeout(() => {
-                toast.classList.add('hidden')
+
+            clearTimeout(toastTimeout);
+
+            toastTimeout = setTimeout(() => {
+                toast.classList.add('hidden');
                 toast.classList.remove(type);
-            }, 3000);
+            }, 5000);
         }
+
+        window.onload = function() {
+            showToast(
+                "success",
+                "Success.",
+                "<?php echo $toastMessages[$_GET['toast']] ?>"
+            );
+        }
+
+        <?php endif; ?>
 
         function hideToast() {
             const toast = document.getElementById('toast');
             toast.classList.add('hidden');
-            toast.classList.remove('pending', 'reviewed', 'dismissed');
+            toast.classList.remove('success', 'error');
             clearTimeout(toastTimeout);
         }
-</script>
+    </script>
+    <footer class="site-footer">
+        FoodSafe - Copyright 2026
+    </footer>
 </body>
 </html>

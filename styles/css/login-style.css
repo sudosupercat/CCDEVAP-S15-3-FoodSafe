@@ -1,6 +1,7 @@
 /* CSS variables for consistent themes */
 :root{
     --bg-purple: #3100b9;
+    --bg-lightmode: #dee5ff;
     --nav-bg: #1f0075;
     --text-white: #ffffff;
     --accent-orange: #ff751f;
@@ -17,7 +18,7 @@
 }
 
 body{
-    background-color: var(--bg-purple);
+    background-color: var(--bg-lightmode);
     min-height: 100vh; /* full screen height */
     display: flex;
     flex-direction: column;
@@ -108,12 +109,12 @@ main {
 }
 
 .togglePw input[type="checkbox"] {
-    width: 16px;
-    height: 16px;
-    accent-color: var(--accent-orange);
-    cursor: pointer;
-    margin-left: 15px;
-    margin-bottom: 5px;
+  width: 16px;
+  height: 16px;
+  accent-color: var(--accent-orange);
+  cursor: pointer;
+  margin-left: 15px;
+  margin-bottom: 5px;
 }
 
 .custom-toast {
