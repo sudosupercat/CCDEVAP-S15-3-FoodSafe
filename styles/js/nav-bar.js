@@ -10,36 +10,36 @@ function showNavBar(){
     if(path.includes("/admin/")){
         basePath = "../../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="../admin/dashboard.html">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inspector/business-directory.html">Business Directory</a></li>
+            <li class="nav-item"><a class="nav-link" href="../admin/dashboard.php">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inspector/business-directory.php">Business Directory</a></li>
         `;
     }
     else if(path.includes("/inspector/")){
         basePath = "../../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="../inspector/dashboard.html"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inspector/inspection-entry.html"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inspector/business-directory.html"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>
-            <li class="nav-item"><a class="nav-link" href="../inspector/reports.html"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>
-            <li class="nav-item"><a class="nav-link" href="../login.html"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inspector/dashboard.php"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inspector/inspection-entry.php"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inspector/business-directory.php"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>
+            <li class="nav-item"><a class="nav-link" href="../inspector/reports.php"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>
+            <li class="nav-item"><a class="nav-link" href="../login.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>
         `
     }
     else if(path.includes("/public/")){
         basePath = "../../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="../public/complaint.html">Report</a></li>
-            <li class="nav-item"><a class="nav-link" href="../login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/public/complaint.php"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/login.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Login</a></li>
         `;
     }
     else if (path.includes("login")){
         basePath = "../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/login.php"><span><i class="bi bi-lock me-1"></i></span>Login</a></li>
         `;
     } else {
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="users/public/complaint.html">Report</a></li>
-            <li class="nav-item"><a class="nav-link" href="users/login.html">Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="view/public/complaint.php"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>
+            <li class="nav-item"><a class="nav-link" href="view/login.php"><span><i class="bi bi-lock me-1"></i></span>Login</a></li>
         `;
     }
 

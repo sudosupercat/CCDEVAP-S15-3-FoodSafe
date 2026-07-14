@@ -1,5 +1,5 @@
 <?php
-require '../../controller/IndexController.php';
+require 'controller/IndexController.php';
 
 $controller = new IndexController();
 $homepageData = $controller->getData();
