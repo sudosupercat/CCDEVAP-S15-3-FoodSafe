@@ -134,8 +134,6 @@
     </div>
 
     <script>
-        document.body.classList.add("admin-page");
-        
         let modal = document.getElementById("edit-modal");
         let span = document.getElementsByClassName("close")[0];
         <?php if (isset($selectedUser)): ?>

@@ -14,11 +14,13 @@ body.dark-mode {
 
 body {
   font-family: Helvetica;
+  min-height: 100%;
   background-color: #dee5ff;
 }
 
 h1 {
   color: orange;
+  font-weight: bold;
   display: flex;
   justify-content: center;
   margin-top: 40px;

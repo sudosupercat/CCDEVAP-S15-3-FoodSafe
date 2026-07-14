@@ -1,9 +1,8 @@
 body {
   font-family: Helvetica;
-  background-color: #3d00bc;
+  background-color: #dee5ff;
+  min-height: 100%;
 }
-
-
 
 body.theme-dark-custom .container {
   background-color: #644419;
