@@ -1,6 +1,9 @@
 <?php
-// sesion_start();
-// $_SESSION['userID'] = $user['userID'];
+
+if (!isset($_SESSION['userID'])) {
+    header("Location: /CCDEVAP-S15-3-FoodSafe/controller/loginPage.controller.php");
+    exit();
+}
 
 require '../../model/inspector.model.php';
 
@@ -14,9 +17,8 @@ if (isset($_POST['action']) && $_POST['action'] === 'update' && isset($_POST['id
     exit();
 }
 
-// REPORTS -- READ ; static palang...
-// $userID = $_GET['userID'];
-$userID = 3;
+// REPORTS -- READ ; di pa tested yung session
+$userID = $_SESSION['userID'];
 $reports = getReports($pdo, $userID);
 
 // REPORTS -- LOAD SELECTED REPORT

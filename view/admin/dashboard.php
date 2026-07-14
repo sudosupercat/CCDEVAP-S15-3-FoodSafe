@@ -80,8 +80,6 @@
         FoodSafe - Copyright 2026
     </footer>
 
-    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/admin/admin-charts.js"></script>
-
     <script>
         let yearSelect = document.getElementById('yearPicker');
         const today = new Date();
@@ -111,6 +109,13 @@
             option.innerHTML = month;
             monthPicker.appendChild(option);
         })
+
+        let passedRow = <?php echo $passInspecCount; ?>;
+        let failedRow = <?php echo $failInspecCount; ?>;
+
+        let violationRow = <?php echo $violationCount; ?>;
+        console.log(violationRow);
     </script>
+    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/admin/admin-charts.js"></script>
 </body>
 </html>
