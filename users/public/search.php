@@ -1,3 +1,12 @@
+<?php
+require_once '../../controller/SearchController.php';
+
+$controller = new SearchController();
+$searchResults = $controller->getData();
+$searchQuery = $_GET['query'] ?? '';
+$sortOrder = $_GET['sort'] ?? 'az';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,13 +25,15 @@
     <div id="navBar"></div>
     <div class="search-section">
         <div class="search-content">
-            <form action="search.html" method="GET" class="search-form" id="searchForm">
-                <input type="text" name="query" class="search-input" id="searchInput" placeholder="Ate Rica's..." required>
-                <select name="sort" class="sortby-select" id="sortSelect">
-                    <option value="az">Sort by: A-Z</option>
-                    <option value="za">Sort by: Z-A</option>
-                    <option value="violow-hi">Sort by: Violations ↑</option>
-                    <option value="viohi-low">Sort by: Violations ↓</option>
+            <form action="search.php" method="GET" class="search-form">
+                
+                <input type="text" name="query" value="<?php echo htmlspecialchars($searchQuery); ?>" class="search-input">
+                
+                <select name="sort" class="sortby-select" onchange="this.form.submit()">
+                    <option value="az" <?php echo ($sortOrder === 'az') ? 'selected' : ''; ?>>Sort by: A-Z</option>
+                    <option value="za" <?php echo ($sortOrder === 'za') ? 'selected' : ''; ?>>Sort by: Z-A</option>
+                    <option value="violow-hi" <?php echo ($sortOrder === 'violow-hi') ? 'selected' : ''; ?>>Sort by: Violations ↑</option>
+                    <option value="viohi-low" <?php echo ($sortOrder === 'viohi-low') ? 'selected' : ''; ?>>Sort by: Violations ↓</option>
                 </select>
             </form>
         </div>
@@ -30,14 +41,44 @@
 
     <div class="results-section">
         <div id="results-container" class="results-container">
+            
+            <?php if (empty($searchResults)): ?>
+                <p style="color:#ffffff; text-align:center; font-size:1.2rem; font-weight:bold;">No restaurants found matching your search.</p>
+            <?php else: ?>
+                <?php foreach ($searchResults as $resto): ?>
+                    <?php
+                        $gradeColor = ''; 
+                        switch($resto['grade']) {
+                            case 'A': $gradeColor = '#28a745'; break;
+                            case 'B': $gradeColor = '#f38020'; break;
+                            case 'C': $gradeColor = '#ffc107'; break;
+                            case 'F': $gradeColor = '#dc3545'; break; 
+                        }
+                    ?>
+
+                    <a href="restaurant-detail.php?id=<?php echo htmlspecialchars($resto['restoID']); ?>" class="restaurant-card">
+                        <img src="<?php echo htmlspecialchars($resto['image']); ?>" alt="<?php echo htmlspecialchars($resto['name']); ?>" class="resto-image">
+                        
+                        <div class="resto-info">
+                            <h3><?php echo htmlspecialchars($resto['name']); ?></h3>
+                            <p class="violations-text"><?php echo htmlspecialchars($resto['violations']); ?> Violations Recorded</p>
+                            <p class="inspection-text">Most recent inspection: <?php echo htmlspecialchars($resto['displayDate']); ?></p>
+                        </div>
+                        <?php if ($resto['violations'] == 0): ?>
+                        <?php else: ?>
+                            <div class="resto-grade" style="color: <?php echo $gradeColor; ?>;">
+                                <?php echo htmlspecialchars($resto['grade']); ?>
+                            </div>
+                        <?php endif; ?>
+                    </a>
+                <?php endforeach; ?>
+            <?php endif; ?>
+
         </div>
     </div>
-
-    <script src="../../styles/js/public/search.js"></script>
 
     <footer class="site-footer">
         FoodSafe - Copyright 2026
     </footer>
 </body>
 </html>
-
