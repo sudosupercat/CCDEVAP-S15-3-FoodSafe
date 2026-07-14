@@ -1,5 +1,5 @@
 <?php
-require 'config/db.php';
+require __DIR__ . '/../config/db.php';
 
 class FoodBusiness {
     private $pdo;
@@ -20,6 +20,7 @@ class FoodBusiness {
 
     public function mapRowToObj($row){
         $foodBusiness = new self($this->pdo);
+        $foodBusiness->foodBusinessId = $row['restoID'];
         $foodBusiness->licenseNo = $row['licenseNo'];
         $foodBusiness->name = $row['name'];
         $foodBusiness->address = $row['address'];
@@ -73,10 +74,10 @@ class FoodBusiness {
             }
 	}
 	
-	// For now, delete will set the delete flag of the row to 1
+	// For now, delete will set the status flag of the row to 0
 	public function deleteRow($rowId){
         try {
-            $stmt = $this->pdo->prepare("UPDATE restaurants SET status = 1 WHERE restoID = :rowId");
+            $stmt = $this->pdo->prepare("UPDATE restaurants SET status = 0 WHERE restoID = :rowId");
             $stmt->execute(['rowId' => $rowId]);
             echo "Record updated successfully";
             }

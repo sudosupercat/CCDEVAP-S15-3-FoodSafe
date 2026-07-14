@@ -8,7 +8,7 @@ switch ($action) {
     case 'business-directory':
         require 'controller/FoodBusiness.Controller.php';
         $controller = new FoodBusinessController($pdo);
-        $controller->getAllData($pdo);
+        $controller->showPage($pdo);
         break;
         // case 'index':
         //     $controller->index($pdo); // runs when page loads

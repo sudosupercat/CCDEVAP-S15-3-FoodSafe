@@ -1,5 +1,5 @@
 <?php
-require_once 'model/FoodBusiness.model.php';
+require_once __DIR__ . '/../model/FoodBusiness.model.php';
 
 class FoodBusinessController {
     private $foodBusinessModel;
@@ -8,10 +8,10 @@ class FoodBusinessController {
         $this->foodBusinessModel = new FoodBusiness($pdo);
     }
 
-    public function getAllData($pdo){
+    public function showPage($pdo){
         $this->foodBusinessModel = new FoodBusiness($pdo);
         $foodBusinesses = $this->foodBusinessModel->getAllRowInfo();
-        include 'view/inspector/business-directory.php';
+        include __DIR__ . '/../view/inspector/business-directory.php';
     }
     
     public function addRow(){
@@ -67,5 +67,19 @@ class FoodBusinessController {
             // exit;
         }
     }
+
+    public function deleteRow($id){
+        if (filter_var($id, FILTER_VALIDATE_INT) !== false) {
+            $this->foodBusinessModel->deleteRow($id);
+            return "success";
+        }
+    }
 }
+
+// Router
+if (isset($_POST['action']) && $_POST['action'] === 'delete') {
+    $controller = new FoodBusinessController($pdo);
+    $controller->deleteRow($_POST['foodBusinessId']);
+}
+
 ?>
