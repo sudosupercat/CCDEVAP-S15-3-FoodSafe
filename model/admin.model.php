@@ -1,5 +1,5 @@
 <?php
-require '../config/db.php';
+require __DIR__ . '/../config/db.php';
 
 // DASHBOARD
 function getInspectorCounts($pdo, $year, $month) {
