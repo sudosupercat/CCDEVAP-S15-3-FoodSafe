@@ -1,5 +1,5 @@
 <?php
-require 'db.php';
+require 'config/db.php';
 
 class FoodBusiness {
     private $pdo;
@@ -12,7 +12,7 @@ class FoodBusiness {
     public $mapsLink;
     public $imageLink;
     public $status;
-    public $districtId;
+    public $district;
     
     public function __construct($pdo){
         $this->pdo = $pdo;
@@ -20,14 +20,14 @@ class FoodBusiness {
 
     public function mapRowToObj($row){
         $foodBusiness = new self($this->pdo);
-        $foodBusiness->licenseNo = $row['restoID'];
+        $foodBusiness->licenseNo = $row['licenseNo'];
         $foodBusiness->name = $row['name'];
         $foodBusiness->address = $row['address'];
         $foodBusiness->contactNo = $row['contactNo'];
         $foodBusiness->mapsLink = $row['maps'];
         $foodBusiness->imageLink = $row['image'];
         $foodBusiness->status = $row['status'];
-        $foodBusiness->districtId = $row['districtID'];
+        $foodBusiness->district = $row['district'];
         return $foodBusiness;
     }
 
@@ -39,16 +39,17 @@ class FoodBusiness {
         return $row ? $this->mapRowToObj($row) : null;
     }
 
-    public function getAllRowInfo() {
-        $stmt = $this->pdo->query("SELECT * FROM restaurants");
+    public function getAllRowInfo(){
+        $stmt = $this->pdo->query("SELECT r.restoID restoID, r.licenseNo licenseNo, r.name name, r.address address, r.contactNo contactNo, r.maps maps, r.image image, r.status status, d.name district FROM restaurants r
+                                    JOIN districts d ON r.districtID = d.districtID");
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        $restaurants = [];
+        $foodBusinessesArr = [];
         foreach ($rows as $row) {
-            $restaurants[] = $this->mapRowToObj($row);
+            $foodBusinessesArr[] = $this->mapRowToObj($row);
         }
         
-        return $restaurants;
+        return $foodBusinessesArr;
     }
 	
 	public function insertRow($foodBusiness){

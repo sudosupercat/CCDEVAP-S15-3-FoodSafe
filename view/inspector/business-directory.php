@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>FoodSafe - Business Directory</title>
+        <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">
         <link rel="stylesheet" href="business-directory.css">
         <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
         <link rel="stylesheet" href="../../styles/css/global.css">
@@ -25,23 +26,37 @@
                     <tr>
                         <th>License No.</th>
                         <th>Business Name</th>
+                        <th>Address</th>
                         <th>Contact</th>
                         <th>Map Link</th>
+                        <th>Image Link</th>
+                        <th>Deleted?</th>
+                        <th>District</th>
                         <th data-dt-order="disable">Options</th>
                     </tr>
                 </thead>
                 <tbody>
+                    <?php foreach ($foodBusinesses as $foodBusiness): ?>
                     <tr>
-                        <td>1938</td>
-                        <td>The Fowler Fine Diner</td>
-                        <td>+639564438421</td>
-                        <td>https://example.com</td>
+                        <td><?= htmlspecialchars($foodBusiness->licenseNo) ?></td>
+                        <td><?= htmlspecialchars($foodBusiness->name) ?></td>
+                        <td><?= htmlspecialchars($foodBusiness->address) ?></td>
+                        <td><?= htmlspecialchars($foodBusiness->contactNo) ?></td>
+                        <td><?= $foodBusiness->mapsLink !== null
+                                ? '<a href="' . htmlspecialchars($foodBusiness->mapsLink) . '"><i class="bi bi-box-arrow-up-right"></i></a>'
+                                : 'N/A' ?></td>
+                        <td><?= $foodBusiness->imageLink !== null
+                                ? '<a href="img/' . htmlspecialchars($foodBusiness->imageLink) . '"><i class="bi bi-box-arrow-up-right"></i></a>'
+                                : 'N/A' ?></td>
+                        <td><?= htmlspecialchars($foodBusiness->status) ?></td>
+                        <td><?= htmlspecialchars($foodBusiness->district) ?></td>
                         <td>
-                            <button type="button" class="button-option" data-bs-toggle="modal" data-bs-target="#edit-modal"><i class="bi bi-pencil"></i>  Edit</button>
-                            <button type="button" class="button-option" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
+                            <button type="button" class="button-option" data-bs-toggle="modal" data-bs-target="#edit-modal"><i class="bi bi-pencil"></i></button>
+                            <button type="button" class="button-option" data-bs-toggle="modal" data-bs-target="#delete-modal"><i class="bi bi-trash"></i></button>
                         </td>
                     </tr>
-                    <tr>
+                    <?php endforeach; ?>
+                    <!-- <tr>
                         <td>1938</td>
                         <td>The Fowler Fine Diner</td>
                         <td>+639564438421</td>
@@ -70,11 +85,11 @@
                             <button type="button" class="button-option" data-bs-toggle="modal" data-bs-target="#edit-modal">Edit</button>
                             <button type="button" class="button-option" data-bs-toggle="modal" data-bs-target="#delete-modal">Delete</button>
                         </td>
-                    </tr>
+                    </tr> -->
                 </tbody>
             </table>
         </div>
-        <!-- Add modal -->
+        <!-- Add and edit modal -->
         <div class="modal fade" tabindex="-1" id="add-modal">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
@@ -150,7 +165,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="business-maps-url">Link to Google Maps</label>
-                                <input type="link" class="form-control" id="business-maps-url" name="business-maps-url" placeholder="https://maps.google.com/...">
+                                <input type="link" class="form-control" id="business-maps-url" name="business-maps-url" placeholder="https://maps.app.goo.gl/...">
                             </div>
                         </form>
                     </div>

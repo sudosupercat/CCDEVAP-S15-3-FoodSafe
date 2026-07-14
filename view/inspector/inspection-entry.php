@@ -2,6 +2,7 @@
 <html>
     <head>
         <title>FoodSafe - Inspection Entry</title>
+        <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">
         <link rel="stylesheet" href="business-directory.css">
         <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
         <link rel="stylesheet" href="../../styles/css/global.css">
