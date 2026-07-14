@@ -15,12 +15,16 @@ if(isset($_POST['action']) && $_POST['action'] === 'login') {
     $user = getUserEmail($pdo, $email);
 
     if($user) {
+        //Check if the user is disabled
         if ($user['status'] == 0) {
                 header('Location: ../view/login.php?error=disabled');
                 exit();
             }
 
         if ($user && password_verify($password, $user['password'])) {
+            //reset login attempts to 0 on successful login
+            resetLoginAttempts($pdo, $user['userID']); 
+
             $_SESSION['userID'] = $user['userID'];
             $_SESSION['role'] = $user['role'];
             $_SESSION['email'] = $user['email'];
@@ -36,10 +40,25 @@ if(isset($_POST['action']) && $_POST['action'] === 'login') {
             }
 
         } else {
-            header('Location: ../view/login.php?error=invalid');
-            exit();
+            $nextLoginAttempt = $user['loginAttempt'] + 1;
+
+            if($nextLoginAttempt >= 5) {
+                //disable the user account
+                incrementLoginAttempts($pdo, $user['userID']);
+                disableUserAccount($pdo, $user['userID']);
+                header('Location: ../view/login.php?error=disabled');
+                exit();
+            } else {
+                //increment login attempts by 1
+                incrementLoginAttempts($pdo, $user['userID']);
+                header('Location: ../view/login.php?error=invalid');
+                exit();
+            }
+           
         }
     }
+    header('Location: ../view/login.php?error=invalid');
+    exit();
 }
 
 require '../view/login.php';     
