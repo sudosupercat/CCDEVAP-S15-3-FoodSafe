@@ -477,7 +477,7 @@ body.dark-mode input:checked + .slider:before {
     overflow-x: visible;
   }
 
-  table {
+  #user-man-table {
     min-width: 0;
     width: 100%;
     font-size: 11px;

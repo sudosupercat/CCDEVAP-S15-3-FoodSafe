@@ -50,6 +50,55 @@ function getInspectorCounts($pdo, $year, $month) {
     return $result;
 }
 
+// DASHBOARD -- Charts
+function getPassInspection($pdo, $year) {
+    $sql = $pdo->prepare("SELECT COUNT(*) as total, MONTH(inspectionDate) as month
+                        FROM inspections
+                        WHERE YEAR(inspectionDate) = ?
+                        AND grade = 'Pass'
+                        GROUP BY MONTH(inspectionDate);");
+    $sql->execute([$year]);
+
+    $passed_data = [];
+    while($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+        array_push($passed_data , $row);
+    }
+
+    return json_encode($passed_data);
+}
+
+function getFailInspection($pdo, $year) {
+    $sql = $pdo->prepare("SELECT COUNT(*) as total, MONTH(inspectionDate) as month
+                        FROM inspections
+                        WHERE YEAR(inspectionDate) = ?
+                        AND grade = 'Fail'
+                        GROUP BY MONTH(inspectionDate);");
+    $sql->execute([$year]);
+
+    $failed_data = [];
+    while($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+        array_push($failed_data , $row);
+    }
+
+    return json_encode($failed_data);
+}
+
+function getViolationCount($pdo, $year) {
+    $sql = $pdo->prepare("SELECT COUNT(*) as total, v.requirementCode as num, rq.title as name
+                        FROM violations v 
+                        LEFT JOIN requirements rq ON v.requirementCode = rq.requirementCode
+                        LEFT JOIN inspections i ON v.inspectionID = i.inspectionID
+                        WHERE YEAR(i.inspectionDate) = ?
+                        GROUP BY v.requirementCode;");
+    $sql->execute([$year]);
+    $violation_data = [];
+    while($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+        array_push($violation_data, $row);
+    }
+
+    return json_encode($violation_data);
+}
+
 // USER MANAGEMENT
 function getUsers($pdo) {
     $sql = $pdo->query("SELECT u.userID, u.email, u.firstName, u.lastName, u.role, u.districtID, d.name as districtName, u.status, u.deleteFlag
