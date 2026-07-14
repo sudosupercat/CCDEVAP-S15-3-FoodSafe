@@ -65,6 +65,7 @@ $sortOrder = $_GET['sort'] ?? 'az';
                             <p class="inspection-text">Most recent inspection: <?php echo htmlspecialchars($resto['displayDate']); ?></p>
                         </div>
                         <?php if ($resto['violations'] == 0): ?>
+                            <br><br>
                         <?php else: ?>
                             <div class="resto-grade" style="color: <?php echo $gradeColor; ?>;">
                                 <?php echo htmlspecialchars($resto['grade']); ?>
