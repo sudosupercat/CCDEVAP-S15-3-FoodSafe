@@ -1,5 +1,5 @@
 <?php
-require_once 'model/FoodBusiness.model.php';
+require_once '../model/FoodBusiness.model.php';
 
 class FoodBusinessController {
     private $foodBusinessModel;

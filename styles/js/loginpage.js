@@ -48,10 +48,6 @@ document.addEventListener("DOMContentLoaded", function () {
             event.preventDefault();
             showToast("error", "Error", "Please enter your password.");
         } 
-        else if (passwordValue.length < 6) {
-            event.preventDefault();
-            showToast("error", "Error", "Password must be at least 6 characters long.");
-        } 
         
     });
 });

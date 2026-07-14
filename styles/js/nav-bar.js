@@ -6,43 +6,44 @@ function showNavBar(){
     let navItems = "";
     let basePath = "";
 
-    const ROOT = "/CCDEVAP-S15-3-FoodSafe/";
+    const ROOT = "/CCDEVAP-S15-3-FOODSAFE/";
 
     //Change items based on webpage location
     if(path.includes("/admin/")){
         basePath = "../../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="${ROOT}controller/admin/adminDashboard.controller.php">Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="${ROOT}controller/admin/adminUsers.controller.php">Users</a></li>
-            <li class="nav-item"><a class="nav-link" href="${ROOT}controller/FoodBusiness.controller.php">Business Directory</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}controller/admin/adminDashboard.controller.php">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}controller/admin/adminUsers.controller.php">Users</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}controller/FoodBusiness.controller.php">Business Directory</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}controller/logoutPage.controller.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>
         `;
     }
     else if(path.includes("/inspector/")){
         basePath = "../../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="${ROOT}view/inspector/dashboard.php"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>
-            <li class="nav-item"><a class="nav-link" href="${ROOT}view/inspector/inspection-entry.php"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>
-            <li class="nav-item"><a class="nav-link" href="${ROOT}controller/FoodBusiness.controller.php"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>
-            <li class="nav-item"><a class="nav-link" href="${ROOT}controller/inspector/inspectorReports.controller.php"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>
-            <li class="nav-item"><a class="nav-link" href="${ROOT}view/login.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/inspector/dashboard.php"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/inspector/inspection-entry.php"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}controller/FoodBusiness.controller.php"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}controller/inspector/inspectorReports.controller.php"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}controller/logoutPage.controller.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>
         `
     }
     else if(path.includes("/public/")){
         basePath = "../../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="${ROOT}view/public/complaint.php"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>
-            <li class="nav-item"><a class="nav-link" href="${ROOT}view/login.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/public/complaint.php"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/login.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Login</a></li>
         `;
     }
     else if (path.includes("login")){
         basePath = "../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="${ROOT}view/login.php"><span><i class="bi bi-lock me-1"></i></span>Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/login.php"><span><i class="bi bi-lock me-1"></i></span>Login</a></li>
         `;
     } else {
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="${ROOT}view/public/complaint.php"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>
-            <li class="nav-item"><a class="nav-link" href="${ROOT}view/login.php"><span><i class="bi bi-lock me-1"></i></span>Login</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/public/complaint.php"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}view/login.php"><span><i class="bi bi-lock me-1"></i></span>Login</a></li>
         `;
     }
 

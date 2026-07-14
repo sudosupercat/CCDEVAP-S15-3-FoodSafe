@@ -1,17 +1,19 @@
 <?php
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
+// If already logged in, skip the login form entirely
 if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
     if ($_SESSION['role'] === 'Admin') {
-        header('Location: view/admin/homepage.php');
+        header('Location: ../view/admin/homepage.php'); //change if may controller na for admin homepage
         exit();
     } else {
-        header('Location: view/inspector/inspector-homepage.php');
+        header('Location: ../view/inspector/inspector-homepage.php'); //change if may controller na for inspector homepage
         exit();
     }
 }
 ?>
-
 <html>
     <head>
         <meta name="description" content="FoodSafe Login Page">
@@ -29,7 +31,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
         <title>FoodSafe Login</title>
     </head>
     <body>
-        
+
         <header>
             <div id="navBar"></div>
         </header>
@@ -37,7 +39,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
         <section class="col-lg-6 form-left d-flex align-items-center justify-content-center">
             <div class="p-4 w-100" style="max-width: 420px;">
                 <h1 class="fw-bold mb-4">Welcome Back!</h1>
-                <form id="loginForm" action="../controller/loginPage.controller.php" method="POST">
+                <form id="loginForm" action="../controller/loginPage.controller.php" method="POST" novalidate>
                     <input type="hidden" name="action" value="login">
 
                     <div class="form-group">
@@ -56,22 +58,22 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
                     <button type="submit" class="login-btn" name="submit">Log-in</button>
                 </form>
             </div>
-        </section class="col-lg-6 form-right d-none d-lg-block">
+        </section>
         <div id="toast" class="custom-toast hidden">
             <div class="toast-text">
                 <strong id="toast-title">Toast Title</strong>
                 <p id="toast-message">Toast Message</p>
-            </div>`
+            </div>
             <span class="toast-close" onclick="hideToast()">&times;</span>
         </div>
         <section class="form-right">
             <img src="../src/images/loginbg.png" alt="Login Illustration">
-        </section>   
+        </section>
         </main>
         <script>
             const loginError = "<?= isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '' ?>";
         </script>
-        <script src="../styles/js/loginpage.js"></script>
+        <script src="../styles/js/loginpage.js?v=1.0.1"></script>
         <footer class="site-footer">
             FoodSafe - Copyright 2026
         </footer>
