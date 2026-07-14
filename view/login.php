@@ -6,10 +6,10 @@ if (session_status() === PHP_SESSION_NONE) {
 // If already logged in, skip the login form entirely
 if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
     if ($_SESSION['role'] === 'Admin') {
-        header('Location: ../view/admin/homepage.php'); //change if may controller na for admin homepage
+        header('Location: /CCDEVAP-S15-3-FoodSafe/view/admin/homepage.php'); //change if may controller na for admin homepage
         exit();
     } else {
-        header('Location: ../view/inspector/inspector-homepage.php'); //change if may controller na for inspector homepage
+        header('Location: /CCDEVAP-S15-3-FoodSafe/controller/inspector/inspectorHomepage.controller.php'); //change if may controller na for inspector homepage
         exit();
     }
 }
