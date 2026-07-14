@@ -1,9 +1,9 @@
 <?php
 
-// if (!isset($_SESSION['userID'])) {
-//     header("Location: /CCDEVAP-S15-3-FoodSafe/controller/loginPage.controller.php");
-//     exit();
-// }
+if (!isset($_SESSION['userID'])) {
+    header("Location: /CCDEVAP-S15-3-FoodSafe/controller/loginPage.controller.php");
+    exit();
+}
 
 require '../../model/inspector.model.php';
 
