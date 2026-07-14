@@ -14,6 +14,16 @@ document.addEventListener("DOMContentLoaded", function () {
         passwordField.setAttribute("type", "password");
     }
 
+    //Show toast after failed login attempt
+    if(typeof loginError !== 'undefined' && loginError) {
+        const errorMessages = {
+            empty: "Please enter your email and password.",
+            invalid: "Invalid email or password. Please try again.",
+            disabled: "Your account is disabled. Please contact support.",
+        };
+        showToast("error", "Error", errorMessages[loginError] || "An unknown error occurred.");
+    }
+
     //toggle password
     showPw.addEventListener("change", function () {
         const type = passwordField.getAttribute("type") === "password" ? "text" : "password";
@@ -22,27 +32,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //Handle authentication submissions and dispatch validation parameters
     loginForm.addEventListener("submit", function (event) {
-        event.preventDefault(); // Stop frontend page reloading
-
         const emailValue = emailField.value.trim();
         const passwordValue = passwordField.value;
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
         if (emailValue === "") {
+            event.preventDefault(); // Stop frontend page reloading
             showToast("error", "Error", "Please enter your email address.");
         } 
         else if (!emailRegex.test(emailValue)) {
+            event.preventDefault(); 
             showToast("error", "Error", "Please enter a valid email address.");
         } 
         else if (passwordValue === "") {
+            event.preventDefault();
             showToast("error", "Error", "Please enter your password.");
         } 
         else if (passwordValue.length < 6) {
+            event.preventDefault();
             showToast("error", "Error", "Password must be at least 6 characters long.");
         } 
-        else {
-            showToast("success", "Login Successful", "Welcome back to FoodSafe!");
-        }
+        
     });
 });
 

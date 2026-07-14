@@ -19,14 +19,13 @@
     <div id="navBar"></div>
         
     <main class="homepage-main">
-        <h1 class="title-text">Welcome, <span class="titlecolor-orange">Inspector</span></h1>
-        
+        <h1 class="title-text">Welcome, <span class="titlecolor-orange"><?= htmlspecialchars($firstName) ?></span></h1>
         <p class="subtitle">What would you like to focus on?</p>
 
         <div class="button-container">
             <div class="button-row">
-                <a href="business-directory.php" class="btn-pill">Food Business Directory</a>
-                <a href="reports.php" class="btn-pill">Report Dashboard</a>
+                <a href="../../controller/FoodBusiness.controller.php" class="btn-pill">Food Business Directory</a>
+                <a href="#" class="btn-pill">Report Dashboard</a>
                 <a href="inspection-entry.php" class="btn-pill">Log Entry</a>
             </div>
         </div>
