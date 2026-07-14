@@ -22,6 +22,7 @@
     <h1>User Management</h1>
 
     <div class="container">
+        <div class="table-wrapper">
         <table id="user-man-table" class="table table-striped">
             <thead>
             <tr>
@@ -93,6 +94,7 @@
             </tr>
             </tfoot>
         </table>
+    </div>
     </div>
 
     <div id="toast" class="custom-toast hidden">
