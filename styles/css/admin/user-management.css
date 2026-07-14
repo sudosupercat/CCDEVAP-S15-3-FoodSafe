@@ -8,6 +8,10 @@ body.dark-mode {
   --nav-bg: #0b0924;
 }
 
+.site-footer {
+  margin-top: auto;
+}
+
 body {
   font-family: Helvetica;
   background-color: #dee5ff;
@@ -66,7 +70,7 @@ td {
 .modal {
   display: none; 
   position: fixed;
-  z-index: 1; 
+  z-index: 2; 
   left: 0;
   top: 0;
   padding-top: auto;
@@ -131,7 +135,7 @@ body.modal-open::before {
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(4px);
-  z-index: 0;
+  z-index: 1;
 }
 
 .custom-toast {

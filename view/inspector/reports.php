@@ -35,15 +35,6 @@
                 ?>
             </div>
         </div>
-    
-
-        <div id="toast" class="custom-toast hidden">
-            <div class="toast-text">
-                <strong id="toast-title">Toast Title</strong>
-                <p id="toast-message">Toast Message</p>
-            </div>
-            <span class="toast-close" onclick="hideToast()">&times;</span>
-        </div>
 
         <div id="details-container">
                 <h3>Report Details</h3>
@@ -55,23 +46,21 @@
                 <p>Description: <?= htmlspecialchars($selectedReport['description']) ?></p>
 
                 <div class="actions-button">
-                    <!-- <button onclick="showToast('reviewed', 'Changed Status', 'Report marked reviewed.')" class="btn-reviewed">Reviewed</button>
-                    <button onclick="showToast('dismissed', 'Changed Status', 'Report marked dismissed.')" class="btn-dismissed">Dismissed</button> -->
-                        <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspectorReports.controller.php">
+                    <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspectorReports.controller.php">
                             <input type="hidden" name="action" value="update">
-                            <input type="hidden" name="id" value="<?= htmlspecialchars($selectedReport['reportID']) ?>">
+                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($selectedReport['reportID']) ?>">
                             <input type="hidden" name="status" value="Reviewed">
 
                             <button type="submit">Reviewed</button>
-                        </form>
+                    </form>
 
-                        <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspectorReports.controller.php">
-                            <input type="hidden" name="action" value="update">
-                            <input type="hidden" name="id" value="<?= htmlspecialchars($selectedReport['reportID']) ?>">
-                            <input type="hidden" name="status" value="Dismissed">
+                    <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspectorReports.controller.php">
+                        <input type="hidden" name="action" value="update">
+                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($selectedReport['reportID']) ?>">
+                        <input type="hidden" name="status" value="Dismissed">
 
-                            <button type="submit">Dismissed</button>
-                        </form>
+                        <button type="submit">Dismissed</button>
+                    </form>
                 </div>
                 <?php else: ?>
 
@@ -79,6 +68,14 @@
 
                 <?php endif; ?>
         </div>
+    </div>
+
+    <div id="toast" class="custom-toast hidden">
+            <div class="toast-text">
+                <strong id="toast-title">Toast Title</strong>
+                <p id="toast-message">Toast Message</p>
+            </div>
+            <span class="toast-close" onclick="hideToast()">&times;</span>
     </div>
     
     <footer class="site-footer">
@@ -106,6 +103,15 @@
 
         let toastTimeout;
 
+        <?php
+        $toastMessages = [
+            "Reviewed" => "Report marked reviewed.",
+            "Dismissed" => "Report marked dismissed."
+        ];
+
+        if (isset($_GET['toast']) && isset($toastMessages[$_GET['toast']])):
+        ?>
+
         function showToast(type, title, message) {
             const toast = document.getElementById('toast');
 
@@ -123,6 +129,16 @@
                 toast.classList.remove(type);
             }, 5000);
         }
+
+        window.onload = function() {
+            showToast(
+                "<?php echo strtolower($_GET['toast']) ?>",
+                "Updated Report Status",
+                "<?php echo $toastMessages[$_GET['toast']] ?>"
+            );
+        }
+
+        <?php endif; ?>
 
         function hideToast() {
             const toast = document.getElementById('toast');

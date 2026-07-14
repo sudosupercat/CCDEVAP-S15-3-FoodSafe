@@ -10,11 +10,11 @@ if (isset($_POST['action']) && $_POST['action'] === 'update' && isset($_POST['id
 
     updateReportStatus($pdo, $_POST['id'], $_POST['status']);
 
-    header('Location: /CCDEVAP-S15-3-FoodSafe/controller/inspectorReports.controller.php');
+    header('Location: /CCDEVAP-S15-3-FoodSafe/controller/inspectorReports.controller.php?toast=' . $_POST['status']);
     exit();
 }
 
-// REPORTS -- READ
+// REPORTS -- READ ; static palang...
 // $userID = $_GET['userID'];
 $userID = 3;
 $reports = getReports($pdo, $userID);
@@ -24,6 +24,6 @@ if (isset($_GET['reportID'])) {
     $selectedReport = getReportByID($pdo, $_GET['reportID']);
 }
 
-require '../users/inspector/reports.php';
+require '../view/inspector/reports.php';
 
 ?>
