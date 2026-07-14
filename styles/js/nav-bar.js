@@ -15,6 +15,8 @@ function showNavBar(){
             <li class="nav-item"><a class="nav-link" href="${ROOT}controller/admin/adminDashboard.controller.php">Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="${ROOT}controller/admin/adminUsers.controller.php">Users</a></li>
             <li class="nav-item"><a class="nav-link" href="${ROOT}controller/FoodBusiness.controller.php">Business Directory</a></li>
+            <li class="nav-item"><a class="nav-link" href="${ROOT}controller/inspector/inspectorReports.controller.php">Reports</a></li>
+            <li class="nav-item"><a class="nav-link" href="${ROOT}view/login.php">Logout</a></li>
         `;
     }
     else if(path.includes("/inspector/")){

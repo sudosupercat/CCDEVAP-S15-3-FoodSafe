@@ -41,8 +41,8 @@
                 <h3>Report Details</h3>
                 <?php if (isset($selectedReport)): ?>
                 <p>Report ID: <?= htmlspecialchars($selectedReport['reportID']) ?></p>
-                <p>Establishment: <?= htmlspecialchars($selectedReport['establishment']) ?></p>
                 <p>Date: <?= htmlspecialchars(date('F j, Y', strtotime($selectedReport['date']))) ?></p>
+                <p>Establishment: <?= htmlspecialchars($selectedReport['establishment']) ?></p>
                 <p>Violation: <?= htmlspecialchars($selectedReport['title']) ?></p>
                 <p>Description: <?= htmlspecialchars($selectedReport['description']) ?></p>
 

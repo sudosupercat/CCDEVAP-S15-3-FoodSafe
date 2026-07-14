@@ -1,9 +1,9 @@
 <?php
 
-if (!isset($_SESSION['userID'])) {
-    header("Location: /CCDEVAP-S15-3-FoodSafe/controller/loginPage.controller.php");
-    exit();
-}
+// if (!isset($_SESSION['userID'])) {
+//     header("Location: /CCDEVAP-S15-3-FoodSafe/controller/loginPage.controller.php");
+//     exit();
+// }
 
 require '../../model/inspector.model.php';
 
@@ -19,7 +19,8 @@ if (isset($_POST['action']) && $_POST['action'] === 'update' && isset($_POST['id
 
 // REPORTS -- READ ; di pa tested yung session
 $userID = $_SESSION['userID'];
-$reports = getReports($pdo, $userID);
+$role = $_SESSION['role'];
+$reports = getReports($pdo, $userID, $role);
 
 // REPORTS -- LOAD SELECTED REPORT
 if (isset($_GET['reportID'])) {
