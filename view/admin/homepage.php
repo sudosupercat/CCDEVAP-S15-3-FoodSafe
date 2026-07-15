@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,20 +18,19 @@
 <body>
     <div id="navBar"></div>
     <main class="homepage-main">
-        <h1 class="title-text">Welcome, <span class="titlecolor-orange">Admin</span></h1>
+        <h1 class="title-text">Welcome, <span class="titlecolor-orange"><?php echo htmlspecialchars($adminName); ?></span></h1>
         
         <p class="subtitle">What would you like to focus on?</p>
 
         <div class="button-container">
             <div class="button-row">
-                <a href="add-user.html" class="btn-pill">Add New User</a>
-                <a href="user-management.html" class="btn-pill">User Management</a>
-                <!-- inspector nav yung nakikita -->
-                <a href="../inspector/business-directory.html" class="btn-pill">Restaurant Management</a>
-                <a href="export_data.html" class="btn-pill">Export System Data</a>
+                <a href="add-user.php" class="btn-pill">Add New User</a>
+                <a href="user-management.php" class="btn-pill">User Management</a>
+                <a href="../inspector/business-directory.php" class="btn-pill">Restaurant Management</a>
+                <a href="export_data.php" class="btn-pill">Export System Data</a>
             </div>
             <div class="button-row">
-                <a href="dashboard.html" class="btn-pill">Check Website Report</a>
+                <a href="dashboard.php" class="btn-pill">Check Website Report</a>
             </div>
         </div>
     </main>

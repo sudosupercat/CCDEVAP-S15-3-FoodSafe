@@ -8,6 +8,7 @@ class RestaurantModel {
 
     public function getHomepageData() {
         $data = [
+            'latestRestoID' => '',
             'latestRestoName' => 'No reviews yet',
             'latestRestoImage' => '../../src/images/default-placeholder.jpg',
             'totalRestaurants' => 0,
@@ -15,7 +16,7 @@ class RestaurantModel {
         ];
 
         try {
-            $query1 = "SELECT r.name, r.image 
+            $query1 = "SELECT r.restoID, r.name, r.image 
                        FROM restaurants r
                        JOIN inspections i ON r.restoID = i.restoID
                        ORDER BY i.inspectionDate DESC
@@ -24,6 +25,7 @@ class RestaurantModel {
             $stmt1->execute();
             $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
             if ($row1) {
+                $data['latestRestoID'] = $row1['restoID'];
                 $data['latestRestoName'] = $row1['name'];
                 $data['latestRestoImage'] = $row1['image'];
             }
