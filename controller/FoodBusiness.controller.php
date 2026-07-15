@@ -24,10 +24,10 @@ class FoodBusinessController {
         include __DIR__ . '/../view/inspector/business-directory.php';
     }
     
-    public function addRow($licenseNo, $name, $address, $contactNo, $mapsLink, $imageLink, $districtId){
+    public function addRow($licenseNo, $name, $address, $contactNo, $mapsLink, $districtId){
         // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             //TODO: santiize input
-            $errors = [];
+            //$errors = [];
             // if (empty($licenseNo)||empty($name)||empty($address)||empty($contactNo)||empty($imageLink)||empty($districtId)){
             //     $errors[] = "Required fields are not complete.";
             // }
@@ -61,13 +61,12 @@ class FoodBusinessController {
             //     return;
             // }
 
-            // // Save to database (store image path)
             $this->foodBusinessModel->licenseNo = $licenseNo;
             $this->foodBusinessModel->name = $name;
-            $this->foodBusinessModel->address = $licenseNo;
-            $this->foodBusinessModel->contactNo = $licenseNo;
-            $this->foodBusinessModel->mapsLink = $licenseNo;
-            $this->foodBusinessModel->imageLink = $licenseNo;
+            $this->foodBusinessModel->address = $address;
+            $this->foodBusinessModel->contactNo = $contactNo;
+            $this->foodBusinessModel->mapsLink = $mapsLink;
+            $this->foodBusinessModel->imageLink = $this->imageHandler();
             $this->foodBusinessModel->status = 1;
             $this->foodBusinessModel->district = $districtId;
             $this->foodBusinessModel->insertRow($this->foodBusinessModel);
@@ -81,6 +80,23 @@ class FoodBusinessController {
         if (filter_var($id, FILTER_VALIDATE_INT) !== false) {
             $this->foodBusinessModel->deleteRow($id);
             return "success";
+        }
+    }
+
+    public function imageHandler(){
+        if (isset($_FILES['business-establishment-image']) && $_FILES['business-establishment-image']['error'] === UPLOAD_ERR_OK) {
+            $img = $_FILES['business-establishment-image'];
+            $imageTmpLoc = $img['tmp_name'];
+            $fileName = $img['name'];
+            $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+
+            $newFileName = bin2hex(random_bytes(16)) . "." . $fileExtension;
+            $destPath = __DIR__ . "/../img/" . $newFileName;
+
+            if (move_uploaded_file($imageTmpLoc, $destPath)) {
+                echo $newFileName;
+                return $newFileName;
+            }
         }
     }
 }
@@ -97,13 +113,12 @@ if (isset($_POST['action'])){
             break;
         case 'add':
             $controller->addRow(
-                            $_POST['licenseNo'],
-                            $_POST['name'],
-                            $_POST['address'],
-                            $_POST['contactNo'],
-                            $_POST['mapsLink'],
-                            $_POST['imageLink'],
-                            $_POST['districtId']);
+                            $_POST['business-license-no'],
+                            $_POST['business-name'],
+                            $_POST['business-address'],
+                            $_POST['contact-number'],
+                            $_POST['business-maps-url'],
+                            $_POST['business-district']);
             break;
     }
 

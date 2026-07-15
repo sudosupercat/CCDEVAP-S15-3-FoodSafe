@@ -48,12 +48,7 @@
                                 ? '<a href="img/' . htmlspecialchars($foodBusiness->imageLink) . '"><i class="bi bi-box-arrow-up-right"></i></a>'
                                 : 'N/A' ?></td>
                         <td><?= htmlspecialchars($foodBusiness->status) ?></td>
-                        <td><?php foreach($districts as $district){
-                                if($district['districtID'] == $foodBusiness->district){
-                                    echo $district['name'];
-                                }
-                            }
-                            ?></td>
+                        <td><?= $districts[$foodBusiness->district - 1]['name']; ?></td>
                         <td>
                             <button type="button" class="button-option button-edit-business"
                                 data-foodBusinessId="<?= htmlspecialchars($foodBusiness->foodBusinessId) ?>"
@@ -87,7 +82,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
-                        <form>
+                        <form id="form-add-edit">
                             <div class="mb-3">
                                 <label for="business-name">Business Name <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="business-name" name="business-name" placeholder="Add branch name when applicable" required>
@@ -118,7 +113,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="district" class="form-label">District <span class="text-danger">*</span></label>
-                                <select class="form-select" id="district" name="district" required>
+                                <select class="form-select" id="district" name="business-district" required>
                                     <?php foreach($districts as $district): ?>
                                     <option value="<?= htmlspecialchars($district['districtID'])?>"><?= htmlspecialchars($district['name'])?></option>
                                     <?php endforeach; ?>

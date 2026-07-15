@@ -69,15 +69,15 @@ class FoodBusiness {
                 ':name' => $foodBusiness->name,
                 ':address' => $foodBusiness->address,
                 ':contactNo' => $foodBusiness->contactNo,
-                ':maps' => $foodBusiness->maps,
-                ':image' => $foodBusiness->image,
+                ':maps' => $foodBusiness->mapsLink,
+                ':image' => $foodBusiness->imageLink,
                 ':status' => $foodBusiness->status,
-                ':districtID' => $foodBusiness->districtID
+                ':districtID' => $foodBusiness->district
                 ]);
             echo "Record updated successfully";
             }
         catch(PDOException $e) {
-            echo "Error updating record: " .$stmt . "<br>" . $e->getMessage();
+            echo "Error updating record: " . "<br>" . $e->getMessage();
             }
 	}
 	
