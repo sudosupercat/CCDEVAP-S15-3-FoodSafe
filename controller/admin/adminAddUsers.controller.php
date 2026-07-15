@@ -1,5 +1,11 @@
 <?php
-require_once '../../config/db.php';
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Admin') {
+    header('Location: /login');
+    exit();
+}
 
 $dbConnection = isset($pdo) ? $pdo : (isset($conn) ? $conn : $db);
 $success_msg = "";
@@ -38,3 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register_user'])) {
         }
     }
 }
+
+require_once __DIR__ . '/../../view/admin/add-user.php';
+?>
