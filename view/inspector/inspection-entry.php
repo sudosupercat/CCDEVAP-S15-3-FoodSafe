@@ -15,7 +15,7 @@
         <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
         <h1 class="mt-4 mb-4 fw-bold">Log Inspection Entry</h1>
         <div class="form-container">
-            <form>
+            <form id="form-add-inspection">
                 <div class="form-group">
                     <label for="food-business">Food Business</label>
                     <select class="form-control" id="food-business" required>
@@ -56,7 +56,7 @@
                 </div>
                 <div id="violation-form-container"></div>
                 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" id="add-inspection-final" class="btn btn-primary">Submit</button>
 
             </form>
         </div>

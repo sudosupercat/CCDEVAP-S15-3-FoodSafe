@@ -1,4 +1,25 @@
 document.addEventListener("DOMContentLoaded", () => {
+    function sendAddRequest(formData){
+        event.preventDefault();
+
+        fetch('controller/Inspection.controller.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Server says:', data);
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error));
+    }
+
+    document.getElementById('add-inspection-final').addEventListener('click', () => {
+        const form = document.getElementById("form-add-edit");
+        const formData = new FormData(form);
+        sendAddRequest(formData);
+    });
+    
     //Hide/show grade/switch fields
     const autoRatingSwitch = document.getElementById('autoRatingSwitch');
 
