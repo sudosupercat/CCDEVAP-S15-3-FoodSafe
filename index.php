@@ -25,7 +25,9 @@ switch ($uri){
         require 'controller/inspector/inspectorDashboard.controller.php';
         break;
     case '/inspectionEntry':
-        require 'view/inspector/inspection-entry.php';
+        require 'controller/Inspection.controller.php';
+        $controller = new InspectionController($pdo);
+        $controller->showPage($pdo);
         break;
     case '/adminHomepage':
         require 'view/admin/homepage.php';

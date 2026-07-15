@@ -37,6 +37,7 @@ if(isset($_POST['action']) && $_POST['action'] === 'login') {
             } else {
                 //redirect to inspector hompage controller
                 header('Location: /inspectorHomepage'); 
+                exit();
             }
 
         } else {
