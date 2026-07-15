@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #3b0997;
+    background-color: #e1e7fc;
 }
 
 .search-section {
@@ -14,7 +14,7 @@ body {
     color: white;
     display: flex;
     flex-direction: row;
-    min-height: 12vh;
+    min-height: 16vh;
 }
 
 .search-content {
@@ -118,12 +118,12 @@ body {
 .resto-info h3 {
     font-size: 1.8rem;
     margin-bottom: 10px;
-    color: #2a0470; 
+    color: #2c0083; /* Updated to Accent Dark Purple */
     font-weight: 700;
 }
 
 .resto-info .violations-text {
-    color: #f38020;
+    color: #ff8c45; /* Updated: Orange Accent Color */
     font-weight: bold;
     margin-bottom: 5px;
     font-size: 1.1rem;
@@ -144,6 +144,7 @@ body {
     align-self: center;
 }
 
+/* --- DARK MODE OVERRIDES (UNCHANGED) --- */
 body.theme-dark-custom {
     background-color: #12103a !important;
 }
