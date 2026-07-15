@@ -1,4 +1,7 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 if (!isset($_SESSION['userID'])) {
     header("Location: /CCDEVAP-S15-3-FoodSafe/controller/loginPage.controller.php");

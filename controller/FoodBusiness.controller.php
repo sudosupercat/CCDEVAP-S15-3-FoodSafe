@@ -1,4 +1,13 @@
 <?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['userID'])) {
+    header("Location: /CCDEVAP-S15-3-FoodSafe/controller/loginPage.controller.php");
+    exit();
+}
+require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../model/FoodBusiness.model.php';
 
 class FoodBusinessController {
