@@ -1,5 +1,5 @@
 <?php
-require_once '../../controllers/adminAddUsers.controller.php';
+require_once '../../controller/admin/adminAddUsers.controller.php';
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +17,7 @@ require_once '../../controllers/adminAddUsers.controller.php';
     <script src="../../styles/js/nav-bar.js"></script>
 </head>
 <body class="bg-light">
-    <div id="navBar"><?php include __DIR__ . '/../../../navbar.php';?></div>
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
     <div class="container my-5" style="max-width: 550px;">
         <?php if (!empty($success_msg)): ?>
@@ -48,14 +48,39 @@ require_once '../../controllers/adminAddUsers.controller.php';
                         <label for="email" class="form-label">Active Email Address</label>
                         <input type="email" name="email" id="email" class="form-control" required>
                     </div>
+
+         
+                    <div class="mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" name="firstName" id="firstName" class="form-control" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" name="lastName" id="lastName" class="form-control" required>
+                    </div>
+
                     <div class="mb-3">
                         <label for="role" class="form-label">System Role / Permissions</label>
                         <select name="role" id="role" class="form-select" required>
-                            <option value="public">Public User (Customer)</option>
-                            <option value="inspector">Safety Health Inspector</option>
-                            <option value="admin">System Administrator</option>
+                            <option value="">-- Select Role --</option>
+                            <option value="Inspector">Safety Health Inspector</option>
+                            <option value="Admin">System Administrator</option>
                         </select>
                     </div>
+
+                    <div class="mb-3" id="district-container" style="display: none;">
+                        <label for="districtID" class="form-label">Assigned Inspector District</label>
+                        <select name="districtID" id="districtID" class="form-select">
+                            <option value="">None / Select District</option>
+                            <?php foreach ($districts as $district): ?>
+                                <option value="<?= htmlspecialchars($district['districtID']) ?>">
+                                    <?= htmlspecialchars($district['name']) ?>
+                                </option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+
                     <hr class="my-4">
                     <div class="mb-3">
                         <label for="password" class="form-label">Access Password</label>
@@ -72,5 +97,23 @@ require_once '../../controllers/adminAddUsers.controller.php';
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            const roleSelect = $('#role');
+            const districtContainer = $('#district-container');
+            const districtSelect = $('#districtID');
+
+            roleSelect.on('change', function() {
+                if ($(this).val() === 'Inspector') {
+                    districtContainer.slideDown(200);
+                    districtSelect.prop('required', true);
+                } else {
+                    districtContainer.slideUp(200);
+                    districtSelect.prop('required', false).val('');
+                }
+            });
+        });
+    </script>
 </body>
 </html>
