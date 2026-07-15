@@ -35,7 +35,10 @@ class FoodBusiness {
     }
 
     public function getSingleRowInfo($id){
-        $stmt = $this->pdo->prepare("SELECT * FROM restaurants WHERE restoID = :id");
+        $stmt = $this->pdo->prepare("SELECT r.restoID restoID, r.licenseNo licenseNo, r.name name, r.address address, r.contactNo contactNo, r.maps maps, r.image image, r.status status, d.districtID district, r.avg_rating avg_rating
+                                      FROM restaurants r
+                                      JOIN districts d ON r.districtID = d.districtID
+                                      WHERE r.restoID = :id");
         $stmt->execute(['id' => $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
