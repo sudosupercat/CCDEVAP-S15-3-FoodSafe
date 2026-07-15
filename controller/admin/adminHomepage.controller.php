@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Admin') {
-    header('Location: ../../controller/loginPage.controller.php');
+    header('Location: login');
     exit();
 }
 

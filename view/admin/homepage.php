@@ -1,4 +1,4 @@
-<?php require '../../controller/admin/adminHomepage.controller.php'; ?>
+<?php require 'controller/admin/adminHomepage.controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
