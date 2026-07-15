@@ -24,9 +24,9 @@
 
         <div class="button-container">
             <div class="button-row">
-                <a href="/CCDEVAP-S15-3-FoodSafe/controller/FoodBusiness.controller.php" class="btn-pill">Food Business Directory</a>
-                <a href="/CCDEVAP-S15-3-FoodSafe/controller/inspector/inspectorReports.controller.php" class="btn-pill">Report Dashboard</a>
-                <a href="/CCDEVAP-S15-3-FoodSafe/controller/inspector/inspection-entry.controller.php" class="btn-pill">Log Entry</a>
+                <a href="business-directory" class="btn-pill">Food Business Directory</a>
+                <a href="inspectorDashboard" class="btn-pill">Report Dashboard</a>
+                <a href="inspectionEntry" class="btn-pill">Log Entry</a>
             </div>
         </div>
     </main>
