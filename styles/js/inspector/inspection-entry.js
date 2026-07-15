@@ -9,13 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(response => response.text())
         .then(data => {
             console.log('Server says:', data);
-            location.reload();
+            // location.reload();
         })
         .catch(error => console.error('Error:', error));
     }
 
     document.getElementById('add-inspection-final').addEventListener('click', () => {
-        const form = document.getElementById("form-add-edit");
+        const form = document.getElementById("form-add-inspection");
         const formData = new FormData(form);
         sendAddRequest(formData);
     });

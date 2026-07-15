@@ -19,10 +19,9 @@ class Inspection{
 
     public function addInspection($inspection){
         try{
-            $stmt = $this->pdo->prepare("INSERT INTO inspections (inspectionID, date, score, grade, remarks, userID, restoID)
+            $stmt = $this->pdo->prepare("INSERT INTO inspections (date, score, grade, remarks, userID, restoID)
                                         VALUES (:inspectionID, :date, :score, :grade, :remarks, :userID, :restoID)");
             $stmt->execute([
-                ':inspectionID' => $inspection->inspectionId, 
                 ':date' => $inspection->inspectionDate,
                 ':score' => $inspection->score,
                 ':grade' => $inspection->grade,

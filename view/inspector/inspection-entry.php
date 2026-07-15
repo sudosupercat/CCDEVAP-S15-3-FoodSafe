@@ -3,7 +3,6 @@
     <head>
         <title>FoodSafe - Inspection Entry</title>
         <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">
-        <link rel="stylesheet" href="business-directory.css">
         <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
         <link rel="stylesheet" href="../../styles/css/global.css">
         <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
@@ -18,7 +17,7 @@
             <form id="form-add-inspection">
                 <div class="form-group">
                     <label for="food-business">Food Business</label>
-                    <select class="form-control" id="food-business" required>
+                    <select class="form-control" id="food-business" name="food-business-id" required>
                         <?php foreach($businessIdNames as $businessIdName): ?>
                         <option value="<?= $businessIdName['restoID']; ?>"><?= $businessIdName['name']; ?></option>
                         <?php endforeach; ?>
@@ -54,7 +53,7 @@
                     <a href="#" class="button-option" id="button-add-violation">+ Add violation</a>
                 </div>
                 <div id="violation-form-container"></div>
-                <input type="hidden" value="<?= rtrim($_SESSION['userID'], '$')?>$" name="user-id" id="user-id">
+                <input type="hidden" value="<?= $_SESSION['userID']?>" name="user-id" id="user-id">
                 <button type="submit" id="add-inspection-final" class="btn btn-primary">Submit</button>
 
             </form>

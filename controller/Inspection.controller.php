@@ -1,13 +1,12 @@
 <?php
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-}
-
+    }
+    
 if (!isset($_SESSION['userID'])) {
     header("Location: login");
     exit();
 }
-
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../model/Inspection.model.php';
 require_once __DIR__ . '/../model/FoodBusiness.model.php';
@@ -27,15 +26,14 @@ class InspectionController{
         include __DIR__ . '/../view/inspector/inspection-entry.php';
     }
 
-    public function addInspection($id, $date, $score, $grade, $remarks, $userId, $restoId, $violations){
-        $this->inspectionModel->inspectionId;
-        $this->inspectionModel->inspectionDate;
-        $this->inspectionModel->score;
-        $this->inspectionModel->grade;
-        $this->inspectionModel->remarks;
-        $this->inspectionModel->userId;
-        $this->inspectionModel->restoId;
-        $this->inspectionModel->violations;
+    public function addInspection($date, $score, $grade, $remarks, $userId, $restoId, $violations){
+        $this->inspectionModel->inspectionDate = $date;
+        $this->inspectionModel->score = $score;
+        $this->inspectionModel->grade = $grade;
+        $this->inspectionModel->remarks = $remarks;
+        $this->inspectionModel->userId = $userId;
+        $this->inspectionModel->restoId = $restoId;
+        $this->inspectionModel->violations = $violations;
         $this->inspectionModel->addInspection($this->inspectionModel);
     }
 
@@ -48,14 +46,29 @@ $controller = new InspectionController($pdo);
 
 // Router
 
-if (isset($_POST['food-business'])){
+if (isset($_POST['food-business-id'])){
+        $violations = [];
+        $remarks = [];
+
+        foreach ($_POST as $key => $value){
+            if (preg_match('/^violation-(\d+)$/', $key, $matches)) {
+                $index = (int)$matches[1];
+                $violations[$index]['violation'] = $value;
+            }
+
+            if (preg_match('/^remarks-(\d+)$/', $key, $matches)) {
+                $index = (int)$matches[1];
+                $remarks[$index]['remarks'] = $value;
+            }
+        }
     $controller->addInspection(
-        $_POST['food-business'],
         $_POST['inspection-date'],
-        $_POST['autoRatingSwitch'],
         $_POST['score'],
         $_POST['grade'],
-        $_POST['business-district']);
+        $remarks,
+        $_POST['user-id'],
+        $_POST['food-business-id'],
+        $violations);
 }
 
 ?>
