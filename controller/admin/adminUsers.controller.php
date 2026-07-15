@@ -1,4 +1,10 @@
 <?php
+
+if (!isset($_SESSION['userID'])) {
+    header("Location: /login");
+    exit();
+}
+
 require __DIR__ . '/../../model/admin.model.php';
 
 // USER MANAGEMENT -- EDIT USER
