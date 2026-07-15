@@ -1,6 +1,6 @@
 <?php
 require __DIR__ . '/view/functions.php';
-$uri = $_SERVER['REQUEST_URI'];
+$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
 switch ($uri){
     case '/login':
@@ -40,6 +40,9 @@ switch ($uri){
         break;
     case '/inspectorHomepage':
         require 'controller/inspector/inspectorHomepage.controller.php';
+        break;
+    case '/restaurant-detail':
+        require 'controller/RestaurantDetailController.php';
         break;
     case '/business-directory':
         require 'controller/FoodBusiness.Controller.php';
