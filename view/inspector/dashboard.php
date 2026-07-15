@@ -16,7 +16,7 @@
         <title>FoodSafe Inspector Dashboard</title>
     </head>
     <body>
-        <div id="navBar"></div>   
+        <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div> 
         <div class="page-header">
             <h1>Inspector Dashboard</h1>
         </div>

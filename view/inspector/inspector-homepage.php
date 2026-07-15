@@ -16,7 +16,7 @@
         <title>FoodSafe Inspector Homepage</title>
     </head>
     <body> 
-    <div id="navBar"></div>
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
         
     <main class="homepage-main">
         <h1 class="title-text">Welcome, <span class="titlecolor-orange"><?= htmlspecialchars($firstName) ?></span></h1>
