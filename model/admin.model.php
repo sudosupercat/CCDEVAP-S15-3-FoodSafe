@@ -158,6 +158,20 @@ function updateStatus($pdo, $userID) {
     return $result;
 }
 
+function registerNewUser($pdo, $username, $email, $password, $role, $firstName, $lastName, $districtID) {
+    try {
+        $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+        
+        $sql = $pdo->prepare("INSERT INTO users (username, email, password, role, firstName, lastName, districtID, status, deleteFlag) 
+                             VALUES (?, ?, ?, ?, ?, ?, ?, 1, 0)");
+        
+        return $sql->execute([$username, $email, $hashed_password, $role, $firstName, $lastName, $districtID]);
+    } catch (PDOException $e) {
+        error_log("Registration Error: " . $e->getMessage());
+        return false;
+    }
+}
+
 function deleteUser($pdo, $userID) {
     $sql = $pdo->prepare("UPDATE users
                         SET deleteFlag = 1
