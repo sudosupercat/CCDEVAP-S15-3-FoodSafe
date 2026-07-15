@@ -54,7 +54,7 @@ $homepageData = $controller->getData();
         </div>
         
         <div class="hazard-action-container">
-            <a href="complaint.php" class="btn-dark">File a report.</a>
+            <a href="/complaint" class="btn-dark">File a report.</a>
         </div>
     </section>
 
