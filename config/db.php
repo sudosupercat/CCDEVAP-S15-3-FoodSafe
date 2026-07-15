@@ -1,8 +1,8 @@
 <?php
-$host     = 'localhost:3306';
+$host     = 'localhost:3308';
 $dbname   = 'foodsafe_db';
 $username = 'root';
-$password = 'Dlsu1234!';
+$password = '';
 
 try {
     $pdo = new PDO (

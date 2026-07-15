@@ -41,10 +41,10 @@
                         <td><?= htmlspecialchars($foodBusiness->name) ?></td>
                         <td><?= htmlspecialchars($foodBusiness->address) ?></td>
                         <td><?= htmlspecialchars($foodBusiness->contactNo) ?></td>
-                        <td><?= $foodBusiness->mapsLink !== null
+                        <td><?= !empty($foodBusiness->mapsLink)
                                 ? '<a href="' . htmlspecialchars($foodBusiness->mapsLink) . '"><i class="bi bi-box-arrow-up-right"></i></a>'
                                 : 'N/A' ?></td>
-                        <td><?= $foodBusiness->imageLink !== null
+                        <td><?= !empty($foodBusiness->imageLink)
                                 ? '<a href="img/' . htmlspecialchars($foodBusiness->imageLink) . '"><i class="bi bi-box-arrow-up-right"></i></a>'
                                 : 'N/A' ?></td>
                         <td><?= htmlspecialchars($foodBusiness->status) ?></td>
@@ -56,8 +56,8 @@
                                 data-name="<?= htmlspecialchars($foodBusiness->name) ?>"
                                 data-address="<?= htmlspecialchars($foodBusiness->address) ?>"
                                 data-contact="<?= htmlspecialchars($foodBusiness->contactNo) ?>"
-                                data-maps="<?= $foodBusiness->mapsLink !== null ? htmlspecialchars($foodBusiness->mapsLink) : '' ?>"
-                                data-image="<?= $foodBusiness->imageLink !== null ? htmlspecialchars($foodBusiness->imageLink) : 'N/A' ?>"
+                                data-maps="<?= !empty($foodBusiness->mapsLink) ? htmlspecialchars($foodBusiness->mapsLink) : '' ?>"
+                                data-image="<?= !empty($foodBusiness->imageLink) ? htmlspecialchars($foodBusiness->imageLink) : 'N/A' ?>"
                                 data-district="<?= htmlspecialchars($foodBusiness->district) ?>">
                                 <i class="bi bi-pencil"></i>
                             </button>
@@ -119,6 +119,7 @@
                                     <?php endforeach; ?>
                                 </select>
                             </div>
+                            <input type="hidden" id="business-id" name="business-id" value="">
                         </form>
                     </div>
                     <div class="modal-footer">

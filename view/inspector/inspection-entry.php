@@ -55,7 +55,7 @@
                     <a href="#" class="button-option" id="button-add-violation">+ Add violation</a>
                 </div>
                 <div id="violation-form-container"></div>
-
+                
                 <button type="submit" class="btn btn-primary">Submit</button>
 
             </form>

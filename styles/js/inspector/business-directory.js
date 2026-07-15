@@ -17,6 +17,7 @@ $(document).ready( function () {
             confirmBtn.classList.add('btn-success');
             confirmBtn.textContent = "Add";
             confirmBtn.setAttribute('data-mode', 'add');
+            document.getElementById('business-establishment-image').setAttribute("required", "");
             document.getElementById('business-name').value = "";
             document.getElementById('business-license-no').value = "";
             document.getElementById('business-address').value = "";
@@ -32,6 +33,8 @@ $(document).ready( function () {
             confirmBtn.classList.add('btn-info');
             confirmBtn.textContent = "Edit";
             confirmBtn.setAttribute('data-mode', 'edit');
+            document.getElementById('business-id').value = button.getAttribute('data-foodBusinessId');
+            document.getElementById('business-establishment-image').removeAttribute("required");
             document.getElementById('business-name').value = button.getAttribute('data-name');
             document.getElementById('business-license-no').value = button.getAttribute('data-licNo');
             document.getElementById('business-address').value = button.getAttribute('data-address');
@@ -44,29 +47,21 @@ $(document).ready( function () {
             modalAddEdit.show();
     }
     
-    //
+    // Send form data from add/edit modal to controller in the background
     function sendAddEditRequest(mode, formData){
         event.preventDefault();
-        
-        if (mode === 'add') {
-            fetch('controller/FoodBusiness.controller.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                console.log('Server says:', data);
-                modalDelete.hide();
-                //location.reload();
-            })
-            .catch(error => console.error('Error:', error));
-        }
-        else if (mode === 'edit') {
-            console.log('Updating entry:', { id, name, desc });
-            // Update entry logic here
-        }
-        
-        modalAddEdit.hide();
+
+        fetch('controller/FoodBusiness.controller.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Server says:', data);
+            modalAddEdit.hide();
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error));
     }
 
     // Puts the business name in the modal for clarity
