@@ -18,15 +18,22 @@ class RestaurantDetailController {
         }
 
         // Handle POST submission from rating modal
-        if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_rating'])) {
-            $ratingValue = $_POST['rating_value'];
-            $reviewText = trim($_POST['review'] ?? '');
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_rating'])) {
+    $restoID = $_POST['restoID'];
+    $rating = $_POST['rating_value'];
+    $comment = trim($_POST['comment'] ?? '');
 
-            $this->restaurantModel->addRestaurantRating($restaurantId, $ratingValue, $reviewText);
-            
-            header("Location: /restaurant-detail?id=" . $restaurantId . "&rating_success=1");
-            exit();
-        }
+    $restaurantModel = new RestaurantModel($pdo);
+    
+    // 1. Add the review using your groupmate's function
+    $restaurantModel->addReview($restoID, $rating, $comment);
+    
+    // 2. Recalculate the average rating using your groupmate's function
+    $restaurantModel->updateAverageRating($restoID);
+
+    header("Location: /restaurant-detail?id=" . $restoID);
+    exit();
+}
 
         // Fetch details using your groupmate's existing model or by adding a custom detail fetch function
         $restaurant = $this->restaurantModel->getRestaurantDetails($restaurantId); 
