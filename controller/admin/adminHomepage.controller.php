@@ -9,6 +9,4 @@ if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Admin') {
 $adminName = $_SESSION['firstName'] ?? 'Admin';
 
 require 'view/admin/homepage.php';
-
-require __DIR__ . '/../../view/admin/homepage.php';
 ?>
