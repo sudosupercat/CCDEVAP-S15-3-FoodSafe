@@ -4,15 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/global.css">
-    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../styles/css/global.css">
+    <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
-    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/nav-bar.js"></script>
-    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/jquery-3.7.1.min.js"></script>
-    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/admin/dashboard.css">
-    <link rel="icon" type="image/x-icon" href="/CCDEVAP-S15-3-FoodSafe/src/images/logo-tab.png">
+    <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
+    <script src="../../styles/js/nav-bar.js"></script>
+    <script src="../../styles/js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../../styles/css/admin/dashboard.css">
+    <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">
 </head>
 <body>
     <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
@@ -20,7 +20,7 @@
     <div class="header">
         <h1>Web Analytics <br>Dashboard</h1>
         
-        <form action="/CCDEVAP-S15-3-FoodSafe/controller/admin/adminDashboard.controller.php" method="GET">
+        <form action="controller/admin/adminDashboard.controller.php" method="GET">
             <div class="picker">
                 <label for="year">Year:</label>
                 <select id="yearPicker" name="yearPicker"></select>
@@ -116,6 +116,6 @@
         let violationRow = <?php echo $violationCount; ?>;
         console.log(violationRow);
     </script>
-    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/admin/admin-charts.js"></script>
+    <script src="../../styles/js/admin/admin-charts.js"></script>
 </body>
 </html>

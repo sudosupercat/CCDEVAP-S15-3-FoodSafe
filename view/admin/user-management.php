@@ -58,19 +58,19 @@
                         echo "<td>";
                         echo "<div class='actions-button'>";
                         echo "
-                        <form method='GET' action='/CCDEVAP-S15-3-FoodSafe/controller/admin/adminUsers.controller.php'>
+                        <form method='GET' action='controller/admin/adminUsers.controller.php'>
                             <input type='hidden' name='action' value='edit'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='btn-edit'>Edit</button>
                         </form>";
                         echo "
-                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/admin/adminUsers.controller.php'>
+                        <form method='POST' action='controller/admin/adminUsers.controller.php'>
                             <input type='hidden' name='action' value='update'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='{$statusClass}'>{$statusAction}</button>
                         </form>";
                         echo "
-                        <form method='POST' action='/CCDEVAP-S15-3-FoodSafe/controller/admin/adminUsers.controller.php'>
+                        <form method='POST' action='controller/admin/adminUsers.controller.php'>
                             <input type='hidden' name='action' value='delete'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='btn-delete'>Delete</button>
@@ -110,7 +110,7 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h2>Edit User</h2>
-            <form id="edit-form" method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/admin/adminUsers.controller.php">
+            <form id="edit-form" method="POST" action="controller/admin/adminUsers.controller.php">
                 <input type="hidden" name="action" value="edit">
                 <input type="hidden" id="edit-userID" name="userID" value="<?php echo $selectedUser['userID'] ?? '' ?>">
 

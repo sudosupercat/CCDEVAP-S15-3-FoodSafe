@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reports</title>
-    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/css/bootstrap.css">
-    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/global.css">
-    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="/CCDEVAP-S15-3-FoodSafe/styles/css/inspector/reports.css">
-    <link rel="icon" type="image/x-icon" href="/CCDEVAP-S15-3-FoodSafe/src/images/logo-tab.png">
-    <script src="/CCDEVAP-S15-3-FoodSafe/styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
-    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/nav-bar.js"></script>
-    <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="../../styles/css/global.css">
+    <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="../../styles/css/inspector/reports.css">
+    <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">
+    <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
+    <script src="../../styles/js/nav-bar.js"></script>
+    <script src="../../styles/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
     <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
@@ -47,7 +47,7 @@
                 <p>Description: <?= htmlspecialchars($selectedReport['description']) ?></p>
 
                 <div class="actions-button">
-                    <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspector/inspectorReports.controller.php">
+                    <form method="POST" action="controller/inspector/inspectorReports.controller.php">
                             <input type="hidden" name="action" value="update">
                             <input type="hidden" name="id" value="<?php echo htmlspecialchars($selectedReport['reportID']) ?>">
                             <input type="hidden" name="status" value="Reviewed">
@@ -55,7 +55,7 @@
                             <button type="submit">Reviewed</button>
                     </form>
 
-                    <form method="POST" action="/CCDEVAP-S15-3-FoodSafe/controller/inspector/inspectorReports.controller.php">
+                    <form method="POST" action="controller/inspector/inspectorReports.controller.php">
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" name="id" value="<?php echo htmlspecialchars($selectedReport['reportID']) ?>">
                         <input type="hidden" name="status" value="Dismissed">
