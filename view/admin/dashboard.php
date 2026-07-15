@@ -15,7 +15,7 @@
     <link rel="icon" type="image/x-icon" href="/CCDEVAP-S15-3-FoodSafe/src/images/logo-tab.png">
 </head>
 <body>
-    <div id="navBar"></div>
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
     <div class="header">
         <h1>Web Analytics <br>Dashboard</h1>

@@ -17,7 +17,7 @@
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/admin/users.js"></script>
 </head>
 <body>
-    <div id="navBar"></div>
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
     <h1>User Management</h1>
 
