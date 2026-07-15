@@ -39,7 +39,7 @@ $homepageData = $controller->getData();
             <h2>See the latest restaurant<br>we reviewed.</h2>
         </div>
 
-        <a href="view/public/restaurant-detail.php?id=<?php echo htmlspecialchars($homepageData['latestRestoID']); ?>" class="review-link-wrapper">
+        <a href="/restaurant-detail?id=<?php echo htmlspecialchars($homepageData['latestRestoID']); ?>" class="review-link-wrapper">
             <div class="review-image-container" style="background-image: url('<?php echo htmlspecialchars($homepageData['latestRestoImage']); ?>');">
                 <div class="restaurant-name-banner">
                     <?php echo htmlspecialchars($homepageData['latestRestoName']); ?>

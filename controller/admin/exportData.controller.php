@@ -6,7 +6,7 @@
 /* NOTTTTTTTTTTTTTTT FINAL */
 /* NOTTTTTTTTTTTTTTT FINAL */
 
-require_once __DIR__ . '/admin_auth.php'; 
+require_once __DIR__ . '/admin_auth.php';
 
 $dbUser = 'root';
 $dbPass = ''; 

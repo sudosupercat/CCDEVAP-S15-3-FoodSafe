@@ -1,40 +1,3 @@
-<?php
-require_once '../../config/db.php'; 
-require_once '../../models/RestaurantModel.php';
-
-$dbConnection = isset($pdo) ? $pdo : (isset($conn) ? $conn : $db);
-$restaurantModel = new RestaurantModel($dbConnection);
-
-$restoID = isset($_GET['restoID']) ? intval($_GET['restoID']) : (isset($_GET['id']) ? intval($_GET['id']) : 1); 
-$message = "";
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
-    $rating = isset($_POST['rating']) ? intval($_POST['rating']) : 5;
-    $comment = isset($_POST['comment']) ? trim($_POST['comment']) : '';
-
-    if ($rating >= 1 && $rating <= 5 && !empty($comment)) {
-        if ($restaurantModel->addReview($restoID, $rating, $comment)) {
-            $restaurantModel->updateAverageRating($restoID);
-            $message = "
-            <div class='alert alert-success alert-dismissible fade show' role='alert'>
-                <i class='bi bi-check-circle-fill me-2'></i>Thank you! Your feedback has been published.
-                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
-            </div>";
-        } else {
-            $message = "<div class='alert alert-danger'>Failed to process your review. Please try again.</div>";
-        }
-    } else {
-        $message = "<div class='alert alert-warning'>Please ensure all form inputs are completed validly.</div>";
-    }
-}
-
-$restaurant = $restaurantModel->getRestaurantById($restoID);
-if (!$restaurant) {
-    die("<div class='container my-5'><div class='alert alert-danger'>Restaurant record not found in system directory.</div></div>");
-}
-$reviews = $restaurantModel->getReviews($restoID);
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -50,10 +13,15 @@ $reviews = $restaurantModel->getReviews($restoID);
     <script src="../../styles/js/nav-bar.js"></script>
 </head>
 <body>
-    <div id="navBar"><?php include __DIR__ . '/../../../navbar.php';?></div>
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
     <div class="container my-5">
-        <?= $message ?>
+        <?php if (isset($_GET['success'])): ?>
+            <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                <i class='bi bi-check-circle-fill me-2'></i>Thank you! Your feedback has been published.
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        <?php endif; ?>
         
         <div class="card border-0 p-4 shadow-sm mb-4">
             <h2><?= htmlspecialchars($restaurant['name']) ?></h2>

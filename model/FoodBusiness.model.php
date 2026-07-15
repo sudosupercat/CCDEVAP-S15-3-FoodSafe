@@ -1,5 +1,5 @@
 <?php
-require __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../config/db.php';
 
 class FoodBusiness {
     private $pdo;
@@ -13,6 +13,7 @@ class FoodBusiness {
     public $imageLink;
     public $status;
     public $district;
+    public $avg_rating;
     
     public function __construct($pdo){
         $this->pdo = $pdo;
@@ -29,12 +30,16 @@ class FoodBusiness {
         $foodBusiness->imageLink = $row['image'];
         $foodBusiness->status = $row['status'];
         $foodBusiness->district = $row['district'];
+        $foodBusiness->avg_rating = $row['avg_rating'] ?? 0.0;
         return $foodBusiness;
     }
 
     public function getSingleRowInfo($id){
-        $stmt = $this->pdo->prepare("SELECT * FROM restaurants WHERE restoID = :id");
-        $stmt->execute(['restoID' => $id]);
+        $stmt = $this->pdo->prepare("SELECT r.restoID restoID, r.licenseNo licenseNo, r.name name, r.address address, r.contactNo contactNo, r.maps maps, r.image image, r.status status, d.districtID district, r.avg_rating avg_rating
+                                      FROM restaurants r
+                                      JOIN districts d ON r.districtID = d.districtID
+                                      WHERE r.restoID = :id");
+        $stmt->execute(['id' => $id]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $row ? $this->mapRowToObj($row) : null;
@@ -80,10 +85,9 @@ class FoodBusiness {
                 ':status' => $foodBusiness->status,
                 ':districtID' => $foodBusiness->district
                 ]);
-            echo "Record updated successfully";
             }
         catch(PDOException $e) {
-            echo "Error updating record: " . "<br>" . $e->getMessage();
+            error_log($e->getMessage());
             }
 	}
 
@@ -131,24 +135,20 @@ class FoodBusiness {
                     ':districtID' => $foodBusiness->district
                     ]);
             }
-            echo "Record updated successfully";
             }
         catch(PDOException $e) {
-            echo "Error updating record: " . "<br>" . $e->getMessage();
+            error_log($e->getMessage());
             }
     }
 	
-	// For now, delete will set the status flag of the row to 0
 	public function deleteRow($rowId){
         try {
             $stmt = $this->pdo->prepare("UPDATE restaurants SET status = 0 WHERE restoID = :rowId");
             $stmt->execute(['rowId' => $rowId]);
-            echo "Record updated successfully";
             }
         catch(PDOException $e) {
-            echo "Error updating record: " .$stmt . "<br>" . $e->getMessage();
+            error_log($e->getMessage());
             }
     }
-                
 }
 ?>
