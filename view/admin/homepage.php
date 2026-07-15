@@ -1,13 +1,4 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Admin') {
-    header('Location: ../../controller/loginPage.controller.php');
-    exit();
-}
-
-$adminName = $_SESSION['firstName'] ?? 'Admin';
-?>
+<?php require '../../controller/admin/adminHomepage.controller.php'; ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -25,7 +16,7 @@ $adminName = $_SESSION['firstName'] ?? 'Admin';
     <script src="../../styles/js/nav-bar.js"></script>
 </head>
 <body>
-    <div id="navBar"></div>
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
     <main class="homepage-main">
         <h1 class="title-text">Welcome, <span class="titlecolor-orange"><?php echo htmlspecialchars($adminName); ?></span></h1>
         
