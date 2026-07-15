@@ -15,6 +15,9 @@ switch ($uri){
     case '/adminUsers':
         require 'controller/admin/adminUsers.controller.php';
         break;
+    case '/adminAddUsers':
+        require 'controller/admin/adminAddUsers.controller.php';
+        break;
     case '/exportData':
         require 'controller/admin/exportData.controller.php';
         break;
