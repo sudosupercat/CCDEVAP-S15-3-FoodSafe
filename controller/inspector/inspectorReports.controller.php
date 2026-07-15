@@ -8,7 +8,7 @@ if (!isset($_SESSION['userID'])) {
     exit();
 }
 
-require 'model/inspector.model.php';
+require __DIR__ . '../../model/inspector.model.php';
 
 
 // REPORTS -- UPDATE STATUS
@@ -30,6 +30,6 @@ if (isset($_GET['reportID'])) {
     $selectedReport = getReportByID($pdo, $_GET['reportID']);
 }
 
-require 'view/inspector/reports.php';
+require __DIR__ . '../../view/inspector/reports.php';
 
 ?>
