@@ -80,6 +80,57 @@ class FoodBusiness {
             echo "Error updating record: " . "<br>" . $e->getMessage();
             }
 	}
+
+    public function updateRow($foodBusiness){
+        try {
+            if (!empty($foodBusiness->imageLink)){
+                $stmtWithImage = $this->pdo->prepare("UPDATE restaurants
+                                            SET licenseNo = :licenseNo,
+                                                            name = :name,
+                                                            address = :address,
+                                                            contactNo = :contactNo,
+                                                            maps = :maps,
+                                                            image = :image,
+                                                            districtID = :districtID
+                                            WHERE restoID = :id");
+                
+                $stmtWithImage->execute([
+                    ':id' => $foodBusiness->foodBusinessId,
+                    ':licenseNo' => $foodBusiness->licenseNo,
+                    ':name' => $foodBusiness->name,
+                    ':address' => $foodBusiness->address,
+                    ':contactNo' => $foodBusiness->contactNo,
+                    ':maps' => $foodBusiness->mapsLink,
+                    ':image' => $foodBusiness->imageLink,
+                    ':districtID' => $foodBusiness->district
+                    ]);
+            }
+            else{
+                $stmtWithImage = $this->pdo->prepare("UPDATE restaurants
+                                                        SET licenseNo = :licenseNo,
+                                                            name = :name,
+                                                            address = :address,
+                                                            contactNo = :contactNo,
+                                                            maps = :maps,
+                                                            districtID = :districtID
+                                            WHERE restoID = :id");
+                
+                $stmtWithImage->execute([
+                    ':id' => $foodBusiness->foodBusinessId,
+                    ':licenseNo' => $foodBusiness->licenseNo,
+                    ':name' => $foodBusiness->name,
+                    ':address' => $foodBusiness->address,
+                    ':contactNo' => $foodBusiness->contactNo,
+                    ':maps' => $foodBusiness->mapsLink,
+                    ':districtID' => $foodBusiness->district
+                    ]);
+            }
+            echo "Record updated successfully";
+            }
+        catch(PDOException $e) {
+            echo "Error updating record: " . "<br>" . $e->getMessage();
+            }
+    }
 	
 	// For now, delete will set the status flag of the row to 0
 	public function deleteRow($rowId){

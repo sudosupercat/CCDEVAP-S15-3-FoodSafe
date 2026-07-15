@@ -76,6 +76,19 @@ class FoodBusinessController {
         // }
     }
 
+    public function editRow($id, $licenseNo, $name, $address, $contactNo, $mapsLink, $districtId){
+        $this->foodBusinessModel->foodBusinessId = $id;        
+        $this->foodBusinessModel->licenseNo = $licenseNo;
+        $this->foodBusinessModel->name = $name;
+        $this->foodBusinessModel->address = $address;
+        $this->foodBusinessModel->contactNo = $contactNo;
+        $this->foodBusinessModel->mapsLink = $mapsLink;
+        $this->foodBusinessModel->imageLink = $this->imageHandler();
+        $this->foodBusinessModel->status = 1;
+        $this->foodBusinessModel->district = $districtId;
+        $this->foodBusinessModel->updateRow($this->foodBusinessModel);
+    }
+
     public function deleteRow($id){
         if (filter_var($id, FILTER_VALIDATE_INT) !== false) {
             $this->foodBusinessModel->deleteRow($id);
@@ -98,6 +111,9 @@ class FoodBusinessController {
                 return $newFileName;
             }
         }
+        else{
+            return "";
+        }
     }
 }
 
@@ -113,6 +129,16 @@ if (isset($_POST['action'])){
             break;
         case 'add':
             $controller->addRow(
+                            $_POST['business-license-no'],
+                            $_POST['business-name'],
+                            $_POST['business-address'],
+                            $_POST['contact-number'],
+                            $_POST['business-maps-url'],
+                            $_POST['business-district']);
+            break;
+        case 'edit':
+            $controller->editRow(
+                            $_POST['business-id'],
                             $_POST['business-license-no'],
                             $_POST['business-name'],
                             $_POST['business-address'],
