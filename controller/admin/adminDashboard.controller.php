@@ -1,5 +1,5 @@
 <?php
-require 'model/admin.model.php';
+require __DIR__ . '/../../model/admin.model.php';
 
 $year = $_GET['yearPicker'] ?? date('Y');
 $month = $_GET['monthPicker'] ?? '';
@@ -8,5 +8,5 @@ $passInspecCount = getPassInspection($pdo, $year);
 $failInspecCount = getFailInspection($pdo, $year);
 $violationCount = getViolationCount($pdo, $year);
 
-require 'view/admin/dashboard.php';
+require __DIR__ . '/../../view/admin/dashboard.php';
 ?>

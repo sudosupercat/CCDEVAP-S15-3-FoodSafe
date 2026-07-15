@@ -1,5 +1,5 @@
 <?php
-require 'model/admin.model.php';
+require __DIR__ . '/../../model/admin.model.php';
 
 // USER MANAGEMENT -- EDIT USER
 $districts = getDistricts($pdo);
@@ -35,6 +35,6 @@ if (isset($_POST['action']) && $_POST['action'] === 'delete' && isset($_POST['id
 // USER MANAGEMENT -- READ
 $users = getUsers($pdo);
 
-require 'view/admin/user-management.php';
+require __DIR__ . '/../../view/admin/user-management.php';
 
 ?>
