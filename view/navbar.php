@@ -1,7 +1,7 @@
 <?php
 
 $navItems = [];
-$homepage = '';
+$homepage = "login";
 
 
 if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'){
@@ -31,7 +31,7 @@ else {
 <nav class="navbar navbar-expand-lg navbar-dark navbar-foodsafe-custom sticky-top">
     <div class="container-fluid">
         <img src="src/images/logo.png" width="30" height="30" class="d-inline-block align-text-top me-2" alt="">
-        <a class="navbar-brand fw-bold" href="<?= $homepage; ?>">FoodSafe</a>
+        <a class="navbar-brand fw-bold" href="<?= '/' . $homepage; ?>">FoodSafe</a>
 
         <button class="navbar-toggler" type="button" 
                 data-bs-toggle="collapse" data-bs-target="#navbar-items">
