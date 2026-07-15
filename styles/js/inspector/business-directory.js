@@ -41,28 +41,23 @@ $(document).ready( function () {
             document.getElementById('business-license-no').value = button.getAttribute('data-licNo');
             document.getElementById('district').value = button.getAttribute('data-district');
             }
-                
-            confirmBtn.onclick = () => handleSubmit(mode, existingObjData?.id);
             modalAddEdit.show();
     }
     
     //
-    function sendAddEditRequest(button){
-        const mode = button.getAttribute('data-mode');
+    function sendAddEditRequest(mode, formData){
         event.preventDefault();
         
         if (mode === 'add') {
             fetch('controller/FoodBusiness.controller.php', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: 'action=delete' +
-                    '&foodBusinessId=' + encodeURIComponent(foodBusinessId)
+                body: formData
             })
             .then(response => response.text())
             .then(data => {
                 console.log('Server says:', data);
                 modalDelete.hide();
-                location.reload();
+                //location.reload();
             })
             .catch(error => console.error('Error:', error));
         }
@@ -119,8 +114,16 @@ $(document).ready( function () {
         openAddEditModal('add', this);
     });
 
-    document.getElementById('confirm-button-modal-edit-add').addEventListener('click', () => {
-        sendAddEditRequest(this);
+    document.getElementById("confirm-button-modal-edit-add").addEventListener("click", function() {
+        const form = document.getElementById("form-add-edit");
+        const formData = new FormData(form);
+        const mode = document.getElementById("confirm-button-modal-edit-add").getAttribute('data-mode');
+        formData.append("action", mode);
+        for (const [key, value] of formData.entries()) {
+        console.log(key, value);
+        }
+
+        sendAddEditRequest(mode, formData);
     });
 
     document.querySelectorAll('.button-edit-business').forEach(button => {
