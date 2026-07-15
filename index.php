@@ -3,7 +3,10 @@ require 'controller/IndexController.php';
 
 $controller = new IndexController();
 $homepageData = $controller->getData();
+
 ?>
+
+
 
 <!DOCTYPE html>
 <html lang="en">

@@ -18,7 +18,7 @@
         <h1 class="mt-4 mb-4 fw-bold">Food Business Directory</h1>
         <div class="float-right me-5">
         </div>
-        <div class="table-custom">
+        <div class="table-custom overflow-x-auto">
             <button type="button" class="btn button-option float-end me-2 mb-2" id="button-add-business">+ Add business</button>
             <table id="business-directory" class="display table table-striped">
                 <thead>
@@ -84,15 +84,15 @@
                     <div class="modal-body">
                         <form>
                             <div class="mb-3">
-                                <label for="business-name">Food Business Name <span class="text-danger">*</span></label>
-                                <input type="text" class="form-control" id="business-name" name="business-name" required>
+                                <label for="business-name">Business Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="business-name" name="business-name" placeholder="Add branch name when applicable" required>
                             </div>
                             <div class="mb-3">
-                                <label for="business-address">Business address <span class="text-danger">*</span></label>
+                                <label for="business-address">Business Address <span class="text-danger">*</span></label>
                                 <input type="text" class="form-control" id="business-address" name="business-address" required>
                             </div>
                             <div class="mb-3">
-                                <label for="business-license-no">License number <span class="text-danger">*</span></label>
+                                <label for="business-license-no">License No. <span class="text-danger">*</span></label>
                                 <input type="number" class="form-control" id="business-license-no" name="business-license-no" required>
                             </div>
                             <div class="mb-3">
@@ -126,7 +126,7 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Delete business</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
                     <div class="modal-body">
                         <p id="text-delete-question"></p>

@@ -14,30 +14,51 @@ if(isset($_POST['action']) && $_POST['action'] === 'login') {
     }
     $user = getUserEmail($pdo, $email);
 
-    if ($user['status'] == 0) {
-            header('Location: ../view/login.php?error=disabled');
-            exit();
-        }
+    if($user) {
+        //Check if the user is disabled
+        if ($user['status'] == 0) {
+                header('Location: ../view/login.php?error=disabled');
+                exit();
+            }
 
-    if ($user && password_verify($password, $user['password'])) {
-        $_SESSION['userID'] = $user['userID'];
-        $_SESSION['role'] = $user['role'];
-        $_SESSION['email'] = $user['email'];
-        $_SESSION['firstName'] = $user['firstName'];
+        if ($user && password_verify($password, $user['password'])) {
+            //reset login attempts to 0 on successful login
+            resetLoginAttempts($pdo, $user['userID']); 
 
-        if ($user['role'] === 'Admin') {
-            //redirect to admin hompage controller
-            header('Location: ../view/admin/homepage.php'); 
-            exit();
+            $_SESSION['userID'] = $user['userID'];
+            $_SESSION['role'] = $user['role'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['firstName'] = $user['firstName'];
+
+            if ($user['role'] === 'Admin') {
+                //redirect to admin hompage controller
+                header('Location: ../view/admin/homepage.php'); 
+                exit();
+            } else {
+                //redirect to inspector hompage controller
+                header('Location: inspector/inspectorHomepage.controller.php'); 
+            }
+
         } else {
-            //redirect to inspector hompage controller
-            header('Location: ../view/inspector/inspector-homepage.php'); 
-        }
+            $nextLoginAttempt = $user['loginAttempt'] + 1;
 
-    } else {
-        header('Location: ../view/login.php?error=invalid');
-        exit();
+            if($nextLoginAttempt >= 5) {
+                //disable the user account
+                incrementLoginAttempts($pdo, $user['userID']);
+                disableUserAccount($pdo, $user['userID']);
+                header('Location: ../view/login.php?error=disabled');
+                exit();
+            } else {
+                //increment login attempts by 1
+                incrementLoginAttempts($pdo, $user['userID']);
+                header('Location: ../view/login.php?error=invalid');
+                exit();
+            }
+           
+        }
     }
+    header('Location: ../view/login.php?error=invalid');
+    exit();
 }
 
 require '../view/login.php';     
