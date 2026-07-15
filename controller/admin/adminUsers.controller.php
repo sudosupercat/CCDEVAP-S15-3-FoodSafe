@@ -1,4 +1,5 @@
 <?php
+
 require __DIR__ . '/../../model/admin.model.php';
 
 // USER MANAGEMENT -- EDIT USER
