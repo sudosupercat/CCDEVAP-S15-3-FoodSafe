@@ -30,7 +30,7 @@ body {
 }
 
 .title-text {
-    color: #ffffff;
+    color: #1f0075;
     font-size: 7rem;
     font-weight: 500;
     margin-bottom: 8px;
@@ -44,6 +44,7 @@ body {
 }
 
 .subtitle {
+    color: #1f0075;
     font-size: 2.5rem;
     font-weight: 400;
     margin-bottom: 40px;
@@ -96,6 +97,10 @@ body {
 
 body.theme-dark-custom {
     background-image: url(../../../src/images/darkmodebg.png);
+}
+
+body.theme-dark-custom .title-text, body.theme-dark-custom .subtitle {
+    color: #ffffff;
 }
 
 /*mobile*/

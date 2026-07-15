@@ -17,6 +17,15 @@
     font-family: var(--font-family) !important;
 }
 
+/* Dark mode theme */
+body.theme-dark-custom .page-header {
+    background-color: #1c1850;
+}
+body.theme-dark-custom .stat-box1, body.theme-dark-custom .stat-box2 {
+    background-color: #1c1850;
+    border-color: white;
+    color: white;
+}
 body{
     background-color: var(--bg-lightmode);
     min-height: 100vh; /* full screen height */
@@ -65,7 +74,7 @@ main {
 }
 
 .stat-box1 h2 {
-    color: green;
+    color: rgb(15, 207, 15);
     font-size: 3rem;
     font-weight: bold;
     margin-bottom: 5px;
@@ -105,6 +114,12 @@ main {
     font-size: 1.5rem;
     font-weight: bold;
     margin-bottom: 20px;
+}
+
+canvas {
+    width: 100% !important;
+    height: auto !important;
+    justify-content: center;
 }
 
 @media only screen and (max-width: 992px) {

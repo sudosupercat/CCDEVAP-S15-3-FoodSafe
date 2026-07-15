@@ -16,12 +16,10 @@
         <title>FoodSafe Inspector Dashboard</title>
     </head>
     <body>
-        <header>
-            <div id="navBar"></div>   
-        </header>
-            <div class="page-header">
-                <h1>Inspector Dashboard</h1>
-            </div>
+        <div id="navBar"></div>   
+        <div class="page-header">
+            <h1>Inspector Dashboard</h1>
+        </div>
         <main>
             <section class="stats-row">
                 <div class="stat-box1">
