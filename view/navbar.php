@@ -1,23 +1,26 @@
 <?php
 
 $navItems = [];
+$homepage = '';
 
 
 if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'){
+    $homepage = "adminHomepage";
     $navItems = [];
-    $navItems = ['<li class="nav-item"><a class="nav-link" href="controller/admin/adminDashboard.controller.php">Dashboard</a></li>',
-                '<li class="nav-item"><a class="nav-link" href="controller/admin/adminUsers.controller.php">Users</a></li>',
-                '<li class="nav-item"><a class="nav-link" href="controller/FoodBusiness.controller.php">Business Directory</a></li>',
-                '<li class="nav-item"><a class="nav-link" href="controller/inspector/inspectorReports.controller.php">Reports</a></li>',
-                '<li class="nav-item"><a class="nav-link" href="controller/logoutPage.controller.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>'];
+    $navItems = ['<li class="nav-item"><a class="nav-link" href="adminDashboard">Dashboard</a></li>',
+                '<li class="nav-item"><a class="nav-link" href="adminUsers">Users</a></li>',
+                '<li class="nav-item"><a class="nav-link" href="business-directory">Business Directory</a></li>',
+                '<li class="nav-item"><a class="nav-link" href="inspectorReports">Reports</a></li>',
+                '<li class="nav-item"><a class="nav-link" href="logout"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>'];
 }
 else if(isset($_SESSION['role']) && $_SESSION['role'] === 'Inspector'){
+    $homepage = "inspectorHomepage";    
     $navItems = [];
-    $navItems = ['<li class="nav-item"><a class="nav-link" href="${basePath}controller/inspector/inspectorDashboard.controller.php"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>',
-            '<li class="nav-item"><a class="nav-link" href="${basePath}view/inspector/inspection-entry.php"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>',
-            '<li class="nav-item"><a class="nav-link" href="${basePath}controller/FoodBusiness.controller.php"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>',
-            '<li class="nav-item"><a class="nav-link" href="${basePath}controller/inspector/inspectorReports.controller.php"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>',
-            '<li class="nav-item"><a class="nav-link" href="${basePath}controller/logoutPage.controller.php"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>'];
+    $navItems = ['<li class="nav-item"><a class="nav-link" href="inspectorDashboard"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>',
+            '<li class="nav-item"><a class="nav-link" href="inspectionEntry"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>',
+            '<li class="nav-item"><a class="nav-link" href="business-directory"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>',
+            '<li class="nav-item"><a class="nav-link" href="inspectorReports"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>',
+            '<li class="nav-item"><a class="nav-link" href="logoutPage"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>'];
 }
 else {
     $navItems = ['<li class="nav-item"><a class="nav-link" href="report"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>',
@@ -30,7 +33,7 @@ else {
 <nav class="navbar navbar-expand-lg navbar-dark navbar-foodsafe-custom sticky-top">
             <div class="container-fluid">
                 <img src="src/images/logo.png" width="30" height="30" class="d-inline-block align-text-top me-2" alt="">
-                <a class="navbar-brand fw-bold" href="#">FoodSafe</a>
+                <a class="navbar-brand fw-bold" href="<?= $homepage; ?>">FoodSafe</a>
 
                 <button class="navbar-toggler" type="button" 
                         data-bs-toggle="collapse" data-bs-target="#navbar-items">

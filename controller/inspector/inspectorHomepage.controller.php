@@ -8,7 +8,7 @@ if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Inspector') {
 
 $firstName = $_SESSION['firstName'];
 
-require '../../view/inspector/inspector-homepage.php';
+require 'view/inspector/inspector-homepage.php';
 exit();
 
 ?>

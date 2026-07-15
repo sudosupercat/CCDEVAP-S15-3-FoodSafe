@@ -14,7 +14,7 @@
     <script src="/CCDEVAP-S15-3-FoodSafe/styles/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-    <div id="navBar"></div>
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
     <div class="page-content">
         <div class="container">
