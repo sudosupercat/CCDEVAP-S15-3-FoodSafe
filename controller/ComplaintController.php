@@ -1,46 +1,23 @@
 <?php
 require_once __DIR__ . '/../config/db.php';
+require_once __DIR__ . '/../model/FoodBusiness.php';
+require_once __DIR__ . '/../model/ComplaintModel.php';
 
 class ComplaintController {
-    private $pdo;
+    private $foodBusinessModel;
+    private $complaintModel;
 
     public function __construct($pdo) {
-        $this->pdo = $pdo;
+        $this->foodBusinessModel = new FoodBusiness($pdo);
+        $this->complaintModel = new ComplaintModel($pdo);
     }
 
-    public function handleComplaintSubmit() {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $restaurantId = $_POST['restaurant_id'] ?? null;
-            $complainantName = trim($_POST['name'] ?? '');
-            $complainantEmail = trim($_POST['email'] ?? '');
-            $details = trim($_POST['details'] ?? '');
+    public function getRestaurants() {
+        return $this->foodBusinessModel->getAllIdName();
+    }
 
-            if (empty($restaurantId) || empty($details)) {
-                $error = "Restaurant and complaint details are required.";
-                include __DIR__ . '/../view/complaint.php';
-                return;
-            }
-
-            try {
-                $stmt = $this->pdo->prepare("
-                    INSERT INTO complaints (restaurant_id, complainant_name, complainant_email, details, created_at) 
-                    VALUES (?, ?, ?, ?, NOW())
-                ");
-                $stmt->execute([$restaurantId, $complainantName, $complainantEmail, $details]);
-                
-                header("Location: /complaint?status=success");
-                exit();
-            } catch (PDOException $e) {
-                $error = "Database Error: " . $e->getMessage();
-                include __DIR__ . '/../view/complaint.php';
-            }
-        } else {
-            // Render the complaint submission page (GET)
-            include __DIR__ . '/../view/complaint.php';
-        }
+    public function submitComplaint($restoID, $complainantName, $complainantEmail, $details) {
+        return $this->complaintModel->createComplaint($restoID, $complainantName, $complainantEmail, $details);
     }
 }
-
-$complaintController = new ComplaintController($pdo);
-$complaintController->handleComplaintSubmit();
 ?>
