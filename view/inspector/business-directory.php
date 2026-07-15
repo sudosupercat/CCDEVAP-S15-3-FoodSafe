@@ -18,8 +18,8 @@
         <h1 class="mt-4 mb-4 fw-bold">Food Business Directory</h1>
         <div class="float-right me-5">
         </div>
-        <div class="table-custom overflow-x-auto">
-            <button type="button" class="btn button-option float-end me-2 mb-2" id="button-add-business">+ Add business</button>
+        <div class="table-custom table-responsive">
+            <button type="button" class="btn button-option float-start me-2 mb-2" id="button-add-business">+ Add business</button>
             <table id="business-directory" class="display table table-striped">
                 <thead>
                     <tr>
@@ -48,7 +48,12 @@
                                 ? '<a href="img/' . htmlspecialchars($foodBusiness->imageLink) . '"><i class="bi bi-box-arrow-up-right"></i></a>'
                                 : 'N/A' ?></td>
                         <td><?= htmlspecialchars($foodBusiness->status) ?></td>
-                        <td><?= htmlspecialchars($foodBusiness->district) ?></td>
+                        <td><?php foreach($districts as $district){
+                                if($district['districtID'] == $foodBusiness->district){
+                                    echo $district['name'];
+                                }
+                            }
+                            ?></td>
                         <td>
                             <button type="button" class="button-option button-edit-business"
                                 data-foodBusinessId="<?= htmlspecialchars($foodBusiness->foodBusinessId) ?>"
@@ -110,6 +115,14 @@
                             <div class="mb-3">
                                 <label for="business-maps-url">Link to Google Maps</label>
                                 <input type="link" class="form-control" id="business-maps-url" name="business-maps-url" placeholder="https://maps.app.goo.gl/...">
+                            </div>
+                            <div class="mb-3">
+                                <label for="district" class="form-label">District <span class="text-danger">*</span></label>
+                                <select class="form-select" id="district" name="district" required>
+                                    <?php foreach($districts as $district): ?>
+                                    <option value="<?= htmlspecialchars($district['districtID'])?>"><?= htmlspecialchars($district['name'])?></option>
+                                    <?php endforeach; ?>
+                                </select>
                             </div>
                         </form>
                     </div>

@@ -16,6 +16,7 @@ $(document).ready( function () {
             confirmBtn.classList.remove('btn-info');
             confirmBtn.classList.add('btn-success');
             confirmBtn.textContent = "Add";
+            confirmBtn.setAttribute('data-mode', 'add');
             document.getElementById('business-name').value = "";
             document.getElementById('business-license-no').value = "";
             document.getElementById('business-address').value = "";
@@ -23,13 +24,14 @@ $(document).ready( function () {
             document.getElementById('image-preview').src = "";
             document.getElementById('business-maps-url').value = "";
             document.getElementById('business-license-no').value = "";
+            document.getElementById('district').value = "";
         }
-        
-        if(mode === 'edit'){
+        else if(mode === 'edit'){
             title.textContent = "Edit";
             confirmBtn.classList.remove('btn-success');
             confirmBtn.classList.add('btn-info');
             confirmBtn.textContent = "Edit";
+            confirmBtn.setAttribute('data-mode', 'edit');
             document.getElementById('business-name').value = button.getAttribute('data-name');
             document.getElementById('business-license-no').value = button.getAttribute('data-licNo');
             document.getElementById('business-address').value = button.getAttribute('data-address');
@@ -37,24 +39,34 @@ $(document).ready( function () {
             document.getElementById('image-preview').src = "img/" + button.getAttribute('data-image');
             document.getElementById('business-maps-url').value = button.getAttribute('data-maps');
             document.getElementById('business-license-no').value = button.getAttribute('data-licNo');
+            document.getElementById('district').value = button.getAttribute('data-district');
             }
-            // } else {
-            //         document.getElementById('entryForm').reset();
-            //     }
                 
-                confirmBtn.onclick = () => handleSubmit(mode, existingObjData?.id);
-                modalAddEdit.show();
+            confirmBtn.onclick = () => handleSubmit(mode, existingObjData?.id);
+            modalAddEdit.show();
     }
     
     //
-    function handleSubmit(mode, id = null){
-        const name = document.getElementById('entryName').value;
-        const desc = document.getElementById('entryDesc').value;
+    function sendAddEditRequest(button){
+        const mode = button.getAttribute('data-mode');
+        event.preventDefault();
         
         if (mode === 'add') {
-            console.log('Adding entry:', { name, desc });
-            // Add entry logic here
-        } else {
+            fetch('controller/FoodBusiness.controller.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'action=delete' +
+                    '&foodBusinessId=' + encodeURIComponent(foodBusinessId)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Server says:', data);
+                modalDelete.hide();
+                location.reload();
+            })
+            .catch(error => console.error('Error:', error));
+        }
+        else if (mode === 'edit') {
             console.log('Updating entry:', { id, name, desc });
             // Update entry logic here
         }
@@ -105,6 +117,10 @@ $(document).ready( function () {
 
     document.getElementById('button-add-business').addEventListener('click', () => {
         openAddEditModal('add', this);
+    });
+
+    document.getElementById('confirm-button-modal-edit-add').addEventListener('click', () => {
+        sendAddEditRequest(this);
     });
 
     document.querySelectorAll('.button-edit-business').forEach(button => {

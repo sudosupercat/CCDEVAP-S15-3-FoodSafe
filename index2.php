@@ -4,8 +4,7 @@ $uri = $_SERVER['REQUEST_URI'];
 
 switch ($uri){
     case '/':
-        $controller = new IndexController();
-        $homepageData = $controller->getData();
+        require 'view/public/index.php';
         break;
     case '/business-directory':
         require 'controller/FoodBusiness.Controller.php';
