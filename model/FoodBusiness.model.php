@@ -41,7 +41,7 @@ class FoodBusiness {
     }
 
     public function getAllRowInfo(){
-        $stmt = $this->pdo->query("SELECT r.restoID restoID, r.licenseNo licenseNo, r.name name, r.address address, r.contactNo contactNo, r.maps maps, r.image image, r.status status, d.name district FROM restaurants r
+        $stmt = $this->pdo->query("SELECT r.restoID restoID, r.licenseNo licenseNo, r.name name, r.address address, r.contactNo contactNo, r.maps maps, r.image image, r.status status, d.districtID district FROM restaurants r
                                     JOIN districts d ON r.districtID = d.districtID");
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
@@ -51,6 +51,13 @@ class FoodBusiness {
         }
         
         return $foodBusinessesArr;
+    }
+
+    public function getDistricts(){
+        $stmt = $this->pdo->query("SELECT districtID, name FROM districts");
+        $districtsArr = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        return $districtsArr;
     }
 	
 	public function insertRow($foodBusiness){
