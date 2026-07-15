@@ -4,17 +4,21 @@ require_once '../../controller/ComplaintController.php';
 $dbConnection = isset($pdo) ? $pdo : (isset($conn) ? $conn : $db);
 $controller = new ComplaintController($dbConnection);
 $restaurants = $controller->getRestaurants();
+$requirementTypes = $controller->getRequirementTypes();
 
 $message = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_complaint'])) {
     $restoID = isset($_POST['restoID']) ? intval($_POST['restoID']) : 0;
-    $complainant_name = isset($_POST['complainant_name']) ? trim($_POST['complainant_name']) : '';
-    $complainant_email = isset($_POST['complainant_email']) ? trim($_POST['complainant_email']) : '';
-    $details = isset($_POST['details']) ? trim($_POST['details']) : '';
+    $firstName = isset($_POST['firstName']) ? trim($_POST['firstName']) : '';
+    $lastName = isset($_POST['lastName']) ? trim($_POST['lastName']) : '';
+    $email = isset($_POST['email']) ? trim($_POST['email']) : '';
+    $contactNo = isset($_POST['contactNo']) ? trim($_POST['contactNo']) : '';
+    $requirementCode = isset($_POST['requirementCode']) ? intval($_POST['requirementCode']) : 0;
+    $description = isset($_POST['description']) ? trim($_POST['description']) : '';
 
-    if ($restoID > 0 && !empty($complainant_name) && filter_var($complainant_email, FILTER_VALIDATE_EMAIL) && !empty($details)) {
-        if ($controller->submitComplaint($restoID, $complainant_name, $complainant_email, $details)) {
+    if ($restoID > 0 && !empty($firstName) && !empty($lastName) && filter_var($email, FILTER_VALIDATE_EMAIL) && $requirementCode > 0 && !empty($description)) {
+        if ($controller->submitComplaint($restoID, $firstName, $lastName, $email, $contactNo, $requirementCode, $description)) {
             $message = "
             <div class='alert alert-success alert-dismissible fade show' role='alert'>
                 <i class='bi bi-check-circle-fill me-2'></i>Your report was registered. Food safety personnel have been assigned.
@@ -64,16 +68,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_complaint'])) 
                         </select>
                     </div>
                     <div class="mb-3">
-                        <label for="complainant_name" class="form-label">Your Name</label>
-                        <input type="text" name="complainant_name" id="complainant_name" class="form-control" required>
+                        <label for="requirementCode" class="form-label">Type of Violation</label>
+                        <select name="requirementCode" id="requirementCode" class="form-select" required>
+                            <option value="">-- Select Violation Type --</option>
+                            <?php foreach($requirementTypes as $req): ?>
+                                <option value="<?= $req['requirementCode'] ?>"><?= htmlspecialchars($req['title']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
                     </div>
                     <div class="mb-3">
-                        <label for="complainant_email" class="form-label">Contact Email Address</label>
-                        <input type="email" name="complainant_email" id="complainant_email" class="form-control" required>
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" name="firstName" id="firstName" class="form-control" required>
                     </div>
                     <div class="mb-3">
-                        <label for="details" class="form-label">Describe Incident Details</label>
-                        <textarea name="details" id="details" rows="5" class="form-control" placeholder="Please explain contamination, food storage, dirty practices, pest sightings, or structural damage..." required></textarea>
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" name="lastName" id="lastName" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Contact Email Address</label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contactNo" class="form-label">Contact Number <span class="text-muted">(optional)</span></label>
+                        <input type="tel" name="contactNo" id="contactNo" class="form-control" pattern="[0-9]{10,11}" placeholder="Philippine cellphone#">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Describe Incident Details</label>
+                        <textarea name="description" id="description" rows="5" class="form-control" placeholder="Please explain contamination, food storage, dirty practices, pest sightings, or structural damage..." required></textarea>
                     </div>
                     <button type="submit" name="submit_complaint" class="btn btn-danger w-100 py-2 mt-3">
                         <i class="bi bi-send-fill me-2"></i> Dispatch Report
