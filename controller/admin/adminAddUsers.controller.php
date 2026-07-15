@@ -11,14 +11,27 @@ $dbConnection = isset($pdo) ? $pdo : (isset($conn) ? $conn : $db);
 $success_msg = "";
 $error_msg = "";
 
+// Fetch districts so you can populate a dropdown in your add-user.php view
+try {
+    $districtsStmt = $dbConnection->query("SELECT id, name FROM districts");
+    $districts = $districtsStmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    $districts = [];
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register_user'])) {
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);
     $password = $_POST['password'];
     $confirm_password = $_POST['confirm_password'];
     $role = $_POST['role'];
+    
+    // NEW: Fields added to match your groupmate's database columns
+    $firstName = trim($_POST['firstName'] ?? '');
+    $lastName = trim($_POST['lastName'] ?? '');
+    $districtID = !empty($_POST['districtID']) ? $_POST['districtID'] : null;
 
-    if (empty($username) || empty($email) || empty($password) || empty($role)) {
+    if (empty($username) || empty($email) || empty($password) || empty($role) || empty($firstName) || empty($lastName)) {
         $error_msg = "Please fill in all the required input fields.";
     } elseif ($password !== $confirm_password) {
         $error_msg = "Form input mismatch: Passwords do not match.";
@@ -26,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register_user'])) {
         $error_msg = "Form entry error: Please input a valid email address.";
     } else {
         try {
-            $checkStmt = $dbConnection->prepare("SELECT id FROM users WHERE username = ? OR email = ?");
+            $checkStmt = $dbConnection->prepare("SELECT userID FROM users WHERE username = ? OR email = ?");
             $checkStmt->execute([$username, $email]);
             
             if ($checkStmt->rowCount() > 0) {
@@ -34,8 +47,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['register_user'])) {
             } else {
                 $hashed_password = password_hash($password, PASSWORD_BCRYPT);
                 
-                $insertStmt = $dbConnection->prepare("INSERT INTO users (username, email, password, role) VALUES (?, ?, ?, ?)");
-                $insertStmt->execute([$username, $email, $hashed_password, $role]);
+                // NEW: Insertion now includes firstName, lastName, districtID, and status (active = 1)
+                $insertStmt = $dbConnection->prepare("
+                    INSERT INTO users (username, email, password, role, firstName, lastName, districtID, status) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, 1)
+                ");
+                $insertStmt->execute([$username, $email, $hashed_password, $role, $firstName, $lastName, $districtID]);
                 
                 $success_msg = "User configuration profile for <strong>" . htmlspecialchars($username) . "</strong> has been compiled successfully!";
             }
