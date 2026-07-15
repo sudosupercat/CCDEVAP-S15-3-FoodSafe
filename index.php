@@ -35,9 +35,6 @@ switch ($uri){
         $controller = new InspectionController($pdo);
         $controller->showPage($pdo);
         break;
-    case '/complaint':
-        require 'controller/ComplaintController.php';
-        break;
     case '/adminHomepage':
         require 'controller/admin/adminHomepage.controller.php'; 
         break;
