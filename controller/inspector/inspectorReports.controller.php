@@ -4,11 +4,11 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['userID'])) {
-    header("Location: ../loginPage.controller.php");
+    header("Location: /login");
     exit();
 }
 
-require '../../model/inspector.model.php';
+require 'model/inspector.model.php';
 
 
 // REPORTS -- UPDATE STATUS
@@ -30,6 +30,6 @@ if (isset($_GET['reportID'])) {
     $selectedReport = getReportByID($pdo, $_GET['reportID']);
 }
 
-require '../../view/inspector/reports.php';
+require 'view/inspector/reports.php';
 
 ?>
