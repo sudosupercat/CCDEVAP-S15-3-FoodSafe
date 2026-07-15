@@ -32,11 +32,11 @@ if(isset($_POST['action']) && $_POST['action'] === 'login') {
 
             if ($user['role'] === 'Admin') {
                 //redirect to admin hompage controller
-                header('Location: ../view/admin/homepage.php'); 
+                header('Location: adminHomepage'); 
                 exit();
             } else {
                 //redirect to inspector hompage controller
-                header('Location: inspector/inspectorHomepage.controller.php'); 
+                header('Location: inspectorHomepage'); 
             }
 
         } else {
