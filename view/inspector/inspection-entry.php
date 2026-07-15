@@ -19,16 +19,15 @@
                 <div class="form-group">
                     <label for="food-business">Food Business</label>
                     <select class="form-control" id="food-business" required>
-                        <option>Fowler Diner - SM North EDSA</option>
-                        <option>Krusty Krab - Ayala Malls Manila Bay</option>
-                        <option>McDollibee - Taft Ave. cor. Quirino Ave.</option>
-                        <option>Sharmaine Ribbon - C5 cor. Katipunan Ave.</option>
+                        <?php foreach($businessIdNames as $businessIdName): ?>
+                        <option value="<?= $businessIdName['restoID']; ?>"><?= $businessIdName['name']; ?></option>
+                        <?php endforeach; ?>
                     </select>
                     <small id="food-business-help" class="form-text text-muted">If a result does not show up, please add it first.</small>
                 </div>
                 <div class="form-group">
                     <label for="inspection-date">Inspection Date</label>
-                    <input type="date" class="form-control" id="inspection-date" min="2000-01-01" max="" required>
+                    <input type="date" class="form-control" name="inspection-date" id="inspection-date" min="2000-01-01" max="" required>
                 </div>
                 <div class="custom-control custom-switch mb-2">
                     <input type="checkbox" class="custom-control-input" id="autoRatingSwitch">
@@ -37,7 +36,7 @@
                 <div class="form-row" id="container-score-grade">
                     <div class="form-group col">
                         <label for="score">Score</label>
-                        <input type="number" class="form-control" id="score" min="0" max="100" placeholder="0-100" required>
+                        <input type="number" class="form-control" name="score" id="score" min="0" max="100" placeholder="0-100" required>
                     </div>
                     <div class="col">
                         <span>Grade:</span><br>
@@ -55,7 +54,7 @@
                     <a href="#" class="button-option" id="button-add-violation">+ Add violation</a>
                 </div>
                 <div id="violation-form-container"></div>
-                
+                <input type="hidden" value="<?= rtrim($_SESSION['userID'], '$')?>$" name="user-id" id="user-id">
                 <button type="submit" id="add-inspection-final" class="btn btn-primary">Submit</button>
 
             </form>

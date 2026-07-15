@@ -40,6 +40,12 @@ class FoodBusiness {
         return $row ? $this->mapRowToObj($row) : null;
     }
 
+    public function getAllIdName(){
+        $stmt = $this->pdo->query("SELECT restoID, name FROM restaurants");
+        $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        return $rows;
+    }
+
     public function getAllRowInfo(){
         $stmt = $this->pdo->query("SELECT r.restoID restoID, r.licenseNo licenseNo, r.name name, r.address address, r.contactNo contactNo, r.maps maps, r.image image, r.status status, d.districtID district FROM restaurants r
                                     JOIN districts d ON r.districtID = d.districtID");

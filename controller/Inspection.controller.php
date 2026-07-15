@@ -10,9 +10,11 @@ if (!isset($_SESSION['userID'])) {
 
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../model/Inspection.model.php';
+require_once __DIR__ . '/../model/FoodBusiness.model.php';
 
 class InspectionController{
     private $inspectionModel;
+    private $foodBusinessModel;
 
     public function __construct($pdo) {
         $this->inspectionModel = new Inspection($pdo);
@@ -20,6 +22,8 @@ class InspectionController{
 
     public function showPage($pdo){
         $this->inspectionModel = new Inspection($pdo);
+        $this->foodBusinessModel = new FoodBusiness($pdo);
+        $businessIdNames = $this->foodBusinessModel->getAllIdName();
         include __DIR__ . '/../view/inspector/inspection-entry.php';
     }
 
@@ -36,8 +40,22 @@ class InspectionController{
     }
 
     public function getViolationTypes(){
-        
+
     }
+}
+
+$controller = new InspectionController($pdo);
+
+// Router
+
+if (isset($_POST['food-business'])){
+    $controller->addInspection(
+        $_POST['food-business'],
+        $_POST['inspection-date'],
+        $_POST['autoRatingSwitch'],
+        $_POST['score'],
+        $_POST['grade'],
+        $_POST['business-district']);
 }
 
 ?>
