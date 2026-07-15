@@ -47,7 +47,7 @@
                 <p>Description: <?= htmlspecialchars($selectedReport['description']) ?></p>
 
                 <div class="actions-button">
-                    <form method="POST" action="controller/inspector/inspectorReports.controller.php">
+                    <form method="POST" action="../../controller/inspector/inspectorReports.controller.php">
                             <input type="hidden" name="action" value="update">
                             <input type="hidden" name="id" value="<?php echo htmlspecialchars($selectedReport['reportID']) ?>">
                             <input type="hidden" name="status" value="Reviewed">
@@ -55,7 +55,7 @@
                             <button type="submit">Reviewed</button>
                     </form>
 
-                    <form method="POST" action="controller/inspector/inspectorReports.controller.php">
+                    <form method="POST" action="../../controller/inspector/inspectorReports.controller.php">
                         <input type="hidden" name="action" value="update">
                         <input type="hidden" name="id" value="<?php echo htmlspecialchars($selectedReport['reportID']) ?>">
                         <input type="hidden" name="status" value="Dismissed">

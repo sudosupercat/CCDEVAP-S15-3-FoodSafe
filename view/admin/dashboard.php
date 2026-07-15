@@ -20,7 +20,7 @@
     <div class="header">
         <h1>Web Analytics <br>Dashboard</h1>
         
-        <form action="controller/admin/adminDashboard.controller.php" method="GET">
+        <form action="../../controller/admin/adminDashboard.controller.php" method="GET">
             <div class="picker">
                 <label for="year">Year:</label>
                 <select id="yearPicker" name="yearPicker"></select>
