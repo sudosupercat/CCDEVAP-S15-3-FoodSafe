@@ -3,7 +3,7 @@
   --nav-bg: #1f0075;
 }
 
-body.dark-mode {
+body.theme-dark-custom {
   --bg-purple: #12103a;
   --nav-bg: #0b0924;
 }
@@ -114,11 +114,11 @@ nav a:hover {
   border-radius: 50%;
 }
 
-body.dark-mode input:checked + .slider {
+body.theme-dark-custom input:checked + .slider {
   background-color: #ff751f;
 }
 
-body.dark-mode input:checked + .slider:before {
+body.theme-dark-custom input:checked + .slider:before {
   transform: translateX(24px);
 }
 

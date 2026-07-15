@@ -1,5 +1,5 @@
 <?php
-require_once '../../controller/ComplaintController.php';
+require_once __DIR__ . '/../../controller/ComplaintController.php';
 
 $dbConnection = isset($pdo) ? $pdo : (isset($conn) ? $conn : $db);
 $controller = new ComplaintController($dbConnection);
@@ -42,65 +42,92 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_complaint'])) 
     <link class="icon" type="image/png" rel="icon" href="src/images/logo-tab.png">
     <link rel="stylesheet" href="styles/bootstrap-5.3.8-dist/css/bootstrap.css">
     <link rel="stylesheet" href="styles/css/global.css">
+    <link rel="stylesheet" href="styles/css/public/user-complaints.css">
     <script src="styles/js/jquery-3.7.1.min.js"></script>
     <script src="styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
     <script src="styles/js/nav-bar.js"></script>
 </head>
-<body class="bg-light">
+<body class="public-report-page">
     <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
-    <div class="container my-5" style="max-width: 600px;">
+    <div class="container" style="max-width: 1400px;">
         <?= $message ?>
-        <div class="card border-0 shadow">
-            <div class="card-header bg-danger text-white py-3">
-                <h5 class="mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i> Public Health Violation Report</h5>
-            </div>
-            <div class="card-body p-4">
-                <form action="" method="POST">
-                    <div class="mb-3">
-                        <label for="restoID" class="form-label">Establishment Name</label>
-                        <select name="restoID" id="restoID" class="form-select" required>
+    </div>
+
+    <div class="report-main">
+        <div class="report-left-title">
+            <h1>
+                <span class="text-main">File a</span>
+                <span class="text-orange">report.</span>
+            </h1>
+        </div>
+
+        <div class="report-right-form">
+            <form action="" method="POST">
+                <div class="form-line anon-container">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="anonToggle">
+                        Report anonymously?
+                    </label>
+                </div>
+
+                <div class="form-line split-row">
+                    <div class="input-group">
+                        <label for="firstName">First name:</label>
+                        <input type="text" name="firstName" id="firstName" class="public-input" required>
+                    </div>
+                    <div class="input-group">
+                        <label for="lastName">Last name:</label>
+                        <input type="text" name="lastName" id="lastName" class="public-input" required>
+                    </div>
+                </div>
+
+                <div class="form-line input-group">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" class="public-input" required>
+                </div>
+
+                <div class="form-line input-group">
+                    <label for="contactNo">Contact #:</label>
+                    <input type="tel" name="contactNo" id="contactNo" class="public-input" pattern="[0-9]{10,11}" placeholder="Philippine cellphone#">
+                </div>
+
+                <div class="form-line input-group">
+                    <label for="restoID">Food business to report:</label>
+                    <div class="public-select-wrapper">
+                        <select name="restoID" id="restoID" class="public-select" required>
                             <option value="">-- Choose Target Facility --</option>
                             <?php foreach($restaurants as $res): ?>
                                 <option value="<?= $res['restoID'] ?>"><?= htmlspecialchars($res['name']) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="requirementCode" class="form-label">Type of Violation</label>
-                        <select name="requirementCode" id="requirementCode" class="form-select" required>
+                </div>
+
+                <div class="form-line input-group">
+                    <label for="requirementCode">Type of violation/s committed:</label>
+                    <div class="public-select-wrapper">
+                        <select name="requirementCode" id="requirementCode" class="public-select" required>
                             <option value="">-- Select Violation Type --</option>
                             <?php foreach($requirementTypes as $req): ?>
                                 <option value="<?= $req['requirementCode'] ?>"><?= htmlspecialchars($req['title']) ?></option>
                             <?php endforeach; ?>
                         </select>
                     </div>
-                    <div class="mb-3">
-                        <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" name="firstName" id="firstName" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" name="lastName" id="lastName" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Contact Email Address</label>
-                        <input type="email" name="email" id="email" class="form-control" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="contactNo" class="form-label">Contact Number <span class="text-muted">(optional)</span></label>
-                        <input type="tel" name="contactNo" id="contactNo" class="form-control" pattern="[0-9]{10,11}" placeholder="Philippine cellphone#">
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Describe Incident Details</label>
-                        <textarea name="description" id="description" rows="5" class="form-control" placeholder="Please explain contamination, food storage, dirty practices, pest sightings, or structural damage..." required></textarea>
-                    </div>
-                    <button type="submit" name="submit_complaint" class="btn btn-danger w-100 py-2 mt-3">
-                        <i class="bi bi-send-fill me-2"></i> Dispatch Report
+                </div>
+
+                <div class="form-line input-group">
+                    <label for="description">Additional details:</label>
+                    <textarea name="description" id="description" rows="5" class="public-textarea" placeholder="Please explain contamination, food storage, dirty practices, pest sightings, or structural damage..." required></textarea>
+                </div>
+
+                <div class="btn-container-right">
+                    <button type="submit" name="submit_complaint" class="public-submit-btn">
+                        Submit
                     </button>
-                </form>
-            </div>
+                </div>
+            </form>
         </div>
     </div>
 </body>
