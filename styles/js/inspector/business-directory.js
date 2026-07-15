@@ -114,9 +114,6 @@ $(document).ready( function () {
         const formData = new FormData(form);
         const mode = document.getElementById("confirm-button-modal-edit-add").getAttribute('data-mode');
         formData.append("action", mode);
-        for (const [key, value] of formData.entries()) {
-        console.log(key, value);
-        }
 
         sendAddEditRequest(mode, formData);
     });

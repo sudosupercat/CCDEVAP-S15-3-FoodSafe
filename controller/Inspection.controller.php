@@ -36,7 +36,7 @@ class InspectionController{
     }
 
     public function getViolationTypes(){
-
+        
     }
 }
 
