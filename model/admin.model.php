@@ -158,14 +158,22 @@ function updateStatus($pdo, $userID) {
     return $result;
 }
 
-function registerNewUser($pdo, $username, $email, $password, $role, $firstName, $lastName, $districtID) {
+function checkEmailExists($pdo, $email) {
+    $sql = $pdo->prepare("SELECT userID FROM users WHERE email = ?");
+    $sql->execute([$email]);
+    return $sql->rowCount() > 0;
+}
+
+function registerNewUser($pdo, $email, $password, $role, $firstName, $lastName, $districtID) {
     try {
         $hashed_password = password_hash($password, PASSWORD_BCRYPT);
+
+        // NOTE: 'users' table has no 'username' column, so it's intentionally excluded.
+        // loginAttempt is NOT NULL with no default, so it must be supplied explicitly.
+        $sql = $pdo->prepare("INSERT INTO users (email, password, firstName, lastName, districtID, role, loginAttempt, status, deleteFlag) 
+                             VALUES (?, ?, ?, ?, ?, ?, 0, 1, 0)");
         
-        $sql = $pdo->prepare("INSERT INTO users (username, email, password, role, firstName, lastName, districtID, status, deleteFlag) 
-                             VALUES (?, ?, ?, ?, ?, ?, ?, 1, 0)");
-        
-        return $sql->execute([$username, $email, $hashed_password, $role, $firstName, $lastName, $districtID]);
+        return $sql->execute([$email, $hashed_password, $firstName, $lastName, $districtID, $role]);
     } catch (PDOException $e) {
         error_log("Registration Error: " . $e->getMessage());
         return false;

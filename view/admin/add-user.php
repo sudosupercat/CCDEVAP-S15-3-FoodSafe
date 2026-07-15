@@ -1,7 +1,3 @@
-<?php
-require_once '../../controller/admin/adminAddUsers.controller.php';
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,10 +36,6 @@ require_once '../../controller/admin/adminAddUsers.controller.php';
             </div>
             <div class="card-body p-4">
                 <form action="" method="POST" autocomplete="off">
-                    <div class="mb-3">
-                        <label for="username" class="form-label">Username</label>
-                        <input type="text" name="username" id="username" class="form-control" required>
-                    </div>
                     <div class="mb-3">
                         <label for="email" class="form-label">Active Email Address</label>
                         <input type="email" name="email" id="email" class="form-control" required>
