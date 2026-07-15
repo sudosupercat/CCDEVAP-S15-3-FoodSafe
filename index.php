@@ -30,7 +30,7 @@ switch ($uri){
         $controller->showPage($pdo);
         break;
     case '/adminHomepage':
-        require 'view/admin/homepage.php';
+        require 'controller/admin/adminHomepage.controller.php'; 
         break;
     case '/inspectorHomepage':
         require 'controller/inspector/inspectorHomepage.controller.php';
