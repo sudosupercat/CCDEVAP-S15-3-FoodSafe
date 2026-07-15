@@ -26,7 +26,7 @@
                 <?php
                     foreach ($reports as $report) {
                         if ($report['status'] == 'Pending') {
-                        echo '<a href="?reportID=' . htmlspecialchars($report['reportID']) . '" class="reports">';
+                        echo '<a href="controller/inspector/InspectorReports.controller.php?reportID=' . htmlspecialchars($report['reportID']) . '" class="reports">';
                         echo '<p>Report Date: ' . htmlspecialchars(date('F j, Y', strtotime($report['date']))) . ' - ' . htmlspecialchars($report['establishment']) . '</p>';
                         echo '<p>Violation: ' . htmlspecialchars($report['title']) . '</p>';
                         echo '<p>Status: ' . htmlspecialchars($report['status']) . '</p>';
