@@ -1,9 +1,8 @@
 <?php
-require_once '../../config/db.php'; 
-require_once '../../models/RestaurantModel.php';
+require_once '../../controller/RestaurantDetailController.php';
 
 $dbConnection = isset($pdo) ? $pdo : (isset($conn) ? $conn : $db);
-$restaurantModel = new RestaurantModel($dbConnection);
+$controller = new RestaurantDetailController($dbConnection);
 
 $restoID = isset($_GET['restoID']) ? intval($_GET['restoID']) : (isset($_GET['id']) ? intval($_GET['id']) : 1); 
 $message = "";
@@ -13,8 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
     $comment = isset($_POST['comment']) ? trim($_POST['comment']) : '';
 
     if ($rating >= 1 && $rating <= 5 && !empty($comment)) {
-        if ($restaurantModel->addReview($restoID, $rating, $comment)) {
-            $restaurantModel->updateAverageRating($restoID);
+        if ($controller->addReview($restoID, $rating, $comment)) {
             $message = "
             <div class='alert alert-success alert-dismissible fade show' role='alert'>
                 <i class='bi bi-check-circle-fill me-2'></i>Thank you! Your feedback has been published.
@@ -28,11 +26,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_review'])) {
     }
 }
 
-$restaurant = $restaurantModel->getRestaurantById($restoID);
+$restaurant = $controller->getRestaurant($restoID);
 if (!$restaurant) {
     die("<div class='container my-5'><div class='alert alert-danger'>Restaurant record not found in system directory.</div></div>");
 }
-$reviews = $restaurantModel->getReviews($restoID);
+$reviews = $controller->getReviews($restoID);
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +48,7 @@ $reviews = $restaurantModel->getReviews($restoID);
     <script src="../../styles/js/nav-bar.js"></script>
 </head>
 <body>
-    <div id="navBar"><?php include __DIR__ . '/../../../navbar.php';?></div>
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
     <div class="container my-5">
         <?= $message ?>
