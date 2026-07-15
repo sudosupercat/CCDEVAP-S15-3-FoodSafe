@@ -7,7 +7,7 @@ var lineChart = new Chart(linectx, {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         datasets: [{
           label: 'Inspections',
-          data: [30, 45, 60, 35, 50, 40, 40, 10, 5, 23, 12, 30],
+          data: monthlyCounts,
           borderColor: 'rgba(54, 162, 235, 1)',
           borderWidth: 2,
           fill: false
@@ -25,10 +25,10 @@ var lineChart = new Chart(linectx, {
 var pieChart = new Chart(piectx, {
     type: 'pie',
     data: {
-        labels: ['A', 'B', 'C', 'F'],
+        labels: gradeChartData.labels,
         datasets: [{
             label: 'Grade',
-            data: [34, 57, 23, 16],
+            data: gradeChartData.data,
             backgroundColor: [
                 'rgba(15, 218, 28, 0.2)',
                 'rgba(220, 170, 35, 0.2)',
@@ -47,19 +47,15 @@ var pieChart = new Chart(piectx, {
     options: {
         responsive: true,
         plugins: {
-            legend: {
-                position: 'top',
-            },
+            legend: { position: 'top' },
             tooltip: {
                 callbacks: {
                     label: function(context){
                         var label = context.label,
                         currentValue = context.raw,
                         total = context.chart._metasets[context.datasetIndex].total;
-
                         var percentage = parseFloat((currentValue/total*100).toFixed(1));
-
-                        return label + ": " +currentValue + ' (' + percentage + '%)';
+                        return label + ": " + currentValue + ' (' + percentage + '%)';
                     }
                 }
             }

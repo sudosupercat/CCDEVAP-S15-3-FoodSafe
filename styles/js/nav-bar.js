@@ -22,7 +22,7 @@ function showNavBar(){
     else if(path.includes("/inspector/")){
         basePath = "../../";
         navItems = `
-            <li class="nav-item"><a class="nav-link" href="${basePath}view/inspector/dashboard.php"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="${basePath}controller/inspector/inspectorDashboard.controller.php"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>
             <li class="nav-item"><a class="nav-link" href="${basePath}view/inspector/inspection-entry.php"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>
             <li class="nav-item"><a class="nav-link" href="${basePath}controller/FoodBusiness.controller.php"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>
             <li class="nav-item"><a class="nav-link" href="${basePath}controller/inspector/inspectorReports.controller.php"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>

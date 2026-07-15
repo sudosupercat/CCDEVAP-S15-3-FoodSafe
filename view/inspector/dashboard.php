@@ -23,11 +23,11 @@
         <main>
             <section class="stats-row">
                 <div class="stat-box1">
-                    <h2>150</h2>
+                    <h2><?= $totalInspections ?></h2>
                     <p>Total Inspections Done</p>
                 </div>
                 <div class="stat-box2">
-                    <h2>25</h2>
+                    <h2><?= $pendingReports ?></h2>
                     <p>Pending Reports</p>
                 </div>
             </section> 
@@ -49,6 +49,10 @@
                 </div>
             </section>
         </main>
+        <script>
+            const monthlyCounts = <?= json_encode($monthlyCounts) ?>;
+            const gradeChartData = <?= json_encode($gradeDistribution) ?>;
+        </script>
         <script src="../../styles/js/inspector/inspector-charts.js"></script>
         <footer class="site-footer">
             FoodSafe - Copyright 2026
