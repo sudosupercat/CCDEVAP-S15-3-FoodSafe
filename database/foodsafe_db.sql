@@ -59,7 +59,7 @@ CREATE TABLE `inspections` (
   KEY `inspection_ibfk_2` (`restoID`),
   CONSTRAINT `inspection_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
   CONSTRAINT `inspection_ibfk_2` FOREIGN KEY (`restoID`) REFERENCES `restaurants` (`restoID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -68,6 +68,7 @@ CREATE TABLE `inspections` (
 
 LOCK TABLES `inspections` WRITE;
 /*!40000 ALTER TABLE `inspections` DISABLE KEYS */;
+INSERT INTO `inspections` VALUES (1,'2026-07-14',75,'Pass','July 2026',6,4),(2,'2026-01-13',75,'Pass','January 2026',6,4),(3,'2026-01-25',75,'Pass','February 2026',6,4),(4,'2026-08-13',55,'Fail','August 20266',6,4);
 /*!40000 ALTER TABLE `inspections` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +95,7 @@ CREATE TABLE `reports` (
   KEY `report_ibfk_2` (`requirementCode`),
   CONSTRAINT `report_ibfk_1` FOREIGN KEY (`restoID`) REFERENCES `restaurants` (`restoID`),
   CONSTRAINT `report_ibfk_2` FOREIGN KEY (`requirementCode`) REFERENCES `requirements` (`requirementCode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,6 +104,7 @@ CREATE TABLE `reports` (
 
 LOCK TABLES `reports` WRITE;
 /*!40000 ALTER TABLE `reports` DISABLE KEYS */;
+INSERT INTO `reports` VALUES (1,NULL,NULL,NULL,NULL,'Restroom floors were dirty and lacked soap dispensers.','Pending','2026-07-13 16:13:48',1,15),(2,NULL,NULL,NULL,NULL,'Food was observed being handled without gloves.','Reviewed','2026-07-14 17:33:07',2,2),(3,NULL,NULL,NULL,NULL,'Several cockroaches were seen near the kitchen area.','Reviewed','2026-07-15 10:39:31',3,7),(4,NULL,NULL,NULL,NULL,'Several cockroaches were seen near the kitchen area.','Reviewed','2026-07-14 14:39:31',4,7),(5,NULL,NULL,NULL,NULL,'Food was observed being handled without gloves.','Pending','2026-07-13 16:13:48',7,2),(6,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:51:55',7,9),(7,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:51:55',1,11),(8,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:52:20',5,3),(9,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Dismissed','2026-07-14 15:52:20',3,12),(10,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:52:20',4,12);
 /*!40000 ALTER TABLE `reports` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,7 +156,7 @@ CREATE TABLE `restaurants` (
   PRIMARY KEY (`restoID`),
   KEY `restaurant_ibfk_1` (`districtID`),
   CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`districtID`) REFERENCES `districts` (`districtID`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -163,7 +165,7 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
-INSERT INTO `restaurants` VALUES (1,123456,'Jollibee Quiapo','Quiapo, Manila','09171234567',NULL,'Jollibee_Quiapo.png',1,1),(2,234567,'Hilltop Café','Baguio City, Benguet','09181234567',NULL,'Hilltop_Cafe.png',1,2),(3,345678,'Vigan Heritage Restaurant','Vigan City, Ilocos Sur','09191234567',NULL,'Vigan_Heritage.png',1,3),(4,456789,'Cagayan Valley Grill','Tuguegarao City, Cagayan','09201234567',NULL,'Cagayan_Valley.png',1,4),(5,567891,'Kapampangan Kitchen','San Fernando, Pampanga','09211234567',NULL,'Kapampangan_Kitchen.png',1,5),(6,678912,'Lipa Food House','Lipa City, Batangas','09221234567',NULL,'Lipa_Food.png',1,6);
+INSERT INTO `restaurants` VALUES (1,123456,'Jollibee Quiapo','Quiapo, Manila','09171234567',NULL,'Jollibee_Quiapo.png',1,1),(2,234567,'Hilltop Café','Baguio City, Benguet','09181234567',NULL,'Hilltop_Cafe.png',1,2),(3,345678,'Vigan Heritage Restaurant','Vigan City, Ilocos Sur','09191234567',NULL,'Vigan_Heritage.png',1,3),(4,456789,'Cagayan Valley Grill','Tuguegarao City, Cagayan','09201234567',NULL,'Cagayan_Valley.png',1,4),(5,567891,'Kapampangan Kitchen','San Fernando, Pampanga','09211234567',NULL,'Kapampangan_Kitchen.png',1,5),(6,678912,'Lipa Food House','Lipa City, Batangas','09221234567',NULL,'Lipa_Food.png',1,6),(7,789123,'Wendy\'s Taft','Taft, Manila','09231234567',NULL,'Wendys_Taft.png',1,1);
 /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,6 +184,7 @@ CREATE TABLE `users` (
   `lastName` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
   `districtID` int DEFAULT NULL,
   `role` enum('Admin','Inspector') COLLATE utf8mb4_general_ci NOT NULL,
+  `loginAttempt` int NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL,
   `deleteFlag` tinyint(1) NOT NULL,
@@ -197,7 +200,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (2,'marinel_llaguno@admin.com','$2y$10$PIWF4LCCZT/zeZPxJTLvQuAmJWzK6CqTAh3p9ddF9qX1WtovkEYe6','Marinel','Llaguno',NULL,'Admin','2026-07-14 14:25:36',1,0),(3,'matthew_lucas@inspector.com','$2y$10$u4uMQ.PUtl1ER56QG.iCzOMLwkMgYPFX5CT6qjo5sKK0Oxhd.iPje','Matthew','Lucas',1,'Inspector','2026-07-14 14:25:36',1,0),(4,'miguel_monterola@inspector.com','$2y$10$IkGxxYLWkG885eqG3Xc6JOmdohcA9KQVP/3MVw2Nb4AuQoQDqBWGO','Miguel','Monterola',2,'Inspector','2026-07-14 14:25:36',1,0),(5,'clarisse_nazario@inspector.com','$2y$10$U8t9hIpfdWpSlUt1G63mtuClEr78.rn/.VnwT3A1AvQjceJaw9qdK','Clarisse','Nazario',3,'Inspector','2026-07-14 14:25:36',1,0),(6,'andrea_prestoza@inspector.com','$2y$10$ItXnKjsBCmWD.EjfhAc.N.Np2ZFtUOQyxFsGYAjeGMc6E3rkwTlcm','Andrea','Prestoza',4,'Inspector','2026-07-14 14:25:36',1,0),(7,'efia_danso@inspector.com','$2y$10$jzVyBbnk4a3i30RxqcL3KuYwtYH.KnzFKq2OoNigc0QaAAceATfI.','Efia','Danso',5,'Inspector','2026-07-14 14:25:36',0,0),(8,'erik_torsten@inspector.com','$2y$10$bxH3fr1WHIai4jaat.fnTuIOiETHADmvSb8sEhvYbAF5PA1bJaWBC','Erik','Torsten',6,'Inspector','2026-07-14 14:25:36',0,0);
+INSERT INTO `users` VALUES (2,'marinel_llaguno@admin.com','$2y$10$2G7C.icwqiAAr2lPm7jPnOrhHQ2hJmyA8HoI7PaArysYAhd0ON0Sa','Marinel','Llaguno',NULL,'Admin',0,'2026-07-15 09:55:23',1,0),(3,'matthew_lucas@inspector.com','$2y$10$DjhP9EW/F5shjj/DzcjjhOxFMmy.0aqU0/VdnGgkax5Y/sZPegpky','Matthew','Lucas',1,'Inspector',0,'2026-07-15 07:02:36',1,0),(4,'miguel_monterola@inspector.com','$2y$10$VOEvLW4JZpkJPuMhmAtvmuVzGNIzoHs/2aXWWb1KYtPWotWe8z4zO','Miguel','Monterola',2,'Inspector',0,'2026-07-15 10:06:37',1,0),(5,'clarisse_nazario@inspector.com','$2y$10$s3Hq.m3R0OVqMtWXQaHJK.ti3CQZjRhhri7/b3/dxYeJcf5hY4uxO','Clar','Nazario',3,'Inspector',0,'2026-07-15 10:09:40',1,0),(6,'andrea_prestoza@inspector.com','$2y$10$VZbdQpAAe8mBFO7kwkJXS.tUxY2bZqfIODI8BDT5HNN.gSGzXnTSW','Andrea','Prestoza',4,'Inspector',0,'2026-07-15 10:25:39',1,0),(7,'efia_danso@islay.com','$2y$10$LE.w/HRsldmdypAf9MAB4OcRQXA6e7ivbRczFJsUdEYA27Y5U.q1W','Efia','Astra',5,'Inspector',0,'2026-07-14 17:16:59',0,1),(8,'erik_torsten@inspector.com','$2y$10$I.CuuMiRZEP6/VK2.gPfRub3FSZI2sd7DsfPZgrESUNntXMjx1mmu','Erik','Torsten',4,'Inspector',0,'2026-07-14 17:16:59',1,1);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -217,7 +220,7 @@ CREATE TABLE `violations` (
   KEY `violation_ibfk_2` (`requirementCode`),
   CONSTRAINT `violation_ibfk_1` FOREIGN KEY (`inspectionID`) REFERENCES `inspections` (`inspectionID`),
   CONSTRAINT `violation_ibfk_2` FOREIGN KEY (`requirementCode`) REFERENCES `requirements` (`requirementCode`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -226,6 +229,7 @@ CREATE TABLE `violations` (
 
 LOCK TABLES `violations` WRITE;
 /*!40000 ALTER TABLE `violations` DISABLE KEYS */;
+INSERT INTO `violations` VALUES (1,4,2),(2,1,1),(3,4,17),(4,4,18),(5,4,15),(6,4,15),(7,4,18),(8,4,15);
 /*!40000 ALTER TABLE `violations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -238,4 +242,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-14 22:29:50
+-- Dump completed on 2026-07-15 22:58:43
