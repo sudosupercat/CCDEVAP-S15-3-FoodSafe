@@ -101,5 +101,62 @@ class RestaurantModel {
             return [];
         }
     }
+
+    public function getRestaurantById($restoID) {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM restaurants WHERE restoID = ?");
+            $stmt->execute([$restoID]);
+            return $stmt->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Get Restaurant Error: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    public function getReviews($restoID) {
+        try {
+            $stmt = $this->pdo->prepare("SELECT * FROM reviews WHERE restoID = ? ORDER BY created_at DESC");
+            $stmt->execute([$restoID]);
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Get Reviews Error: " . $e->getMessage());
+            return [];
+        }
+    }
+
+    public function addReview($restoID, $rating, $comment) {
+        try {
+            $stmt = $this->pdo->prepare("INSERT INTO reviews (restoID, rating, comment, created_at) VALUES (?, ?, ?, NOW())");
+            return $stmt->execute([$restoID, $rating, $comment]);
+        } catch (PDOException $e) {
+            error_log("Add Review Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function updateAverageRating($restoID) {
+        try {
+            $stmt = $this->pdo->prepare("SELECT AVG(rating) as avg_rating FROM reviews WHERE restoID = ?");
+            $stmt->execute([$restoID]);
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $avg_rating = $result['avg_rating'] ? round($result['avg_rating'], 2) : 0.00;
+
+            $updateStmt = $this->pdo->prepare("UPDATE restaurants SET avg_rating = ? WHERE restoID = ?");
+            return $updateStmt->execute([$avg_rating, $restoID]);
+        } catch (PDOException $e) {
+            error_log("Update Average Rating Error: " . $e->getMessage());
+            return false;
+        }
+    }
+
+    public function getAllRestaurants() {
+        try {
+            $stmt = $this->pdo->query("SELECT restoID, name FROM restaurants ORDER BY name ASC");
+            return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            error_log("Get All Restaurants Error: " . $e->getMessage());
+            return [];
+        }
+    }
 }
 ?>
