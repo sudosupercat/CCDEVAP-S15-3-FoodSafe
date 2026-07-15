@@ -37,7 +37,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
         </header>
         <main>
         <section class="col-lg-6 form-left d-flex align-items-center justify-content-center">
-            <div class="p-4 w-100" style="max-width: 420px;">
+            <div class="form-container">
                 <h1 class="fw-bold mb-4">Welcome Back!</h1>
                 <form id="loginForm" action="../controller/loginPage.controller.php" method="POST" novalidate>
                     <input type="hidden" name="action" value="login">
