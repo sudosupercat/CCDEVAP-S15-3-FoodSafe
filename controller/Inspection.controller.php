@@ -23,8 +23,16 @@ class InspectionController{
         include __DIR__ . '/../view/inspector/inspection-entry.php';
     }
 
-    public function addInspection(){
-
+    public function addInspection($id, $date, $score, $grade, $remarks, $userId, $restoId, $violations){
+        $this->inspectionModel->inspectionId;
+        $this->inspectionModel->inspectionDate;
+        $this->inspectionModel->score;
+        $this->inspectionModel->grade;
+        $this->inspectionModel->remarks;
+        $this->inspectionModel->userId;
+        $this->inspectionModel->restoId;
+        $this->inspectionModel->violations;
+        $this->inspectionModel->addInspection($this->inspectionModel);
     }
 
     public function getViolationTypes(){
