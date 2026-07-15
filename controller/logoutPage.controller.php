@@ -3,6 +3,6 @@ session_start();
 
 $_SESSION = array();
 session_destroy();
-header("Location: loginPage.controller.php");
+header("Location: /login");
 exit();
 ?>

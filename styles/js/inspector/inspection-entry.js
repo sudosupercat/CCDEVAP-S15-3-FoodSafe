@@ -1,4 +1,3 @@
-
 document.addEventListener("DOMContentLoaded", () => {
     //Hide/show grade/switch fields
     const autoRatingSwitch = document.getElementById('autoRatingSwitch');

@@ -33,7 +33,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
     <body>
 
         <header>
-            <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+            <div id="navBar"><?php include __DIR__ . '/navbar.php';?></div>
         </header>
         <main>
         <section class="col-lg-6 form-left d-flex align-items-center justify-content-center">
