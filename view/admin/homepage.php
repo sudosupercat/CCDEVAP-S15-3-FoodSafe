@@ -33,6 +33,18 @@ $adminName = $_SESSION['firstName'] ?? 'Admin';
 
         <div class="button-container">
             <div class="button-row">
+                <a href="../../controller/admin/adminUsers.controller.php" class="btn-pill">Add New User</a>
+                <a href="../../controller/admin/adminAddUsers.controller.php" class="btn-pill">User Management</a>
+                <a href="../../controller/BusinessDirectory.controller.php" class="btn-pill">Restaurant Management</a>
+                <a href="../../controller/admin/exportData.controller.php" class="btn-pill">Export System Data</a>
+            </div>
+            <div class="button-row">
+                <a href="../../controller/admin/adminDashboard.controller.php" class="btn-pill">Check Website Report</a>
+            </div>
+        </div>
+
+        <!--<div class="button-container">
+            <div class="button-row">
                 <a href="add-user.php" class="btn-pill">Add New User</a>
                 <a href="user-management.php" class="btn-pill">User Management</a>
                 <a href="../inspector/business-directory.php" class="btn-pill">Restaurant Management</a>
@@ -41,7 +53,7 @@ $adminName = $_SESSION['firstName'] ?? 'Admin';
             <div class="button-row">
                 <a href="dashboard.php" class="btn-pill">Check Website Report</a>
             </div>
-        </div>
+        </div>-->
     </main>
     <footer class="site-footer">
         FoodSafe - Copyright 2026

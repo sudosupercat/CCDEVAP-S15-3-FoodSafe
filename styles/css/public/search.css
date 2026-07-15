@@ -6,7 +6,19 @@
 }
 
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    margin: 0;
     background-color: #e1e7fc;
+}
+
+main {
+    flex: 1;
+}
+
+footer {
+    flex-shrink: 0;
 }
 
 .search-section {
@@ -144,7 +156,6 @@ body {
     align-self: center;
 }
 
-/* --- DARK MODE OVERRIDES (UNCHANGED) --- */
 body.theme-dark-custom {
     background-color: #12103a !important;
 }
