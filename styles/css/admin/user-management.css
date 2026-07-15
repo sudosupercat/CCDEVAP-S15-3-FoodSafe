@@ -14,7 +14,9 @@ body.dark-mode {
 
 body {
   font-family: Helvetica;
-  min-height: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   background-color: #dee5ff;
 }
 
