@@ -6,10 +6,10 @@ if (session_status() === PHP_SESSION_NONE) {
 // If already logged in, skip the login form entirely
 if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
     if ($_SESSION['role'] === 'Admin') {
-        header('Location: adminHomepage'); //change if may controller na for admin homepage
+        header('Location: adminHomepage'); 
         exit();
     } else {
-        header('Location: inspectorHomepage'); //change if may controller na for inspector homepage
+        header('Location: inspectorHomepage'); 
         exit();
     }
 }
@@ -33,7 +33,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
     <body>
 
         <header>
-            <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+            <div id="navBar"><?php include __DIR__ . '/navbar.php';?></div>
         </header>
         <main>
         <section class="col-lg-6 form-left d-flex align-items-center justify-content-center">

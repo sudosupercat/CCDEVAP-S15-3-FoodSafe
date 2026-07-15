@@ -6,8 +6,8 @@ if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Inspector') {
     header('Location: ../loginPage.controller.php');
     exit();
 }
-require '../../config/db.php';
-require '../../model/inspector.model.php';
+require 'config/db.php';
+require 'model/inspector.model.php';
 $userID = $_SESSION['userID'];
 
 $totalInspections = getTotalInspections($pdo, $userID);
@@ -15,6 +15,6 @@ $pendingReports = getPendingReportsCount($pdo, $userID);
 $monthlyCounts = getInspectionsPerMonth($pdo, $userID);
 $gradeDistribution = getGradeDistribution($pdo, $userID);
 
-require '../../view/inspector/dashboard.php';
+require 'view/inspector/dashboard.php';
 
 ?>

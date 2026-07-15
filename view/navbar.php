@@ -20,7 +20,7 @@ else if(isset($_SESSION['role']) && $_SESSION['role'] === 'Inspector'){
             '<li class="nav-item"><a class="nav-link" href="inspectionEntry"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>',
             '<li class="nav-item"><a class="nav-link" href="business-directory"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>',
             '<li class="nav-item"><a class="nav-link" href="inspectorReports"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>',
-            '<li class="nav-item"><a class="nav-link" href="logoutPage"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>'];
+            '<li class="nav-item"><a class="nav-link" href="logout"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>'];
 }
 else {
     $navItems = ['<li class="nav-item"><a class="nav-link" href="report"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>',
