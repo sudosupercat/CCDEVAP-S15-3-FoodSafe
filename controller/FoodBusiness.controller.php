@@ -3,10 +3,10 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-if (!isset($_SESSION['userID'])) {
-    header("Location: /CCDEVAP-S15-3-FoodSafe/controller/loginPage.controller.php");
-    exit();
-}
+// if (!isset($_SESSION['userID'])) {
+//     header("Location: /CCDEVAP-S15-3-FoodSafe/controller/loginPage.controller.php");
+//     exit();
+// }
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../model/FoodBusiness.model.php';
 
@@ -85,10 +85,15 @@ class FoodBusinessController {
     }
 }
 
+$controller = new FoodBusinessController($pdo);
+
 // Router
 if (isset($_POST['action']) && $_POST['action'] === 'delete') {
-    $controller = new FoodBusinessController($pdo);
     $controller->deleteRow($_POST['foodBusinessId']);
 }
+
+// if (isset($_GET['action']) && $_GET['action'] === 'view'){
+    // $controller->showPage($pdo);
+// }
 
 ?>
