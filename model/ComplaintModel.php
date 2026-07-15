@@ -8,9 +8,6 @@ class ComplaintModel {
         $this->pdo = $pdo;
     }
 
-    /**
-     * Files a public complaint against a restaurant
-     */
     public function createComplaint($restoID, $complainantName, $complainantEmail, $details) {
         try {
             $stmt = $this->pdo->prepare("INSERT INTO complaints (restoID, complainant_name, complainant_email, details, created_at) 
