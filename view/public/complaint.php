@@ -1,307 +1,90 @@
+<?php
+require_once 'config/db.php';
+require_once 'models/RestaurantModel.php';
+
+$dbConnection = isset($pdo) ? $pdo : (isset($conn) ? $conn : $db);
+$restaurantModel = new RestaurantModel($dbConnection);
+$restaurants = $restaurantModel->getAllRestaurants();
+
+$message = "";
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_complaint'])) {
+    $restoID = isset($_POST['restoID']) ? intval($_POST['restoID']) : 0;
+    $complainant_name = isset($_POST['complainant_name']) ? trim($_POST['complainant_name']) : '';
+    $complainant_email = isset($_POST['complainant_email']) ? trim($_POST['complainant_email']) : '';
+    $details = isset($_POST['details']) ? trim($_POST['details']) : '';
+
+    if ($restoID > 0 && !empty($complainant_name) && filter_var($complainant_email, FILTER_VALIDATE_EMAIL) && !empty($details)) {
+        try {
+            $stmt = $dbConnection->prepare("INSERT INTO complaints (restoID, complainant_name, complainant_email, details, created_at) VALUES (?, ?, ?, ?, NOW())");
+            $stmt->execute([$restoID, $complainant_name, $complainant_email, $details]);
+            
+            $message = "
+            <div class='alert alert-success alert-dismissible fade show' role='alert'>
+                <i class='bi bi-check-circle-fill me-2'></i>Your report was registered. Food safety personnel have been assigned.
+                <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>";
+        } catch (PDOException $e) {
+            $message = "<div class='alert alert-danger'>An internal connection error occurred: " . htmlspecialchars($e->getMessage()) . "</div>";
+        }
+    } else {
+        $message = "<div class='alert alert-warning'>Form incomplete. Please check syntax parameters.</div>";
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FoodSafe - File a Report</title>
-
-    <link class="bootstrap-css-file" rel="stylesheet" href="../../styles/bootstrap-4.6.2-dist/css/bootstrap.css">
-
-    <link rel="stylesheet" href="../../styles/css/login-style.css">
-    <link rel="stylesheet" href="../../styles/css/global.css">
-    <link rel="stylesheet" href="../../styles/css/public/user-complaints.css">
-
-    <script src="../../styles/js/jquery-3.7.1.min.js"></script>
-    <script src="../../styles/bootstrap-4.6.2-dist/js/bootstrap.js"></script>
-
-    <style>
-        
-        @media (min-width: 768px) {
-            .custom-nav-links {
-                display: flex !important;
-            }
-            .custom-hamburger {
-                display: none !important;
-            }
-        }
-        @media (max-width: 767px) {
-            .custom-nav-links {
-                display: none;
-                width: 100%;
-                flex-direction: column;
-                gap: 15px !important;
-                padding-top: 15px;
-            }
-            .custom-nav-links.show {
-                display: flex !important;
-            }
-            .custom-hamburger {
-                display: flex !important;
-            }
-        }
-
-        
-        .report-left-title {
-            display: flex !important;
-            flex-direction: column !important;
-            justify-content: center !important;
-            align-items: center !important;
-            text-align: center !important;
-        }
-        .report-left-title h1 {
-            text-align: center !important;
-            width: 100% !important;
-        }
-    </style>
+    <title>FoodSafe - Report Food Safety Infractions</title>
+    <link class="icon" type="image/png" rel="icon" href="src/images/logo-tab.png">
+    <link rel="stylesheet" href="styles/bootstrap-5.3.8-dist/css/bootstrap.css">
+    <link rel="stylesheet" href="styles/css/global.css">
+    <script src="styles/js/jquery-3.7.1.min.js"></script>
+    <script src="styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
+    <script src="styles/js/nav-bar.js"></script>
 </head>
-<body class="public-report-page">
+<body class="bg-light">
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
-    <div style="display: flex !important; 
-                flex-wrap: wrap;
-                width: 100% !important; 
-                background-color: var(--nav-bg) !important; 
-                padding: 15px 60px !important;
-                margin: 0 !important;
-                border: none !important;
-                justify-content: space-between !important;
-                align-items: center !important;
-                transition: background-color 0.3s ease;
-                position: relative;
-                z-index: 1030;">
-        
-        <div class="d-flex align-items-center">
-            <img src="../../src/images/logo.png" alt="FoodSafe Logo" style="height: 35px; margin-right: 12px; object-fit: contain;">
-            <span class="mb-0 h1 font-weight-bold" style="font-size: 1.4rem; color: var(--text-white) !important; font-family: Helvetica, Arial, sans-serif;">FoodSafe</span>
-        </div>
-
-        <button class="custom-hamburger" type="button" onclick="toggleMobileMenu()"
-                style="border: 1px solid rgba(255, 255, 255, 0.4); 
-                       padding: 8px 10px; 
-                       border-radius: 4px; 
-                       background: transparent !important;
-                       flex-direction: column;
-                       justify-content: space-between;
-                       height: 36px;
-                       width: 44px;
-                       align-items: center;
-                       cursor: pointer;">
-            <span style="display: block; width: 22px; height: 2px; background-color: #ffffff; margin-bottom: 4px; border-radius: 1px;"></span>
-            <span style="display: block; width: 22px; height: 2px; background-color: #ffffff; margin-bottom: 4px; border-radius: 1px;"></span>
-            <span style="display: block; width: 22px; height: 2px; background-color: #ffffff; border-radius: 1px;"></span>
-        </button>
-
-        <div class="custom-nav-links ml-auto align-items-center" id="customNavDropdown" style="gap: 25px;">
-            
-            <div class="d-flex align-items-center" style="font-size: 0.9rem; gap: 8px; color: var(--text-white) !important;">
-                <span>Dark Mode</span>
-                <label class="switch mb-0">
-                    <input type="checkbox" id="darkModeToggle">
-                    <span class="slider"></span>
-                </label>
+    <div class="container my-5" style="max-width: 600px;">
+        <?= $message ?>
+        <div class="card border-0 shadow">
+            <div class="card-header bg-danger text-white py-3">
+                <h5 class="mb-0"><i class="bi bi-exclamation-triangle-fill me-2"></i> Public Health Violation Report</h5>
             </div>
-
-            <a href="complaint.html" style="font-weight: 500; text-decoration: none; color: var(--text-white) !important; font-size: 1rem;">Report</a>
-            <a href="../login.html" style="font-weight: 500; text-decoration: none; color: var(--text-white) !important; font-size: 1rem;">Login</a>
-            
+            <div class="card-body p-4">
+                <form action="" method="POST">
+                    <div class="mb-3">
+                        <label for="restoID" class="form-label">Establishment Name</label>
+                        <select name="restoID" id="restoID" class="form-select" required>
+                            <option value="">-- Choose Target Facility --</option>
+                            <?php foreach($restaurants as $res): ?>
+                                <option value="<?= $res['restoID'] ?>"><?= htmlspecialchars($res['name']) ?></option>
+                            <?php endforeach; ?>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="complainant_name" class="form-label">Your Name</label>
+                        <input type="text" name="complainant_name" id="complainant_name" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="complainant_email" class="form-label">Contact Email Address</label>
+                        <input type="email" name="complainant_email" id="complainant_email" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="details" class="form-label">Describe Incident Details</label>
+                        <textarea name="details" id="details" rows="5" class="form-control" placeholder="Please explain contamination, food storage, dirty practices, pest sightings, or structural damage..." required></textarea>
+                    </div>
+                    <button type="submit" name="submit_complaint" class="btn btn-danger w-100 py-2 mt-3">
+                        <i class="bi bi-send-fill me-2"></i> Dispatch Report
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-
-    <main class="report-main">
-        <section class="report-left-title">
-            <h1>
-                <span class="text-white d-block d-md-inline">File a</span>
-                <span class="text-orange d-block d-md-inline">Report</span>
-            </h1>
-        </section>
-
-        <section class="report-right-form">
-            <form id="complaintForm">
-
-                <div class="form-line anon-container">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="anonymousToggle">
-                        <span>Report anonymously?</span>
-                    </label>
-                </div>
-
-                <div class="form-line split-row" id="nameFieldsRow">
-                    <div class="input-group">
-                        <label for="firstName">First Name</label>
-                        <input type="text" id="firstName" class="public-input">
-                    </div>
-                    <div class="input-group">
-                        <label for="lastName">Last Name</label>
-                        <input type="text" id="lastName" class="public-input">
-                    </div>
-                </div>
-
-                <div class="form-line">
-                    <div class="input-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" class="public-input" required>
-                    </div>
-                </div>
-
-                <div class="form-line">
-                    <div class="input-group">
-                        <label for="contactNo">Contact #</label>
-                        <input type="text" id="contactNo" class="public-input" required>
-                    </div>
-                </div>
-
-                <div class="form-line">
-                    <div class="input-group">
-                        <label for="businessName">Food business to report</label>
-                        <input type="text" id="businessName" class="public-input" required>
-                    </div>
-                </div>
-
-                <div class="form-line">
-                    <div class="input-group">
-                        <label for="businessAddress">Food business address</label>
-                        <input type="text" id="businessAddress" class="public-input" required>
-                    </div>
-                </div>
-
-                <div class="form-line">
-                    <div class="input-group">
-                        <label for="violationType">Type of violations committed</label>
-                        <div class="public-select-wrapper">
-                            <select id="violationType" class="public-select" required>
-                                <option value="" disabled selected hidden>Select Violation Type</option>
-                                <option value="Cross-contamination">Cross-contamination</option>
-                                <option value="Bare-Hand Contact with Ready to Eat Food">Bare-Hand Contact with Ready to Eat Food</option>
-                                <option value="Improper Cooking Temperatures">Improper Cooking Temperatures</option>
-                                <option value="Failure to Rapidly Cool or Reheat Foods">Failure to Rapidly Cool or Reheat Foods</option>
-                                <option value="Poor Handwashing Practices">Poor Handwashing Practices</option>
-                                <option value="Improper Food Storage Temperatures">Improper Food Storage Temperatures</option>
-                                <option value="Pest Infestation">Pest Infestation</option>
-                                <option value="Expired Food Items">Expired Food Items</option>
-                                <option value="Dirty Kitchen Equipment">Dirty Kitchen Equipment</option>
-                                <option value="Improper Dishwashing Techniques">Improper Dishwashing Techniques</option>
-                                <option value="Cluttered or Dirty Floors">Cluttered or Dirty Floors</option>
-                                <option value="Inadequate Food Protection">Inadequate Food Protection</option>
-                                <option value="Improper Employee Hygiene">Improper Employee Hygiene</option>
-                                <option value="Unapproved Food Resources">Unapproved Food Resources</option>
-                                <option value="Unclean Restrooms">Unclean Restrooms</option>
-                                <option value="Grease Buildup in Exhaust Systems">Grease Buildup in Exhaust Systems</option>
-                                <option value="Failure to Properly Label Allergens">Failure to Properly Label Allergens</option>
-                                <option value="Inadequate Training for Employees">Inadequate Training for Employees</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-line">
-                    <div class="input-group">
-                        <label for="additionalDetails">Additional details</label>
-                        <textarea id="additionalDetails" class="public-textarea" rows="5" required></textarea>
-                    </div>
-                </div>
-
-                <div class="form-line btn-container-right">
-                    <button type="submit" class="public-submit-btn">Submit</button>
-                </div>
-
-            </form>
-        </section>
-    </main>
-
-    <div id="toast" class="toast hidden">
-        <div class="toast-text">
-            <strong id="toast-title">Notification</strong>
-            <p id="toast-message">Message text content.</p>
-        </div>
-    </div>
-
-    <script>
-       
-        function toggleMobileMenu() {
-            const navDropdown = document.getElementById('customNavDropdown');
-            navDropdown.classList.toggle('show');
-        }
-
-       
-        function handleDarkModeToggle(isCurrentlyChecked) {
-            if (isCurrentlyChecked) {
-               
-                document.body.classList.add('dark-mode', 'theme-dark-custom', 'text-white');
-                
-                document.querySelectorAll('table').forEach(table => {
-                    table.classList.add('table-dark');
-                });
-                document.querySelectorAll('.form-container').forEach(div => {
-                    div.classList.add('theme-dark-custom');
-                });
-            } else {
-                
-                document.body.classList.remove('dark-mode', 'theme-dark-custom', 'text-white');
-                
-                document.querySelectorAll('table').forEach(table => {
-                    table.classList.remove('table-dark');
-                });
-                document.querySelectorAll('.form-container').forEach(div => {
-                    div.classList.remove('theme-dark-custom');
-                });
-            }
-        }
-
-    
-        document.addEventListener("DOMContentLoaded", () => {
-            const toggleSwitch = document.getElementById('darkModeToggle') || document.getElementById('themeSwitcher');
-            
-            if (toggleSwitch) {
-                toggleSwitch.addEventListener('change', function() {
-                    handleDarkModeToggle(this.checked);
-                });
-            }
-        });
-        
-        const anonToggle = document.getElementById('anonymousToggle');
-        const firstName = document.getElementById('firstName');
-        const lastName = document.getElementById('lastName');
-
-        anonToggle.addEventListener('change', function() {
-            if (this.checked) {
-                firstName.value = '';
-                lastName.value = '';
-                firstName.disabled = true;
-                lastName.disabled = true;
-                firstName.placeholder = "Anonymous";
-                lastName.placeholder = "Anonymous";
-            } else {
-                firstName.disabled = false;
-                lastName.disabled = false;
-                firstName.placeholder = "";
-                lastName.placeholder = "";
-            }
-        });
-
-        
-        document.getElementById('complaintForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            showToast("success", "Report Successfully Submitted", "Your complaint has been successfully delivered.");
-            this.reset();
-            firstName.disabled = false;
-            lastName.disabled = false;
-            firstName.placeholder = "";
-            lastName.placeholder = "";
-        });
-
-        
-        function showToast(type, title, message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-title').textContent = title;
-            document.getElementById('toast-message').textContent = message;
-
-            toast.classList.remove('success', 'error', 'hidden');
-            toast.classList.add(type);
-
-            setTimeout(() => {
-                toast.classList.add('hidden');
-                toast.classList.remove(type);
-            }, 4000);
-        }
-    </script>
 </body>
 </html>
