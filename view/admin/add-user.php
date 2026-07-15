@@ -1,137 +1,76 @@
+<?php
+require_once '../../controllers/adminAddUsers.controller.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="FoodSafe Add User Page">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodSafe - Provision User Profile</title>
+    <link rel="icon" type="image/png" href="../../src/images/logo-tab.png">
+    <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../styles/css/global.css">
-    <link rel="stylesheet" href="../../styles/css/admin/add-user.css">
-    <title>FoodSafe - Add User</title>
+    <script src="../../styles/js/jquery-3.7.1.min.js"></script>
+    <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
+    <script src="../../styles/js/nav-bar.js"></script>
 </head>
-<body class="admin-page">
+<body class="bg-light">
+    <div id="navBar"><?php include __DIR__ . '/../../../navbar.php';?></div>
 
-    <header>
-        <div class="logo-area">
-    <img src="../../src/images/logo.png" alt="FoodSafe Logo" class="logo-img">
-    <span>FoodSafe</span>
-</div>
-        <nav>
-            <div class="toggle-container">
-                <span>Dark</span>
-                <label class="switch">
-                    <input type="checkbox" id="darkModeToggle">
-                    <span class="slider"></span>
-                </label>
+    <div class="container my-5" style="max-width: 550px;">
+        <?php if (!empty($success_msg)): ?>
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i><?= $success_msg ?>
+                <button type="button" class="btn-close" data-bs-dismiss='alert' aria-label='Close'></button>
             </div>
-            <a href="dashboard.html">Dashboard</a>
-            <a href="../login.html">Logout</a>
-        </nav>
-    </header>
+        <?php endif; ?>
 
-    <main class="form-container-wrapper">
-    <div class="form-center-box">
-        <section class="form-left">
-            <h1 class="page-title-orange">Add New User</h1>
-            
-            <form id="addUserForm">
-                <div class="custom-fg">
-                    <label for="firstName">First Name</label>
-                    <input type="text" id="firstName" class="custom-input" required>
-                </div>
-                
-                <div class="custom-fg">
-                    <label for="lastName">Surname</label>
-                    <input type="text" id="lastName" class="custom-input" required>
-                </div>
+        <?php if (!empty($error_msg)): ?>
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="bi bi-exclamation-octagon-fill me-2"></i><?= $error_msg ?>
+                <button type="button" class="btn-close" data-bs-dismiss='alert' aria-label='Close'></button>
+            </div>
+        <?php endif; ?>
 
-                <div class="custom-row">
-                    <div class="custom-fg flex-1">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" class="custom-input" required>
+        <div class="card border-0 shadow-lg">
+            <div class="card-header bg-dark text-white py-3">
+                <h5 class="mb-0"><i class="bi bi-person-badge-fill me-2"></i> Register System User</h5>
+            </div>
+            <div class="card-body p-4">
+                <form action="" method="POST" autocomplete="off">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">Username</label>
+                        <input type="text" name="username" id="username" class="form-control" required>
                     </div>
-                    <div class="custom-fg flex-1">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" class="custom-input" required>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Active Email Address</label>
+                        <input type="email" name="email" id="email" class="form-control" required>
                     </div>
-                </div>
-
-                <div class="custom-fg">
-                    <label for="region">District Name</label>
-                    <div class="select-wrapper">
-                        <select id="region" class="custom-select-pill" required>
-                            <option value="" disabled selected hidden>Select District</option>
-                            <option value="NCR">NCR</option>
-                            <option value="Region 1">Region 1</option>
-                            <option value="Region 2">Region 2</option>
-                            <option value="Region 3">Region 3</option>
-                            <option value="Region 4A">Region 4A</option>
-                            <option value="Region 4B">Region 4B</option>
-                            <option value="Region 5">Region 5</option>
-                            <option value="CAR">CAR</option>
+                    <div class="mb-3">
+                        <label for="role" class="form-label">System Role / Permissions</label>
+                        <select name="role" id="role" class="form-select" required>
+                            <option value="public">Public User (Customer)</option>
+                            <option value="inspector">Safety Health Inspector</option>
+                            <option value="admin">System Administrator</option>
                         </select>
                     </div>
-                </div>
-
-                <div class="btn-left-wrapper">
-                    <button type="submit" class="action-btn-submit">Add User</button>
-                </div>
-            </form>
-        </section>
-    </div>
-</main>
-
-    <div id="toast" class="custom-toast hidden">
-        <div class="custom-toast-text">
-            <strong id="toast-title">Notification</strong>
-            <p id="toast-message">Message text content.</p>
+                    <hr class="my-4">
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Access Password</label>
+                        <input type="password" name="password" id="password" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="confirm_password" class="form-label">Confirm Password</label>
+                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+                    </div>
+                    <button type="submit" name="register_user" class="btn btn-primary w-100 py-2 mt-3">
+                        <i class="bi bi-shield-lock-fill me-2"></i> Provision Account
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
-
-    <footer class="site-footer">
-        FoodSafe - Copyright 2026
-    </footer>
-    
-    <script>
-        const darkToggle = document.getElementById('darkModeToggle');
-        if (darkToggle) darkToggle.checked = false; 
-
-        darkToggle.addEventListener('change', function() {
-            if (this.checked) {
-                document.body.classList.add('dark-mode');
-            } else {
-                document.body.classList.remove('dark-mode');
-            }
-        });
-
-        document.getElementById('addUserForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const firstName = document.getElementById('firstName').value.trim();
-            const lastName = document.getElementById('lastName').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const region = document.getElementById('region').value;
-
-            if (firstName && lastName && email && region) {
-                showToast("success", "User Registration Successful", `${firstName} ${lastName} has been added safely.`);
-                document.getElementById('addUserForm').reset();
-            } else {
-                showToast("error", "Registration Failed", "Please ensure all fields are filled accurately.");
-            }
-        });
-
-        function showToast(type, title, message) {
-            const toast = document.getElementById('toast');
-            document.getElementById('toast-title').textContent = title;
-            document.getElementById('toast-message').textContent = message;
-            
-            toast.classList.remove('success', 'error', 'hidden');
-            toast.classList.add(type);
-            
-            setTimeout(() => {
-                toast.classList.add('hidden');
-                toast.classList.remove(type);
-            }, 3000);
-        }
-    </script>
 </body>
 </html>
