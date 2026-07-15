@@ -22,8 +22,8 @@
 
         <div class="button-container">
             <div class="button-row">
-                <a href="/adminUsers" class="btn-pill">Add New User</a>
-                <a href="/adminAddUsers" class="btn-pill">User Management</a> 
+                <a href="/adminUsers" class="btn-pill">User Management</a>
+                <a href="/adminAddUsers" class="btn-pill">Add New User</a> 
                 <a href="/business-directory" class="btn-pill">Restaurant Management</a>
                 <a href="/exportData" class="btn-pill">Export System Data</a>
             </div>
