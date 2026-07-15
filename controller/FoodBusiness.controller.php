@@ -20,29 +20,21 @@ class FoodBusinessController {
     public function showPage($pdo){
         $this->foodBusinessModel = new FoodBusiness($pdo);
         $foodBusinesses = $this->foodBusinessModel->getAllRowInfo();
+        $districts = $this->foodBusinessModel->getDistricts();
         include __DIR__ . '/../view/inspector/business-directory.php';
     }
     
-    public function addRow(){
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $licenseNo = trim($_POST['licenseNo'] ?? '');
-            $name = trim($_POST['name'] ?? '');
-            $address = trim($_POST['address'] ?? '');
-            $contactNo = $_POST['contactNo'] ?? '';
-            $mapsLink = trim($_POST['mapsLink'] ?? '');
-            $imageLink = trim($_POST['imageLink'] ?? '');
-            $status = trim($_POST['status'] ?? '');
-            $districtId = trim($_POST['districtId'] ?? '');
-
+    public function addRow($licenseNo, $name, $address, $contactNo, $mapsLink, $imageLink, $districtId){
+        // if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            //TODO: santiize input
             $errors = [];
-
-            if (empty($licenseNo)||empty($name)||empty($address)||empty($contactNo)||empty($imageLink)||empty($districtId)){
-                $errors[] = "Required fields are not complete.";
-            }
+            // if (empty($licenseNo)||empty($name)||empty($address)||empty($contactNo)||empty($imageLink)||empty($districtId)){
+            //     $errors[] = "Required fields are not complete.";
+            // }
             
-            if (!is_numeric($licenseNo)) {
-                $errors[] = "License No. must be numeric.";
-            }
+            // if (!is_numeric($licenseNo)) {
+            //     $errors[] = "License No. must be numeric.";
+            // }
 
             // if (isset($_FILES['image']) && $_FILES['image']['error'] === UPLOAD_ERR_OK) {
             //     $allowedTypes = ['image/jpeg', 'image/png', 'image/gif'];
@@ -64,17 +56,25 @@ class FoodBusinessController {
             //     $errors[] = "Image upload failed.";
             // }
 
-            if (!empty($errors)) {
-                include 'views/restaurant_form.php';
-                return;
-            }
+            // if (!empty($errors)) {
+            //     include 'views/restaurant_form.php';
+            //     return;
+            // }
 
             // // Save to database (store image path)
-            // $this->restaurantModel->create($name, $location, $cuisine, $rating, $description, $targetPath);
+            $this->foodBusinessModel->licenseNo = $licenseNo;
+            $this->foodBusinessModel->name = $name;
+            $this->foodBusinessModel->address = $licenseNo;
+            $this->foodBusinessModel->contactNo = $licenseNo;
+            $this->foodBusinessModel->mapsLink = $licenseNo;
+            $this->foodBusinessModel->imageLink = $licenseNo;
+            $this->foodBusinessModel->status = 1;
+            $this->foodBusinessModel->district = $districtId;
+            $this->foodBusinessModel->insertRow($this->foodBusinessModel);
 
             // header("Location: index.php");
             // exit;
-        }
+        // }
     }
 
     public function deleteRow($id){
@@ -88,8 +88,25 @@ class FoodBusinessController {
 $controller = new FoodBusinessController($pdo);
 
 // Router
-if (isset($_POST['action']) && $_POST['action'] === 'delete') {
-    $controller->deleteRow($_POST['foodBusinessId']);
+if (isset($_POST['action'])){
+    $action = $_POST['action'];
+
+    switch ($action){
+        case 'delete':
+            $controller->deleteRow($_POST['foodBusinessId']);
+            break;
+        case 'add':
+            $controller->addRow(
+                            $_POST['licenseNo'],
+                            $_POST['name'],
+                            $_POST['address'],
+                            $_POST['contactNo'],
+                            $_POST['mapsLink'],
+                            $_POST['imageLink'],
+                            $_POST['districtId']);
+            break;
+    }
+
 }
 
 // if (isset($_GET['action']) && $_GET['action'] === 'view'){
