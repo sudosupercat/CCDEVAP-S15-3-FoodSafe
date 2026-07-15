@@ -4,7 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
 }
 
 if (!isset($_SESSION['userID'])) {
-    header("Location: /CCDEVAP-S15-3-FoodSafe/controller/loginPage.controller.php");
+    header("Location: controller/loginPage.controller.php");
     exit();
 }
 
@@ -16,7 +16,7 @@ if (isset($_POST['action']) && $_POST['action'] === 'update' && isset($_POST['id
 
     updateReportStatus($pdo, $_POST['id'], $_POST['status']);
 
-    header('Location: /CCDEVAP-S15-3-FoodSafe/controller/inspector/inspectorReports.controller.php?toast=' . $_POST['status']);
+    header('Location: ?toast=' . $_POST['status']);
     exit();
 }
 
