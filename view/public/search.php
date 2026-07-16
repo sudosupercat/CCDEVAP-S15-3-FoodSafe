@@ -57,8 +57,8 @@ $sortOrder = $_GET['sort'] ?? 'az';
                         }
                     ?>
 
-                    <a href="restaurant-detail.php?id=<?php echo htmlspecialchars($resto['restoID']); ?>" class="restaurant-card">
-                        <img src="<?php echo htmlspecialchars($resto['image']); ?>" alt="<?php echo htmlspecialchars($resto['name']); ?>" class="resto-image">
+                    <a href="/restaurant-detail?id=<?php echo htmlspecialchars($resto['restoID']); ?>" class="restaurant-card">
+                        <img src="/img/<?php echo htmlspecialchars($resto['image']); ?>" alt="<?php echo htmlspecialchars($resto['name']); ?>" class="resto-image" onerror="this.onerror=null; this.src='data:image/svg+xml;charset=UTF-8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22600%22 height=%22450%22%3E%3Crect width=%22100%25%22 height=%22100%25%22 fill=%22%23ddd%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 font-family=%22Arial%22 font-size=%2224%22 fill=%22%23888%22 text-anchor=%22middle%22 dy=%22.3em%22%3ENo Image Available%3C/text%3E%3C/svg%3E';">
                         
                         <div class="resto-info">
                             <h3><?php echo htmlspecialchars($resto['name']); ?></h3>
