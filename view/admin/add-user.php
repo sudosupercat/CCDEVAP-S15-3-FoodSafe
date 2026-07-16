@@ -7,15 +7,16 @@
     <link rel="icon" type="image/png" href="../../src/images/logo-tab.png">
     <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../styles/css/global.css">
+    <link rel="stylesheet" href="../../styles/css/admin/add-user.css">
     <script src="../../styles/js/jquery-3.7.1.min.js"></script>
     <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
     <script src="../../styles/js/nav-bar.js"></script>
 </head>
-<body class="bg-light">
+<body class="admin-page">
     <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
-    <div class="container my-5" style="max-width: 550px;">
+    <div class="container my-3" style="max-width: 600px;">
         <?php if (!empty($success_msg)): ?>
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 <i class="bi bi-check-circle-fill me-2"></i><?= $success_msg ?>
@@ -29,62 +30,68 @@
                 <button type="button" class="btn-close" data-bs-dismiss='alert' aria-label='Close'></button>
             </div>
         <?php endif; ?>
+    </div>
 
-        <div class="card border-0 shadow-lg">
-            <div class="card-header bg-dark text-white py-3">
-                <h5 class="mb-0"><i class="bi bi-person-badge-fill me-2"></i> Register System User</h5>
-            </div>
-            <div class="card-body p-4">
+    <div class="form-container-wrapper">
+        <div class="form-center-box">
+            <div class="form-left">
+                <h1 class="page-title-orange">Register System User</h1>
+
                 <form action="" method="POST" autocomplete="off">
-                    <div class="mb-3">
-                        <label for="email" class="form-label">Active Email Address</label>
-                        <input type="email" name="email" id="email" class="form-control" required>
+                    <div class="custom-fg">
+                        <label for="email">Active Email Address</label>
+                        <input type="email" name="email" id="email" class="custom-input" required>
                     </div>
 
-         
-                    <div class="mb-3">
-                        <label for="firstName" class="form-label">First Name</label>
-                        <input type="text" name="firstName" id="firstName" class="form-control" required>
+                    <div class="custom-fg">
+                        <label for="firstName">First Name</label>
+                        <input type="text" name="firstName" id="firstName" class="custom-input" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="lastName" class="form-label">Last Name</label>
-                        <input type="text" name="lastName" id="lastName" class="form-control" required>
+                    <div class="custom-fg">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" name="lastName" id="lastName" class="custom-input" required>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="role" class="form-label">System Role / Permissions</label>
-                        <select name="role" id="role" class="form-select" required>
-                            <option value="">-- Select Role --</option>
-                            <option value="Inspector">Safety Health Inspector</option>
-                            <option value="Admin">System Administrator</option>
-                        </select>
+                    <div class="custom-fg">
+                        <label for="role">System Role / Permissions</label>
+                        <div class="select-wrapper">
+                            <select name="role" id="role" class="custom-select-pill" required>
+                                <option value="">-- Select Role --</option>
+                                <option value="Inspector">Safety Health Inspector</option>
+                                <option value="Admin">System Administrator</option>
+                            </select>
+                        </div>
                     </div>
 
-                    <div class="mb-3" id="district-container" style="display: none;">
-                        <label for="districtID" class="form-label">Assigned Inspector District</label>
-                        <select name="districtID" id="districtID" class="form-select">
-                            <option value="">None / Select District</option>
-                            <?php foreach ($districts as $district): ?>
-                                <option value="<?= htmlspecialchars($district['districtID']) ?>">
-                                    <?= htmlspecialchars($district['name']) ?>
-                                </option>
-                            <?php endforeach; ?>
-                        </select>
+                    <div class="custom-fg" id="district-container" style="display: none;">
+                        <label for="districtID">Assigned Inspector District</label>
+                        <div class="select-wrapper">
+                            <select name="districtID" id="districtID" class="custom-select-pill">
+                                <option value="">None / Select District</option>
+                                <?php foreach ($districts as $district): ?>
+                                    <option value="<?= htmlspecialchars($district['districtID']) ?>">
+                                        <?= htmlspecialchars($district['name']) ?>
+                                    </option>
+                                <?php endforeach; ?>
+                            </select>
+                        </div>
                     </div>
 
-                    <hr class="my-4">
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Access Password</label>
-                        <input type="password" name="password" id="password" class="form-control" required>
+                    <div class="custom-fg">
+                        <label for="password">Access Password</label>
+                        <input type="password" name="password" id="password" class="custom-input" required>
                     </div>
-                    <div class="mb-3">
-                        <label for="confirm_password" class="form-label">Confirm Password</label>
-                        <input type="password" name="confirm_password" id="confirm_password" class="form-control" required>
+                    <div class="custom-fg">
+                        <label for="confirm_password">Confirm Password</label>
+                        <input type="password" name="confirm_password" id="confirm_password" class="custom-input" required>
                     </div>
-                    <button type="submit" name="register_user" class="btn btn-primary w-100 py-2 mt-3">
-                        <i class="bi bi-shield-lock-fill me-2"></i> Provision Account
-                    </button>
+
+                    <div class="btn-center-wrapper">
+                        <button type="submit" name="register_user" class="action-btn-submit">
+                            <i class="bi bi-shield-lock-fill me-2"></i> Provision Account
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
