@@ -50,12 +50,14 @@
                                 data-district="<?= htmlspecialchars($foodBusiness->district) ?>">
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <button type="button" class="button-option button-delete-business"
+                            <?php if($_SESSION['role'] == "Admin"){echo 
+                            '<button type="button" class="button-option button-delete-business"
                                 data-foodBusinessId="<?= htmlspecialchars($foodBusiness->foodBusinessId) ?>"
                                 data-name="<?= htmlspecialchars($foodBusiness->name) ?>"
                                 >
                                 <i class="bi bi-trash"></i>
-                            </button>
+                            </button>';} ?>
+                            
                         </td>
                     </tr>
                     <?php } endforeach; ?>
