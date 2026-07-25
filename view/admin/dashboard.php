@@ -73,6 +73,23 @@
                 </div>
             </div>
 
+            <div class="col-lg-12">
+                <div class="chart">
+                    <h4>Region Failed Inspection Trend</h4>
+                     <div class="chart-canvas">
+                        <canvas id="lineChartRegionFailed"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12">
+                <div class="chart">
+                    <h4>Region Violation Trend</h4>
+                     <div class="chart-canvas">
+                        <canvas id="lineChartViolation"></canvas>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -114,8 +131,12 @@
         let failedRow = <?php echo $failInspecCount; ?>;
 
         let violationRow = <?php echo $violationCount; ?>;
-        console.log(violationRow);
+
+
+        let distFailedRow = <?php echo $distFailedCount; ?>;
+        let distViolationTypeRow = <?php echo $distViolationTypeCount; ?>;
     </script>
     <script src="../../styles/js/admin/admin-charts.js"></script>
+    
 </body>
 </html>
