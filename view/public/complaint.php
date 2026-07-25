@@ -49,7 +49,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_complaint'])) 
     <script src="styles/js/nav-bar.js"></script>
 </head>
 <body class="public-report-page">
-    <?php include __DIR__ . '/../navbar.php';?>
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
     <div class="container" style="max-width: 1400px;">
         <?= $message ?>

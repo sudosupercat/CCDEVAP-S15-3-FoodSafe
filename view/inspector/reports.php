@@ -14,7 +14,7 @@
     <script src="../../styles/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
-    <?php include __DIR__ . '/../navbar.php';?>
+    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
     <div class="page-content">
         <div class="container">

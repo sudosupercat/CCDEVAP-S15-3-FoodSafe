@@ -14,7 +14,7 @@
         <script src="../../styles/js/inspector/business-directory.js"></script>
     </head>
     <body>
-        <?php include __DIR__ . '/../navbar.php';?>
+        <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
         <h1 class="mt-4 mb-4 fw-bold">Food Business Directory</h1>
         <div class="float-right me-5">
         </div>
