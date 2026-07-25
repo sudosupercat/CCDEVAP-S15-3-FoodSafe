@@ -98,10 +98,6 @@
             </div>
             <span class="toast-close" onclick="hideToast()">&times;</span>
     </div>
-    
-    <footer class="site-footer">
-        FoodSafe - Copyright 2026
-    </footer>
 
     <script>
         function searchReports() {
@@ -171,5 +167,8 @@
             clearTimeout(toastTimeout);
         }
     </script>
+    <footer class="site-footer">
+        FoodSafe - Copyright 2026
+    </footer>
 </body>
 </html>

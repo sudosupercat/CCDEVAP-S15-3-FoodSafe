@@ -11,7 +11,7 @@ function getReports($pdo, $userID, $role) {
                     JOIN districts d ON r.districtID = d.districtID
                     JOIN users u ON d.districtID = u.districtID
                     WHERE u.userID = ?
-                    ORDER BY rp.createdAt;");
+                    ORDER BY rp.createdAt, rp.status ASC;");
         $sql->execute([$userID]);
         $result = $sql->fetchAll(PDO::FETCH_ASSOC);
     } else {
@@ -19,7 +19,7 @@ function getReports($pdo, $userID, $role) {
                     FROM reports rp
                     JOIN restaurants r ON rp.restoID = r.restoID
                     JOIN requirements rq ON rp.requirementCode = rq.requirementCode
-                    ORDER BY rp.createdAt;");
+                    ORDER BY rp.createdAt, rp.status ASC;");
         $result = $sql->fetchAll(PDO::FETCH_ASSOC);
     }
     

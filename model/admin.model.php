@@ -128,6 +128,8 @@ function getUserByID($pdo, $userID) {
 }
 
 function editUser($pdo, $userID, $email, $firstName, $lastName, $districtID) {
+    $districtID = ($districtID === '' || $districtID === null) ? null : $districtID;
+    
     $sql = $pdo->prepare("UPDATE users
                         SET email = ?, firstName = ?, lastName = ?, districtID = ?
                         WHERE userID = ?;");

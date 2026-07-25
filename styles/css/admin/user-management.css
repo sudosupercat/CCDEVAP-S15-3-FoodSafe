@@ -30,8 +30,6 @@ h1 {
 
 table {
   border-collapse: collapse;
-  width: 100%;
-  min-width: 500px;
 }
 
 th {
@@ -51,7 +49,7 @@ td {
 
 .table-wrapper {
   width: 100%;
-  max-width: 100%;
+  max-width: 100%; 
   overflow-x: auto;
 }
 
@@ -217,6 +215,11 @@ button:hover, .actions-button button:hover {
 .btn-disable {
   color: red;
 }
+
+/* div.dt-container {
+	margin: 0 auto;
+	width: 80%;
+} */
 
 body.admin-page {
   background-color: var(--bg-purple);
@@ -479,25 +482,74 @@ body.dark-mode input:checked + .slider:before {
     overflow-x: visible;
   }
 
-  #user-man-table {
-    min-width: 0;
-    width: 100%;
-    font-size: 11px;
-  }
-
   th, td {
     padding: 4px;
     word-break: break-word;
   }
 
+  button {
+    padding: 4px 10px;
+    font-size: 10px;
+    border-width: 2px;
+  }
+
+  .modal-content {
+    width: 90%;
+    margin: 15% auto;
+  }
+}
+
+@media (max-width: 1000px) {
+  header {
+    padding: 15px 20px;
+  }
+  nav {
+    gap: 15px;
+  }
+  nav a {
+    font-size: 1rem;
+  }
+  .page-title-orange {
+    font-size: 2.3rem;
+  }
+  .action-btn-submit {
+    width: 100%;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .table-wrapper {
+    overflow-x: visible;
+  }
+
+  #user-man-table {
+    min-width: 0;
+    width: 100%;
+    font-size: 15px;
+  }
+
+  div.dt-container {
+	margin: 0 auto;
+	width: 100%;
+  }
+
+  #user-man-table th,
+  #user-man-table td {
+    padding: 3px 2px;
+    white-space: normal;
+    overflow-wrap: normal;
+    word-break: normal;
+  }
+
   .actions-button {
     flex-direction: column;
-    gap: 4px;
   }
 
   button {
     padding: 4px 10px;
-    font-size: 10px;
+    font-size: 15px;
     border-width: 2px;
   }
 
