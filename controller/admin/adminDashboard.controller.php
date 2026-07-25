@@ -14,6 +14,8 @@ $userCounts = getInspectorCounts($pdo, $year, $month);
 $passInspecCount = getPassInspection($pdo, $year);
 $failInspecCount = getFailInspection($pdo, $year);
 $violationCount = getViolationCount($pdo, $year);
+$distFailedCount = getDistrictFailedCount($pdo, $year);
+$distViolationTypeCount = getDistrictViolationTypeCount($pdo, $year);
 
 require __DIR__ . '/../../view/admin/dashboard.php';
 ?>

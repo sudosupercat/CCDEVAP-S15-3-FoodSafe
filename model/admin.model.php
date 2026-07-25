@@ -99,6 +99,41 @@ function getViolationCount($pdo, $year) {
     return json_encode($violation_data);
 }
 
+function getDistrictFailedCount($pdo, $year) {
+    $sql = $pdo->prepare("SELECT COUNT(i.inspectionID) as total, r.districtID as district
+                        FROM inspections i
+                        LEFT JOIN restaurants r ON i.restoID = r.restoID
+                        LEFT JOIN districts d ON r.districtID = d.districtID
+                        WHERE YEAR(inspectionDate) = ?
+                        AND grade = 'Fail'
+                        GROUP BY r.districtID;");
+    $sql->execute([$year]);
+
+    $distViolation_data = [];
+     while($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+        array_push($distViolation_data, $row);
+    }
+
+    return json_encode($distViolation_data);
+}
+
+function getDistrictViolationTypeCount($pdo, $year) {
+    $sql = $pdo->prepare("SELECT COUNT(v.violationID) as total, r.districtID as districtNum, v.requirementCode as violationNum
+                        FROM violations v
+                        LEFT JOIN inspections i ON v.inspectionID = i.inspectionID
+                        LEFT JOIN restaurants r ON i.restoID = r.restoID
+                        WHERE YEAR(i.inspectionDate) = ?
+                        GROUP BY r.districtID, v.requirementCode;");
+    $sql->execute([$year]);
+
+    $data = [];
+    while($row = $sql->fetch(PDO::FETCH_ASSOC)) {
+        array_push($data, $row);
+    }
+
+    return json_encode($data);
+}
+
 // USER MANAGEMENT
 function getUsers($pdo) {
     $sql = $pdo->query("SELECT u.userID, u.email, CONCAT(u.firstName, ' ', u.lastName) as fullName, u.role, u.districtID, d.name as districtName, u.status, u.deleteFlag
