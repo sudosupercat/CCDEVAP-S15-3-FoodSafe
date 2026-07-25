@@ -11,7 +11,7 @@
         <script src="../../styles/js/inspector/inspection-entry.js"></script>
     </head>
     <body>
-        <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+        <?php include __DIR__ . '/../navbar.php';?>
         <h1 class="mt-4 mb-4 fw-bold">Log Inspection Entry</h1>
         <div class="form-container">
             <form id="form-add-inspection">

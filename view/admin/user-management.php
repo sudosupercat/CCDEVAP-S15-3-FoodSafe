@@ -17,7 +17,7 @@
     <script src="../../styles/js/admin/users.js"></script>
 </head>
 <body>
-    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+    <?php include __DIR__ . '/../navbar.php';?>
 
     <h1>User Management</h1>
 

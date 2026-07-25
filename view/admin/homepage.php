@@ -14,7 +14,7 @@
     <script src="../styles/js/nav-bar.js"></script>
 </head>
 <body>
-    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+    <?php include __DIR__ . '/../navbar.php';?>
     <main class="homepage-main">
         <h1 class="title-text">Welcome, <span class="titlecolor-orange"><?php echo htmlspecialchars($adminName); ?></span></h1>
         

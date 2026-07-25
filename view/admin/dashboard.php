@@ -15,7 +15,7 @@
     <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">
 </head>
 <body>
-    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+    <?php include __DIR__ . '/../navbar.php';?>
 
     <div class="header">
         <h1>Web Analytics <br>Dashboard</h1>

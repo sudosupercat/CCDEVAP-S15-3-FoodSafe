@@ -14,7 +14,7 @@
     <script src="../../styles/js/nav-bar.js"></script>
 </head>
 <body class="resto-rating-page">
-    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+    <?php include __DIR__ . '/../navbar.php';?>
 
     <?php $inspections = $inspections ?? []; ?>
 

@@ -14,7 +14,7 @@
     <script src="../../styles/js/nav-bar.js"></script>
 </head>
 <body class="admin-page">
-    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+    <?php include __DIR__ . '/../navbar.php';?>
 
     <div class="container my-3" style="max-width: 600px;">
         <?php if (!empty($success_msg)): ?>
