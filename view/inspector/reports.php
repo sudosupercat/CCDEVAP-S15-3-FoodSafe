@@ -17,7 +17,7 @@
     <script src="../../styles/js/inspector/reports.js"></script>
 </head>
 <body>
-    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+    <?php include __DIR__ . '/../navbar.php';?>
 
     <h1>Report Management</h1>
 

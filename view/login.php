@@ -31,7 +31,6 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
         <title>FoodSafe Login</title>
     </head>
     <body>
-
         <header>
             <div id="navBar"><?php include __DIR__ . '/navbar.php';?></div>
         </header>

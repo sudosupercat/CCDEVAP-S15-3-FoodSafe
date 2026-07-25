@@ -23,7 +23,7 @@ $sortOrder = $_GET['sort'] ?? 'az';
     <script src="../../styles/js/nav-bar.js"></script>
 </head>
 <body>
-    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+    <?php include __DIR__ . '/../navbar.php';?>
     <div class="search-section">
         <div class="search-content">
             <form action="search.php" method="GET" class="search-form">
