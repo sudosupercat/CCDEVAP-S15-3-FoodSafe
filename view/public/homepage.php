@@ -21,7 +21,7 @@ $homepageData = $controller->getData();
     <script src="styles/js/nav-bar.js"></script>
 </head>
 <body>
-    <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
+    <?php include __DIR__ . '/../navbar.php';?>
     <header class="main-section">
         <div id="navbar-placeholder"></div>
         <div class="main-content">
