@@ -51,10 +51,10 @@ var lineChart = new Chart(linectx, {
 var pieChart = new Chart(piectx, {
     type: 'pie',
     data: {
-        labels: ['Cross-contamination', 'Bare-Hand Contact with Ready to Eat Food', 'Improper Cooking Temperatures', 'Failure to Rapidly Cool or Reheat Foods', 
+        labels: ['Cross-contamination', 'Improper Cooking Temperatures',
                     'Poor Handwashing Practices', 'Improper Food Storage Temperatures', 'Pest Infestation','Expired Food Items','Dirty Kitchen Equipment',
                     'Improper Dishwashing Techniques','Cluttered or Dirty Floors', 'Inadequate Food Protection', 'Improper Employee Hygiene', 'Unapproved Food Resources',
-                    'Unclean Restrooms', 'Grease Buildup in Exhaust Systems', 'Failure to Properly Label Allergens','Inadequate Training for Employees' 
+                    'Unclean Restrooms', 'Grease Buildup in Exhaust Systems', 'Failure to Properly Label Allergens','Inadequate Training for Employees', 'Failure to Rapidly Cool or Reheat Foods', 'Bare-Hand Contact with Ready to Eat Food'
                 ],
         datasets: [{
             label: 'Violation',
@@ -107,7 +107,14 @@ var pieChart = new Chart(piectx, {
         maintainAspectRatio: false,
         plugins: {
             legend: {
-                position: 'top',
+                position: 'left',
+                align: 'center',
+                labels: {
+                    boxWidth: 12,
+                    font: { 
+                        size: 12 
+                    }
+                }
             },
             tooltip: {
                 callbacks: {
