@@ -6,69 +6,89 @@
     <title>Reports</title>
     <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
     <link rel="stylesheet" href="../../styles/css/global.css">
+    <link rel="stylesheet" href="../../styles/css/dataTables.dataTables.min.css">
     <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
     <link rel="stylesheet" href="../../styles/css/inspector/reports.css">
     <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">
     <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
     <script src="../../styles/js/nav-bar.js"></script>
     <script src="../../styles/js/jquery-3.7.1.min.js"></script>
+    <script src="../../styles/js/dataTables.min.js"></script>
+    <script src="../../styles/js/inspector/reports.js"></script>
 </head>
 <body>
     <div id="navBar"><?php include __DIR__ . '/../navbar.php';?></div>
 
-    <div class="page-content">
-        <div class="container">
-            <h2>Incoming Reports</h2>
+    <h1>Report Management</h1>
 
-            <input type="text" placeholder="Search for a complaint..." id="search-input" onkeyup="searchReports()">
-            
-            <div id="reports-container">
+    <div class="container">
+        <div class="table-wrapper">
+        <table id="reports-table" class="table table-striped">
+            <thead>
+            <tr>
+                <th>Report #</th>
+                <th>Date</th>
+                <th>Establishment</th>
+                <th>Violation</th>
+                <th>Description</th>
+                <th>Status</th> 
+                <th>Update Status</th>
+            </tr>
+            </thead>
+            <tbody>
                 <?php
-                    foreach ($reports as $report) {
-                        if ($report['status'] == 'Pending') {
-                        echo '<a href="controller/inspector/InspectorReports.controller.php?reportID=' . htmlspecialchars($report['reportID']) . '" class="reports">';
-                        echo '<p>Report Date: ' . htmlspecialchars(date('F j, Y', strtotime($report['date']))) . ' - ' . htmlspecialchars($report['establishment']) . '</p>';
-                        echo '<p>Violation: ' . htmlspecialchars($report['title']) . '</p>';
-                        echo '<p>Status: ' . htmlspecialchars($report['status']) . '</p>';
-                        echo '</a>';
-                        }
-                    }
+                $i = 1;
+                foreach ($reports as $report) {
+                    echo "<tr>";
+                    echo "<td>" . $i . "</td>";
+                    echo "<td>" . htmlspecialchars(date('F j, Y', strtotime($report['date']))) . "</td>";
+                    echo "<td>" . htmlspecialchars($report['establishment']) . "</td>";
+                    echo "<td>" . htmlspecialchars($report['title']) . "</td>";
+                    echo "<td>" . htmlspecialchars($report['description']) . "</td>";
+                    echo "<td>" . htmlspecialchars($report['status']) . "</td>";
+                    echo "<td>";
+                    echo "<div class='actions-button'>";
+                    echo "
+                    <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
+                        <input type='hidden' name='action' value='update'>
+                        <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
+                        <input type='hidden' name='status' value='Pending'>
+                        <button type='submit'>Pending</button>
+                    </form>";
+                    echo "
+                    <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
+                        <input type='hidden' name='action' value='update'>
+                        <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
+                        <input type='hidden' name='status' value='Reviewed'>
+                        <button type='submit'>Reviewed</button>
+                    </form>";
+                    echo "
+                    <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
+                        <input type='hidden' name='action' value='update'>
+                        <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
+                        <input type='hidden' name='status' value='Dismissed'>
+                        <button type='submit'>Dismissed</button>
+                    </form>";
+                    echo "</td>";
+                    echo "</tr>";
+
+                    $i++;
+                }
                 ?>
-            </div>
-        </div>
-
-        <div id="details-container">
-                <h3>Report Details</h3>
-                <?php if (isset($selectedReport)): ?>
-                <p>Report ID: <?= htmlspecialchars($selectedReport['reportID']) ?></p>
-                <p>Date: <?= htmlspecialchars(date('F j, Y', strtotime($selectedReport['date']))) ?></p>
-                <p>Establishment: <?= htmlspecialchars($selectedReport['establishment']) ?></p>
-                <p>Violation: <?= htmlspecialchars($selectedReport['title']) ?></p>
-                <p>Description: <?= htmlspecialchars($selectedReport['description']) ?></p>
-
-                <div class="actions-button">
-                    <form method="POST" action="../../controller/inspector/inspectorReports.controller.php">
-                            <input type="hidden" name="action" value="update">
-                            <input type="hidden" name="id" value="<?php echo htmlspecialchars($selectedReport['reportID']) ?>">
-                            <input type="hidden" name="status" value="Reviewed">
-
-                            <button type="submit">Reviewed</button>
-                    </form>
-
-                    <form method="POST" action="../../controller/inspector/inspectorReports.controller.php">
-                        <input type="hidden" name="action" value="update">
-                        <input type="hidden" name="id" value="<?php echo htmlspecialchars($selectedReport['reportID']) ?>">
-                        <input type="hidden" name="status" value="Dismissed">
-
-                        <button type="submit">Dismissed</button>
-                    </form>
-                </div>
-                <?php else: ?>
-
-                <p>Select a report.</p>
-
-                <?php endif; ?>
-        </div>
+            </tbody>
+            <tfoot>
+            <tr>
+                <th>Report #</th>
+                <th>Date</th>
+                <th>Establishment</th>
+                <th>Violation</th>
+                <th>Description</th>
+                <th>Status</th> 
+                <th colspan="3">Update Status</th>
+            </tr>
+            </tfoot>
+        </table>
+    </div>
     </div>
 
     <div id="toast" class="custom-toast hidden">
@@ -106,6 +126,7 @@
 
         <?php
         $toastMessages = [
+            "Pending" => "Report marked pending..",
             "Reviewed" => "Report marked reviewed.",
             "Dismissed" => "Report marked dismissed."
         ];

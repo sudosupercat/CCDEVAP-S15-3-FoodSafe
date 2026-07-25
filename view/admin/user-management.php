@@ -26,48 +26,48 @@
         <table id="user-man-table" class="table table-striped">
             <thead>
             <tr>
-                <th colspan="8">Current Users</th>
+                <th colspan="7">Current Users</th>
             </tr>
             <tr>
-                <th>User ID</th>
+                <th>User #</th>
                 <th>Email</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Full Name</th>
                 <th>Role</th>
                 <th>District</th>
                 <th>Status</th>
-                <th colspan="3">Actions</th> 
+                <th>Actions</th> 
             </tr>
             </thead>
             <tbody>
                 <?php
+                $i = 1;
                 foreach ($users as $user) {
                     if ($user['deleteFlag'] == 0) {
+                        
                         $statusLabel = $user['status'] ? 'Active' : 'Inactive';
                         $statusAction = $user['status'] ? 'Disable' : 'Enable';
                         $statusClass = $user['status'] ? 'btn-disable' : 'btn-enable';
 
                         echo "<tr>";
-                        echo "<td>" . htmlspecialchars($user['userID']) . "</td>";
+                        echo "<td>" . $i . "</td>";
                         echo "<td>" . htmlspecialchars($user['email']) . "</td>";
-                        echo "<td>" . htmlspecialchars($user['firstName']) . "</td>";
-                        echo "<td>" . htmlspecialchars($user['lastName']) . "</td>";
+                        echo "<td>" . htmlspecialchars($user['fullName']) . "</td>";
                         echo "<td>" . htmlspecialchars($user['role']) . "</td>";
                         echo "<td>" . htmlspecialchars($user['districtName']) . "</td>";
                         echo "<td>" . htmlspecialchars($statusLabel) . "</td>";
                         echo "<td>";
                         echo "<div class='actions-button'>";
                         echo "
-                        <form method='GET' action='../../controller/admin/adminUsers.controller.php'>
-                            <input type='hidden' name='action' value='edit'>
-                            <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
-                            <button type='submit' class='btn-edit'>Edit</button>
-                        </form>";
-                        echo "
                         <form method='POST' action='../../controller/admin/adminUsers.controller.php'>
                             <input type='hidden' name='action' value='update'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='{$statusClass}'>{$statusAction}</button>
+                        </form>";
+                        echo "
+                        <form method='GET' action='../../controller/admin/adminUsers.controller.php'>
+                            <input type='hidden' name='action' value='edit'>
+                            <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
+                            <button type='submit' class='btn-edit'>Edit</button>
                         </form>";
                         echo "
                         <form method='POST' action='../../controller/admin/adminUsers.controller.php'>
@@ -78,19 +78,19 @@
                         echo "</td>";
                         echo "</tr>";
                     }
+                    $i++;
                 }
                 ?>
             </tbody>
             <tfoot>
             <tr>
-                <th>User ID</th>
+                <th>User #</th>
                 <th>Email</th>
-                <th>First Name</th>
-                <th>Last Name</th>
+                <th>Full Name</th>
                 <th>Role</th>
                 <th>District</th>
                 <th>Status</th>
-                <th colspan="3">Actions</th>  
+                <th>Actions</th>  
             </tr>
             </tfoot>
         </table>

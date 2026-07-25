@@ -1,4 +1,10 @@
 <?php
+session_start();
+
+if (!isset($_SESSION['userID']) || $_SESSION['role'] !== 'Admin') {
+    header('Location: ../loginPage.controller.php');
+    exit();
+}
 
 require __DIR__ . '/../../model/admin.model.php';
 

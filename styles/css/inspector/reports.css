@@ -6,10 +6,6 @@ body {
   flex-direction: column;
 }
 
-body.theme-dark-custom .container {
-  background-color: #754c00;
-}
-
 body.theme-dark-custom h2, body.theme-dark-custom #details-container h3, body.theme-dark-custom #details-container p{
   color: white;
 }
@@ -25,6 +21,14 @@ body.theme-dark-custom .reports p, body.theme-dark-custom .reports {
   flex: 1;
 }
 
+h1 {
+  color: orange;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
 h2 {
   color: #3d00bc;
   font-weight: bold;
@@ -33,20 +37,47 @@ h2 {
   margin-top: 40px;
 }
 
-a {
+table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 500px;
+}
+
+th {
   color: black;
-  text-decoration: none;
+  background-color: white;
+  border: 1px solid;
+  padding: 8px;
+  text-align: center;
+}
+
+td {
+  color: white;
+  background-color: transparent;
+  border: 1px solid;
+  padding: 8px;
+}
+
+.table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
 }
 
 .container {
-  background-color: #ffa63a;
   display: flex;
-  flex-direction: column;
-  width: 750px;
-  min-height: 100vh;
-  background-repeat: repeat;
-  box-sizing: border-box;
-  padding-bottom: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 40px;
+  overflow-x: auto;
+}
+
+.actions-button {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: nowrap;
+  padding: 8px;
 }
 
 #search-input, .reports {
@@ -143,7 +174,6 @@ button {
   padding: 7px 15px 7px 15px;
   border: 3px solid black;
   font-weight: bold;
-  margin-top: 50px;
 }
 
 button:hover, .actions-button button:hover {

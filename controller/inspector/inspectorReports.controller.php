@@ -1,15 +1,12 @@
 <?php
-if (session_status() === PHP_SESSION_NONE) {
-    session_start();
-}
+session_start();
 
 if (!isset($_SESSION['userID'])) {
-    header("Location: /login");
+    header('Location: ../loginPage.controller.php');
     exit();
 }
 
 require __DIR__ . '/../../model/inspector.model.php';
-
 
 // REPORTS -- UPDATE STATUS
 if (isset($_POST['action']) && $_POST['action'] === 'update' && isset($_POST['id'])) {
@@ -26,9 +23,9 @@ $role = $_SESSION['role'];
 $reports = getReports($pdo, $userID, $role);
 
 // REPORTS -- LOAD SELECTED REPORT
-if (isset($_GET['reportID'])) {
-    $selectedReport = getReportByID($pdo, $_GET['reportID']);
-}
+// if (isset($_GET['reportID'])) {
+//     $selectedReport = getReportByID($pdo, $_GET['reportID']);
+// }
 
 require __DIR__ . '/../../view/inspector/reports.php';
 
