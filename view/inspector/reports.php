@@ -48,27 +48,22 @@
                     echo "<td>" . htmlspecialchars($report['status']) . "</td>";
                     echo "<td>";
                     echo "<div class='actions-button'>";
-                    echo "
-                    <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
-                        <input type='hidden' name='action' value='update'>
-                        <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
-                        <input type='hidden' name='status' value='Pending'>
-                        <button type='submit'>Pending</button>
-                    </form>";
-                    echo "
-                    <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
-                        <input type='hidden' name='action' value='update'>
-                        <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
-                        <input type='hidden' name='status' value='Reviewed'>
-                        <button type='submit'>Reviewed</button>
-                    </form>";
-                    echo "
-                    <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
-                        <input type='hidden' name='action' value='update'>
-                        <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
-                        <input type='hidden' name='status' value='Dismissed'>
-                        <button type='submit'>Dismissed</button>
-                    </form>";
+                    if($report['status'] == 'Pending') {
+                        echo "
+                        <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
+                            <input type='hidden' name='action' value='update'>
+                            <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
+                            <input type='hidden' name='status' value='Reviewed'>
+                            <button type='submit'>Reviewed</button>
+                        </form>";
+                        echo "
+                        <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
+                            <input type='hidden' name='action' value='update'>
+                            <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
+                            <input type='hidden' name='status' value='Dismissed'>
+                            <button type='submit'>Dismissed</button>
+                        </form>";
+                    }
                     echo "</td>";
                     echo "</tr>";
 
@@ -122,7 +117,7 @@
 
         <?php
         $toastMessages = [
-            "Pending" => "Report marked pending..",
+            "Pending" => "Report marked pending.",
             "Reviewed" => "Report marked reviewed.",
             "Dismissed" => "Report marked dismissed."
         ];
