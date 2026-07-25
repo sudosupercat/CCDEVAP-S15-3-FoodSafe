@@ -20,9 +20,9 @@
     <?php include __DIR__ . '/../navbar.php';?>
 
     <h1>User Management</h1>
-
     <div class="container">
         <div class="table-wrapper">
+            <button type="button" id="button-add-user">+ Add User</button>
         <table id="user-man-table" class="table table-striped">
             <thead>
             <tr>
@@ -133,6 +133,13 @@
     </div>
 
     <script>
+
+        let addUser = document.getElementById("button-add-user");
+
+        addUser.addEventListener("click", () => {
+            window.location.href = '../../controller/admin/adminAddUsers.controller.php';
+        });
+
         let modal = document.getElementById("edit-modal");
         let span = document.getElementsByClassName("close")[0];
         <?php if (isset($selectedUser)): ?>
