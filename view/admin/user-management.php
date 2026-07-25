@@ -168,6 +168,12 @@
             "delete" => "User has been deleted."
         ];
 
+        $toastMessage = $toastMessages[$_GET['toast'] ?? ''] ?? '';
+
+        if (($_GET['toast'] ?? '') === 'update' && isset($_GET['status'])) {
+            $toastMessage = $_GET['status'] === 'active' ? "User is now active." : "User is now inactive.";
+        }
+
         if (isset($_GET['toast']) && isset($toastMessages[$_GET['toast']])):
         ?>
 
@@ -193,7 +199,7 @@
             showToast(
                 "success",
                 "Success.",
-                "<?php echo $toastMessages[$_GET['toast']] ?>"
+                "<?php echo $toastMessage; ?>"
             );
         }
 

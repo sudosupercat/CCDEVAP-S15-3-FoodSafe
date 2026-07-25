@@ -25,8 +25,10 @@ if(isset($_POST['action']) && $_POST['action'] === 'edit') {
 if (isset($_POST['action']) && $_POST['action'] === 'update' && isset($_POST['id'])) {
 
     updateStatus($pdo, $_POST['id']);
+    $selectedUser = getUserByID($pdo, $_POST['id']);
+    $newStatus = $selectedUser['status'] ? 'active' : 'inactive';
 
-    header('Location: ?toast=update');
+    header('Location: ?toast=update&status=' . $newStatus);
     exit();
 }
 
