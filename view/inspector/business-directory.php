@@ -26,28 +26,17 @@
                         <th>License No.</th>
                         <th>Business Name</th>
                         <th>Address</th>
-                        <th>Contact</th>
-                        <th>Map Link</th>
-                        <th>Image Link</th>
-                        <th>Deleted?</th>
                         <th>District</th>
                         <th data-dt-order="disable">Options</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($foodBusinesses as $foodBusiness): ?>
+                    <?php foreach ($foodBusinesses as $foodBusiness): 
+                        if ($foodBusiness->status == 1){?>
                     <tr>
                         <td><?= htmlspecialchars($foodBusiness->licenseNo) ?></td>
                         <td><?= htmlspecialchars($foodBusiness->name) ?></td>
                         <td><?= htmlspecialchars($foodBusiness->address) ?></td>
-                        <td><?= htmlspecialchars($foodBusiness->contactNo) ?></td>
-                        <td><?= !empty($foodBusiness->mapsLink)
-                                ? '<a href="' . htmlspecialchars($foodBusiness->mapsLink) . '"><i class="bi bi-box-arrow-up-right"></i></a>'
-                                : 'N/A' ?></td>
-                        <td><?= !empty($foodBusiness->imageLink)
-                                ? '<a href="img/' . htmlspecialchars($foodBusiness->imageLink) . '"><i class="bi bi-box-arrow-up-right"></i></a>'
-                                : 'N/A' ?></td>
-                        <td><?= htmlspecialchars($foodBusiness->status) ?></td>
                         <td><?= $districts[$foodBusiness->district - 1]['name']; ?></td>
                         <td>
                             <button type="button" class="button-option button-edit-business"
@@ -69,7 +58,7 @@
                             </button>
                         </td>
                     </tr>
-                    <?php endforeach; ?>
+                    <?php } endforeach; ?>
                 </tbody>
             </table>
         </div>
