@@ -26,7 +26,7 @@
         <table id="user-man-table" class="table table-striped">
             <thead>
             <tr>
-                <th colspan="7">Current Users</th>
+                <th colspan="6">Current Users</th>
             </tr>
             <tr>
                 <th>User #</th>
@@ -34,7 +34,6 @@
                 <th>Full Name</th>
                 <th>Role</th>
                 <th>District</th>
-                <th>Status</th>
                 <th>Actions</th> 
             </tr>
             </thead>
@@ -44,7 +43,6 @@
                 foreach ($users as $user) {
                     if ($user['deleteFlag'] == 0) {
                         
-                        $statusLabel = $user['status'] ? 'Active' : 'Inactive';
                         $statusAction = $user['status'] ? 'Disable' : 'Enable';
                         $statusClass = $user['status'] ? 'btn-disable' : 'btn-enable';
 
@@ -54,7 +52,6 @@
                         echo "<td>" . htmlspecialchars($user['fullName']) . "</td>";
                         echo "<td>" . htmlspecialchars($user['role']) . "</td>";
                         echo "<td>" . htmlspecialchars($user['districtName']) . "</td>";
-                        echo "<td>" . htmlspecialchars($statusLabel) . "</td>";
                         echo "<td>";
                         echo "<div class='actions-button'>";
                         echo "
@@ -89,7 +86,6 @@
                 <th>Full Name</th>
                 <th>Role</th>
                 <th>District</th>
-                <th>Status</th>
                 <th>Actions</th>  
             </tr>
             </tfoot>

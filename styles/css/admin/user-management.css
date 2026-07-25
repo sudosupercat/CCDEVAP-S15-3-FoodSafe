@@ -216,11 +216,6 @@ button:hover, .actions-button button:hover {
   color: red;
 }
 
-/* div.dt-container {
-	margin: 0 auto;
-	width: 80%;
-} */
-
 body.admin-page {
   background-color: var(--bg-purple);
   margin: 0 !important;

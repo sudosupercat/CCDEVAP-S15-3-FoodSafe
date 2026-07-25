@@ -26,17 +26,6 @@ function getReports($pdo, $userID, $role) {
     return $result;
 }
 
-// READ -- Selected
-// function getReportByID($pdo, $reportID) {
-//     $sql = $pdo->prepare("SELECT rp.reportID, r.name as establishment, rq.title, rp.createdAt as date, rp.description, rp.status
-//                         FROM reports rp
-//                         JOIN restaurants r ON rp.restoID = r.restoID
-//                         JOIN requirements rq ON rp.requirementCode = rq.requirementCode
-//                         WHERE reportID = ?");
-//     $sql->execute([$reportID]);
-//     return $sql->fetch(PDO::FETCH_ASSOC);
-// }
-
 //UPDATE STATUS
 function updateReportStatus($pdo, $reportID, $value) {
     $sql = $pdo->prepare("UPDATE reports
