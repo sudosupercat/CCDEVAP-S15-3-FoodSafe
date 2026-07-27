@@ -29,7 +29,7 @@ switch ($uri){
         require 'controller/admin/exportData.controller.php';
         break;
     case '/inspectorReports':
-        require 'controller/inspector/inspectorReports.controller.php' + $query;
+        require 'controller/inspector/inspectorReports.controller.php';
         break;
     case '/logout':
         require 'controller/logoutPage.controller.php';
