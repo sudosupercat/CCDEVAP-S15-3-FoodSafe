@@ -1,8 +1,7 @@
-
 $(document).ready( function () {
     // Initializes the DataTable
     let table = $('#business-directory').DataTable({
-            pageLength: 20,
+            pageLength: 25,
         });
     
     const modalAddEdit = new bootstrap.Modal(document.getElementById('add-edit-modal'));
@@ -19,12 +18,14 @@ $(document).ready( function () {
         const inputBusLicNo = document.getElementById('business-license-no');
         const inputBusAddress = document.getElementById('business-address');
         const inputBusContact = document.getElementById('contact-number');
-        const inputBusImgPreview = document.getElementById('image-preview');
+        const busImgPreview = document.getElementById('image-preview');
         const inputBusMapsUrl = document.getElementById('business-maps-url');
         const inputBusDistrict = document.getElementById('district');
 
         // Set elements modified by view block to defaults
         inputBusImgUpload.style.display = "block";
+        busImgPreview.style.display = 'block';
+        confirmBtn.style.display = 'block';
 
         inputBusName.disabled = false;
         inputBusLicNo.disabled = false;
@@ -35,36 +36,37 @@ $(document).ready( function () {
 
         if(mode === 'add'){
             title.textContent = "Add";
-            confirmBtn.style.display = 'block';
             confirmBtn.classList.remove('btn-info');
             confirmBtn.classList.add('btn-success');
             confirmBtn.textContent = "Add";
             confirmBtn.setAttribute('data-mode', 'add');
             cancelBtn.innerText = 'Cancel';
+
             inputBusImgUpload.setAttribute("required", "");
             inputBusName.value = "";
             inputBusLicNo.value = "";
             inputBusAddress.value = "";
             inputBusContact.value = "";
-            inputBusImgPreview.src = "";
+            busImgPreview.src = "";
+            busImgPreview.style.display = 'none';
             inputBusMapsUrl.value = "";
             inputBusDistrict.value = "";
         }
         else if(mode === 'edit'){
-            title.textContent = "Edit";
-            confirmBtn.style.display = 'block';
+            title.textContent = 'Edit';
             confirmBtn.classList.remove('btn-success');
             confirmBtn.classList.add('btn-info');
             confirmBtn.textContent = "Edit";
             confirmBtn.setAttribute('data-mode', 'edit');
             cancelBtn.innerText = 'Cancel';
+
             inputBusId.value = button.getAttribute('data-foodBusinessId');
             inputBusImgUpload.removeAttribute("required");
             inputBusName.value = button.getAttribute('data-name');
             inputBusLicNo.value = button.getAttribute('data-licNo');
             inputBusAddress.value = button.getAttribute('data-address');
             inputBusContact.value = button.getAttribute('data-contact');
-            inputBusImgPreview.src = "img/" + button.getAttribute('data-image');
+            busImgPreview.src = "img/" + button.getAttribute('data-image');
             inputBusMapsUrl.value = button.getAttribute('data-maps');
             inputBusDistrict.value = button.getAttribute('data-district');
         }
@@ -85,7 +87,7 @@ $(document).ready( function () {
             inputBusLicNo.value = button.getAttribute('data-licNo');
             inputBusAddress.value = button.getAttribute('data-address');
             inputBusContact.value = button.getAttribute('data-contact');
-            inputBusImgPreview.src = "img/" + button.getAttribute('data-image');
+            busImgPreview.src = "img/" + button.getAttribute('data-image');
             if(!(button.getAttribute('data-maps'))){
                 inputBusMapsUrl.value = "N/A";
             }
@@ -141,13 +143,13 @@ $(document).ready( function () {
         .catch(error => console.error('Error:', error));
     }
     
+    // Event listeners for buttons
     document.querySelectorAll('.button-delete-business').forEach(button => {
         button.addEventListener('click', function() {
             customizeDeleteMessage(this);
         });
     });
 
-    // Event listeners for buttons
     document.getElementById('button-delete-business-final').addEventListener('click', () => {
         const foodBusinessId = document.getElementById('button-delete-business-final').getAttribute('data-foodBusinessId');
         sendDeleteRequest(foodBusinessId);
