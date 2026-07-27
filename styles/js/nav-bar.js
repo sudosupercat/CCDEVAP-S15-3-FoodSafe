@@ -11,7 +11,6 @@ function showNavBar(){
 //Only execute when the page has finished loading
 document.addEventListener("DOMContentLoaded", () => {
     showNavBar();
-    console.log('narvasdasd');
 
     const themeSwitcher = document.getElementById('themeSwitcher');
 

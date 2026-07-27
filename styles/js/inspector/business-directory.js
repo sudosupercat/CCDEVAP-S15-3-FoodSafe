@@ -1,7 +1,9 @@
 
 $(document).ready( function () {
     // Initializes the DataTable
-    $('#business-directory').DataTable();
+    let table = $('#business-directory').DataTable({
+            pageLength: 20,
+        });
     
     const modalAddEdit = new bootstrap.Modal(document.getElementById('add-edit-modal'));
     const modalDelete = new bootstrap.Modal(document.getElementById('delete-modal'));
@@ -10,41 +12,87 @@ $(document).ready( function () {
     function openAddEditModal(mode, button){       
         const title = document.getElementById('title-modal-edit-add');
         const confirmBtn = document.getElementById('confirm-button-modal-edit-add');
+        const cancelBtn = document.getElementById('cancel-button-modal-edit-add');
+        const inputBusId = document.getElementById('business-id');
+        const inputBusImgUpload = document.getElementById('business-establishment-image');
+        const inputBusName = document.getElementById('business-name');
+        const inputBusLicNo = document.getElementById('business-license-no');
+        const inputBusAddress = document.getElementById('business-address');
+        const inputBusContact = document.getElementById('contact-number');
+        const inputBusImgPreview = document.getElementById('image-preview');
+        const inputBusMapsUrl = document.getElementById('business-maps-url');
+        const inputBusDistrict = document.getElementById('district');
+
+        // Set elements modified by view block to defaults
+        inputBusImgUpload.style.display = "block";
+
+        inputBusName.disabled = false;
+        inputBusLicNo.disabled = false;
+        inputBusAddress.disabled = false;
+        inputBusContact.disabled = false;
+        inputBusMapsUrl.disabled = false;
+        inputBusDistrict.disabled = false;
 
         if(mode === 'add'){
             title.textContent = "Add";
+            confirmBtn.style.display = 'block';
             confirmBtn.classList.remove('btn-info');
             confirmBtn.classList.add('btn-success');
             confirmBtn.textContent = "Add";
             confirmBtn.setAttribute('data-mode', 'add');
-            document.getElementById('business-establishment-image').setAttribute("required", "");
-            document.getElementById('business-name').value = "";
-            document.getElementById('business-license-no').value = "";
-            document.getElementById('business-address').value = "";
-            document.getElementById('contact-number').value = "";
-            document.getElementById('image-preview').src = "";
-            document.getElementById('business-maps-url').value = "";
-            document.getElementById('business-license-no').value = "";
-            document.getElementById('district').value = "";
+            cancelBtn.innerText = 'Cancel';
+            inputBusImgUpload.setAttribute("required", "");
+            inputBusName.value = "";
+            inputBusLicNo.value = "";
+            inputBusAddress.value = "";
+            inputBusContact.value = "";
+            inputBusImgPreview.src = "";
+            inputBusMapsUrl.value = "";
+            inputBusDistrict.value = "";
         }
         else if(mode === 'edit'){
             title.textContent = "Edit";
+            confirmBtn.style.display = 'block';
             confirmBtn.classList.remove('btn-success');
             confirmBtn.classList.add('btn-info');
             confirmBtn.textContent = "Edit";
             confirmBtn.setAttribute('data-mode', 'edit');
-            document.getElementById('business-id').value = button.getAttribute('data-foodBusinessId');
-            document.getElementById('business-establishment-image').removeAttribute("required");
-            document.getElementById('business-name').value = button.getAttribute('data-name');
-            document.getElementById('business-license-no').value = button.getAttribute('data-licNo');
-            document.getElementById('business-address').value = button.getAttribute('data-address');
-            document.getElementById('contact-number').value = button.getAttribute('data-contact');
-            document.getElementById('image-preview').src = "img/" + button.getAttribute('data-image');
-            document.getElementById('business-maps-url').value = button.getAttribute('data-maps');
-            document.getElementById('business-license-no').value = button.getAttribute('data-licNo');
-            document.getElementById('district').value = button.getAttribute('data-district');
+            cancelBtn.innerText = 'Cancel';
+            inputBusId.value = button.getAttribute('data-foodBusinessId');
+            inputBusImgUpload.removeAttribute("required");
+            inputBusName.value = button.getAttribute('data-name');
+            inputBusLicNo.value = button.getAttribute('data-licNo');
+            inputBusAddress.value = button.getAttribute('data-address');
+            inputBusContact.value = button.getAttribute('data-contact');
+            inputBusImgPreview.src = "img/" + button.getAttribute('data-image');
+            inputBusMapsUrl.value = button.getAttribute('data-maps');
+            inputBusDistrict.value = button.getAttribute('data-district');
+        }
+        else if(mode === 'view'){
+            title.textContent = "View details for " + button.getAttribute('data-name');
+            confirmBtn.style.display = 'none';
+            cancelBtn.innerText = 'Close';
+            inputBusImgUpload.style.display = "none";
+
+            inputBusName.disabled = true;
+            inputBusLicNo.disabled = true;
+            inputBusAddress.disabled = true;
+            inputBusContact.disabled = true;
+            inputBusMapsUrl.disabled = true;
+            inputBusDistrict.disabled = true;
+
+            inputBusName.value = button.getAttribute('data-name');
+            inputBusLicNo.value = button.getAttribute('data-licNo');
+            inputBusAddress.value = button.getAttribute('data-address');
+            inputBusContact.value = button.getAttribute('data-contact');
+            inputBusImgPreview.src = "img/" + button.getAttribute('data-image');
+            if(!(button.getAttribute('data-maps'))){
+                inputBusMapsUrl.value = "N/A";
             }
-            modalAddEdit.show();
+            inputBusDistrict.value = button.getAttribute('data-district');
+        }
+        
+        modalAddEdit.show();
     }
     
     // Send form data from add/edit modal to controller in the background
@@ -122,5 +170,19 @@ $(document).ready( function () {
         button.addEventListener('click', () => {
         openAddEditModal('edit', button);
     });
+
+    // Detect when row is clicked
+    $("#business-directory tbody").off('click', 'tr').on("click", "tr", function(event) {
+        if ($(event.target).closest('button').length) {
+            return;
+        }
+
+        const row = table.row(this).data();
+        console.log(row[4]);
+        const buttonTemplate = document.createElement('template');
+        buttonTemplate.innerHTML = row[4].trim();
+        const buttonElement = buttonTemplate.content.firstChild;
+        openAddEditModal('view', buttonElement);
+    });
   });
-} );
+});

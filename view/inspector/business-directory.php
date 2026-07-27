@@ -114,7 +114,7 @@
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" class="btn btn-danger" id="cancel-button-modal-edit-add" data-bs-dismiss="modal">Cancel</button>
                         <button type="button" class="btn btn-success" id="confirm-button-modal-edit-add">Add</button>
                     </div>
                 </div>
