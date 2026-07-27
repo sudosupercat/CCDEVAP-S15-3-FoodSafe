@@ -1,6 +1,13 @@
 <?php
 require __DIR__ . '/view/functions.php';
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+$uri = parse_url($_SERVER['REQUEST_URI'])['path'];
+
+if (isset(parse_url($_SERVER['REQUEST_URI'])['query'])){
+    $query = '?' . parse_url($_SERVER['REQUEST_URI'])['query'];
+}
+else{
+    $query = '';
+}
 
 switch ($uri){
     case '/login':
@@ -22,7 +29,7 @@ switch ($uri){
         require 'controller/admin/exportData.controller.php';
         break;
     case '/inspectorReports':
-        require 'controller/inspector/inspectorReports.controller.php';
+        require 'controller/inspector/inspectorReports.controller.php' + $query;
         break;
     case '/logout':
         require 'controller/logoutPage.controller.php';
@@ -35,16 +42,10 @@ switch ($uri){
         $controller = new InspectionController($pdo);
         $controller->showPage($pdo);
         break;
-    case '/adminHomepage':
-        require 'controller/admin/adminHomepage.controller.php'; 
-        break;
-    case '/inspectorHomepage':
-        require 'controller/inspector/inspectorHomepage.controller.php';
-        break;
     case '/restaurant-detail':
         require 'controller/RestaurantDetailController.php';
         break;
-    case '/business-directory':
+    case '/businessDirectory':
         require 'controller/FoodBusiness.Controller.php';
         $controller = new FoodBusinessController($pdo);
         $controller->showPage($pdo);
@@ -53,4 +54,5 @@ switch ($uri){
         require 'view/public/homepage.php';
         break;
 }
+
 ?>

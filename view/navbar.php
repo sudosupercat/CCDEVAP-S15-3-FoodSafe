@@ -5,8 +5,7 @@ $homepage = "login";
 
 
 if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'){
-    $homepage = "adminHomepage";
-    $navItems = [];
+    $homepage = "adminDashboard";
     $navItems = ['<li class="nav-item"><a class="nav-link" href="/adminDashboard">Dashboard</a></li>',
                 '<li class="nav-item"><a class="nav-link" href="/adminUsers">Users</a></li>',
                 '<li class="nav-item"><a class="nav-link" href="/business-directory">Business Directory</a></li>',
@@ -14,11 +13,10 @@ if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'){
                 '<li class="nav-item"><a class="nav-link" href="/logout"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>'];
 }
 else if(isset($_SESSION['role']) && $_SESSION['role'] === 'Inspector'){
-    $homepage = "inspectorHomepage";    
-    $navItems = [];
+    $homepage = "inspectorDashboard";    
     $navItems = ['<li class="nav-item"><a class="nav-link" href="/inspectorDashboard"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>',
             '<li class="nav-item"><a class="nav-link" href="/inspectionEntry"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>',
-            '<li class="nav-item"><a class="nav-link" href="/business-directory"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>',
+            '<li class="nav-item"><a class="nav-link" href="/businessDirectory"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>',
             '<li class="nav-item"><a class="nav-link" href="/inspectorReports"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>',
             '<li class="nav-item"><a class="nav-link" href="/logout"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>'];
 }
