@@ -93,9 +93,7 @@
         </div>
     </div>
 
-    <footer class="site-footer">
-        FoodSafe - Copyright 2026
-    </footer>
+    <?php require __DIR__ . '/../footer.php'; ?>
 
     <script>
         let yearSelect = document.getElementById('yearPicker');
@@ -137,6 +135,5 @@
         let distViolationTypeRow = <?php echo $distViolationTypeCount; ?>;
     </script>
     <script src="../../styles/js/admin/admin-charts.js"></script>
-    
 </body>
 </html>

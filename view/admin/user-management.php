@@ -132,6 +132,8 @@
         </div>
     </div>
 
+    <?php require __DIR__ . '/../footer.php'; ?>
+
     <script>
 
         let addUser = document.getElementById("button-add-user");
@@ -212,8 +214,5 @@
             clearTimeout(toastTimeout);
         }
     </script>
-    <footer class="site-footer">
-        FoodSafe - Copyright 2026
-    </footer>
 </body>
 </html>

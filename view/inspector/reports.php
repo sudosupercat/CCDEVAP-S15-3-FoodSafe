@@ -94,6 +94,8 @@
             <span class="toast-close" onclick="hideToast()">&times;</span>
     </div>
 
+    <?php require __DIR__ . '/../footer.php'; ?>
+
     <script>
         function searchReports() {
             var input, filter, reports;
@@ -162,8 +164,5 @@
             clearTimeout(toastTimeout);
         }
     </script>
-    <footer class="site-footer">
-        FoodSafe - Copyright 2026
-    </footer>
 </body>
 </html>
