@@ -1,7 +1,7 @@
 <?php
 
 $navItems = [];
-$homepage = "login";
+$homepage = "/";
 
 if (isset($_SESSION['role'])){
     $userRole = $_SESSION['role'];
@@ -9,28 +9,6 @@ if (isset($_SESSION['role'])){
 else{
     $userRole = '';
 }
-
-
-// if (isset($_SESSION['role']) && $_SESSION['role'] === 'Admin'){
-//     $homepage = "adminDashboard";
-//     $navItems = ['<li class="nav-item"><a class="nav-link" href="/adminDashboard">Dashboard</a></li>',
-//                 '<li class="nav-item"><a class="nav-link" href="/adminUsers">Users</a></li>',
-//                 '<li class="nav-item"><a class="nav-link" href="/businessDirectory">Business Directory</a></li>',
-//                 '<li class="nav-item"><a class="nav-link" href="/inspectorReports">Reports</a></li>',
-//                 '<li class="nav-item"><a class="nav-link" href="/logout"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>'];
-// }
-// else if(isset($_SESSION['role']) && $_SESSION['role'] === 'Inspector'){
-//     $homepage = "inspectorDashboard";    
-//     $navItems = ['<li class="nav-item"><a class="nav-link" href="/inspectorDashboard"><span><i class="bi bi-speedometer me-1"></i></span>Dashboard</a></li>',
-//             '<li class="nav-item"><a class="nav-link" href="/inspectionEntry"><span><i class="bi bi-file-earmark-plus me-1"></i></span>Log Entry</a></li>',
-//             '<li class="nav-item"><a class="nav-link" href="/businessDirectory"><span><i class="bi bi-briefcase me-1"></i></span>Business Directory</a></li>',
-//             '<li class="nav-item"><a class="nav-link" href="/inspectorReports"><span><i class="bi bi-flag me-1"></i></span>Reports</a></li>',
-//             '<li class="nav-item"><a class="nav-link" href="/logout"><span><i class="bi bi-box-arrow-right me-1"></i></span>Logout</a></li>'];
-// }
-// else {
-//     $navItems = ['<li class="nav-item"><a class="nav-link" href="/report"><span><i class="bi bi-flag me-1"></i></span>Report</a></li>',
-//                 '<li class="nav-item"><a class="nav-link" href="/login"><span><i class="bi bi-box-arrow-right me-1"></i></span>Login</a></li>'];
-// }
 
 if ($userRole === 'Admin'){
     $homepage = "/adminDashboard";

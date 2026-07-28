@@ -101,17 +101,19 @@ $(document).ready( function () {
     function sendAddEditRequest(mode, formData){
         event.preventDefault();
 
-        fetch('controller/FoodBusiness.controller.php', {
-            method: 'POST',
-            body: formData
-        })
-        .then(response => response.text())
-        .then(data => {
-            console.log('Server says:', data);
-            modalAddEdit.hide();
-            location.reload();
-        })
-        .catch(error => console.error('Error:', error));
+        if (form.checkValidity()) {
+            fetch('controller/FoodBusiness.controller.php', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Server says:', data);
+                modalAddEdit.hide();
+                location.reload();
+            })
+            .catch(error => console.error('Error:', error));
+        }
     }
 
     // Puts the business name in the modal for clarity
@@ -165,7 +167,14 @@ $(document).ready( function () {
         const mode = document.getElementById("confirm-button-modal-edit-add").getAttribute('data-mode');
         formData.append("action", mode);
 
-        sendAddEditRequest(mode, formData);
+        if(form.checkValidity()){
+
+            sendAddEditRequest(mode, formData);
+        }
+        else{
+            form.reportValidity();
+            return;
+        }
     });
 
     document.querySelectorAll('.button-edit-business').forEach(button => {

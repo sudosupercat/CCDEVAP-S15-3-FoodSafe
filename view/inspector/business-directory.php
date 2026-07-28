@@ -50,14 +50,13 @@
                                 data-district="<?= htmlspecialchars($foodBusiness->district) ?>">
                                 <i class="bi bi-pencil"></i>
                             </button>
-                            <?php if($_SESSION['role'] == "Admin"){echo 
-                            '<button type="button" class="button-option button-delete-business"
-                                data-foodBusinessId="<?= htmlspecialchars($foodBusiness->foodBusinessId) ?>"
-                                data-name="<?= htmlspecialchars($foodBusiness->name) ?>"
-                                >
-                                <i class="bi bi-trash"></i>
-                            </button>';} ?>
-                            
+                            <?php if ($_SESSION['role'] == "Admin") {
+                                echo '<button type="button" class="button-option button-delete-business"
+                                    data-foodBusinessId="' . htmlspecialchars($foodBusiness->foodBusinessId) . '"
+                                    data-name="' . htmlspecialchars($foodBusiness->name) . '">
+                                    <i class="bi bi-trash"></i>
+                                </button>';
+                            } ?>
                         </td>
                     </tr>
                     <?php } endforeach; ?>
@@ -139,5 +138,6 @@
                 </div>
             </div>
         </div>
+        <?php require __DIR__ . '/../../view/footer.php' ?>
     </body>
 </html>

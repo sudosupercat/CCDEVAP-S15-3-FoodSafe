@@ -11,47 +11,47 @@ else{
 
 switch ($uri){
     case '/login':
-        require 'view/login.php';
+        require __DIR__ . '/view/login.php';
         break;
     case '/report':
-        require 'view/public/complaint.php';
+        require __DIR__ . '/view/public/complaint.php';
         break;
     case '/adminDashboard':
-        require 'controller/admin/adminDashboard.controller.php';
+        require __DIR__ . '/controller/admin/adminDashboard.controller.php';
         break;
     case '/adminUsers':
-        require 'controller/admin/adminUsers.controller.php';
+        require __DIR__ . '/controller/admin/adminUsers.controller.php';
         break;
     case '/adminAddUsers':
-        require 'controller/admin/adminAddUsers.controller.php';
+        require __DIR__ . '/controller/admin/adminAddUsers.controller.php';
         break;
     case '/exportData':
-        require 'controller/admin/exportData.controller.php';
+        require __DIR__ . '/controller/admin/exportData.controller.php';
         break;
     case '/inspectorReports':
-        require 'controller/inspector/inspectorReports.controller.php';
+        require __DIR__ . '/controller/inspector/inspectorReports.controller.php';
         break;
     case '/logout':
-        require 'controller/logoutPage.controller.php';
+        require __DIR__ . '/controller/logoutPage.controller.php';
         break;
     case '/inspectorDashboard':
-        require 'controller/inspector/inspectorDashboard.controller.php';
+        require __DIR__ . '/controller/inspector/inspectorDashboard.controller.php';
         break;
     case '/inspectionEntry':
-        require 'controller/Inspection.controller.php';
+        require __DIR__ . '/controller/Inspection.controller.php';
         $controller = new InspectionController($pdo);
         $controller->showPage($pdo);
         break;
     case '/restaurant-detail':
-        require 'controller/RestaurantDetailController.php';
+        require __DIR__ . '/controller/RestaurantDetailController.php';
         break;
     case '/businessDirectory':
-        require 'controller/FoodBusiness.Controller.php';
+        require __DIR__ . '/controller/FoodBusiness.controller.php';
         $controller = new FoodBusinessController($pdo);
         $controller->showPage($pdo);
         break;
     default:
-        require 'view/public/homepage.php';
+        require __DIR__ . '/view/public/homepage.php';
         break;
 }
 
