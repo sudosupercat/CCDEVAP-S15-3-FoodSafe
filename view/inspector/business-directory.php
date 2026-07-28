@@ -15,7 +15,9 @@
     </head>
     <body>
         <?php include __DIR__ . '/../navbar.php';?>
-        <h1 class="mt-4 mb-4 fw-bold">Food Business Directory</h1>
+        <div class="page-header">
+            <h1 class="fw-bold">Food Business Directory</h1>
+        </div>
         <div class="float-right me-5">
         </div>
         <div class="table-custom table-responsive">

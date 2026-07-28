@@ -12,7 +12,9 @@
     </head>
     <body>
         <?php include __DIR__ . '/../navbar.php';?>
-        <h1 class="mt-4 mb-4 fw-bold">Log Inspection Entry</h1>
+        <div class="page-header">
+            <h1 class="fw-bold">Log Inspection Entry</h1>
+        </div>
         <div class="form-container">
             <form id="form-add-inspection">
                 <div class="form-group">
@@ -58,7 +60,6 @@
 
             </form>
         </div>
-
         <?php require __DIR__ . '/../../view/footer.php' ?>
     </body>
 </html>

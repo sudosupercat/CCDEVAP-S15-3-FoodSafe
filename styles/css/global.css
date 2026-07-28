@@ -71,3 +71,9 @@ h1{
     text-align: center;
     font-size: 3rem;
 }
+
+.page-header {
+    background-color: #ffffff;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+}
