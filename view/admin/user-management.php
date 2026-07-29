@@ -29,7 +29,7 @@
                 <th colspan="6">Current Users</th>
             </tr>
             <tr>
-                <th>User #</th>
+                <th>#</th>
                 <th>Email</th>
                 <th>Full Name</th>
                 <th>Role</th>
@@ -81,7 +81,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <th>User #</th>
+                <th>#</th>
                 <th>Email</th>
                 <th>Full Name</th>
                 <th>Role</th>

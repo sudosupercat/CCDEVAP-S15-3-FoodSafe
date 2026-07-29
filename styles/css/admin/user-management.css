@@ -30,12 +30,13 @@ h1 {
 
 table {
   border-collapse: collapse;
+  width: 100%;
+  min-width: 500px;
 }
 
 th {
   color: black;
   background-color: white;
-  border: 1px solid;
   padding: 8px;
   text-align: center;
 }
@@ -43,7 +44,6 @@ th {
 td {
   color: white;
   background-color: transparent;
-  border: 1px solid;
   padding: 8px;
 }
 

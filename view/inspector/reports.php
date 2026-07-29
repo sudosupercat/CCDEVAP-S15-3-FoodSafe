@@ -26,7 +26,7 @@
         <table id="reports-table" class="table table-striped">
             <thead>
             <tr>
-                <th>Report #</th>
+                <th>#</th>
                 <th>Date</th>
                 <th>Establishment</th>
                 <th>Violation</th>
@@ -73,7 +73,7 @@
             </tbody>
             <tfoot>
             <tr>
-                <th>Report #</th>
+                <th>#</th>
                 <th>Date</th>
                 <th>Establishment</th>
                 <th>Violation</th>
