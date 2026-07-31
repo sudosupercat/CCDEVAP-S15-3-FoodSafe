@@ -19,18 +19,19 @@
 <body>
     <?php include __DIR__ . '/../navbar.php';?>
 
-    <h1>Report Management</h1>
+    <div class="page-header">
+        <h1 class="fw-bold">Report Management</h1>
+    </div>
 
-    <div class="container">
-        <div class="table-wrapper">
-        <table id="reports-table" class="table table-striped">
+    <div class="table-custom table-responsive">
+        <table id="reports-table" class="display table table-striped">
+            
             <thead>
             <tr>
                 <th>#</th>
                 <th>Date</th>
                 <th>Establishment</th>
                 <th>Violation</th>
-                <th>Description</th>
                 <th>Status</th> 
                 <th>Update Status</th>
             </tr>
@@ -39,13 +40,13 @@
                 <?php
                 $i = 1;
                 foreach ($reports as $report) {
-                    echo "<tr>";
+                    echo "<tr class='viewOnly' data-description='" . htmlspecialchars($report['description']) . "'>";
                     echo "<td>" . $i . "</td>";
                     echo "<td>" . htmlspecialchars(date('F j, Y', strtotime($report['date']))) . "</td>";
                     echo "<td>" . htmlspecialchars($report['establishment']) . "</td>";
                     echo "<td>" . htmlspecialchars($report['title']) . "</td>";
-                    echo "<td>" . htmlspecialchars($report['description']) . "</td>";
                     echo "<td>" . htmlspecialchars($report['status']) . "</td>";
+                    
                     echo "<td>";
                     echo "<div class='actions-button'>";
                     if($report['status'] == 'Pending') {
@@ -54,14 +55,14 @@
                             <input type='hidden' name='action' value='update'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
                             <input type='hidden' name='status' value='Reviewed'>
-                            <button type='submit'>Reviewed</button>
+                            <button type='submit' class='btn-reviewed'>Reviewed</button>
                         </form>";
                         echo "
                         <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
                             <input type='hidden' name='action' value='update'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
                             <input type='hidden' name='status' value='Dismissed'>
-                            <button type='submit'>Dismissed</button>
+                            <button type='submit' class='btn-dismissed'>Dismissed</button>
                         </form>";
                     }
                     echo "</td>";
@@ -77,13 +78,31 @@
                 <th>Date</th>
                 <th>Establishment</th>
                 <th>Violation</th>
-                <th>Description</th>
                 <th>Status</th> 
-                <th colspan="3">Update Status</th>
+                <th>Update Status</th>
             </tr>
             </tfoot>
         </table>
     </div>
+    </div>
+
+    <!-- Details Modal -->
+    <div id="report-details-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>View Report Details</h2>
+            </div>
+            <div class="modal-body">
+                <p><strong>Date:</strong> <span id="detail-date"></span></p>
+                <p><strong>Establishment:</strong> <span id="detail-establishment"></span></p>
+                <p><strong>Violation:</strong> <span id="detail-violation"></span></p>
+                <p><strong>Description:</strong> <span id="detail-description"></span></p>
+                <p><strong>Status:</strong> <span id="detail-status"></span></p>
+            </div>
+            <div class="modal-footer">
+            <button type="button" id="report-modal-close">Close</button>
+            </div>
+        </div>
     </div>
 
     <div id="toast" class="custom-toast hidden">
@@ -163,6 +182,36 @@
 
             clearTimeout(toastTimeout);
         }
+
+        document.querySelectorAll('#reports-table tbody tr.viewOnly').forEach(row => {
+            row.addEventListener('click', function(e) {
+                if (e.target.tagName === 'BUTTON') return;
+
+                const data = this.querySelectorAll('td');
+
+                document.getElementById('detail-date').textContent = data[1].textContent;
+                document.getElementById('detail-establishment').textContent = data[2].textContent;
+                document.getElementById('detail-violation').textContent = data[3].textContent;
+                document.getElementById('detail-description').textContent = this.dataset.description;
+                document.getElementById('detail-status').textContent = data[4].textContent;
+
+                document.getElementById('report-details-modal').style.display = 'block';
+                document.body.classList.add('modal-open');
+            });
+        });
+
+        document.getElementById('report-modal-close').onclick = function() {
+            document.getElementById('report-details-modal').style.display = 'none';
+            document.body.classList.remove('modal-open');
+        };
+
+        window.addEventListener('click', function(e) {
+            const modal = document.getElementById('report-details-modal');
+            if (e.target === modal) {
+                modal.style.display = 'none';
+                document.body.classList.remove('modal-open');
+            }
+        });
     </script>
 </body>
 </html>

@@ -136,7 +136,7 @@ function getDistrictViolationTypeCount($pdo, $year) {
 
 // USER MANAGEMENT
 function getUsers($pdo) {
-    $sql = $pdo->query("SELECT u.userID, u.email, CONCAT(u.firstName, ' ', u.lastName) as fullName, u.role, u.districtID, d.name as districtName, u.status, u.deleteFlag
+    $sql = $pdo->query("SELECT u.userID, u.email, u.firstName, u.lastName, CONCAT(u.firstName, ' ', u.lastName) as fullName, u.role, u.districtID, d.name as districtName, u.loginAttempt, u.status, u.deleteFlag
                         FROM users u
                         LEFT JOIN districts d 
                         ON u.districtID = d.districtID;");

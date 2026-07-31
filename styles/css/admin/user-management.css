@@ -20,12 +20,8 @@ body {
   background-color: #dee5ff;
 }
 
-h1 {
-  color: orange;
+h2 {
   font-weight: bold;
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
 }
 
 table {
@@ -59,14 +55,17 @@ td {
   align-items: center;
   padding: 20px 40px;
   overflow-x: auto;
+  width: 100%;
+}
+
+#user-man-table {
+    width: 100%;
+    table-layout: fixed;
 }
 
 .actions-button {
   display: flex;
   gap: 10px;
-  justify-content: center;
-  flex-wrap: nowrap;
-  padding: 8px;
 }
 
 .modal {
@@ -119,6 +118,22 @@ td {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.edit-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.edit-modal-header h2 {
+  margin: 0;
+}
+
+.edit-modal-footer {
+  display: flex;
+  justify-content: flex-end;
 }
 
 .custom-toast-close {
@@ -201,11 +216,21 @@ button {
   font-weight: bold;
 }
 
-button:hover, .actions-button button:hover {
+button:hover {
   color:whitesmoke;
   border-radius: 20px;
   background-color: rgb(204, 135, 8);
   cursor: pointer;
+}
+
+.btn-enable:hover {
+  color: whitesmoke;
+  background-color:#5F6648;
+}
+
+.btn-disable:hover {
+  color: whitesmoke;
+  background-color: #a7132b;
 }
 
 .btn-enable {
@@ -214,6 +239,14 @@ button:hover, .actions-button button:hover {
 
 .btn-disable {
   color: red;
+}
+
+#button-add-user:hover {
+  color:whitesmoke;
+  border-radius: 20px;
+  background-color: rgb(204, 135, 8);
+  cursor: pointer;
+  border: 3px solid black;
 }
 
 body.admin-page {

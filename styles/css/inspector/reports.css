@@ -25,14 +25,6 @@ body.theme-dark-custom .reports p, body.theme-dark-custom .reports {
   flex: 1;
 }
 
-h1 {
-  color: orange;
-  font-weight: bold;
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-}
-
 h2 {
   color: #3d00bc;
   font-weight: bold;
@@ -77,9 +69,6 @@ td {
 .actions-button {
   display: flex;
   gap: 10px;
-  justify-content: center;
-  flex-wrap: nowrap;
-  padding: 8px;
 }
 
 .custom-toast-close {
@@ -143,11 +132,85 @@ button {
   font-weight: bold;
 }
 
-button:hover, .actions-button button:hover {
+button:hover {
   color:whitesmoke;
   border-radius: 20px;
   background-color: rgb(204, 135, 8);
   cursor: pointer;
+}
+
+.modal {
+  display: none; 
+  position: fixed;
+  z-index: 2; 
+  left: 0;
+  top: 0;
+  padding-top: auto;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+}
+
+.modal-content {
+  color: black;
+  background-color: whitesmoke;
+  margin: 10% auto;
+  padding: 20px;
+  border: 1px solid;
+  width: 500px;
+  justify-content: center;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+body.modal-open::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(4px);
+  z-index: 1;
+}
+
+#report-details-modal .modal-header h2 {
+  margin: 0;
+  color: black;
+  font-weight: bold;
+}
+
+#report-details-modal .modal-footer {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.btn-reviewed:hover {
+  color: whitesmoke;
+  background-color:#5F6648;
+}
+
+.btn-dismissed:hover {
+  color: whitesmoke;
+  background-color: #a7132b;
+}
+
+.btn-reviewed {
+  color: green;
+}
+
+.btn-dismissed {
+  color: red;
 }
 
 @media (max-width: 1000px) {
