@@ -43,8 +43,7 @@ else {
         <img src="src/images/logo.png" width="30" height="30" class="d-inline-block align-text-top me-2" alt="">
         <a class="navbar-brand fw-bold" href="<?= $homepage; ?>">FoodSafe</a>
 
-        <button class="navbar-toggler" type="button" 
-                data-bs-toggle="collapse" data-bs-target="#navbar-items">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar-items">
         <span class="navbar-toggler-icon"></span>
         </button>
 

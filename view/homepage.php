@@ -1,5 +1,6 @@
 <?php
 require 'controller/IndexController.php';
+require __DIR__ . '/theme-cookie.php';
 
 $controller = new IndexController();
 $homepageData = $controller->getData();

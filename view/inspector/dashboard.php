@@ -1,3 +1,6 @@
+<?php
+require __DIR__ . '/../theme-cookie.php';
+?>
 <!DOCTYPE html>
     <head>
         <meta name="description" content="FoodSafe Inspector Dashboard">
