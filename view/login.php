@@ -25,7 +25,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
         <link rel="stylesheet" href="../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
         <link rel="stylesheet" href="../styles/css/login-style.css">
         <link rel="stylesheet" href="../styles/css/global.css">
-        <script src="../styles/js/nav-bar.js"></script>
+        <script type="module" src="../styles/js/nav-bar.js"></script>
         <script src="../styles/js/jquery-3.7.1.min.js"></script>
         <script src="../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
         <title>FoodSafe Login</title>

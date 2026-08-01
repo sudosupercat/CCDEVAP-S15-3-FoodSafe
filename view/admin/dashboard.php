@@ -12,7 +12,7 @@ require __DIR__ . '/../theme-cookie.php';
     <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
-    <script src="../../styles/js/nav-bar.js"></script>
+    <script type="module" src="../../styles/js/nav-bar.js"></script>
     <script src="../../styles/js/jquery-3.7.1.min.js"></script>
     <link rel="stylesheet" href="../../styles/css/admin/dashboard.css">
     <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">

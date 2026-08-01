@@ -21,7 +21,7 @@ $sortOrder = $_GET['sort'] ?? 'az';
     <script src="../../styles/js/jquery-3.7.1.min.js"></script>
     <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
     <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
-    <script src="../../styles/js/nav-bar.js"></script>
+    <script type="module" src="../../styles/js/nav-bar.js"></script>
 </head>
 <body>
     <?php include __DIR__ . '/../navbar.php';?>

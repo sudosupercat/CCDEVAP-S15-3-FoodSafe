@@ -14,7 +14,7 @@ require __DIR__ . '/../theme-cookie.php';
     <link rel="stylesheet" href="../../styles/css/admin/user-management.css">
     <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">
     <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
-    <script src="../../styles/js/nav-bar.js"></script>
+    <script type="module" src="../../styles/js/nav-bar.js"></script>
     <script src="../../styles/js/jquery-3.7.1.min.js"></script>
     <script src="../../styles/js/dataTables.min.js"></script>
     <script src="../../styles/js/admin/users.js"></script>

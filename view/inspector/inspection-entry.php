@@ -10,7 +10,7 @@ require __DIR__ . '/../theme-cookie.php';
         <link rel="stylesheet" href="../../styles/css/global.css">
         <link rel="stylesheet" href="../../styles/css/bootstrap-icons-1.13.1/bootstrap-icons.min.css">
         <script src="../../styles/bootstrap-5.3.8-dist/js/bootstrap.js"></script>
-        <script src="../../styles/js/nav-bar.js"></script>
+        <script type="module" src="../../styles/js/nav-bar.js"></script>
         <script src="../../styles/js/inspector/inspection-entry.js"></script>
     </head>
     <body>

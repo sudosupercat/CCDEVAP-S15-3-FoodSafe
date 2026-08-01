@@ -1,3 +1,5 @@
+import {setCookie, getCookie} from './cookie-helper.js';
+
 function showNavBar(){
     //Check current path
     const path = window.location.pathname;
@@ -33,23 +35,6 @@ function applyDarkMode(){
     document.querySelectorAll('.modal').forEach(div => {
         div.setAttribute('data-bs-theme', 'dark');
     });
-}
-
-// Cookie helper functions
-function setCookie(name, value, days) {
-    var expires = "";
-    if (days) {
-        var date = new Date();
-        date.setDate(date.getDate() + days);
-        expires = "; expires=" + date.toUTCString();
-    }
-    document.cookie = name + "=" + (value || "")  + expires + "; path=/";
-}
-
-function getCookie(name) {
-    function escape(s) { return s.replace(/([.*+?\^$(){}|\[\]\/\\])/g, '\\$1'); }
-    var match = document.cookie.match(RegExp('(?:^|;\\s*)' + escape(name) + '=([^;]*)'));
-    return match ? match[1] : null;
 }
 
 //Only execute when the page has finished loading
