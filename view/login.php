@@ -71,6 +71,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
         </main>
         <script>
             const loginError = "<?= isset($_GET['error']) ? htmlspecialchars($_GET['error']) : '' ?>";
+            console.log(loginError);
         </script>
         <script src="../styles/js/loginpage.js?v=1.0.1"></script>
         <footer class="site-footer">

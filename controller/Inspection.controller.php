@@ -10,10 +10,12 @@ if (!isset($_SESSION['userID'])) {
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../model/Inspection.model.php';
 require_once __DIR__ . '/../model/FoodBusiness.model.php';
+require_once __DIR__ . '/../model/Requirement.model.php';
 
 class InspectionController{
     private $inspectionModel;
     private $foodBusinessModel;
+    private $requirementModel;
 
     public function __construct($pdo) {
         $this->inspectionModel = new Inspection($pdo);
@@ -22,6 +24,8 @@ class InspectionController{
     public function showPage($pdo){
         $this->inspectionModel = new Inspection($pdo);
         $this->foodBusinessModel = new FoodBusiness($pdo);
+        $this->requirementModel = new Requirement($pdo);
+        $requirements = $this->requirementModel->getRequirements();
         $businessIdNames = $this->foodBusinessModel->getAllIdName();
         include __DIR__ . '/../view/inspector/inspection-entry.php';
     }
@@ -38,7 +42,7 @@ class InspectionController{
     }
 
     public function getViolationTypes(){
-
+        return $this->requirementModel->getRequirements();
     }
 }
 

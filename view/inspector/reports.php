@@ -28,7 +28,6 @@ require __DIR__ . '/../theme-cookie.php';
 
     <div class="table-custom table-responsive">
         <table id="reports-table" class="display table table-striped">
-            
             <thead>
             <tr>
                 <th>#</th>

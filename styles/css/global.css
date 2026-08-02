@@ -1,9 +1,10 @@
-body{
+html, body{
     font-family: Helvetica;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     background-color: #dee5ff;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .site-footer {
@@ -76,10 +77,27 @@ h1{
     background-color: #ffffff;
     padding: 24px 28px;
     margin-bottom: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .page-header-dark {
     background-color: #1c1850 !important;
     padding: 24px 28px;
     margin-bottom: 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Select2 BS5 compatibility overrides */
+[data-bs-theme="dark"] .select2-container--bootstrap-5 .select2-selection__arrow b {
+  border-color: #f8f9fa transparent transparent transparent; /* light arrow on dark */
+}
+
+[data-bs-theme="dark"] .select2-container--bootstrap-5 .select2-selection {
+  background-color: #212529;   /* dark background */
+  color: #f8f9fa;              /* light text */
+  border-color: #495057;
+}
+
+[data-bs-theme="dark"] .select2-container--bootstrap-5 .select2-selection__rendered {
+  color: #f8f9fa !important;
 }

@@ -19,12 +19,13 @@ function applyLightMode(){
     document.querySelectorAll('.form-container').forEach(div => {
         div.classList.remove('theme-dark-custom');
     });
-    document.querySelectorAll('.modal').forEach(div => {
-        div.setAttribute('data-bs-theme', 'light');
-    });
+    // document.querySelectorAll('.modal').forEach(div => {
+    //     div.setAttribute('data-bs-theme', 'light');
+    // });
     document.querySelectorAll('.page-header').forEach(div => {
         div.classList.remove('page-header-dark');
     });
+    document.documentElement.setAttribute('data-bs-theme', 'light');
 }
 
 function applyDarkMode(){
@@ -35,12 +36,13 @@ function applyDarkMode(){
     document.querySelectorAll('.form-container').forEach(div => {
         div.classList.add('theme-dark-custom');
     });
-    document.querySelectorAll('.modal').forEach(div => {
-        div.setAttribute('data-bs-theme', 'dark');
-    });
+    // document.querySelectorAll('.modal').forEach(div => {
+    //     div.setAttribute('data-bs-theme', 'dark');
+    // });
     document.querySelectorAll('.page-header').forEach(div => {
         div.classList.add('page-header-dark');
     });
+    document.documentElement.setAttribute('data-bs-theme', 'dark');
 }
 
 //Only execute when the page has finished loading

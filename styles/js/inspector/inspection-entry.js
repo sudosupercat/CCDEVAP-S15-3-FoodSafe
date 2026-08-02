@@ -12,6 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
             // location.reload();
         })
         .catch(error => console.error('Error:', error));
+        console.log(formData);
     }
 
     document.getElementById('add-inspection-final').addEventListener('click', () => {
@@ -19,46 +20,37 @@ document.addEventListener("DOMContentLoaded", () => {
         const formData = new FormData(form);
         sendAddRequest(formData);
     });
-    
-    //Hide/show grade/switch fields
-    const autoRatingSwitch = document.getElementById('autoRatingSwitch');
-
-    autoRatingSwitch.addEventListener('change', function () {
-        const hidden = this.checked;
-
-        if(this.checked){
-            $("#container-score-grade").hide();
-        }
-        else{
-            $("#container-score-grade").show();
-        }
-    });
 
     //Set date max attribute to current day
     const maxDate = document.getElementById('inspection-date');
     const day = new Date().toISOString().split('T')[0]; 
     maxDate.max = day;
 
+    //Initialize Select2
+    $('#food-business').select2({
+        placeholder: "Select a restaurant",
+        width: '100%',
+        theme: "bootstrap-5"
+    });
+
     //Violation fields
     let fieldCount = 0;
-    const fieldCountLimit = 3;
+    const fieldCountLimit = window.requirements.length;
     document.getElementById('button-add-violation').addEventListener('click', () => {
-        if (fieldCount < 3){
+
+        if (fieldCount < fieldCountLimit){
             fieldCount++;
     
             const wrapper = document.createElement('div');
             wrapper.classList.add('mb-3', 'p-3', 'border');
-    
+            
             const label = document.createElement('h6');
             label.textContent = `Violation #${fieldCount}`;
     
             wrapper.innerHTML += `
             <div class="form-group">
                 <label for="violation-${fieldCount}">Type</label>
-                <select class="form-control" id="violation-${fieldCount}" name="violation-${fieldCount}" required>
-                <option>Improper Handling</option>
-                <option>No Sanitation</option>
-                <option>Pest Infestation</option>
+                <select class="form-select" id="violation-${fieldCount}" name="violation-${fieldCount}" required>
                 </select>
             </div>
             <div class="form-group">
@@ -66,12 +58,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 <input type="text" class="form-control" name="remarks-${fieldCount}" id="remarks-${fieldCount}" required>
             </div>
             `;
-
+            
             wrapper.prepend(label);
             document.getElementById('violation-form-container').appendChild(wrapper);
+
+            const violationSelect = document.getElementById(`violation-${fieldCount}`);
+            window.requirements.forEach(req => {
+                const option = document.createElement("option");
+                option.value = req.reqCode;
+                option.textContent = req.reqTitle;
+                violationSelect.appendChild(option);
+            });
+
+            $(`#violation-${fieldCount}`).select2({
+                placeholder: "Select a violation",
+                width: '100%',
+                theme: "bootstrap-5"
+            });
         }
         else{
-            alert("Violation fields are already enough.");
+            alert("You can only have as much violation entries as violation types");
         }
     });
 });
