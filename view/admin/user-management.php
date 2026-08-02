@@ -57,7 +57,7 @@ require __DIR__ . '/../theme-cookie.php';
                         echo "<td>" . htmlspecialchars($user['email']) . "</td>";
                         echo "<td>" . htmlspecialchars($user['fullName']) . "</td>";
                         echo "<td>" . htmlspecialchars($user['role']) . "</td>";
-                        echo "<td>" . htmlspecialchars($user['districtName']) . "</td>";
+                        echo "<td>" . htmlspecialchars($user['districtName'] ?? '', ENT_QUOTES, 'UTF-8') . "</td>";
                         echo "<td>";
                         if($user['role'] == 'Inspector') {
                         echo "<div class='actions-button'>";

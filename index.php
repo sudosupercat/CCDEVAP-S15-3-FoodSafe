@@ -1,5 +1,4 @@
 <?php
-require __DIR__ . '/view/functions.php';
 $uri = parse_url($_SERVER['REQUEST_URI'])['path'];
 
 if (isset(parse_url($_SERVER['REQUEST_URI'])['query'])){
