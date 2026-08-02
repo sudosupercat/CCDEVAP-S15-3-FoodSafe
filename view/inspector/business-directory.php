@@ -2,8 +2,10 @@
 require __DIR__ . '/../theme-cookie.php';
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>FoodSafe - Business Directory</title>
         <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">
         <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">
@@ -28,7 +30,7 @@ require __DIR__ . '/../theme-cookie.php';
             <table id="business-directory" class="display table table-striped">
                 <thead>
                     <tr>
-                        <th>License No.</th>
+                        <th>License #</th>
                         <th>Business Name</th>
                         <th>Address</th>
                         <th>District</th>
@@ -66,6 +68,15 @@ require __DIR__ . '/../theme-cookie.php';
                     </tr>
                     <?php } endforeach; ?>
                 </tbody>
+                <tfoot>
+                    <tr>
+                        <th>License #</th>
+                        <th>Business Name</th>
+                        <th>Address</th>
+                        <th>District</th>
+                        <th>Options</th>
+                    </tr>
+                </tfoot>
             </table>
         </div>
         <!-- Add and edit modal -->

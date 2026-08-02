@@ -2,8 +2,10 @@
 require __DIR__ . '/../theme-cookie.php';
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>FoodSafe - Inspection Entry</title>
         <link rel="icon" type="image/x-icon" href="../../src/images/logo-tab.png">
         <link rel="stylesheet" href="../../styles/bootstrap-5.3.8-dist/css/bootstrap.css">

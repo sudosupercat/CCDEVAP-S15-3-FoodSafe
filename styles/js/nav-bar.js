@@ -20,7 +20,10 @@ function applyLightMode(){
         div.classList.remove('theme-dark-custom');
     });
     document.querySelectorAll('.modal').forEach(div => {
-        div.removeAttribute('data-bs-theme');
+        div.setAttribute('data-bs-theme', 'light');
+    });
+    document.querySelectorAll('.page-header').forEach(div => {
+        div.classList.remove('page-header-dark');
     });
 }
 
@@ -34,6 +37,9 @@ function applyDarkMode(){
     });
     document.querySelectorAll('.modal').forEach(div => {
         div.setAttribute('data-bs-theme', 'dark');
+    });
+    document.querySelectorAll('.page-header').forEach(div => {
+        div.classList.add('page-header-dark');
     });
 }
 
