@@ -31,7 +31,7 @@ switch ($uri){
         require __DIR__ . '/controller/inspector/inspectorReports.controller.php';
         break;
     case '/logout':
-        require __DIR__ . '/controller/logoutPage.controller.php';
+        require __DIR__ . '/controller/userLogout.controller.php';
         break;
     case '/inspectorDashboard':
         require __DIR__ . '/controller/inspector/inspectorDashboard.controller.php';

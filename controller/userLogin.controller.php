@@ -34,7 +34,7 @@ if(isset($_POST['action']) && $_POST['action'] === 'login') {
                 //redirect to admin hompage controller
                 header('Location: /adminDashboard'); 
                 exit();
-            } else {
+            } else if ($user['role'] === 'Inspector') {
                 //redirect to inspector hompage controller
                 header('Location: /inspectorDashboard'); 
                 exit();

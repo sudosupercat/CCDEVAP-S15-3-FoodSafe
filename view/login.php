@@ -38,7 +38,7 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
         <section class="col-lg-6 form-left d-flex align-items-center justify-content-center">
             <div class="form-container">
                 <h1 class="fw-bold mb-4">Welcome Back!</h1>
-                <form id="loginForm" action="../controller/loginPage.controller.php" method="POST" novalidate>
+                <form id="loginForm" action="../controller/userLogin.controller.php" method="POST" novalidate>
                     <input type="hidden" name="action" value="login">
 
                     <div class="form-group">
@@ -74,8 +74,6 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
             console.log(loginError);
         </script>
         <script src="../styles/js/loginpage.js?v=1.0.1"></script>
-        <footer class="site-footer">
-            FoodSafe - Copyright 2026
-        </footer>
+        <?php require __DIR__ . '/footer.php' ?>
     </body>
 </html>

@@ -57,8 +57,6 @@ require __DIR__ . '/../theme-cookie.php';
             const gradeChartData = <?= json_encode($gradeDistribution) ?>;
         </script>
         <script src="../../styles/js/inspector/inspector-charts.js"></script>
-        <footer class="site-footer">
-            FoodSafe - Copyright 2026
-        </footer>
+        <?php require __DIR__ . '/../footer.php' ?>
     </body>
 </html>
