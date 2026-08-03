@@ -59,21 +59,6 @@ $controller = new InspectionController($pdo);
 // Router
 
 if (isset($_POST['food-business-id'])){
-        // $violations = [];
-        // $remarks = [];
-
-        // foreach ($_POST as $key => $value){
-        //     if (preg_match('/^violation-(\d+)$/', $key, $matches)) {
-        //         $index = (int)$matches[1];
-        //         $violations[$index]['violation'] = $value;
-        //     }
-
-        //     if (preg_match('/^remarks-(\d+)$/', $key, $matches)) {
-        //         $index = (int)$matches[1];
-        //         $remarks[$index]['remarks'] = $value;
-        //     }
-        // }
-
     $controller->addInspectionEntry(
         $_POST['inspection-date'],
         $_POST['grade'],
