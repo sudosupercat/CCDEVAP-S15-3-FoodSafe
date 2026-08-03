@@ -257,9 +257,9 @@ body.modal-open::before {
   margin-bottom: 15px;
 }
 
-#report-details-modal .modal-header h2 {
+.modal-header h2 {
   margin: 0;
-  color: white;
+  color: black;
   font-weight: bold;
 }
 
