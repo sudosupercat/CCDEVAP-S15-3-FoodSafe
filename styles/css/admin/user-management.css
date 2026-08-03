@@ -27,12 +27,6 @@ body.theme-dark-custom button:not(#user-modal-close):not(#report-modal-close) {
   border: 3px solid gray;
 }
 
-body.theme-dark-custom button:hover {
-  background-color: rgb(204, 135, 8);
-  border-color: rgb(204, 135, 8);
-  color: whitesmoke;
-}
-
 body.theme-dark-custom .btn-enable {
   color: #4caf50;
 }
@@ -42,16 +36,17 @@ body.theme-dark-custom .btn-disable {
 }
 
 body.theme-dark-custom .btn-enable:hover {
-  background-color: #4caf50;
-  color: #1c1c1c;
-  border-color: #4caf50;
+  color: whitesmoke;
+  background-color: #5F6648 !important;
+  border-color: gray;
 }
 
 body.theme-dark-custom .btn-disable:hover {
-  background-color: #ff6b6b;
-  color: #1c1c1c;
-  border-color: #ff6b6b;
+  color: whitesmoke;
+  background-color: #a7132b !important;
+  border-color: gray;
 }
+
 
 body.modal-open:has(.modal.fade.show)::before {
   display: none;

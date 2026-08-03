@@ -34,10 +34,9 @@ body.theme-dark-custom button:not(.btn) {
   border: 3px solid gray;
 }
 
-body.theme-dark-custom button:not(.btn):hover {
-  background-color: rgb(204, 135, 8);
-  border-color: rgb(204, 135, 8);
-  color: whitesmoke;
+body.theme-dark-custom button {
+  background-color: #212529;
+  border: 3px solid gray;
 }
 
 body.theme-dark-custom .btn-reviewed {
@@ -49,15 +48,15 @@ body.theme-dark-custom .btn-dismissed {
 }
 
 body.theme-dark-custom .btn-reviewed:hover {
-  background-color: #4caf50;
-  color: #1c1c1c;
-  border-color: #4caf50;
+  color: whitesmoke;
+  background-color: #5F6648 !important;
+  border-color: gray;
 }
 
 body.theme-dark-custom .btn-dismissed:hover {
-  background-color: #ff6b6b;
-  color: #1c1c1c;
-  border-color: #ff6b6b;
+  color: whitesmoke;
+  background-color: #a7132b !important;
+  border-color: gray;
 }
 
 .site-footer {
@@ -182,6 +181,14 @@ button:hover {
   background-color: rgb(204, 135, 8);
   cursor: pointer;
 }
+
+#button-inspection-log:hover {
+  color:whitesmoke;
+  border-radius: 20px;
+  cursor: pointer;
+  border: 3px solid gray;
+}
+
 
 .modal {
   display: none; 
