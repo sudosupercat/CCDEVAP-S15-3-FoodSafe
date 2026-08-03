@@ -73,12 +73,7 @@ require __DIR__ . '/../theme-cookie.php';
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='btn-edit'>Edit</button>
                         </form>";
-                        echo "
-                        <form method='POST' action='../../controller/admin/adminUsers.controller.php'>
-                            <input type='hidden' name='action' value='delete'>
-                            <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
-                            <button type='submit' class='btn-delete'>Delete</button>
-                        </form>";
+                        echo "<button type='button' class='btn-delete button-delete-user' data-userid='" . htmlspecialchars($user['userID']) . "' data-name='" . htmlspecialchars($user['fullName']) . "'>Delete</button>";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -176,10 +171,29 @@ require __DIR__ . '/../theme-cookie.php';
         </div>
     </div>
 
+    <!-- Delete Modal -->
+    <div class="modal fade" tabindex="-1" id="delete-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="text-delete-question"></p>
+                    <p class="text-danger fw-bold">This action cannot be undone!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="button-delete-user-final">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <?php require __DIR__ . '/../footer.php'; ?>
 
     <script>
-
         let addUser = document.getElementById("button-add-user");
 
         addUser.addEventListener("click", () => {
@@ -293,6 +307,47 @@ require __DIR__ . '/../theme-cookie.php';
             document.getElementById('user-details-modal').style.display = 'none';
             document.body.classList.remove('modal-open');
         };
+
+        const modalDelete = new bootstrap.Modal(document.getElementById('delete-modal'));
+
+        function customizeDeleteMessage(button){
+            const userName = document.getElementById('text-delete-question');
+            const messageDelete = "Do you want to delete ";
+            const buttonConfirmFinalDelete = document.getElementById('button-delete-user-final');
+            userName.textContent = messageDelete + button.getAttribute('data-name') + "?";
+            buttonConfirmFinalDelete.setAttribute('data-userid', button.getAttribute('data-userid'));
+            modalDelete.show();
+        }
+
+        function sendDeleteRequest(userId){
+            event.preventDefault();
+
+            fetch('../../controller/admin/adminUsers.controller.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'action=delete' +
+                    '&id=' + encodeURIComponent(userId)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Server says:', data);
+                modalDelete.hide();
+                window.location.href = '../../controller/admin/adminUsers.controller.php?toast=delete';
+
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        document.querySelectorAll('.button-delete-user').forEach(button => {
+            button.addEventListener('click', function() {
+                customizeDeleteMessage(this);
+            });
+        });
+
+        document.getElementById('button-delete-user-final').addEventListener('click', () => {
+            const userId = document.getElementById('button-delete-user-final').getAttribute('data-userid');
+            sendDeleteRequest(userId);
+        });
     </script>
 </body>
 </html>

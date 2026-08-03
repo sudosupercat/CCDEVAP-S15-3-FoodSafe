@@ -53,6 +53,10 @@ body.theme-dark-custom .btn-disable:hover {
   border-color: #ff6b6b;
 }
 
+body.modal-open:has(.modal.fade.show)::before {
+  display: none;
+}
+
 .site-footer {
   margin-top: auto;
 }
@@ -113,7 +117,7 @@ td {
   gap: 10px;
 }
 
-.modal {
+.modal:not(.fade) {
   display: none; 
   position: fixed;
   z-index: 2; 
