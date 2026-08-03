@@ -27,7 +27,7 @@ require __DIR__ . '/../theme-cookie.php';
         <div class="form-container">
             <form id="form-add-inspection">
                 <div class="form-group mb-3">
-                    <label for="food-business">Food Business</label>
+                    <label for="food-business">Food Business <span class="text-danger">*</span></label>
                     <select class="form-select" id="food-business" name="food-business-id" required>
                         <?php foreach($businessIdNames as $businessIdName): ?>
                         <option value="<?= $businessIdName['restoID']; ?>"><?= $businessIdName['name']; ?></option>
@@ -37,33 +37,40 @@ require __DIR__ . '/../theme-cookie.php';
                 </div>
                 <div class="form-row mb-3" id="container-score-grade">
                     <div class="col-md-6 form-group mb-3">
-                        <label for="inspection-date">Inspection Date</label>
+                        <label for="inspection-date">Inspection Date <span class="text-danger">*</span></label>
                         <input type="date" class="form-control" name="inspection-date" id="inspection-date" min="2000-01-01" max="" required>
                     </div>
-
                     <div class="col-md-6">
-                        <span>Grade</span><br>
+                        <label for="grade">Grade <span class="text-danger">*</span></label><br>
                         <select class="form-select w-25" id="grade" name="grade" required>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
-                            <option value="D">D</option>
-                            <option value="E">E</option>
+                            <option value="F">F</option>
                         </select>
                     </div>
                 </div>
-                <div class="my-3 d-flex justify-content-end">
+                <div class="form-group mb-3">
+                    <label for="remarks">Overall Remarks <span class="text-danger">*</span></label>
+                    <input type="text" class="form-control" id="remarks" name="remarks" placeholder="Overall review of the inspection" required>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="violations">Violations</label>
+                    <select class="form-select" id="violations" name="violations" multiple="multiple">
+                        <?php foreach($requirements as $requirement): ?>
+                        <option value="<?= $requirement->reqCode; ?>"><?= $requirement->reqTitle; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <!-- <div class="my-3 d-flex justify-content-end">
                     <button class="button-option" id="button-add-violation">+ Add violation</button>
-                </div>
-                <div id="violation-form-container">
-                </div>
+                </div> -->
+                <!-- <div id="violation-form-container">
+                </div> -->
                 <input type="hidden" value="<?= $_SESSION['userID']?>" name="user-id" id="user-id">
-                <button type="submit" id="add-inspection-final" class="btn btn-primary">Submit</button>
+                <button type="submit btn-" id="add-inspection-final" class="btn btn-primary">Submit</button>
             </form>
         </div>
         <?php require __DIR__ . '/../../view/footer.php' ?>
-        <script>
-            window.requirements = <?= json_encode($requirements); ?>
-        </script>
     </body>
 </html>

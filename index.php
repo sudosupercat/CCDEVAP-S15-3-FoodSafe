@@ -9,6 +9,9 @@ else{
 }
 
 switch ($uri){
+    case '/':
+        require __DIR__ . '/view/public/homepage.php';
+        break;
     case '/login':
         require __DIR__ . '/view/login.php';
         break;
@@ -23,9 +26,6 @@ switch ($uri){
         break;
     case '/adminAddUsers':
         require __DIR__ . '/controller/admin/adminAddUsers.controller.php';
-        break;
-    case '/exportData':
-        require __DIR__ . '/controller/admin/exportData.controller.php';
         break;
     case '/inspectorReports':
         require __DIR__ . '/controller/inspector/inspectorReports.controller.php';
@@ -50,7 +50,13 @@ switch ($uri){
         $controller->showPage($pdo);
         break;
     default:
-        require __DIR__ . '/view/public/homepage.php';
+        http_response_code(404);
+
+        // Provide visual feedback for the user
+        echo "<h1>404 Not Found</h1>";
+        echo "The page you requested does not exist.";
+
+        // Stop script execution
         break;
 }
 

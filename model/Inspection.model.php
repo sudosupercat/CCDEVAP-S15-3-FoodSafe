@@ -11,29 +11,37 @@ class Inspection{
     public $remarks;
     public $userId;
     public $restoId;
-    public $violations;
 
     public function __construct($pdo){
         $this->pdo = $pdo;
     }
 
-    public function addInspection($inspection){
+    public function insertRow($inspection){
         try{
-            $stmt = $this->pdo->prepare("INSERT INTO inspections (date, score, grade, remarks, userID, restoID)
-                                        VALUES (:inspectionID, :date, :score, :grade, :remarks, :userID, :restoID)");
+            $stmt = $this->pdo->prepare("INSERT INTO inspections (inspectionDate, grade, remarks, userID, restoID)
+                                        VALUES (:inspectionDate, :grade, :remarks, :userID, :restoID)");
             $stmt->execute([
-                ':date' => $inspection->inspectionDate,
-                ':score' => $inspection->score,
+                ':inspectionDate' => $inspection->inspectionDate,
                 ':grade' => $inspection->grade,
                 ':remarks' => $inspection->remarks,
-                ':userID' => $inspection->userID,
-                ':restoID' => $inspection->restoID
+                ':userID' => $inspection->userId,
+                ':restoID' => $inspection->restoId
             ]);
         echo "Inspection entry added successfully!";
         }
         catch(PDOException $e) {
             echo "Error adding inspection: " . "<br>" . $e->getMessage();
-            }
+        }
+    }
+
+    public function getInspectionId($userId, $restoId){
+        $stmt = $this->pdo->prepare("SELECT inspectionID FROM inspections
+                                    WHERE userID = :userId AND restoID = :restoId
+                                    ORDER BY inspectionID DESC
+                                    LIMIT 1");
+        $row = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $row['inspectionID'];
     }
 }
 ?>

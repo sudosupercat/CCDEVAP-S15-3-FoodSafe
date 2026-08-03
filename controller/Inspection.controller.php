@@ -11,11 +11,13 @@ require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../model/Inspection.model.php';
 require_once __DIR__ . '/../model/FoodBusiness.model.php';
 require_once __DIR__ . '/../model/Requirement.model.php';
+require_once __DIR__ . '/../model/Violation.model.php';
 
 class InspectionController{
     private $inspectionModel;
     private $foodBusinessModel;
     private $requirementModel;
+    private $violationModel;
 
     public function __construct($pdo) {
         $this->inspectionModel = new Inspection($pdo);
@@ -25,20 +27,25 @@ class InspectionController{
         $this->inspectionModel = new Inspection($pdo);
         $this->foodBusinessModel = new FoodBusiness($pdo);
         $this->requirementModel = new Requirement($pdo);
+        $this->violationModel = new Violation($pdo);
         $requirements = $this->requirementModel->getRequirements();
         $businessIdNames = $this->foodBusinessModel->getAllIdName();
         include __DIR__ . '/../view/inspector/inspection-entry.php';
     }
 
-    public function addInspection($date, $score, $grade, $remarks, $userId, $restoId, $violations){
+    public function addInspectionEntry($date, $grade, $userId, $restoId, $remarks, $violations = []){
         $this->inspectionModel->inspectionDate = $date;
-        $this->inspectionModel->score = $score;
         $this->inspectionModel->grade = $grade;
         $this->inspectionModel->remarks = $remarks;
         $this->inspectionModel->userId = $userId;
         $this->inspectionModel->restoId = $restoId;
-        $this->inspectionModel->violations = $violations;
-        $this->inspectionModel->addInspection($this->inspectionModel);
+        $this->inspectionModel->remarks = $remarks;
+        $this->inspectionModel->insertRow($this->inspectionModel);
+        if(!empty($violations)){
+            $this->violationModel->inspectionId = $this->inspectionModel->getInspectionId($userId, $restoId);
+            $this->violationModel->reqCode = $violations;
+            $this->violationModel->insertRow($this->violationModel);
+        }
     }
 
     public function getViolationTypes(){
@@ -51,28 +58,30 @@ $controller = new InspectionController($pdo);
 // Router
 
 if (isset($_POST['food-business-id'])){
-        $violations = [];
-        $remarks = [];
+        // $violations = [];
+        // $remarks = [];
 
-        foreach ($_POST as $key => $value){
-            if (preg_match('/^violation-(\d+)$/', $key, $matches)) {
-                $index = (int)$matches[1];
-                $violations[$index]['violation'] = $value;
-            }
+        // foreach ($_POST as $key => $value){
+        //     if (preg_match('/^violation-(\d+)$/', $key, $matches)) {
+        //         $index = (int)$matches[1];
+        //         $violations[$index]['violation'] = $value;
+        //     }
 
-            if (preg_match('/^remarks-(\d+)$/', $key, $matches)) {
-                $index = (int)$matches[1];
-                $remarks[$index]['remarks'] = $value;
-            }
+        //     if (preg_match('/^remarks-(\d+)$/', $key, $matches)) {
+        //         $index = (int)$matches[1];
+        //         $remarks[$index]['remarks'] = $value;
+        //     }
+        // }
+        foreach ($_POST as $key => $value) {
+            echo "Index $key → $value<br>";
         }
-    $controller->addInspection(
+    $controller->addInspectionEntry(
         $_POST['inspection-date'],
-        $_POST['score'],
         $_POST['grade'],
-        $remarks,
         $_POST['user-id'],
         $_POST['food-business-id'],
-        $violations);
+        $_POST['remarks'],
+        $_POST['violations'] ?? []);
 }
 
 ?>

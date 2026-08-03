@@ -52,6 +52,18 @@ html, body{
     padding: 3px 15px;
     border: 3px solid black;
     font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.button-option:hover{
+    text-decoration: none;
+    background-color: rgb(222, 144, 0);
+    color: white;
+    border-radius: 20px;
+    padding: 3px 15px;
+    border: 3px solid black;
+    font-weight: bold;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .search-add-entry{
@@ -100,4 +112,8 @@ h1{
 
 [data-bs-theme="dark"] .select2-container--bootstrap-5 .select2-selection__rendered {
   color: #f8f9fa !important;
+}
+
+[data-bs-theme="dark"] .select2-container--bootstrap-5 .select2-selection--multiple .select2-selection__rendered .select2-selection__choice{
+    color: #f8f9fa;
 }

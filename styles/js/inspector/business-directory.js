@@ -101,19 +101,17 @@ $(document).ready( function () {
     function sendAddEditRequest(mode, formData){
         event.preventDefault();
 
-        if (form.checkValidity()) {
-            fetch('controller/FoodBusiness.controller.php', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(data => {
-                console.log('Server says:', data);
-                modalAddEdit.hide();
-                location.reload();
-            })
-            .catch(error => console.error('Error:', error));
-        }
+        fetch('controller/FoodBusiness.controller.php', {
+            method: 'POST',
+            body: formData
+        })
+        .then(response => response.text())
+        .then(data => {
+            console.log('Server says:', data);
+            modalAddEdit.hide();
+            location.reload();
+        })
+        .catch(error => console.error('Error:', error));
     }
 
     // Puts the business name in the modal for clarity
@@ -168,7 +166,6 @@ $(document).ready( function () {
         formData.append("action", mode);
 
         if(form.checkValidity()){
-
             sendAddEditRequest(mode, formData);
         }
         else{

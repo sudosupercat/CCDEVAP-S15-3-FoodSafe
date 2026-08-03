@@ -6,10 +6,10 @@ if (session_status() === PHP_SESSION_NONE) {
 // If already logged in, skip the login form entirely
 if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
     if ($_SESSION['role'] === 'Admin') {
-        header('Location: adminHomepage'); 
+        header('Location: adminDashboard'); 
         exit();
     } else {
-        header('Location: inspectorHomepage'); 
+        header('Location: inspectorDashboard'); 
         exit();
     }
 }
