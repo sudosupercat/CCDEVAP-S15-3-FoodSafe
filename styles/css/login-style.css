@@ -22,6 +22,17 @@ body.theme-dark-custom .form-container {
     background-color: #1c1850;
 }
 
+body.theme-dark-custom .login-btn {
+    background-color: #1c1850;
+    color: var(--accent-orange);
+    border: 2px solid var(--accent-orange);
+}
+
+body.theme-dark-custom .login-btn:hover {
+    background-color: var(--accent-orange);
+    color: #1c1850;
+}
+
 body{
     background-color: var(--bg-lightmode);
     min-height: 100vh; /* full screen height */
