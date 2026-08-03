@@ -21,13 +21,13 @@ class InspectionController{
 
     public function __construct($pdo) {
         $this->inspectionModel = new Inspection($pdo);
+        $this->violationModel = new Violation($pdo);
     }
 
     public function showPage($pdo){
         $this->inspectionModel = new Inspection($pdo);
         $this->foodBusinessModel = new FoodBusiness($pdo);
         $this->requirementModel = new Requirement($pdo);
-        $this->violationModel = new Violation($pdo);
         $requirements = $this->requirementModel->getRequirements();
         $businessIdNames = $this->foodBusinessModel->getAllIdName();
         include __DIR__ . '/../view/inspector/inspection-entry.php';
@@ -41,8 +41,9 @@ class InspectionController{
         $this->inspectionModel->restoId = $restoId;
         $this->inspectionModel->remarks = $remarks;
         $this->inspectionModel->insertRow($this->inspectionModel);
+        $inspectionId = $this->inspectionModel->getInspectionId($userId, $restoId);
         if(!empty($violations)){
-            $this->violationModel->inspectionId = $this->inspectionModel->getInspectionId($userId, $restoId);
+            $this->violationModel->inspectionId = $inspectionId;
             $this->violationModel->reqCode = $violations;
             $this->violationModel->insertRow($this->violationModel);
         }
@@ -72,9 +73,7 @@ if (isset($_POST['food-business-id'])){
         //         $remarks[$index]['remarks'] = $value;
         //     }
         // }
-        foreach ($_POST as $key => $value) {
-            echo "Index $key → $value<br>";
-        }
+
     $controller->addInspectionEntry(
         $_POST['inspection-date'],
         $_POST['grade'],

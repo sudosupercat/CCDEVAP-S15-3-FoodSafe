@@ -39,6 +39,10 @@ class Inspection{
                                     WHERE userID = :userId AND restoID = :restoId
                                     ORDER BY inspectionID DESC
                                     LIMIT 1");
+        $stmt->execute([
+            ':userId' => $userId,
+            ':restoId' => $restoId
+        ]);
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $row['inspectionID'];

@@ -56,7 +56,7 @@ require __DIR__ . '/../theme-cookie.php';
                 </div>
                 <div class="form-group mb-3">
                     <label for="violations">Violations</label>
-                    <select class="form-select" id="violations" name="violations" multiple="multiple">
+                    <select class="form-select" id="violations" name="violations[]" multiple="multiple">
                         <?php foreach($requirements as $requirement): ?>
                         <option value="<?= $requirement->reqCode; ?>"><?= $requirement->reqTitle; ?></option>
                         <?php endforeach; ?>
