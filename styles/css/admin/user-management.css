@@ -8,6 +8,55 @@ body.dark-mode {
   --nav-bg: #0b0924;
 }
 
+body.theme-dark-custom .modal-content {
+  background-color: #212529;
+  color: #f8f9fa;
+  border-color: #212529;
+}
+
+body.theme-dark-custom .close, body.theme-dark-custom .close-user-detail-modal {
+  color: grey;
+}
+
+body.theme-dark-custom .close:hover, body.theme-dark-custom .close:focus, body.theme-dark-custom .close-user-detail-modal:hover, body.theme-dark-custom .close-user-detail-modal:focus {
+  color: white;
+}
+
+body.theme-dark-custom button:not(#user-modal-close):not(#report-modal-close) {
+  background-color: #212529;
+  border: 3px solid gray;
+}
+
+body.theme-dark-custom button:hover {
+  background-color: rgb(204, 135, 8);
+  border-color: rgb(204, 135, 8);
+  color: whitesmoke;
+}
+
+body.theme-dark-custom .btn-enable {
+  color: #4caf50;
+}
+
+body.theme-dark-custom .btn-disable {
+  color: #ff6b6b;
+}
+
+body.theme-dark-custom .btn-enable:hover {
+  background-color: #4caf50;
+  color: #1c1c1c;
+  border-color: #4caf50;
+}
+
+body.theme-dark-custom .btn-disable:hover {
+  background-color: #ff6b6b;
+  color: #1c1c1c;
+  border-color: #ff6b6b;
+}
+
+body.modal-open:has(.modal.fade.show)::before {
+  display: none;
+}
+
 .site-footer {
   margin-top: auto;
 }
@@ -59,8 +108,8 @@ td {
 }
 
 #user-man-table {
-    width: 100%;
-    table-layout: fixed;
+  width: 100%;
+  table-layout: fixed;
 }
 
 .actions-button {
@@ -68,7 +117,7 @@ td {
   gap: 10px;
 }
 
-.modal {
+.modal:not(.fade) {
   display: none; 
   position: fixed;
   z-index: 2; 
@@ -106,21 +155,20 @@ td {
   color: white;
 }
 
-.close {
+.close, .close-user-detail-modal {
   color: #aaaaaa;
   float: right;
   font-size: 28px;
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus, .close-user-detail-modal:hover, .close-user-detail-modal:focus {
   color: #000;
   text-decoration: none;
   cursor: pointer;
 }
 
-.edit-modal-header {
+.edit-modal-header, .modal-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -197,7 +245,8 @@ body.modal-open::before {
 }
 
 #edit-form input,
-#edit-form select {
+#edit-form select,
+.modal-body input[readonly] {
   width: 100%;
   box-sizing: border-box;
   padding: 10px 10px;
@@ -218,7 +267,6 @@ button {
 
 button:hover {
   color:whitesmoke;
-  border-radius: 20px;
   background-color: rgb(204, 135, 8);
   cursor: pointer;
 }

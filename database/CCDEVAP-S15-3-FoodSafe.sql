@@ -49,8 +49,7 @@ DROP TABLE IF EXISTS `inspections`;
 CREATE TABLE `inspections` (
   `inspectionID` int NOT NULL AUTO_INCREMENT,
   `inspectionDate` date NOT NULL,
-  `score` float NOT NULL,
-  `grade` enum('Pass','Fail') COLLATE utf8mb4_general_ci NOT NULL,
+  `grade` enum('A','B','C','F') COLLATE utf8mb4_general_ci NOT NULL,
   `remarks` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `userID` int NOT NULL,
   `restoID` int NOT NULL,
@@ -68,7 +67,7 @@ CREATE TABLE `inspections` (
 
 LOCK TABLES `inspections` WRITE;
 /*!40000 ALTER TABLE `inspections` DISABLE KEYS */;
-INSERT INTO `inspections` VALUES (1,'2026-07-14',75,'Pass','July 2026',6,4),(2,'2026-01-13',75,'Pass','January 2026',6,4),(3,'2026-01-25',75,'Pass','February 2026',6,4),(4,'2026-08-13',55,'Fail','August 20266',6,4);
+INSERT INTO `inspections` VALUES (1,'2026-07-14','A','July 2026',6,4),(2,'2026-01-13','B','January 2026',6,4),(3,'2026-01-25','C','February 2026',6,4),(4,'2026-08-13','F','August 20266',6,4);
 /*!40000 ALTER TABLE `inspections` ENABLE KEYS */;
 UNLOCK TABLES;
 

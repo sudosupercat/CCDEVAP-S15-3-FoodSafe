@@ -73,12 +73,7 @@ require __DIR__ . '/../theme-cookie.php';
                             <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
                             <button type='submit' class='btn-edit'>Edit</button>
                         </form>";
-                        echo "
-                        <form method='POST' action='../../controller/admin/adminUsers.controller.php'>
-                            <input type='hidden' name='action' value='delete'>
-                            <input type='hidden' name='id' value='" . htmlspecialchars($user['userID']) . "'>
-                            <button type='submit' class='btn-delete'>Delete</button>
-                        </form>";
+                        echo "<button type='button' class='btn-delete button-delete-user' data-userid='" . htmlspecialchars($user['userID']) . "' data-name='" . htmlspecialchars($user['fullName']) . "'>Delete</button>";
                         echo "</td>";
                         echo "</tr>";
                     }
@@ -149,17 +144,49 @@ require __DIR__ . '/../theme-cookie.php';
         <div class="modal-content">
             <div class="modal-header">
                 <h2>View User Details</h2>
+                <span class="close-user-detail-modal">&times;</span>
             </div>
             <div class="modal-body">
-                <p><strong>Email:</strong> <span id="detail-email"></span></p>
-                <p><strong>First Name:</strong> <span id="detail-first-name"></span></p>
-                <p><strong>Last Name:</strong> <span id="detail-last-name"></span></p>
-                <p><strong>District:</strong> <span id="detail-district"></span></p>
-                <p><strong>Login Attempt:</strong> <span id="detail-login-attempt"></span></p>
-                <p><strong>Status:</strong> <span id="detail-status"></span></p>
+                <label for="detail-email">Email:</label><br>
+                <input type="text" id="detail-email" readonly><br><br>
+
+                <label for="detail-first-name">First Name:</label><br>
+                <input type="text" id="detail-first-name" readonly><br><br>
+
+                <label for="detail-last-name">Last Name:</label><br>
+                <input type="text" id="detail-last-name" readonly><br><br>
+
+                <label for="detail-district">District:</label><br>
+                <input type="text" id="detail-district" readonly><br><br>
+
+                <label for="detail-login-attempt">Login Attempt:</label><br>
+                <input type="text" id="detail-login-attempt" readonly><br><br>
+
+                <label for="detail-status">Status:</label><br>
+                <input type="text" id="detail-status" readonly><br><br>
             </div>
             <div class="modal-footer">
-            <button type="button" id="user-modal-close">Close</button>
+                <button type="button" class="btn btn-danger" id="user-modal-close">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Modal -->
+    <div class="modal fade" tabindex="-1" id="delete-modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Delete User</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p id="text-delete-question"></p>
+                    <p class="text-danger fw-bold">This action cannot be undone!</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-danger" id="button-delete-user-final">Delete</button>
+                </div>
             </div>
         </div>
     </div>
@@ -167,7 +194,6 @@ require __DIR__ . '/../theme-cookie.php';
     <?php require __DIR__ . '/../footer.php'; ?>
 
     <script>
-
         let addUser = document.getElementById("button-add-user");
 
         addUser.addEventListener("click", () => {
@@ -252,12 +278,12 @@ require __DIR__ . '/../theme-cookie.php';
 
                 const data = this.querySelectorAll('td');
 
-                document.getElementById('detail-email').textContent = data[1].textContent;
-                document.getElementById('detail-first-name').textContent = this.dataset.firstName;
-                document.getElementById('detail-last-name').textContent = this.dataset.lastName;
-                document.getElementById('detail-district').textContent = data[4].textContent;
-                document.getElementById('detail-login-attempt').textContent = this.dataset.loginAttempt;
-                document.getElementById('detail-status').textContent = this.dataset.status;
+                document.getElementById('detail-email').value = data[1].textContent;
+                document.getElementById('detail-first-name').value = this.dataset.firstName;
+                document.getElementById('detail-last-name').value = this.dataset.lastName;
+                document.getElementById('detail-district').value = data[4].textContent;
+                document.getElementById('detail-login-attempt').value = this.dataset.loginAttempt;
+                document.getElementById('detail-status').value = this.dataset.status;
 
                 document.getElementById('user-details-modal').style.display = 'block';
                 document.body.classList.add('modal-open');
@@ -275,7 +301,53 @@ require __DIR__ . '/../theme-cookie.php';
                 modal.style.display = 'none';
                 document.body.classList.remove('modal-open');
             }
-        }); 
+        });
+        
+        document.querySelector('.close-user-detail-modal').onclick = function() {
+            document.getElementById('user-details-modal').style.display = 'none';
+            document.body.classList.remove('modal-open');
+        };
+
+        const modalDelete = new bootstrap.Modal(document.getElementById('delete-modal'));
+
+        function customizeDeleteMessage(button){
+            const userName = document.getElementById('text-delete-question');
+            const messageDelete = "Do you want to delete ";
+            const buttonConfirmFinalDelete = document.getElementById('button-delete-user-final');
+            userName.textContent = messageDelete + button.getAttribute('data-name') + "?";
+            buttonConfirmFinalDelete.setAttribute('data-userid', button.getAttribute('data-userid'));
+            modalDelete.show();
+        }
+
+        function sendDeleteRequest(userId){
+            event.preventDefault();
+
+            fetch('../../controller/admin/adminUsers.controller.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'action=delete' +
+                    '&id=' + encodeURIComponent(userId)
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Server says:', data);
+                modalDelete.hide();
+                window.location.href = '../../controller/admin/adminUsers.controller.php?toast=delete';
+
+            })
+            .catch(error => console.error('Error:', error));
+        }
+
+        document.querySelectorAll('.button-delete-user').forEach(button => {
+            button.addEventListener('click', function() {
+                customizeDeleteMessage(this);
+            });
+        });
+
+        document.getElementById('button-delete-user-final').addEventListener('click', () => {
+            const userId = document.getElementById('button-delete-user-final').getAttribute('data-userid');
+            sendDeleteRequest(userId);
+        });
     </script>
 </body>
 </html>

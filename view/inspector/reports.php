@@ -93,16 +93,26 @@ require __DIR__ . '/../theme-cookie.php';
         <div class="modal-content">
             <div class="modal-header">
                 <h2>View Report Details</h2>
+                <span class="close">&times;</span>
             </div>
             <div class="modal-body">
-                <p><strong>Date:</strong> <span id="detail-date"></span></p>
-                <p><strong>Establishment:</strong> <span id="detail-establishment"></span></p>
-                <p><strong>Violation:</strong> <span id="detail-violation"></span></p>
-                <p><strong>Description:</strong> <span id="detail-description"></span></p>
-                <p><strong>Status:</strong> <span id="detail-status"></span></p>
+                <label for="detail-date">Email:</label><br>
+                <input type="text" id="detail-date" readonly><br><br>
+
+                <label for="detail-establishment">Establishment:</label><br>
+                <input type="text" id="detail-establishment" readonly><br><br>
+
+                <label for="detail-violation">Violation:</label><br>
+                <input type="text" id="detail-violation" readonly><br><br>
+
+                <label for="detail-description">Description:</label><br>
+                <textarea id="detail-description" readonly rows="3"></textarea><br><br>
+
+                <label for="detail-status">Status:</label><br>
+                <input type="text" id="detail-status" readonly><br><br>
             </div>
             <div class="modal-footer">
-            <button type="button" id="report-modal-close">Close</button>
+                <button type="button" class="btn btn-danger" id="report-modal-close">Close</button>
             </div>
         </div>
     </div>
@@ -191,11 +201,11 @@ require __DIR__ . '/../theme-cookie.php';
 
                 const data = this.querySelectorAll('td');
 
-                document.getElementById('detail-date').textContent = data[1].textContent;
-                document.getElementById('detail-establishment').textContent = data[2].textContent;
-                document.getElementById('detail-violation').textContent = data[3].textContent;
-                document.getElementById('detail-description').textContent = this.dataset.description;
-                document.getElementById('detail-status').textContent = data[4].textContent;
+                document.getElementById('detail-date').value = data[1].textContent;
+                document.getElementById('detail-establishment').value = data[2].textContent;
+                document.getElementById('detail-violation').value = data[3].textContent;
+                document.getElementById('detail-description').value = this.dataset.description;
+                document.getElementById('detail-status').value = data[4].textContent;
 
                 document.getElementById('report-details-modal').style.display = 'block';
                 document.body.classList.add('modal-open');
@@ -214,6 +224,11 @@ require __DIR__ . '/../theme-cookie.php';
                 document.body.classList.remove('modal-open');
             }
         });
+
+        document.querySelector('.close').onclick = function() {
+            document.getElementById('report-details-modal').style.display = 'none';
+            document.body.classList.remove('modal-open');
+        };
     </script>
 </body>
 </html>
