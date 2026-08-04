@@ -152,6 +152,7 @@ CREATE TABLE `restaurants` (
   `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `status` tinyint(1) NOT NULL,
   `districtID` int NOT NULL,
+  `avg_rating` decimal(2,1) NOT NULL DEFAULT '0.0',
   PRIMARY KEY (`restoID`),
   KEY `restaurant_ibfk_1` (`districtID`),
   CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`districtID`) REFERENCES `districts` (`districtID`)
@@ -164,10 +165,39 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
-INSERT INTO `restaurants` VALUES (1,123456,'Jollibee Quiapo','Quiapo, Manila','09171234567',NULL,'Jollibee_Quiapo.png',1,1),(2,234567,'Hilltop Café','Baguio City, Benguet','09181234567',NULL,'Hilltop_Cafe.png',1,2),(3,345678,'Vigan Heritage Restaurant','Vigan City, Ilocos Sur','09191234567',NULL,'Vigan_Heritage.png',1,3),(4,456789,'Cagayan Valley Grill','Tuguegarao City, Cagayan','09201234567',NULL,'Cagayan_Valley.png',1,4),(5,567891,'Kapampangan Kitchen','San Fernando, Pampanga','09211234567',NULL,'Kapampangan_Kitchen.png',1,5),(6,678912,'Lipa Food House','Lipa City, Batangas','09221234567',NULL,'Lipa_Food.png',1,6),(7,789123,'Wendy\'s Taft','Taft, Manila','09231234567',NULL,'Wendys_Taft.png',1,1);
-/*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
+INSERT INTO `restaurants` VALUES (1,123456,'Jollibee Quiapo','Quiapo, Manila','09171234567',NULL,'Jollibee_Quiapo.png',1,1,0.0),(2,234567,'Hilltop Café','Baguio City, Benguet','09181234567',NULL,'Hilltop_Cafe.png',1,2,0.0),(3,345678,'Vigan Heritage Restaurant','Vigan City, Ilocos Sur','09191234567',NULL,'Vigan_Heritage.png',1,3,0.0),(4,456789,'Cagayan Valley Grill','Tuguegarao City, Cagayan','09201234567',NULL,'Cagayan_Valley.png',1,4,0.0),(5,567891,'Kapampangan Kitchen','San Fernando, Pampanga','09211234567',NULL,'Kapampangan_Kitchen.png',1,5,0.0),(6,678912,'Lipa Food House','Lipa City, Batangas','09221234567',NULL,'Lipa_Food.png',1,6,0.0),(7,789123,'Wendy\'s Taft','Taft, Manila','09231234567',NULL,'Wendys_Taft.png',1,1,0.0);
+  /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+--
+-- Table structure for table `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reviews` (
+  `reviewID` int NOT NULL AUTO_INCREMENT,
+  `restoID` int NOT NULL,
+  `rating` int NOT NULL,
+  `comment` varchar(500) COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`reviewID`),
+  KEY `review_ibfk_1` (`restoID`),
+  CONSTRAINT `review_ibfk_1` FOREIGN KEY (`restoID`) REFERENCES `restaurants` (`restoID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reviews`
+--
+
+LOCK TABLES `reviews` WRITE;
+/*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
+/*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
+UNLOCK TABLES;
+  
 --
 -- Table structure for table `users`
 --
