@@ -34,7 +34,7 @@ require __DIR__ . '/../theme-cookie.php';
                         <option value="<?= $businessIdName['restoID']; ?>"><?= $businessIdName['name']; ?></option>
                         <?php endforeach; ?>
                     </select>
-                    <small id="food-business-help" class="form-text text-muted">If a result does not show up, please add it first.</small>
+                    <small id="food-business-help" class="form-text text-muted">If a result does not show up, please add it first <a href="/businessDirectory">here</a>.</small>
                 </div>
                 <div class="form-row mb-3" id="container-score-grade">
                     <div class="col-md-6 form-group mb-3">
