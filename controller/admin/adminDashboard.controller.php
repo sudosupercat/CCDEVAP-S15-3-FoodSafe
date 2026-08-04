@@ -11,11 +11,11 @@ require __DIR__ . '/../../model/admin.model.php';
 $year = $_GET['yearPicker'] ?? date('Y');
 $month = $_GET['monthPicker'] ?? '';
 $userCounts = getInspectorCounts($pdo, $year, $month);
-$passInspecCount = getPassInspection($pdo, $year);
-$failInspecCount = getFailInspection($pdo, $year);
-$violationCount = getViolationCount($pdo, $year);
-$distFailedCount = getDistrictFailedCount($pdo, $year);
-$distViolationTypeCount = getDistrictViolationTypeCount($pdo, $year);
+$gradeInspecCount = getGradeInspection($pdo, $year);
+
+$violationCount = getViolationCount($pdo, $year, $month);
+$distFailedCount = getDistrictFailedCount($pdo, $year, $month);
+$distViolationTypeCount = getDistrictViolationTypeCount($pdo, $year, $month);
 
 require __DIR__ . '/../../view/admin/dashboard.php';
 ?>

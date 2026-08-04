@@ -4,15 +4,15 @@ var lineViolationctx = document.getElementById('lineChartViolation').getContext(
 var lineChartRegionFailedctx = document.getElementById('lineChartRegionFailed').getContext('2d');
 const year = document.getElementById('yearPicker').value;
 
+const grades = ['A', 'B', 'C', 'F'];
 
-var passedData = new Array(12).fill(0);
-passedRow.forEach(row => {
-    passedData[row.month - 1] = parseInt(row.total);
-});
+var gradeData = {};
+grades.forEach(grade => gradeData[grade] = new Array(12).fill(0));
 
-var failedData = new Array(12).fill(0);
-failedRow.forEach(row => {
-    failedData[row.month - 1] = parseInt(row.total);
+gradeRow.forEach(row => {
+    if (gradeData[row.grade]) {
+        gradeData[row.grade][row.month - 1] = parseInt(row.total);
+    }
 });
 
 var violationData = new Array(18).fill(0);
@@ -42,15 +42,29 @@ var lineChart = new Chart(linectx, {
     data: {
         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         datasets: [{
-        label: '# of Passed Inspection',
-        data: passedData,
-        backgroundColor: 'blue',
-        borderColor: 'blue',
+        label: 'A',
+        data: gradeData['A'],
+        backgroundColor: 'green',
+        borderColor: 'green',
         borderWidth: 2,
         fill: false
         }, {
-            label: '# of Failed Inspection',
-            data: failedData,
+            label: 'B',
+            data: gradeData['B'],
+            backgroundColor: 'blue',
+            borderColor: 'blue',
+            borderWidth: 2,
+            fill: false
+        }, {
+            label: 'C',
+            data: gradeData['C'],
+            backgroundColor: 'orange',
+            borderColor: 'orange',
+            borderWidth: 2,
+            fill: false
+        }, {
+            label: 'F',
+            data: gradeData['F'],
             backgroundColor: 'red',
             borderColor: 'red',
             borderWidth: 2,

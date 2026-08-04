@@ -51,46 +51,39 @@ function getInspectorCounts($pdo, $year, $month) {
 }
 
 // DASHBOARD -- Charts
-function getPassInspection($pdo, $year) {
-    $sql = $pdo->prepare("SELECT COUNT(*) as total, MONTH(inspectionDate) as month
+function getGradeInspection($pdo, $year) {
+    $sql = $pdo->prepare("SELECT COUNT(*) as total, MONTH(inspectionDate) as month, grade
                         FROM inspections
                         WHERE YEAR(inspectionDate) = ?
-                        AND grade = 'Pass'
-                        GROUP BY MONTH(inspectionDate);");
+                        GROUP BY MONTH(inspectionDate), grade;");
     $sql->execute([$year]);
 
-    $passed_data = [];
+    $grade_data = [];
     while($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-        array_push($passed_data , $row);
+        array_push($grade_data , $row);
     }
 
-    return json_encode($passed_data);
+    return json_encode($grade_data);
 }
 
-function getFailInspection($pdo, $year) {
-    $sql = $pdo->prepare("SELECT COUNT(*) as total, MONTH(inspectionDate) as month
-                        FROM inspections
-                        WHERE YEAR(inspectionDate) = ?
-                        AND grade = 'Fail'
-                        GROUP BY MONTH(inspectionDate);");
-    $sql->execute([$year]);
+function getViolationCount($pdo, $year, $month) {
+    $monthFilter = "";
+    $params = [$year];
 
-    $failed_data = [];
-    while($row = $sql->fetch(PDO::FETCH_ASSOC)) {
-        array_push($failed_data , $row);
+    # If no month is selected, display year result
+    if ($month != '') {
+        $monthFilter = " AND MONTH(i.inspectionDate) = ?";
+        $params[] = $month + 1;
     }
 
-    return json_encode($failed_data);
-}
-
-function getViolationCount($pdo, $year) {
     $sql = $pdo->prepare("SELECT COUNT(*) as total, v.requirementCode as num, rq.title as name
                         FROM violations v 
                         LEFT JOIN requirements rq ON v.requirementCode = rq.requirementCode
                         LEFT JOIN inspections i ON v.inspectionID = i.inspectionID
                         WHERE YEAR(i.inspectionDate) = ?
+                        $monthFilter
                         GROUP BY v.requirementCode;");
-    $sql->execute([$year]);
+    $sql->execute($params);
     $violation_data = [];
     while($row = $sql->fetch(PDO::FETCH_ASSOC)) {
         array_push($violation_data, $row);
@@ -99,15 +92,25 @@ function getViolationCount($pdo, $year) {
     return json_encode($violation_data);
 }
 
-function getDistrictFailedCount($pdo, $year) {
+function getDistrictFailedCount($pdo, $year, $month) {
+    $monthFilter = "";
+    $params = [$year];
+
+    # If no month is selected, display year result
+    if ($month != '') {
+        $monthFilter = " AND MONTH(inspectionDate) = ?";
+        $params[] = $month + 1;
+    }
+
     $sql = $pdo->prepare("SELECT COUNT(i.inspectionID) as total, r.districtID as district
                         FROM inspections i
                         LEFT JOIN restaurants r ON i.restoID = r.restoID
                         LEFT JOIN districts d ON r.districtID = d.districtID
                         WHERE YEAR(inspectionDate) = ?
-                        AND grade = 'Fail'
+                        AND grade = 'F'
+                        $monthFilter
                         GROUP BY r.districtID;");
-    $sql->execute([$year]);
+    $sql->execute($params);
 
     $distViolation_data = [];
      while($row = $sql->fetch(PDO::FETCH_ASSOC)) {
@@ -117,14 +120,25 @@ function getDistrictFailedCount($pdo, $year) {
     return json_encode($distViolation_data);
 }
 
-function getDistrictViolationTypeCount($pdo, $year) {
+function getDistrictViolationTypeCount($pdo, $year, $month) {
+    $monthFilter = "";
+    $params = [$year];
+
+    # If no month is selected, display year result
+    if ($month != '') {
+        $monthFilter = " AND MONTH(i.inspectionDate) = ?";
+        $params[] = $month + 1;
+    }
+
+
     $sql = $pdo->prepare("SELECT COUNT(v.violationID) as total, r.districtID as districtNum, v.requirementCode as violationNum
                         FROM violations v
                         LEFT JOIN inspections i ON v.inspectionID = i.inspectionID
                         LEFT JOIN restaurants r ON i.restoID = r.restoID
                         WHERE YEAR(i.inspectionDate) = ?
+                        $monthFilter
                         GROUP BY r.districtID, v.requirementCode;");
-    $sql->execute([$year]);
+    $sql->execute($params);
 
     $data = [];
     while($row = $sql->fetch(PDO::FETCH_ASSOC)) {

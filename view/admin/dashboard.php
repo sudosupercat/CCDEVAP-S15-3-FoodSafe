@@ -59,7 +59,7 @@ require __DIR__ . '/../theme-cookie.php';
         <div class="row">
             <div class="col-lg-6">
                 <div class="chart">
-                    <h4>Inspection Trend</h4>
+                    <h4>Inspection Grade Trend</h4>
                      <div class="chart-canvas">
                         <canvas id="lineChart"></canvas>
                     </div>
@@ -128,8 +128,13 @@ require __DIR__ . '/../theme-cookie.php';
             monthPicker.appendChild(option);
         })
 
-        let passedRow = <?php echo $passInspecCount; ?>;
-        let failedRow = <?php echo $failInspecCount; ?>;
+        let selectedYear = <?php echo (int) $year; ?>;
+        let selectedMonth = "<?php echo htmlspecialchars($month, ENT_QUOTES); ?>";
+
+        yearPicker.value = selectedYear;
+        monthPicker.value = selectedMonth;
+
+        let gradeRow = <?php echo $gradeInspecCount; ?>;
 
         let violationRow = <?php echo $violationCount; ?>;
 
