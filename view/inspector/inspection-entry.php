@@ -29,6 +29,7 @@ require __DIR__ . '/../theme-cookie.php';
                 <div class="form-group mb-3">
                     <label for="food-business">Food Business <span class="text-danger">*</span></label>
                     <select class="form-select" id="food-business" name="food-business-id" required>
+                        <option value="" selected disabled hidden></option>
                         <?php foreach($businessIdNames as $businessIdName): ?>
                         <option value="<?= $businessIdName['restoID']; ?>"><?= $businessIdName['name']; ?></option>
                         <?php endforeach; ?>
@@ -43,6 +44,7 @@ require __DIR__ . '/../theme-cookie.php';
                     <div class="col-md-6">
                         <label for="grade">Grade <span class="text-danger">*</span></label><br>
                         <select class="form-select w-25" id="grade" name="grade" required>
+                            <option value="" selected disabled hidden>Select Grade</option>
                             <option value="A">A</option>
                             <option value="B">B</option>
                             <option value="C">C</option>
