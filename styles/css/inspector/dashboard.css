@@ -18,7 +18,7 @@
 }
 
 /* Dark mode theme */
-body.theme-dark-custom .page-header {
+body.theme-dark-custom .page-header, body.theme-dark-custom select {
     background-color: #1c1850;
 }
 body.theme-dark-custom .stat-box1, body.theme-dark-custom .stat-box2 {
@@ -26,6 +26,7 @@ body.theme-dark-custom .stat-box1, body.theme-dark-custom .stat-box2 {
     border-color: white;
     color: white;
 }
+
 body{
     background-color: var(--bg-lightmode);
     min-height: 100vh; /* full screen height */
