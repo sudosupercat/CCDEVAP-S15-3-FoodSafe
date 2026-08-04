@@ -183,12 +183,12 @@ button:hover {
 }
 
 #button-inspection-log:hover {
-  color:whitesmoke;
+  color: whitesmoke;
+  background-color: #212529;
   border-radius: 20px;
   cursor: pointer;
   border: 3px solid gray;
 }
-
 
 .modal {
   display: none; 

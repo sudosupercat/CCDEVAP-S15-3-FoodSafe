@@ -27,7 +27,7 @@ require __DIR__ . '/../theme-cookie.php';
     </div>
 
     <div class="table-custom table-responsive">
-    <button type="button" class="btn button-option float-start me-2 mb-2" id="button-inspection-log"> + Add Inspection Log</button>
+    <button type="button" class="btn button-option float-start me-2 mb-2" id="button-inspection-log">+ Add Inspection Entry</button>
         <table id="reports-table" class="display table table-striped">
             <thead>
             <tr>
@@ -129,11 +129,11 @@ require __DIR__ . '/../theme-cookie.php';
     <?php require __DIR__ . '/../footer.php'; ?>
 
     <script>
-        let addUser = document.getElementById("button-inspection-log");
+        let addEntry = document.getElementById("button-inspection-log");
 
         // Kung saan man yung inspection entry nalload
-        addUser.addEventListener("click", () => {
-            window.location.href = '../../controller/Inspection.controller.php';
+        addEntry.addEventListener("click", () => {
+            window.location.href = '/inspectionEntry';
         });
 
         function searchReports() {

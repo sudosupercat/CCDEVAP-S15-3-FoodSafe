@@ -197,7 +197,7 @@ require __DIR__ . '/../theme-cookie.php';
         let addUser = document.getElementById("button-add-user");
 
         addUser.addEventListener("click", () => {
-            window.location.href = '../../controller/admin/adminAddUsers.controller.php';
+            window.location.href = '/adminAddUsers';
         });
 
         let modal = document.getElementById("edit-modal");
