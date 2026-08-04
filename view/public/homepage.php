@@ -41,7 +41,7 @@ $homepageData = $controller->getData();
         </div>
 
         <a href="/restaurant-detail?id=<?php echo htmlspecialchars($homepageData['latestRestoID']); ?>" class="review-link-wrapper">
-            <div class="review-image-container" style="background-image: url('<?php echo htmlspecialchars($homepageData['latestRestoImage']); ?>');">
+            <div class="review-image-container" style="background-image: url('/img/<?php echo htmlspecialchars($homepageData['latestRestoImage']); ?>');">
                 <div class="restaurant-name-banner">
                     <?php echo htmlspecialchars($homepageData['latestRestoName']); ?>
                 </div>
@@ -59,8 +59,6 @@ $homepageData = $controller->getData();
         </div>
     </section>
 
-    <footer class="site-footer">
-        FoodSafe - Copyright 2026
-    </footer>
+    <?php require __DIR__ . '/../../view/footer.php' ?>
 </body>
 </html>

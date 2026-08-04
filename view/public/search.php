@@ -80,8 +80,6 @@ $sortOrder = $_GET['sort'] ?? 'az';
         </div>
     </div>
 
-    <footer class="site-footer">
-        FoodSafe - Copyright 2026
-    </footer>
+    <?php require __DIR__ . '/../../view/footer.php' ?>
 </body>
 </html>
