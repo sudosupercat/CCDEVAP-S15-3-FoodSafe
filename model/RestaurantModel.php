@@ -82,9 +82,9 @@ class RestaurantModel {
 
                 if ($violationCount <= 10) {
                     $grade = 'A';
-                } elseif ($violationCount <= 25) {
+                } elseif ($violationCount <= 20) {
                     $grade = 'B';
-                } elseif ($violationCount <= 55) {
+                } elseif ($violationCount <= 40) {
                     $grade = 'C';
                 } else {
                     $grade = 'F';

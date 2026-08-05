@@ -24,7 +24,7 @@ DROP TABLE IF EXISTS `districts`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `districts` (
   `districtID` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`districtID`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -49,8 +49,8 @@ DROP TABLE IF EXISTS `inspections`;
 CREATE TABLE `inspections` (
   `inspectionID` int NOT NULL AUTO_INCREMENT,
   `inspectionDate` date NOT NULL,
-  `grade` enum('A','B','C','F') COLLATE utf8mb4_general_ci NOT NULL,
-  `remarks` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `grade` enum('A','B','C','F') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `userID` int NOT NULL,
   `restoID` int NOT NULL,
   PRIMARY KEY (`inspectionID`),
@@ -58,7 +58,7 @@ CREATE TABLE `inspections` (
   KEY `inspection_ibfk_2` (`restoID`),
   CONSTRAINT `inspection_ibfk_1` FOREIGN KEY (`userID`) REFERENCES `users` (`userID`),
   CONSTRAINT `inspection_ibfk_2` FOREIGN KEY (`restoID`) REFERENCES `restaurants` (`restoID`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -67,7 +67,7 @@ CREATE TABLE `inspections` (
 
 LOCK TABLES `inspections` WRITE;
 /*!40000 ALTER TABLE `inspections` DISABLE KEYS */;
-INSERT INTO `inspections` VALUES (1,'2026-07-14','A','July 2026',6,4),(2,'2026-01-13','B','January 2026',6,4),(3,'2026-01-25','C','February 2026',6,4),(4,'2026-08-13','F','August 20266',6,4);
+INSERT INTO `inspections` VALUES (1,'2026-07-14','A','July 2026',6,4),(2,'2026-01-13','B','January 2026',6,4),(3,'2026-01-25','C','February 2026',6,4),(4,'2026-08-13','F','August 20266',6,4),(5,'2023-03-10','A','Routine Inspection - Clean and compliant',3,1),(6,'2023-05-18','B','Minor temperature issues noted',4,2),(7,'2023-08-22','C','Multiple non-critical violations found',5,3),(8,'2023-11-14','A','Follow-up inspection passed',6,4),(9,'2024-01-15','A','Excellent sanitation practices',3,1),(10,'2024-02-28','F','Severe pest issues present',4,2),(11,'2024-04-10','B','Improvement seen from last year',5,3),(12,'2024-06-19','A','Quarterly check passed',6,4),(13,'2024-07-05','C','Storage temperature warnings',6,8),(14,'2024-09-12','A','Fully compliant',4,9),(15,'2024-11-03','B','Handwashing station issues',5,10),(16,'2024-12-18','A','End of year review clear',6,11),(17,'2025-01-20','A','Annual audit completed',3,1),(18,'2025-02-14','B','Cross-contamination risk noted',4,2),(19,'2025-03-25','A','Clean storage area',5,3),(20,'2025-05-08','C','Restroom maintenance required',6,4),(21,'2025-06-15','F','Repeated bare-hand contact',6,8),(22,'2025-07-19','A','Re-inspection cleared',6,8),(23,'2025-09-02','A','Routine compliance verified',4,9),(24,'2025-10-11','B','Equipment sanitation warning',5,10),(25,'2025-11-20','A','Great food storage management',6,11),(26,'2025-12-05','C','Proper labeling missing',3,12),(27,'2026-02-18','A','February check passed',3,1),(28,'2026-03-12','A','First quarter routine check',4,2),(29,'2026-04-05','B','Minor kitchen grease buildup',5,3),(30,'2026-05-22','A','Mid-year audit satisfactory',6,4),(31,'2026-06-11','F','Severe infestation detected',6,8);
 /*!40000 ALTER TABLE `inspections` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -80,12 +80,12 @@ DROP TABLE IF EXISTS `reports`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `reports` (
   `reportID` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `firstName` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `lastName` varchar(50) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `contactNo` varchar(11) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `status` enum('Pending','Reviewed','Dismissed') COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `firstName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `lastName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `contactNo` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `status` enum('Pending','Reviewed','Dismissed') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `restoID` int NOT NULL,
   `requirementCode` int NOT NULL,
@@ -94,7 +94,7 @@ CREATE TABLE `reports` (
   KEY `report_ibfk_2` (`requirementCode`),
   CONSTRAINT `report_ibfk_1` FOREIGN KEY (`restoID`) REFERENCES `restaurants` (`restoID`),
   CONSTRAINT `report_ibfk_2` FOREIGN KEY (`requirementCode`) REFERENCES `requirements` (`requirementCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -103,7 +103,7 @@ CREATE TABLE `reports` (
 
 LOCK TABLES `reports` WRITE;
 /*!40000 ALTER TABLE `reports` DISABLE KEYS */;
-INSERT INTO `reports` VALUES (1,NULL,NULL,NULL,NULL,'Restroom floors were dirty and lacked soap dispensers.','Pending','2026-07-13 16:13:48',1,15),(2,NULL,NULL,NULL,NULL,'Food was observed being handled without gloves.','Reviewed','2026-07-14 17:33:07',2,2),(3,NULL,NULL,NULL,NULL,'Several cockroaches were seen near the kitchen area.','Reviewed','2026-07-15 10:39:31',3,7),(4,NULL,NULL,NULL,NULL,'Several cockroaches were seen near the kitchen area.','Reviewed','2026-07-14 14:39:31',4,7),(5,NULL,NULL,NULL,NULL,'Food was observed being handled without gloves.','Pending','2026-07-13 16:13:48',7,2),(6,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:51:55',7,9),(7,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:51:55',1,11),(8,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:52:20',5,3),(9,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Dismissed','2026-07-14 15:52:20',3,12),(10,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:52:20',4,12);
+INSERT INTO `reports` VALUES (1,NULL,NULL,NULL,NULL,'Restroom floors were dirty and lacked soap dispensers.','Pending','2026-07-13 16:13:48',1,15),(2,NULL,NULL,NULL,NULL,'Food was observed being handled without gloves.','Reviewed','2026-07-14 17:33:07',2,2),(3,NULL,NULL,NULL,NULL,'Several cockroaches were seen near the kitchen area.','Reviewed','2026-07-15 10:39:31',3,7),(4,NULL,NULL,NULL,NULL,'Several cockroaches were seen near the kitchen area.','Reviewed','2026-07-14 14:39:31',4,7),(5,NULL,NULL,NULL,NULL,'Food was observed being handled without gloves.','Pending','2026-07-13 16:13:48',7,2),(6,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:51:55',7,9),(7,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:51:55',1,11),(8,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:52:20',5,3),(9,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Dismissed','2026-07-14 15:52:20',3,12),(10,NULL,NULL,NULL,NULL,'ayuq na mag isip ng desc.','Pending','2026-07-14 15:52:20',4,12),(11,'john.doe@gmail.com','John','Doe','09123456781','Expired ingredients found in stock room.','Reviewed','2023-04-10 01:30:00',1,8),(12,'jane.smith@gmail.com','Jane','Smith','09123456782','Food was served cold.','Dismissed','2023-08-15 06:20:00',3,6),(13,'alex.cruz@gmail.com','Alex','Cruz','09123456783','Saw flies inside the display case.','Reviewed','2024-03-01 03:10:00',2,7),(14,'carla.mendoza@gmail.com','Carla','Mendoza','09123456789','Unwashed vegetables being prepared.','Pending','2024-05-12 00:45:00',4,1),(15,'mark.reyes@gmail.com','Mark','Reyes','09123456784','Staff without hairnets or aprons.','Reviewed','2024-08-20 08:05:00',8,13),(16,'louis.tan@gmail.com','Louis','Tan','09123456790','Grease dropping from exhaust hoods.','Reviewed','2025-02-10 05:15:00',10,16),(17,'sarah.conner@gmail.com','Sarah','Conner','09123456785','No soap or paper towels in the bathroom.','Pending','2025-05-18 02:00:00',4,15),(18,'robert.lim@gmail.com','Robert','Lim','09123456791','Cockroach seen near the dining table.','Pending','2025-09-09 11:30:00',8,7),(19,'david.gomez@gmail.com','David','Gomez','09123456786','Undercooked chicken served.','Dismissed','2025-11-01 04:40:00',12,3),(20,'maria.santos@gmail.com','Maria','Santos','09123456787','Employees handling money then food without washing hands.','Pending','2026-02-14 03:22:10',4,5),(21,'elena.delarosa@gmail.com','Elena','Dela Rosa','09123456792','Lack of allergen warnings on buffet section.','Pending','2026-03-20 07:45:00',4,17),(22,'paul.walker@gmail.com','Paul','Walker','09123456788','Trash cans overflowing near kitchen entrance.','Pending','2026-05-04 02:11:00',4,11),(23,'grace.alonso@gmail.com','Grace','Alonso','09123456793','Raw beef stored directly above vegetables.','Pending','2026-06-18 08:30:00',4,1);
 /*!40000 ALTER TABLE `reports` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -116,10 +116,10 @@ DROP TABLE IF EXISTS `requirements`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `requirements` (
   `requirementCode` int NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `description` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `category` enum('Sanitation','Food Safety','Equipment','Pest Control','Equipment','Personnel','') COLLATE utf8mb4_general_ci NOT NULL,
-  `severityLvl` enum('1','2','3','4','5') COLLATE utf8mb4_general_ci NOT NULL,
+  `title` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `description` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `category` enum('Sanitation','Food Safety','Equipment','Pest Control','Equipment','Personnel','') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `severityLvl` enum('1','2','3','4','5') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `standardFine` int NOT NULL,
   PRIMARY KEY (`requirementCode`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -145,17 +145,18 @@ DROP TABLE IF EXISTS `restaurants`;
 CREATE TABLE `restaurants` (
   `restoID` int NOT NULL AUTO_INCREMENT,
   `licenseNo` int NOT NULL,
-  `name` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `address` varchar(100) COLLATE utf8mb4_general_ci NOT NULL,
-  `contactNo` varchar(11) COLLATE utf8mb4_general_ci NOT NULL,
-  `maps` varchar(255) COLLATE utf8mb4_general_ci DEFAULT NULL,
-  `image` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `address` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `contactNo` varchar(11) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `maps` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci DEFAULT NULL,
+  `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` tinyint(1) NOT NULL,
   `districtID` int NOT NULL,
+  `avg_rating` decimal(2,1) NOT NULL DEFAULT '0.0',
   PRIMARY KEY (`restoID`),
   KEY `restaurant_ibfk_1` (`districtID`),
   CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`districtID`) REFERENCES `districts` (`districtID`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,8 +165,37 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
-INSERT INTO `restaurants` VALUES (1,123456,'Jollibee Quiapo','Quiapo, Manila','09171234567',NULL,'Jollibee_Quiapo.png',1,1),(2,234567,'Hilltop Café','Baguio City, Benguet','09181234567',NULL,'Hilltop_Cafe.png',1,2),(3,345678,'Vigan Heritage Restaurant','Vigan City, Ilocos Sur','09191234567',NULL,'Vigan_Heritage.png',1,3),(4,456789,'Cagayan Valley Grill','Tuguegarao City, Cagayan','09201234567',NULL,'Cagayan_Valley.png',1,4),(5,567891,'Kapampangan Kitchen','San Fernando, Pampanga','09211234567',NULL,'Kapampangan_Kitchen.png',1,5),(6,678912,'Lipa Food House','Lipa City, Batangas','09221234567',NULL,'Lipa_Food.png',1,6),(7,789123,'Wendy\'s Taft','Taft, Manila','09231234567',NULL,'Wendys_Taft.png',1,1);
+INSERT INTO `restaurants` VALUES (1,123456,'Jollibee Quiapo','Quiapo, Manila','09171234567',NULL,'Jollibee_Quiapo.png',1,1,4.5),(2,234567,'Hilltop Café','Baguio City, Benguet','09181234567',NULL,'Hilltop_Cafe.png',1,2,2.0),(3,345678,'Vigan Heritage Restaurant','Vigan City, Ilocos Sur','09191234567',NULL,'Vigan_Heritage.png',1,3,5.0),(4,456789,'Cagayan Valley Grill','Tuguegarao City, Cagayan','09201234567',NULL,'Cagayan_Valley.png',1,4,3.5),(5,567891,'Kapampangan Kitchen','San Fernando, Pampanga','09211234567',NULL,'Kapampangan_Kitchen.png',1,5,0.0),(6,678912,'Lipa Food House','Lipa City, Batangas','09221234567',NULL,'Lipa_Food.png',1,6,0.0),(7,789123,'Wendy\'s Taft','Taft, Manila','09231234567',NULL,'Wendys_Taft.png',1,1,0.0),(8,890123,'Baguio Craft Brewery','Ben Palispis Hwy, Baguio','09241234567',NULL,'Baguio_Craft.png',1,2,4.3),(9,901234,'Hidden Garden ','Vigan City, Ilocos Sur','09251234567',NULL,'Hidden_Garden.png',1,3,4.7),(10,112233,'Lalays Panciteria','Tuguegarao City, Cagayan','09261234567',NULL,'Lalays.png',1,4,3.7),(11,223344,'Aling Lucing','Angeles, Pampanga','09271234567',NULL,'Aling_Lucing.png',1,5,5.0),(12,334455,'Cabezera Ridge View','Tagaytay, Cavite','09281234567',NULL,'Cabezera_Ridge.png',1,6,2.5);
 /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `reviews`
+--
+
+DROP TABLE IF EXISTS `reviews`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `reviews` (
+  `reviewID` int NOT NULL AUTO_INCREMENT,
+  `restoID` int NOT NULL,
+  `rating` int NOT NULL,
+  `comment` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`reviewID`),
+  KEY `review_ibfk_1` (`restoID`),
+  CONSTRAINT `review_ibfk_1` FOREIGN KEY (`restoID`) REFERENCES `restaurants` (`restoID`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `reviews`
+--
+
+LOCK TABLES `reviews` WRITE;
+/*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
+INSERT INTO `reviews` VALUES (1,1,5,'Great service and very clean environment!','2023-04-12 11:30:00'),(2,1,4,'Food was fresh, staff were polite.','2024-02-10 14:15:00'),(3,2,2,'Tables were sticky and food took too long.','2024-03-01 18:00:00'),(4,3,5,'Authentic local dishes and spotless kitchen view.','2024-05-20 12:45:00'),(5,4,3,'Food was okay, but the dining area felt dusty.','2024-06-11 19:10:00'),(6,4,4,'Good portion sizes and clean restrooms.','2025-01-18 13:00:00'),(7,8,5,'Excellent craft beer and very hygienic setup.','2025-03-14 20:30:00'),(8,8,4,'Great atmosphere, place is well-maintained.','2025-07-22 17:15:00'),(9,8,4,'Very clean dining area.','2026-01-05 18:40:00'),(10,9,5,'Delicious longganisa and very clean facilities!','2025-09-10 08:30:00'),(11,9,4,'Good hygiene practices observed by kitchen staff.','2026-02-11 12:20:00'),(12,10,3,'Pancit was good, but tables needed better wiping.','2025-11-04 13:50:00'),(13,10,4,'Quick service and decent cleanliness.','2026-03-15 11:00:00'),(14,11,5,'Best sisig in town, super spotless dining setup!','2025-12-01 19:00:00'),(15,11,5,'Staff wore complete safety gear. Very impressed.','2026-04-02 18:25:00'),(16,12,2,'Saw trash lying around near the kitchen door.','2025-12-10 14:10:00'),(17,12,3,'Great view, but restroom was out of soap.','2026-05-19 15:30:00');
+/*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -177,12 +207,12 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `userID` int NOT NULL AUTO_INCREMENT,
-  `email` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `password` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `firstName` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
-  `lastName` varchar(50) COLLATE utf8mb4_general_ci NOT NULL,
+  `email` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `firstName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
+  `lastName` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `districtID` int DEFAULT NULL,
-  `role` enum('Admin','Inspector') COLLATE utf8mb4_general_ci NOT NULL,
+  `role` enum('Admin','Inspector') CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `loginAttempt` int NOT NULL,
   `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `status` tinyint(1) NOT NULL,
@@ -219,7 +249,7 @@ CREATE TABLE `violations` (
   KEY `violation_ibfk_2` (`requirementCode`),
   CONSTRAINT `violation_ibfk_1` FOREIGN KEY (`inspectionID`) REFERENCES `inspections` (`inspectionID`),
   CONSTRAINT `violation_ibfk_2` FOREIGN KEY (`requirementCode`) REFERENCES `requirements` (`requirementCode`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -228,7 +258,7 @@ CREATE TABLE `violations` (
 
 LOCK TABLES `violations` WRITE;
 /*!40000 ALTER TABLE `violations` DISABLE KEYS */;
-INSERT INTO `violations` VALUES (1,4,2),(2,1,1),(3,4,17),(4,4,18),(5,4,15),(6,4,15),(7,4,18),(8,4,15);
+INSERT INTO `violations` VALUES (1,4,2),(2,1,1),(3,4,17),(4,4,18),(5,4,15),(6,4,15),(7,4,18),(8,4,15),(9,6,6),(10,7,5),(11,7,11),(12,10,7),(13,10,15),(14,11,9),(15,13,6),(16,13,12),(17,15,5),(18,18,1),(19,20,15),(20,21,2),(21,21,7),(22,21,13),(23,24,9),(24,26,17),(25,29,16),(26,31,7),(27,31,8),(28,31,15);
 /*!40000 ALTER TABLE `violations` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -241,4 +271,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-07-15 22:58:43
+-- Dump completed on 2026-08-04 23:00:27

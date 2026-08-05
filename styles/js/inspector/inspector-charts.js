@@ -30,15 +30,15 @@ var pieChart = new Chart(piectx, {
             label: 'Grade',
             data: gradeChartData.data,
             backgroundColor: [
-                'rgba(15, 218, 28, 0.2)',
-                'rgba(220, 170, 35, 0.2)',
-                'rgba(219, 169, 29, 0.2)',
-                'rgba(205, 32, 47, 0.2)'
+                'rgba(40, 167, 69, 0.8)',  
+                'rgba(255, 193, 7, 0.8)',   
+                'rgba(253, 126, 20, 0.8)',  
+                'rgba(220, 53, 69, 0.8)'    
             ],
             borderColor: [
                 'rgb(15, 188, 26)',
-                'rgb(231, 111, 31)',
                 'rgba(255, 206, 86, 1)',
+                'rgb(231, 111, 31)',
                 'rgb(205, 31, 60)'
             ],
             borderWidth: 1

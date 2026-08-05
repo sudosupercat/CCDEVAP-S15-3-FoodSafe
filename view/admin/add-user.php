@@ -99,7 +99,7 @@ require __DIR__ . '/../theme-cookie.php';
             </div>
         </div>
     </div>
-
+        <?php require __DIR__ . '/../footer.php'; ?>
     <script>
         $(document).ready(function() {
             const roleSelect = $('#role');

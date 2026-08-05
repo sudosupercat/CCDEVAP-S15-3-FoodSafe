@@ -1,5 +1,5 @@
 <?php
-require_once '../../controller/SearchController.php';
+require_once __DIR__ . '/../../controller/SearchController.php';
 require __DIR__ . '/../theme-cookie.php';
 
 $controller = new SearchController();
@@ -80,8 +80,6 @@ $sortOrder = $_GET['sort'] ?? 'az';
         </div>
     </div>
 
-    <footer class="site-footer">
-        FoodSafe - Copyright 2026
-    </footer>
+    <?php require __DIR__ . '/../../view/footer.php' ?>
 </body>
 </html>

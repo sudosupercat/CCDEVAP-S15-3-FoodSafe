@@ -26,12 +26,14 @@ $homepageData = $controller->getData();
     <header class="main-section">
         <div id="navbar-placeholder"></div>
         <div class="main-content">
-            <h1>More than <span class="text-orange"><?php echo htmlspecialchars($homepageData['totalRestaurants']); ?></span> restaurants<br>inspected for the people.</h1>
+            <h1><span class="text-orange"><?php echo htmlspecialchars($homepageData['totalRestaurants']); ?></span> restaurants inspected <br> for the people and counting.</h1>
             <p>Find out if it's as clean as it is from the outside.</p>
 
-            <form action="view/public/search.php" method="GET" class="search-form">
-                <input type="text" name="query" class="search-input" placeholder="<?php echo htmlspecialchars($homepageData['randomPlaceholder']); ?>" required>
+            <form action="/search" method="GET" class="search-form">
+                <input type="text" name="query" class="search-input" placeholder="<?php echo htmlspecialchars($homepageData['randomPlaceholder']); ?>">
             </form>
+
+            <a href="/search?query=" class="btn-browse">Or browse through our restaurants.</a>
         </div>
     </header>
 
@@ -41,7 +43,7 @@ $homepageData = $controller->getData();
         </div>
 
         <a href="/restaurant-detail?id=<?php echo htmlspecialchars($homepageData['latestRestoID']); ?>" class="review-link-wrapper">
-            <div class="review-image-container" style="background-image: url('<?php echo htmlspecialchars($homepageData['latestRestoImage']); ?>');">
+            <div class="review-image-container" style="background-image: url('/img/<?php echo htmlspecialchars($homepageData['latestRestoImage']); ?>');">
                 <div class="restaurant-name-banner">
                     <?php echo htmlspecialchars($homepageData['latestRestoName']); ?>
                 </div>
@@ -59,8 +61,6 @@ $homepageData = $controller->getData();
         </div>
     </section>
 
-    <footer class="site-footer">
-        FoodSafe - Copyright 2026
-    </footer>
+    <?php require __DIR__ . '/../../view/footer.php' ?>
 </body>
 </html>
