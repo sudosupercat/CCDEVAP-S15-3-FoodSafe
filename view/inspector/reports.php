@@ -54,14 +54,14 @@ require __DIR__ . '/../theme-cookie.php';
                     echo "<div class='actions-button'>";
                     if($report['status'] == 'Pending') {
                         echo "
-                        <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
+                        <form method='POST' action='../../controller/inspector/authReports.controller.php'>
                             <input type='hidden' name='action' value='update'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
                             <input type='hidden' name='status' value='Reviewed'>
                             <button type='submit' class='btn-reviewed'>Reviewed</button>
                         </form>";
                         echo "
-                        <form method='POST' action='../../controller/inspector/inspectorReports.controller.php'>
+                        <form method='POST' action='../../controller/inspector/authReports.controller.php'>
                             <input type='hidden' name='action' value='update'>
                             <input type='hidden' name='id' value='" . htmlspecialchars($report['reportID']) . "'>
                             <input type='hidden' name='status' value='Dismissed'>
