@@ -11,7 +11,11 @@ document.addEventListener("DOMContentLoaded", () => {
             console.log(data);
             showToast(data.type.toLowerCase(), data.type, data.message);
             // location.reload();
-            form.reset();
+            if(data.type == "Success"){
+                form.reset();
+                $('#food-business').val('').trigger('change');
+                $('#violations').val('').trigger('change');
+            }
             console.log(formData);
         })
         .catch(error => console.error('Error:', error));
