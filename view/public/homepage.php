@@ -30,7 +30,7 @@ $homepageData = $controller->getData();
             <p>Find out if it's as clean as it is from the outside.</p>
 
             <form action="view/public/search.php" method="GET" class="search-form">
-                <input type="text" name="query" class="search-input" placeholder="<?php echo htmlspecialchars($homepageData['randomPlaceholder']); ?>" required>
+                <input type="text" name="query" class="search-input" placeholder="<?php echo htmlspecialchars($homepageData['randomPlaceholder']); ?>">
             </form>
         </div>
     </header>
