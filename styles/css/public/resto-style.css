@@ -137,6 +137,7 @@ body.resto-rating-page * {
 
 .inspections-container {
   max-width: 1300px;
+    width: 100%;
   margin: 0 auto;
   padding: 60px 40px;
 }
@@ -294,7 +295,17 @@ body.resto-rating-page * {
   margin-bottom: 8px;
   line-height: 1.4;
 }
+.inspections-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  width: 100%;
+}
 
+.inspection-block {
+  flex: 0 0 calc(50% - 15px);
+  max-width: calc(50% - 15px);
+}
 @media only screen and (max-width: 992px) {
   .hero-section {
     flex-direction: column;
