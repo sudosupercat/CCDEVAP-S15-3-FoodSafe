@@ -101,7 +101,7 @@ $(document).ready( function () {
     function sendAddEditRequest(mode, formData){
         event.preventDefault();
 
-        fetch('controller/FoodBusiness.controller.php', {
+        fetch('controller/authFoodBusiness.controller.php', {
             method: 'POST',
             body: formData
         })
