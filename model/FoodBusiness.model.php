@@ -13,8 +13,7 @@ class FoodBusiness {
     public $imageLink;
     public $status;
     public $district;
-    public $avg_rating;
-    
+
     public function __construct($pdo){
         $this->pdo = $pdo;
     }
@@ -30,12 +29,11 @@ class FoodBusiness {
         $foodBusiness->imageLink = $row['image'];
         $foodBusiness->status = $row['status'];
         $foodBusiness->district = $row['district'];
-        $foodBusiness->avg_rating = $row['avg_rating'] ?? 0.0;
         return $foodBusiness;
     }
 
     public function getSingleRowInfo($id){
-        $stmt = $this->pdo->prepare("SELECT r.restoID restoID, r.licenseNo licenseNo, r.name name, r.address address, r.contactNo contactNo, r.maps maps, r.image image, r.status status, d.districtID district, r.avg_rating avg_rating
+        $stmt = $this->pdo->prepare("SELECT r.restoID restoID, r.licenseNo licenseNo, r.name name, r.address address, r.contactNo contactNo, r.maps maps, r.image image, r.status status, d.districtID district
                                       FROM restaurants r
                                       JOIN districts d ON r.districtID = d.districtID
                                       WHERE r.restoID = :id");
@@ -60,7 +58,7 @@ class FoodBusiness {
         foreach ($rows as $row) {
             $foodBusinessesArr[] = $this->mapRowToObj($row);
         }
-        
+
         return $foodBusinessesArr;
     }
 
@@ -70,7 +68,7 @@ class FoodBusiness {
 
         return $districtsArr;
     }
-	
+
 	public function insertRow($foodBusiness){
         try {
             $stmt = $this->pdo->prepare("INSERT INTO restaurants (licenseNo, name, address, contactNo, maps, image, status, districtID)
@@ -103,7 +101,7 @@ class FoodBusiness {
                                                             image = :image,
                                                             districtID = :districtID
                                             WHERE restoID = :id");
-                
+
                 $stmtWithImage->execute([
                     ':id' => $foodBusiness->foodBusinessId,
                     ':licenseNo' => $foodBusiness->licenseNo,
@@ -124,7 +122,7 @@ class FoodBusiness {
                                                             maps = :maps,
                                                             districtID = :districtID
                                             WHERE restoID = :id");
-                
+
                 $stmtWithImage->execute([
                     ':id' => $foodBusiness->foodBusinessId,
                     ':licenseNo' => $foodBusiness->licenseNo,
@@ -140,7 +138,7 @@ class FoodBusiness {
             error_log($e->getMessage());
             }
     }
-	
+
 	public function deleteRow($rowId){
         try {
             $stmt = $this->pdo->prepare("UPDATE restaurants SET status = 0 WHERE restoID = :rowId");
