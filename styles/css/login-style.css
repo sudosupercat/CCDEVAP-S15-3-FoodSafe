@@ -61,8 +61,6 @@ main {
     height: auto !important;
     justify-content: center;
     text-align: center;
-   
-
 }
 
 .form-left {
@@ -166,7 +164,6 @@ main {
 .custom-toast.hidden {
     display: none;
 }
-
 
 .custom-toast.success {
     background-color: #2e7d32; /* Green */
