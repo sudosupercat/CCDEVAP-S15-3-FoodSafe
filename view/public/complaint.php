@@ -66,12 +66,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_complaint'])) 
 
         <div class="report-right-form">
             <form action="" method="POST">
-                <div class="form-line anon-container">
-                    <label class="checkbox-label">
-                        <input type="checkbox" id="anonToggle">
-                        Report anonymously?
-                    </label>
-                </div>
 
                 <div class="form-line split-row">
                     <div class="input-group">

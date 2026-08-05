@@ -36,80 +36,84 @@ function updateReportStatus($pdo, $reportID, $value) {
 }
 
 //For Inspector Dashboard
-function getTotalInspections($pdo, $userID) {
-    $sql = $pdo->prepare("SELECT COUNT(*) AS total FROM inspections WHERE userID = ?");
+function getAvailableYears($pdo, $userID) {
+    $sql = $pdo->prepare("
+        SELECT DISTINCT YEAR(inspectionDate) AS year 
+        FROM inspections 
+        WHERE userID = ? 
+        ORDER BY year DESC
+    ");
     $sql->execute([$userID]);
+    $years = $sql->fetchAll(PDO::FETCH_COLUMN);
+
+    // If  has zero inspections show the current year
+    if (empty($years)) {
+        $years = [date('Y')];
+    }
+
+    return $years;
+}
+
+function getTotalInspections($pdo, $userID, $year) {
+    $sql = $pdo->prepare("SELECT COUNT(*) AS total FROM inspections 
+                          WHERE userID = ? AND YEAR(inspectionDate) = ?");
+    $sql->execute([$userID, $year]);
     $result = $sql->fetch(PDO::FETCH_ASSOC);
     return $result['total'] ?? 0;
 }
 
-function getPendingReportsCount($pdo, $userID) {
+function getPendingReportsCount($pdo, $userID, $year) {
     $sql = $pdo->prepare("
         SELECT COUNT(*) AS total 
         FROM reports rp
         JOIN restaurants r ON rp.restoID = r.restoID
         JOIN districts d ON r.districtID = d.districtID
         JOIN users u ON d.districtID = u.districtID
-        WHERE rp.status = 'Pending' AND u.userID = ?
+        WHERE rp.status = 'Pending' AND u.userID = ? AND YEAR(rp.createdAt) = ?
     ");
-    $sql->execute([$userID]);
+    $sql->execute([$userID, $year]);
     $result = $sql->fetch(PDO::FETCH_ASSOC);
     return $result['total'] ?? 0;
 }
 
-function getInspectionsPerMonth($pdo, $userID) {
-    $currentYear = date('Y');
+function getInspectionsPerMonth($pdo, $userID, $year) {
     $sql = $pdo->prepare("
         SELECT MONTH(inspectionDate) as month_num, COUNT(*) as count 
         FROM inspections 
         WHERE userID = ? AND YEAR(inspectionDate) = ?
         GROUP BY MONTH(inspectionDate)
     ");
-    $sql->execute([$userID, $currentYear]);
+    $sql->execute([$userID, $year]);
     $results = $sql->fetchAll(PDO::FETCH_ASSOC);
 
-    // Initialize all 12 months with 0
     $monthlyData = array_fill(1, 12, 0);
     foreach ($results as $row) {
         $monthlyData[(int)$row['month_num']] = (int)$row['count'];
     }
-    
+
     return array_values($monthlyData);
 }
 
-function getGradeDistribution($pdo, $userID) {
+function getGradeDistribution($pdo, $userID, $year) {
     $sql = $pdo->prepare("
-        SELECT i.inspectionID, COUNT(v.violationID) AS violationCount
-        FROM inspections i
-        LEFT JOIN violations v ON v.inspectionID = i.inspectionID
-        WHERE i.userID = ?
-        GROUP BY i.inspectionID
+        SELECT grade, COUNT(*) AS total
+        FROM inspections
+        WHERE userID = ? AND YEAR(inspectionDate) = ?
+        GROUP BY grade
     ");
-    $sql->execute([$userID]);
-    $inspections = $sql->fetchAll(PDO::FETCH_ASSOC);
+    $sql->execute([$userID, $year]);
+    $results = $sql->fetchAll(PDO::FETCH_KEY_PAIR);
 
-    // Start every grade at 0 
     $gradeCounts = ['A' => 0, 'B' => 0, 'C' => 0, 'F' => 0];
-
-    foreach ($inspections as $row) {
-        $violationCount = (int) $row['violationCount'];
-
-        if ($violationCount <= 3) {
-            $grade = 'A';
-        } elseif ($violationCount <= 6) {
-            $grade = 'B';
-        } elseif ($violationCount <= 10) {
-            $grade = 'C';
-        } else {
-            $grade = 'F';
+    
+    foreach ($results as $grade => $count) {    
+        if (isset($gradeCounts[$grade])) {
+            $gradeCounts[$grade] = (int) $count;
         }
-
-        $gradeCounts[$grade]++;
     }
-
     return [
-        'labels' => array_keys($gradeCounts),   // ['A', 'B', 'C', 'F']
-        'data'   => array_values($gradeCounts)  // [count, count, count, count]
+        'labels' => array_keys($gradeCounts),
+        'data'   => array_values($gradeCounts)
     ];
 }
 ?>

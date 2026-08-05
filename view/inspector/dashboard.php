@@ -22,6 +22,17 @@ require __DIR__ . '/../theme-cookie.php';
         <?php include __DIR__ . '/../navbar.php';?> 
         <div class="page-header">
             <h1>Inspector Dashboard</h1>
+
+            <form method="GET" action="">
+                <div class="year-picker">
+                    <label for="year">Year:</label>
+                    <select name="year" id="yearPicker" onchange="this.form.submit()">
+                        <?php foreach ($availableYears as $year): ?>
+                            <option value="<?= $year ?>" <?= $year == $selectedYear ? 'selected' : '' ?>><?= $year ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </form>
         </div>
         <main>
             <section class="stats-row">
