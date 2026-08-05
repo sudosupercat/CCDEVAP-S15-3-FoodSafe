@@ -8,30 +8,6 @@ body.theme-dark-custom {
   --nav-bg: #0b0924;
 }
 
-body.resto-rating-page {
-    background-color: var(--bg-purple);
-    min-height: 100vh;
-}
-
-.brand-panel {
-    background-color: var(--bg-purple);
-}
-
-.inspections-bar {
-    background-color: var(--nav-bg);
-}
-
-body.resto-rating-page {
-  background-color: var(--bg-purple);
-  margin: 0 !important;
-  font-family: Arial, sans-serif;
-  min-height: 100vh;
-}
-
-body.resto-rating-page * {
-  box-sizing: border-box;
-}
-
 .hero-right-bottom-rating {
   background-color: #ffffff;
   padding: 24px;
@@ -70,6 +46,31 @@ body.resto-rating-page * {
   margin-bottom: 10px;
   opacity: 0.9;
 }
+
+body.resto-rating-page {
+    background-color: var(--bg-purple);
+    min-height: 100vh;
+}
+
+.brand-panel {
+    background-color: var(--bg-purple);
+}
+
+.inspections-bar {
+    background-color: var(--nav-bg);
+}
+
+body.resto-rating-page {
+  background-color: var(--bg-purple);
+  margin: 0 !important;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+body.resto-rating-page * {
+  box-sizing: border-box;
+}
+
 .hero-section {
   display: flex;
   width: 100%;
