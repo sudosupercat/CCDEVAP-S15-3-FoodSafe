@@ -133,5 +133,6 @@ require __DIR__ . '/../theme-cookie.php';
             if (e.target === this) closeInspectionModal();
         });
     </script>
+    <?php require __DIR__ . '/../footer.php'; ?>
 </body>
 </html>
