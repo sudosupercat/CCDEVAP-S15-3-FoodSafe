@@ -1,11 +1,21 @@
 :root {
-  --bg-purple: #3100b9;
+  --bg-purple: #dee5ff;
   --nav-bg: #1f0075;
+  --label-color: #1f0075;
+  --field-bg: #ffffff;
+  --field-border: #b9c4ee;
+  --btn-bg: #1f0075;
+  --btn-text: #ffffff;
 }
 
 body.theme-dark-custom {
   --bg-purple: #12103a;
   --nav-bg: #0b0924;
+  --label-color: #ffffff;
+  --field-bg: #ffffff;
+  --field-border: transparent;
+  --btn-bg: #ffffff;
+  --btn-text: #ff751f;
 }
 
 body.admin-page {
@@ -28,35 +38,6 @@ header {
   justify-content: space-between;
   align-items: center;
   margin: 0;
-}
-
-.password-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.password-wrapper .custom-input {
-    padding-right: 48px;
-}
-
-.password-toggle {
-    position: absolute;
-    right: 14px;
-    top: 50%;
-    transform: translateY(-50%);
-    background: none;
-    border: none;
-    padding: 0 4px;
-    cursor: pointer;
-    color: #6b6b6b;
-    font-size: 1.1rem;
-    line-height: 1;
-    display: flex;
-    align-items: center;
-}
-
-.password-toggle:hover {
-    color: #ff751f;
 }
 
 .logo-area {
@@ -143,11 +124,11 @@ nav a:hover {
   border-radius: 50%;
 }
 
-body.theme-dark-custom input:checked + .slider {
+input:checked + .slider {
   background-color: #ff751f;
 }
 
-body.theme-dark-custom input:checked + .slider:before {
+input:checked + .slider:before {
   transform: translateX(24px);
 }
 
@@ -190,7 +171,7 @@ body.theme-dark-custom input:checked + .slider:before {
 }
 
 .custom-fg label {
-  color: white;
+  color: var(--label-color);
   font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 10px;
@@ -200,9 +181,9 @@ body.theme-dark-custom input:checked + .slider:before {
   width: 100%;
   padding: 15px 25px;
   height: 54px;
-  border: none;
+  border: 1px solid var(--field-border);
   border-radius: 12px;
-  background-color: white;
+  background-color: var(--field-bg);
   color: #000000;
   font-size: 1.1rem;
   outline: none;
@@ -223,14 +204,42 @@ body.theme-dark-custom input:checked + .slider:before {
   transform: translateY(-50%);
   pointer-events: none;
 }
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper .custom-input {
+    padding-right: 48px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0 4px;
+    cursor: pointer;
+    color: #6b6b6b;
+    font-size: 1.1rem;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+}
+
+.password-toggle:hover {
+    color: #ff751f;
+}
 
 .custom-select-pill {
   width: 100%;
   padding: 15px 25px;
   height: 54px;
-  border: none;
+  border: 1px solid var(--field-border);
   border-radius: 12px;
-  background-color: white;
+  background-color: var(--field-bg);
   color: #000000;
   font-size: 1.1rem;
   outline: none;
@@ -248,8 +257,8 @@ body.theme-dark-custom input:checked + .slider:before {
 }
 
 .action-btn-submit {
-  background-color: white;
-  color: #ff751f;
+  background-color: var(--btn-bg);
+  color: var(--btn-text);
   border: none;
   padding: 15px 50px;
   border-radius: 12px;
