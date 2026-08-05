@@ -11,13 +11,6 @@ class RestaurantDetailController {
         $this->foodBusinessModel = new FoodBusiness($pdo);
     }
 
-    private function gradeForViolationCount($count) {
-        if ($count <= 10) return 'A';
-        if ($count <= 25) return 'B';
-        if ($count <= 55) return 'C';
-        return 'F';
-    }
-
     public function handleRequest() {
         $restoID = isset($_GET['restoID']) ? intval($_GET['restoID']) : (isset($_GET['id']) ? intval($_GET['id']) : 1);
 
@@ -41,13 +34,14 @@ class RestaurantDetailController {
 
         // Inspection history: one row per inspection, with its violation count + letter grade
         $inspections = [];
+        $overallRating = null;
         try {
             $stmt = $this->pdo->prepare(
-                "SELECT i.inspectionID, i.inspectionDate, COUNT(v.violationID) AS violationCount
+                "SELECT i.inspectionID, i.inspectionDate, i.grade, COUNT(v.violationID) AS violationCount
                  FROM inspections i
                  LEFT JOIN violations v ON v.inspectionID = i.inspectionID
                  WHERE i.restoID = ?
-                 GROUP BY i.inspectionID, i.inspectionDate
+                 GROUP BY i.inspectionID, i.inspectionDate, i.grade
                  ORDER BY i.inspectionDate DESC"
             );
             $stmt->execute([$restoID]);
@@ -69,13 +63,24 @@ class RestaurantDetailController {
                     'inspectionID' => $row['inspectionID'],
                     'date' => $row['inspectionDate'],
                     'violationCount' => (int)$row['violationCount'],
-                    'grade' => $this->gradeForViolationCount((int)$row['violationCount']),
+                    'grade' => $row['grade'],
                     'violationTitles' => $violationTitles
                 ];
+            }
+
+            // Overall inspection rating: average of letter grades on a 5-point scale
+            $gradePoints = ['A' => 5.0, 'B' => 4.0, 'C' => 3.0, 'F' => 1.0];
+            if (!empty($inspections)) {
+                $sum = 0;
+                foreach ($inspections as $i) {
+                    $sum += $gradePoints[$i['grade']] ?? 0;
+                }
+                $overallRating = round($sum / count($inspections), 1);
             }
         } catch (PDOException $e) {
             error_log("Inspections Fetch Error: " . $e->getMessage());
             $inspections = [];
+            $overallRating = null;
         }
 
         require_once __DIR__ . '/../view/public/restaurant-detail.php';
