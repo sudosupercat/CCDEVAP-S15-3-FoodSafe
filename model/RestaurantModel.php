@@ -93,6 +93,14 @@ class RestaurantModel {
             $sql .= " ORDER BY violations ASC";
         } elseif ($sortOrder === 'viohi-low') {
             $sql .= " ORDER BY violations DESC";
+        } elseif ($sortOrder === 'gradebest') {
+            // Best grade first (A -> F); restaurants with no inspections go last
+            $sql .= " ORDER BY (t.avgPoints IS NULL) ASC, t.avgPoints DESC, r.name ASC";
+        } elseif ($sortOrder === 'gradeworst') {
+            // Worst grade first (F -> A); restaurants with no inspections go last
+            $sql .= " ORDER BY (t.avgPoints IS NULL) ASC, t.avgPoints ASC, r.name ASC";
+        } else {
+            $sql .= " ORDER BY r.name ASC";
         }
 
         try {
