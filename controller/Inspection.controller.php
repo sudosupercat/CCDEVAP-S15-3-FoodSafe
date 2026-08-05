@@ -8,10 +8,10 @@ if (!isset($_SESSION['userID'])) {
     exit();
 }
 require_once __DIR__ . '/../config/db.php';
-require_once __DIR__ . '/../model/Inspection.model.php';
+require_once __DIR__ . '/../model/inspection.model.php';
 require_once __DIR__ . '/../model/authFoodBusiness.model.php';
-require_once __DIR__ . '/../model/Requirement.model.php';
-require_once __DIR__ . '/../model/Violation.model.php';
+require_once __DIR__ . '/../model/requirement.model.php';
+require_once __DIR__ . '/../model/violation.model.php';
 
 class InspectionController{
     private $inspectionModel;

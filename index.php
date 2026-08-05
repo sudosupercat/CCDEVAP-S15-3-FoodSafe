@@ -40,7 +40,7 @@ switch ($uri){
         require __DIR__ . '/controller/inspector/inspectorDashboard.controller.php';
         break;
     case '/inspectionEntry':
-        require __DIR__ . '/controller/Inspection.controller.php';
+        require __DIR__ . '/controller/inspection.controller.php';
         $controller = new InspectionController($pdo);
         $controller->showPage($pdo);
         break;
@@ -55,11 +55,9 @@ switch ($uri){
     default:
         http_response_code(404);
 
-        // Provide visual feedback for the user
         echo "<h1>404 Not Found</h1>";
         echo "The page you requested does not exist.";
 
-        // Stop script execution
         break;
 }
 
