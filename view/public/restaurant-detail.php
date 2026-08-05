@@ -19,7 +19,17 @@ require __DIR__ . '/../theme-cookie.php';
 <body class="resto-rating-page">
     <?php include __DIR__ . '/../navbar.php';?>
 
-    <?php $inspections = $inspections ?? []; ?>
+    <?php
+        $inspections   = $inspections ?? [];
+        $overallRating = $overallRating ?? null;
+
+        $tag = 'Not Yet Rated';
+        if ($overallRating !== null) {
+            if ($overallRating >= 4.5)     $tag = 'High Standard';
+            elseif ($overallRating >= 3.5) $tag = 'Good Standard';
+            else                           $tag = 'Needs Improvement';
+        }
+    ?>
 
     <div class="hero-section">
         <div class="hero-left-img">
@@ -27,6 +37,7 @@ require __DIR__ . '/../theme-cookie.php';
         </div>
         <div class="hero-right-content">
             <div class="brand-panel">
+                <div class="high-standard-tag"><?= htmlspecialchars($tag) ?></div>
                 <h1 class="resto-title"><?= htmlspecialchars($restaurant['name']) ?></h1>
                 <?php
                     $mapsUrl = !empty($restaurant['maps'])
@@ -36,6 +47,14 @@ require __DIR__ . '/../theme-cookie.php';
                 <a href="<?= htmlspecialchars($mapsUrl) ?>" target="_blank" rel="noopener" class="gmaps-link">
                     <i class="bi bi-geo-alt-fill me-1"></i><?= htmlspecialchars($restaurant['address']) ?>
                 </a>
+            </div>
+            <div class="hero-right-bottom-rating">
+                <div class="rating-title">Inspection Rating</div>
+                <?php if ($overallRating !== null): ?>
+                    <div class="rating-circle"><?= number_format($overallRating, 1) ?></div>
+                <?php else: ?>
+                    <div class="rating-circle rating-circle-empty">&mdash;</div>
+                <?php endif; ?>
             </div>
         </div>
     </div>
