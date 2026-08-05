@@ -67,6 +67,25 @@ body {
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
+.btn-browse {
+    margin-top: 25px;
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid #3b0997; 
+    color: #f38020;
+    padding: 12px 35px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-browse:hover {
+    background-color: #3b0997;
+    color: #ffffff;
+}
+
 .latest-review {
     display: flex;
     flex-wrap: wrap;
@@ -180,6 +199,16 @@ body.theme-dark-custom .main-section {
 
 body.theme-dark-custom .main-content h1 {
     color: #ffffff;
+}
+
+body.theme-dark-custom .btn-browse {
+    border-color: #ffffff;
+    color: #f38020;
+}
+
+body.theme-dark-custom .btn-browse:hover {
+    background-color: #ffffff;
+    color: #3b0997;
 }
 
 body.theme-dark-custom .hazard-text-container,

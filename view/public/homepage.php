@@ -32,6 +32,8 @@ $homepageData = $controller->getData();
             <form action="view/public/search.php" method="GET" class="search-form">
                 <input type="text" name="query" class="search-input" placeholder="<?php echo htmlspecialchars($homepageData['randomPlaceholder']); ?>">
             </form>
+
+            <a href="view/public/search.php?query=" class="btn-browse">Or browse through our restaurants</a>
         </div>
     </header>
 
