@@ -12,6 +12,11 @@ body.theme-dark-custom .public-select {
     background-color: var(--input-bg);
 }
 
+body.public-report-page:not(.theme-dark-custom) {
+    --input-bg: #c3ccf0;
+    --accent-orange: #ff751f;
+}
+
 body.theme-dark-custom .report-left-title .text-main {
     color: #ffffff;
 }
