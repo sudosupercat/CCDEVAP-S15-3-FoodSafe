@@ -53,49 +53,74 @@ class RestaurantModel {
     }
 
     public function getSearchResults($query, $sortOrder) {
-        $sql = "SELECT r.restoID, r.name, r.image, 
-                COUNT(v.violationID) AS violations,
-                (SELECT inspectionDate FROM inspections WHERE restoID = r.restoID ORDER BY inspectionDate DESC LIMIT 1) AS date
+        // Per-inspection severity -> grade points, averaged per restaurant.
+        // Matches the grading used on the restaurant detail page.
+        $sql = "SELECT r.restoID, r.name, r.image,
+                       COALESCE(t.violations, 0) AS violations,
+                       t.avgPoints AS avgPoints,
+                       (SELECT inspectionDate FROM inspections
+                         WHERE restoID = r.restoID
+                         ORDER BY inspectionDate DESC LIMIT 1) AS date
                 FROM restaurants r
-                LEFT JOIN inspections i ON r.restoID = i.restoID
-                LEFT JOIN violations v ON i.inspectionID = v.inspectionID
-                WHERE r.name LIKE :query
-                GROUP BY r.restoID";
+                LEFT JOIN (
+                    SELECT s.restoID,
+                           SUM(s.vc) AS violations,
+                           AVG(s.points) AS avgPoints
+                    FROM (
+                        SELECT i.restoID,
+                               i.inspectionID,
+                               COUNT(v.violationID) AS vc,
+                               CASE
+                                 WHEN COALESCE(SUM(CAST(req.severityLvl AS UNSIGNED)), 0) = 0  THEN 5
+                                 WHEN COALESCE(SUM(CAST(req.severityLvl AS UNSIGNED)), 0) <= 5 THEN 4
+                                 WHEN COALESCE(SUM(CAST(req.severityLvl AS UNSIGNED)), 0) <= 10 THEN 3
+                                 ELSE 1
+                               END AS points
+                        FROM inspections i
+                        LEFT JOIN violations v ON v.inspectionID = i.inspectionID
+                        LEFT JOIN requirements req ON req.requirementCode = v.requirementCode
+                        GROUP BY i.inspectionID, i.restoID
+                    ) s
+                    GROUP BY s.restoID
+                ) t ON t.restoID = r.restoID
+                WHERE r.name LIKE :query";
 
         if ($sortOrder === 'az') {
-            $sql .= " ORDER BY name ASC";
+            $sql .= " ORDER BY r.name ASC";
         } elseif ($sortOrder === 'za') {
-            $sql .= " ORDER BY name DESC";
+            $sql .= " ORDER BY r.name DESC";
         } elseif ($sortOrder === 'violow-hi') {
             $sql .= " ORDER BY violations ASC";
         } elseif ($sortOrder === 'viohi-low') {
             $sql .= " ORDER BY violations DESC";
         }
-        
+
         try {
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute(['query' => '%' . $query . '%']);
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             foreach ($results as $key => $resto) {
-                $violationCount = (int)$resto['violations'];
-
-                if ($violationCount <= 10) {
-                    $grade = 'A';
-                } elseif ($violationCount <= 20) {
-                    $grade = 'B';
-                } elseif ($violationCount <= 40) {
-                    $grade = 'C';
+                if ($resto['avgPoints'] === null) {
+                    $results[$key]['rating'] = null;
+                    $results[$key]['grade']  = null;
                 } else {
-                    $grade = 'F';
-                }
-                $results[$key]['grade'] = $grade;
+                    $rating = round((float)$resto['avgPoints'], 1);
+                    $results[$key]['rating'] = $rating;
 
-                $results[$key]['displayDate'] = $resto['date'] ? date("F d, Y", strtotime($resto['date'])) : 'No inspections yet';
+                    if ($rating >= 4.5)      $results[$key]['grade'] = 'A';
+                    elseif ($rating >= 3.5)  $results[$key]['grade'] = 'B';
+                    elseif ($rating >= 2.5)  $results[$key]['grade'] = 'C';
+                    else                     $results[$key]['grade'] = 'F';
+                }
+
+                $results[$key]['displayDate'] = $resto['date']
+                    ? date("F d, Y", strtotime($resto['date']))
+                    : 'No inspections yet';
             }
 
             return $results;
-            
+
         } catch (PDOException $e) {
             error_log("Search Error: " . $e->getMessage());
             return [];
