@@ -22,15 +22,10 @@ body.theme-dark-custom .close:hover, body.theme-dark-custom .close:focus, body.t
   color: white;
 }
 
-body.theme-dark-custom button:not(#user-modal-close):not(#report-modal-close) {
+body.theme-dark-custom button:not(#user-modal-close) {
   background-color: #212529;
   border: 3px solid gray;
 }
-
-body.theme-dark-custom button {
-  background-color: #212529;
-  border: 3px solid gray;
-} 
 
 body.theme-dark-custom .btn-enable {
   color: #4caf50;
@@ -265,7 +260,7 @@ button {
   font-weight: bold;
 }
 
-button:hover {
+button:hover:not(#user-modal-close):not(.btn-enable):not(.btn-disable) {
   color:whitesmoke;
   background-color: rgb(204, 135, 8) !important;
   cursor: pointer;
