@@ -9,7 +9,7 @@ if (!isset($_SESSION['userID'])) {
 }
 require_once __DIR__ . '/../config/db.php';
 require_once __DIR__ . '/../model/Inspection.model.php';
-require_once __DIR__ . '/../model/FoodBusiness.model.php';
+require_once __DIR__ . '/../model/authFoodBusiness.model.php';
 require_once __DIR__ . '/../model/Requirement.model.php';
 require_once __DIR__ . '/../model/Violation.model.php';
 
