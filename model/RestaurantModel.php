@@ -17,10 +17,10 @@ class RestaurantModel {
 
         try {
             $query1 = "SELECT r.restoID, r.name, r.image 
-                       FROM restaurants r
-                       JOIN inspections i ON r.restoID = i.restoID
-                       ORDER BY i.inspectionDate DESC
-                       LIMIT 1";
+                        FROM restaurants r
+                        JOIN inspections i ON r.restoID = i.restoID
+                        ORDER BY i.inspectionDate DESC, i.inspectionID DESC
+                        LIMIT 1";
             $stmt1 = $this->pdo->prepare($query1);
             $stmt1->execute();
             $row1 = $stmt1->fetch(PDO::FETCH_ASSOC);
