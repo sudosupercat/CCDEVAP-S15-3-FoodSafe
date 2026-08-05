@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/db.php';
-require_once __DIR__ . '/../model/FoodBusiness.model.php';
+require_once __DIR__ . '/../model/adminFoodBusiness.model.php';
 
 class RestaurantDetailController {
     private $pdo;
