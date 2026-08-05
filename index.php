@@ -12,6 +12,9 @@ switch ($uri){
     case '/':
         require __DIR__ . '/view/public/homepage.php';
         break;
+    case '/search':
+        require __DIR__ . '/view/public/search.php';
+        break;
     case '/login':
         require __DIR__ . '/view/login.php';
         break;

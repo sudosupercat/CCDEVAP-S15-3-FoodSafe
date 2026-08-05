@@ -29,11 +29,11 @@ $homepageData = $controller->getData();
             <h1>More than <span class="text-orange"><?php echo htmlspecialchars($homepageData['totalRestaurants']); ?></span> restaurants<br>inspected for the people.</h1>
             <p>Find out if it's as clean as it is from the outside.</p>
 
-            <form action="view/public/search.php" method="GET" class="search-form">
+            <form action="/search" method="GET" class="search-form">
                 <input type="text" name="query" class="search-input" placeholder="<?php echo htmlspecialchars($homepageData['randomPlaceholder']); ?>">
             </form>
 
-            <a href="view/public/search.php?query=" class="btn-browse">Or browse through our restaurants</a>
+            <a href="/search?query=" class="btn-browse">Or browse through our restaurants.</a>
         </div>
     </header>
 
