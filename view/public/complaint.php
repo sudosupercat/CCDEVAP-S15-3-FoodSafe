@@ -125,5 +125,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit_complaint'])) 
             </form>
         </div>
     </div>
+        <?php require __DIR__ . '/../footer.php'; ?>
 </body>
 </html>
