@@ -83,11 +83,22 @@ require __DIR__ . '/../theme-cookie.php';
 
                     <div class="custom-fg">
                         <label for="password">Access Password</label>
-                        <input type="password" name="password" id="password" class="custom-input" required>
+                        <div class="password-wrapper">
+                            <input type="password" name="password" id="password" class="custom-input" required>
+                            <button type="button" class="password-toggle" data-target="password" aria-label="Show password">
+                                <i class="bi bi-eye-fill"></i>
+                            </button>
+                        </div>
                     </div>
+                    
                     <div class="custom-fg">
                         <label for="confirm_password">Confirm Password</label>
-                        <input type="password" name="confirm_password" id="confirm_password" class="custom-input" required>
+                        <div class="password-wrapper">
+                            <input type="password" name="confirm_password" id="confirm_password" class="custom-input" required>
+                            <button type="button" class="password-toggle" data-target="confirm_password" aria-label="Show password">
+                                <i class="bi bi-eye-fill"></i>
+                            </button>
+                        </div>
                     </div>
 
                     <div class="btn-center-wrapper">
