@@ -26,7 +26,7 @@ $homepageData = $controller->getData();
     <header class="main-section">
         <div id="navbar-placeholder"></div>
         <div class="main-content">
-            <h1>More than <span class="text-orange"><?php echo htmlspecialchars($homepageData['totalRestaurants']); ?></span> restaurants<br>inspected for the people.</h1>
+            <h1><span class="text-orange"><?php echo htmlspecialchars($homepageData['totalRestaurants']); ?></span> restaurants inspected <br> for the people and counting.</h1>
             <p>Find out if it's as clean as it is from the outside.</p>
 
             <form action="/search" method="GET" class="search-form">
