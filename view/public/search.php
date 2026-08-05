@@ -27,7 +27,7 @@ $sortOrder = $_GET['sort'] ?? 'az';
     <?php include __DIR__ . '/../navbar.php';?>
     <div class="search-section">
         <div class="search-content">
-            <form action="search.php" method="GET" class="search-form">
+            <form action="/search" method="GET" class="search-form">
                 
                 <input type="text" name="query" value="<?php echo htmlspecialchars($searchQuery); ?>" class="search-input">
                 
