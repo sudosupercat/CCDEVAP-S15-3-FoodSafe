@@ -1,5 +1,5 @@
 <?php
-require 'controller/userIndex.controller.php';
+require 'controller/publicIndex.controller.php';
 require __DIR__ . '/../theme-cookie.php';
 
 $controller = new IndexController();
