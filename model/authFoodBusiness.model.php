@@ -44,7 +44,7 @@ class FoodBusiness {
     }
 
     public function getAllIdName(){
-        $stmt = $this->pdo->query("SELECT restoID, name FROM restaurants");
+        $stmt = $this->pdo->query("SELECT restoID, name FROM restaurants WHERE status = 1 ORDER BY name ASC");
         $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
         return $rows;
     }
