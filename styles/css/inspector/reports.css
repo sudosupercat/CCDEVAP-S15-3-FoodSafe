@@ -29,7 +29,7 @@ body.theme-dark-custom .close:hover, body.theme-dark-custom .close:focus, body.t
   color: white;
 }
 
-body.theme-dark-custom button:not(.btn) {
+body.theme-dark-custom button:not(.button-inspection-log) {
   background-color: #212529;
   border: 3px solid gray;
 }
@@ -37,7 +37,7 @@ body.theme-dark-custom button:not(.btn) {
 body.theme-dark-custom button {
   background-color: #212529;
   border: 3px solid gray;
-}
+} 
 
 body.theme-dark-custom .btn-reviewed {
   color: #4caf50;
@@ -184,7 +184,7 @@ button:hover {
 
 #button-inspection-log:hover {
   color: whitesmoke;
-  background-color: #212529;
+  background-color: rgb(204, 135, 8);
   border-radius: 20px;
   cursor: pointer;
   border: 3px solid gray;

@@ -27,6 +27,11 @@ body.theme-dark-custom button:not(#user-modal-close):not(#report-modal-close) {
   border: 3px solid gray;
 }
 
+body.theme-dark-custom button {
+  background-color: #212529;
+  border: 3px solid gray;
+} 
+
 body.theme-dark-custom .btn-enable {
   color: #4caf50;
 }
@@ -262,7 +267,7 @@ button {
 
 button:hover {
   color:whitesmoke;
-  background-color: rgb(204, 135, 8);
+  background-color: rgb(204, 135, 8) !important;
   cursor: pointer;
 }
 
@@ -287,7 +292,7 @@ button:hover {
 #button-add-user:hover {
   color:whitesmoke;
   border-radius: 20px;
-  background-color: rgb(204, 135, 8);
+  background-color: rgb(204, 135, 8) !important;
   cursor: pointer;
   border: 3px solid black;
 }
