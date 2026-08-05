@@ -101,21 +101,31 @@ require __DIR__ . '/../theme-cookie.php';
     </div>
         <?php require __DIR__ . '/../footer.php'; ?>
     <script>
-        $(document).ready(function() {
-            const roleSelect = $('#role');
-            const districtContainer = $('#district-container');
-            const districtSelect = $('#districtID');
-
-            roleSelect.on('change', function() {
-                if ($(this).val() === 'Inspector') {
-                    districtContainer.slideDown(200);
-                    districtSelect.prop('required', true);
-                } else {
-                    districtContainer.slideUp(200);
-                    districtSelect.prop('required', false).val('');
-                }
-            });
+    $(document).ready(function() {
+        const roleSelect = $('#role');
+        const districtContainer = $('#district-container');
+        const districtSelect = $('#districtID');
+    
+        roleSelect.on('change', function() {
+            if ($(this).val() === 'Inspector') {
+                districtContainer.slideDown(200);
+                districtSelect.prop('required', true);
+            } else {
+                districtContainer.slideUp(200);
+                districtSelect.prop('required', false).val('');
+            }
         });
+    
+        $('.password-toggle').on('click', function() {
+            const input = $('#' + $(this).data('target'));
+            const icon  = $(this).find('i');
+            const show  = input.attr('type') === 'password';
+    
+            input.attr('type', show ? 'text' : 'password');
+            icon.toggleClass('bi-eye-fill', !show).toggleClass('bi-eye-slash-fill', show);
+            $(this).attr('aria-label', show ? 'Hide password' : 'Show password');
+        });
+    });
     </script>
 </body>
 </html>
