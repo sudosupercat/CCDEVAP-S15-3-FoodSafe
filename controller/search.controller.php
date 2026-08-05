@@ -1,6 +1,6 @@
 <?php
 require_once __DIR__ . '/../config/db.php'; 
-require_once __DIR__ . '/../model/RestaurantModel.php'; 
+require_once __DIR__ . '/../model/restaurant.model.php'; 
 
 class SearchController {
     public function getData() {

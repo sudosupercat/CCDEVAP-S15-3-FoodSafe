@@ -1,6 +1,6 @@
 <?php
 require 'config/db.php'; 
-require 'model/RestaurantModel.php'; 
+require 'model/restaurant.model.php'; 
 
 class IndexController {
     public function getData() {
