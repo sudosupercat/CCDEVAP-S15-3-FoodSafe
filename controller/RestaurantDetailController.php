@@ -60,10 +60,11 @@ class RestaurantDetailController {
 
             // Violation detail (requirement titles) per inspection, for the click-through modal
             $violationStmt = $this->pdo->prepare(
-                "SELECT v.inspectionID, r.title
+                "SELECT r.title
                  FROM violations v
                  JOIN requirements r ON r.requirementCode = v.requirementCode
-                 WHERE v.inspectionID = ?"
+                 WHERE v.inspectionID = ?
+                 ORDER BY r.title ASC"
             );
 
             foreach ($inspectionRows as $row) {
