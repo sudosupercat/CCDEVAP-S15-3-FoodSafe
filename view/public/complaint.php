@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../../controller/userComplaint.controller.php';
+require_once __DIR__ . '/../../controller/publicComplaint.controller.php';
 require __DIR__ . '/../theme-cookie.php';
 
 $dbConnection = isset($pdo) ? $pdo : (isset($conn) ? $conn : $db);
