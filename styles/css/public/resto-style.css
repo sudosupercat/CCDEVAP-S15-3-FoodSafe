@@ -251,6 +251,7 @@ body.resto-rating-page * {
 }
 
 .modal-header {
+  display: block;
   border-bottom: 2px solid #eeeeee;
   padding-bottom: 15px;
   margin-bottom: 20px;
