@@ -45,10 +45,10 @@ switch ($uri){
         $controller->showPage($pdo);
         break;
     case '/restaurant-detail':
-        require __DIR__ . '/controller/RestaurantDetailController.php';
+        require __DIR__ . '/controller/authRestaurantDetail.controller.php';
         break;
     case '/businessDirectory':
-        require __DIR__ . '/controller/FoodBusiness.controller.php';
+        require __DIR__ . '/controller/authFoodBusiness.controller.php';
         $controller = new FoodBusinessController($pdo);
         $controller->showPage($pdo);
         break;
