@@ -1,5 +1,5 @@
 <?php
-require_once '../../controller/search.controller.php';
+require_once '../../controller/userSearch.controller.php';
 require __DIR__ . '/theme-cookie.php';
 
 $controller = new SearchController();
