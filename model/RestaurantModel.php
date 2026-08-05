@@ -30,7 +30,7 @@ class RestaurantModel {
                 $data['latestRestoImage'] = $row1['image'];
             }
 
-            $query2 = "SELECT COUNT(*) as total FROM restaurants";
+            $query2 = "SELECT COUNT(*) as total FROM restaurants WHERE status = 1";
             $stmt2 = $this->pdo->prepare($query2);
             $stmt2->execute();
             $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
@@ -38,7 +38,7 @@ class RestaurantModel {
                 $data['totalRestaurants'] = $row2['total'];
             }
 
-            $query3 = "SELECT name FROM restaurants ORDER BY RAND() LIMIT 1";
+            $query3 = "SELECT name FROM restaurants WHERE status = 1 ORDER BY RAND() LIMIT 1";
             $stmt3 = $this->pdo->prepare($query3);
             $stmt3->execute();
             $row3 = $stmt3->fetch(PDO::FETCH_ASSOC);
@@ -83,7 +83,7 @@ class RestaurantModel {
                     ) s
                     GROUP BY s.restoID
                 ) t ON t.restoID = r.restoID
-                WHERE r.name LIKE :query";
+                WHERE r.name LIKE :query AND r.status = 1";
 
         if ($sortOrder === 'az') {
             $sql .= " ORDER BY r.name ASC";
