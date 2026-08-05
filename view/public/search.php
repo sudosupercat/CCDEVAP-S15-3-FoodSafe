@@ -36,6 +36,8 @@ $sortOrder = $_GET['sort'] ?? 'az';
                     <option value="za" <?php echo ($sortOrder === 'za') ? 'selected' : ''; ?>>Sort by: Z-A</option>
                     <option value="violow-hi" <?php echo ($sortOrder === 'violow-hi') ? 'selected' : ''; ?>>Sort by: Violations ↑</option>
                     <option value="viohi-low" <?php echo ($sortOrder === 'viohi-low') ? 'selected' : ''; ?>>Sort by: Violations ↓</option>
+                    <option value="gradebest" <?php echo ($sortOrder === 'gradebest') ? 'selected' : ''; ?>>Sort by: Rating (A → F)</option>
+                    <option value="gradeworst" <?php echo ($sortOrder === 'gradeworst') ? 'selected' : ''; ?>>Sort by: Rating (F → A)</option>
                 </select>
             </form>
         </div>
@@ -49,7 +51,7 @@ $sortOrder = $_GET['sort'] ?? 'az';
             <?php else: ?>
                 <?php foreach ($searchResults as $resto): ?>
                     <?php
-                        $gradeColor = ''; 
+                        $gradeColor = '#9aa0b5';
                         switch($resto['grade']) {
                             case 'A': $gradeColor = '#28a745'; break;
                             case 'B': $gradeColor = '#f38020'; break;
@@ -63,16 +65,12 @@ $sortOrder = $_GET['sort'] ?? 'az';
                         
                         <div class="resto-info">
                             <h3><?php echo htmlspecialchars($resto['name']); ?></h3>
-                            <p class="violations-text"><?php echo htmlspecialchars($resto['violations']); ?> Violations Recorded</p>
+                            <p class="violations-text"><?php echo htmlspecialchars($resto['violations']); ?> Violations Recorded<?php echo $resto['rating'] !== null ? ' &middot; Rating ' . number_format($resto['rating'], 1) : ''; ?></p>
                             <p class="inspection-text">Most recent inspection: <?php echo htmlspecialchars($resto['displayDate']); ?></p>
                         </div>
-                        <?php if ($resto['violations'] == 0): ?>
-                            <br><br>
-                        <?php else: ?>
-                            <div class="resto-grade" style="color: <?php echo $gradeColor; ?>;">
-                                <?php echo htmlspecialchars($resto['grade']); ?>
-                            </div>
-                        <?php endif; ?>
+                        <div class="resto-grade" style="color: <?php echo $gradeColor; ?>;">
+                            <?php echo $resto['grade'] !== null ? htmlspecialchars($resto['grade']) : '&mdash;'; ?>
+                        </div>
                     </a>
                 <?php endforeach; ?>
             <?php endif; ?>
