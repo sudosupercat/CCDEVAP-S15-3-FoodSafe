@@ -17,6 +17,11 @@ class Inspection{
     }
 
     public function insertRow($inspection){
+        header('Content-Type: application/json');    
+        $error = [
+            "type" => "Error",
+            "message" => "Unknown Error"
+        ];
         try{
             $stmt = $this->pdo->prepare("INSERT INTO inspections (inspectionDate, grade, remarks, userID, restoID)
                                         VALUES (:inspectionDate, :grade, :remarks, :userID, :restoID)");
@@ -27,10 +32,13 @@ class Inspection{
                 ':userID' => $inspection->userId,
                 ':restoID' => $inspection->restoId
             ]);
-        echo "Inspection entry added successfully!";
+            $error['type'] = "Success";
+            $error['message'] = "Inspection entry added successfully!";
+            echo json_encode($error);
         }
         catch(PDOException $e) {
-            echo "Error adding inspection: " . "<br>" . $e->getMessage();
+            $error['message'] = "Error adding inspection: " . "<br>" . $e->getMessage();
+            echo json_encode($error);
         }
     }
 
@@ -46,6 +54,21 @@ class Inspection{
         $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
         return $row['inspectionID'];
+    }
+
+    public function checkDuplicate($restoId, $userId, $inspectionDate){
+        $stmt = $this->pdo->prepare("SELECT 1 FROM inspections
+                                    WHERE userID = :userId
+                                    AND restoID = :restoId AND inspectionDate = :inspectionDate
+                                    LIMIT 1");
+        $stmt->execute([
+            ':userId' => $userId,
+            ':restoId' => $restoId,
+            ':inspectionDate' => $inspectionDate
+        ]);
+        $row = $stmt->fetch();
+
+        return $row;
     }
 }
 ?>

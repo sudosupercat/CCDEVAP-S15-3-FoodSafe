@@ -24,7 +24,7 @@ require __DIR__ . '/../theme-cookie.php';
         <div class="page-header">
             <h1 class="fw-bold">Log Inspection Entry</h1>
         </div>
-        <div class="form-container">
+        <div class="form-container w-50">
             <form id="form-add-inspection">
                 <div class="form-group mb-3">
                     <label for="food-business">Food Business <span class="text-danger">*</span></label>
@@ -36,20 +36,22 @@ require __DIR__ . '/../theme-cookie.php';
                     </select>
                     <small id="food-business-help" class="form-text text-muted">If a result does not show up, please add it first <a href="/businessDirectory">here</a>.</small>
                 </div>
-                <div class="form-row mb-3" id="container-score-grade">
-                    <div class="col-md-6 form-group mb-3">
-                        <label for="inspection-date">Inspection Date <span class="text-danger">*</span></label>
-                        <input type="date" class="form-control" name="inspection-date" id="inspection-date" min="2000-01-01" max="" required>
-                    </div>
-                    <div class="col-md-6">
-                        <label for="grade">Grade <span class="text-danger">*</span></label><br>
-                        <select class="form-select w-25" id="grade" name="grade" required>
-                            <option value="" selected disabled hidden>Select Grade</option>
-                            <option value="A">A</option>
-                            <option value="B">B</option>
-                            <option value="C">C</option>
-                            <option value="F">F</option>
-                        </select>
+                <div class="form-row container mb-3 p-0" id="container-score-grade">
+                    <div class="row">
+                        <div class="col-md-6 form-group">
+                            <label for="inspection-date">Inspection Date <span class="text-danger">*</span></label>
+                            <input type="date" class="form-control" name="inspection-date" id="inspection-date" min="2000-01-01" max="" required>
+                        </div>
+                        <div class="col-md-6 form-group">
+                            <label for="grade">Grade <span class="text-danger">*</span></label><br>
+                            <select class="form-select" id="grade" name="grade" required>
+                                <option value="" selected disabled hidden>Select Grade</option>
+                                <option value="A">A</option>
+                                <option value="B">B</option>
+                                <option value="C">C</option>
+                                <option value="F">F</option>
+                            </select>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group mb-3">
@@ -64,14 +66,15 @@ require __DIR__ . '/../theme-cookie.php';
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <!-- <div class="my-3 d-flex justify-content-end">
-                    <button class="button-option" id="button-add-violation">+ Add violation</button>
-                </div> -->
-                <!-- <div id="violation-form-container">
-                </div> -->
-                <input type="hidden" value="<?= $_SESSION['userID']?>" name="user-id" id="user-id">
-                <button type="submit btn-" id="add-inspection-final" class="btn btn-primary">Submit</button>
+                <button type="submit" id="add-inspection-final" class="btn button-option">Submit</button>
             </form>
+        </div>
+        <div id="toast" class="custom-toast hidden">
+            <div class="toast-text">
+                <strong id="toast-title">Toast Title</strong>
+                <p id="toast-message">Toast Message</p>
+            </div>
+            <span id="toast-close" class="toast-close" onclick="hideToast()">&times;</span>
         </div>
         <?php require __DIR__ . '/../../view/footer.php' ?>
     </body>
