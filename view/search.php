@@ -49,12 +49,12 @@ $sortOrder = $_GET['sort'] ?? 'az';
             <?php else: ?>
                 <?php foreach ($searchResults as $resto): ?>
                     <?php
-                        $gradeColor = ''; 
+                        $gradeColor = '#9aa0b5';
                         switch($resto['grade']) {
                             case 'A': $gradeColor = '#28a745'; break;
                             case 'B': $gradeColor = '#f38020'; break;
                             case 'C': $gradeColor = '#ffc107'; break;
-                            case 'F': $gradeColor = '#dc3545'; break; 
+                            case 'F': $gradeColor = '#dc3545'; break;
                         }
                     ?>
 
@@ -63,16 +63,12 @@ $sortOrder = $_GET['sort'] ?? 'az';
                         
                         <div class="resto-info">
                             <h3><?php echo htmlspecialchars($resto['name']); ?></h3>
-                            <p class="violations-text"><?php echo htmlspecialchars($resto['violations']); ?> Violations Recorded</p>
+                            <p class="violations-text"><?php echo htmlspecialchars($resto['violations']); ?> Violations Recorded<?php echo $resto['rating'] !== null ? ' &middot; Rating ' . number_format($resto['rating'], 1) : ''; ?></p>
                             <p class="inspection-text">Most recent inspection: <?php echo htmlspecialchars($resto['displayDate']); ?></p>
                         </div>
-                        <?php if ($resto['violations'] == 0): ?>
-                            <br><br>
-                        <?php else: ?>
-                            <div class="resto-grade" style="color: <?php echo $gradeColor; ?>;">
-                                <?php echo htmlspecialchars($resto['grade']); ?>
-                            </div>
-                        <?php endif; ?>
+                        <div class="resto-grade" style="color: <?php echo $gradeColor; ?>;">
+                            <?php echo $resto['grade'] !== null ? htmlspecialchars($resto['grade']) : '&mdash;'; ?>
+                        </div>
                     </a>
                 <?php endforeach; ?>
             <?php endif; ?>
