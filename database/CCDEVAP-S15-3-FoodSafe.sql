@@ -152,7 +152,6 @@ CREATE TABLE `restaurants` (
   `image` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   `status` tinyint(1) NOT NULL,
   `districtID` int NOT NULL,
-  `avg_rating` decimal(2,1) NOT NULL DEFAULT '0.0',
   PRIMARY KEY (`restoID`),
   KEY `restaurant_ibfk_1` (`districtID`),
   CONSTRAINT `restaurant_ibfk_1` FOREIGN KEY (`districtID`) REFERENCES `districts` (`districtID`)
@@ -165,37 +164,8 @@ CREATE TABLE `restaurants` (
 
 LOCK TABLES `restaurants` WRITE;
 /*!40000 ALTER TABLE `restaurants` DISABLE KEYS */;
-INSERT INTO `restaurants` VALUES (1,123456,'Jollibee Quiapo','Quiapo, Manila','09171234567',NULL,'Jollibee_Quiapo.png',1,1,4.5),(2,234567,'Hilltop Café','Baguio City, Benguet','09181234567',NULL,'Hilltop_Cafe.png',1,2,2.0),(3,345678,'Vigan Heritage Restaurant','Vigan City, Ilocos Sur','09191234567',NULL,'Vigan_Heritage.png',1,3,5.0),(4,456789,'Cagayan Valley Grill','Tuguegarao City, Cagayan','09201234567',NULL,'Cagayan_Valley.png',1,4,3.5),(5,567891,'Kapampangan Kitchen','San Fernando, Pampanga','09211234567',NULL,'Kapampangan_Kitchen.png',1,5,0.0),(6,678912,'Lipa Food House','Lipa City, Batangas','09221234567',NULL,'Lipa_Food.png',1,6,0.0),(7,789123,'Wendy\'s Taft','Taft, Manila','09231234567',NULL,'Wendys_Taft.png',1,1,0.0),(8,890123,'Baguio Craft Brewery','Ben Palispis Hwy, Baguio','09241234567',NULL,'Baguio_Craft.png',1,2,4.3),(9,901234,'Hidden Garden ','Vigan City, Ilocos Sur','09251234567',NULL,'Hidden_Garden.png',1,3,4.7),(10,112233,'Lalays Panciteria','Tuguegarao City, Cagayan','09261234567',NULL,'Lalays.png',1,4,3.7),(11,223344,'Aling Lucing','Angeles, Pampanga','09271234567',NULL,'Aling_Lucing.png',1,5,5.0),(12,334455,'Cabezera Ridge View','Tagaytay, Cavite','09281234567',NULL,'Cabezera_Ridge.png',1,6,2.5);
+INSERT INTO `restaurants` VALUES (1,123456,'Jollibee Quiapo','Quiapo, Manila','09171234567',NULL,'Jollibee_Quiapo.png',1,1),(2,234567,'Hilltop Café','Baguio City, Benguet','09181234567',NULL,'Hilltop_Cafe.png',1,2),(3,345678,'Vigan Heritage Restaurant','Vigan City, Ilocos Sur','09191234567',NULL,'Vigan_Heritage.png',1,3),(4,456789,'Cagayan Valley Grill','Tuguegarao City, Cagayan','09201234567',NULL,'Cagayan_Valley.png',1,4),(5,567891,'Kapampangan Kitchen','San Fernando, Pampanga','09211234567',NULL,'Kapampangan_Kitchen.png',1,5),(6,678912,'Lipa Food House','Lipa City, Batangas','09221234567',NULL,'Lipa_Food.png',1,6),(7,789123,'Wendy\'s Taft','Taft, Manila','09231234567',NULL,'Wendys_Taft.png',1,1),(8,890123,'Baguio Craft Brewery','Ben Palispis Hwy, Baguio','09241234567',NULL,'Baguio_Craft.png',1,2),(9,901234,'Hidden Garden ','Vigan City, Ilocos Sur','09251234567',NULL,'Hidden_Garden.png',1,3),(10,112233,'Lalays Panciteria','Tuguegarao City, Cagayan','09261234567',NULL,'Lalays.png',1,4),(11,223344,'Aling Lucing','Angeles, Pampanga','09271234567',NULL,'Aling_Lucing.png',1,5),(12,334455,'Cabezera Ridge View','Tagaytay, Cavite','09281234567',NULL,'Cabezera_Ridge.png',1,6);
 /*!40000 ALTER TABLE `restaurants` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `reviews`
---
-
-DROP TABLE IF EXISTS `reviews`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `reviews` (
-  `reviewID` int NOT NULL AUTO_INCREMENT,
-  `restoID` int NOT NULL,
-  `rating` int NOT NULL,
-  `comment` varchar(500) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
-  `created_at` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`reviewID`),
-  KEY `review_ibfk_1` (`restoID`),
-  CONSTRAINT `review_ibfk_1` FOREIGN KEY (`restoID`) REFERENCES `restaurants` (`restoID`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `reviews`
---
-
-LOCK TABLES `reviews` WRITE;
-/*!40000 ALTER TABLE `reviews` DISABLE KEYS */;
-INSERT INTO `reviews` VALUES (1,1,5,'Great service and very clean environment!','2023-04-12 11:30:00'),(2,1,4,'Food was fresh, staff were polite.','2024-02-10 14:15:00'),(3,2,2,'Tables were sticky and food took too long.','2024-03-01 18:00:00'),(4,3,5,'Authentic local dishes and spotless kitchen view.','2024-05-20 12:45:00'),(5,4,3,'Food was okay, but the dining area felt dusty.','2024-06-11 19:10:00'),(6,4,4,'Good portion sizes and clean restrooms.','2025-01-18 13:00:00'),(7,8,5,'Excellent craft beer and very hygienic setup.','2025-03-14 20:30:00'),(8,8,4,'Great atmosphere, place is well-maintained.','2025-07-22 17:15:00'),(9,8,4,'Very clean dining area.','2026-01-05 18:40:00'),(10,9,5,'Delicious longganisa and very clean facilities!','2025-09-10 08:30:00'),(11,9,4,'Good hygiene practices observed by kitchen staff.','2026-02-11 12:20:00'),(12,10,3,'Pancit was good, but tables needed better wiping.','2025-11-04 13:50:00'),(13,10,4,'Quick service and decent cleanliness.','2026-03-15 11:00:00'),(14,11,5,'Best sisig in town, super spotless dining setup!','2025-12-01 19:00:00'),(15,11,5,'Staff wore complete safety gear. Very impressed.','2026-04-02 18:25:00'),(16,12,2,'Saw trash lying around near the kitchen door.','2025-12-10 14:10:00'),(17,12,3,'Great view, but restroom was out of soap.','2026-05-19 15:30:00');
-/*!40000 ALTER TABLE `reviews` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
