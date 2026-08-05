@@ -1,67 +1,19 @@
 :root {
+  --page-bg: #dee5ff;
   --bg-purple: #3100b9;
   --nav-bg: #1f0075;
+  --on-page-text: #1f0075;
 }
 
 body.theme-dark-custom {
+  --page-bg: #12103a;
   --bg-purple: #12103a;
   --nav-bg: #0b0924;
-}
-
-.hero-right-bottom-rating {
-  background-color: #ffffff;
-  padding: 24px;
-  text-align: center;
-}
- 
-.rating-title {
-  color: #1f0075;
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 14px;
-}
- 
-.rating-circle {
-  width: 74px;
-  height: 74px;
-  margin: 0 auto;
-  border-radius: 50%;
-  background-color: #ff751f;
-  color: #ffffff;
-  font-size: 1.7rem;
-  font-weight: 800;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
- 
-.rating-circle-empty {
-  background-color: #b9c4ee;
-}
- 
-.high-standard-tag {
-  color: #ffffff;
-  font-size: 0.85rem;
-  text-align: center;
-  margin-bottom: 10px;
-  opacity: 0.9;
+  --on-page-text: #ffffff;
 }
 
 body.resto-rating-page {
-    background-color: var(--bg-purple);
-    min-height: 100vh;
-}
-
-.brand-panel {
-    background-color: var(--bg-purple);
-}
-
-.inspections-bar {
-    background-color: var(--nav-bg);
-}
-
-body.resto-rating-page {
-  background-color: var(--bg-purple);
+  background-color: var(--page-bg);
   margin: 0 !important;
   font-family: Arial, sans-serif;
   min-height: 100vh;
@@ -161,6 +113,10 @@ body.resto-rating-page * {
   font-weight: bold;
 }
 
+.rating-circle-empty {
+  background-color: #b9c4ee;
+}
+
 .inspections-bar {
   background-color: var(--nav-bg);
   width: 100%;
@@ -183,6 +139,10 @@ body.resto-rating-page * {
   max-width: 1300px;
   margin: 0 auto;
   padding: 60px 40px;
+}
+
+.inspections-container .text-white {
+  color: var(--on-page-text) !important;
 }
 
 .inspections-grid {
