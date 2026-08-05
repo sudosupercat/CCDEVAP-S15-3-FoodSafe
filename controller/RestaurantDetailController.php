@@ -11,6 +11,13 @@ class RestaurantDetailController {
         $this->foodBusinessModel = new FoodBusiness($pdo);
     }
 
+    private function gradeForSeverity($severityTotal) {
+        if ($severityTotal == 0) return 'A';
+        if ($severityTotal <= 5) return 'B';
+        if ($severityTotal <= 10) return 'C';
+        return 'F';
+    }
+
     public function handleRequest() {
         $restoID = isset($_GET['restoID']) ? intval($_GET['restoID']) : (isset($_GET['id']) ? intval($_GET['id']) : 1);
 
@@ -32,16 +39,20 @@ class RestaurantDetailController {
             'district' => $restaurantObj->district
         ];
 
-        // Inspection history: one row per inspection, with its violation count + letter grade
+        // Inspection history: one row per inspection, with its violation count,
+        // total severity, and the letter grade derived from that severity.
         $inspections = [];
         $overallRating = null;
         try {
             $stmt = $this->pdo->prepare(
-                "SELECT i.inspectionID, i.inspectionDate, i.grade, COUNT(v.violationID) AS violationCount
+                "SELECT i.inspectionID, i.inspectionDate,
+                        COUNT(v.violationID) AS violationCount,
+                        COALESCE(SUM(CAST(r.severityLvl AS UNSIGNED)), 0) AS severityTotal
                  FROM inspections i
                  LEFT JOIN violations v ON v.inspectionID = i.inspectionID
+                 LEFT JOIN requirements r ON r.requirementCode = v.requirementCode
                  WHERE i.restoID = ?
-                 GROUP BY i.inspectionID, i.inspectionDate, i.grade
+                 GROUP BY i.inspectionID, i.inspectionDate
                  ORDER BY i.inspectionDate DESC"
             );
             $stmt->execute([$restoID]);
@@ -63,7 +74,8 @@ class RestaurantDetailController {
                     'inspectionID' => $row['inspectionID'],
                     'date' => $row['inspectionDate'],
                     'violationCount' => (int)$row['violationCount'],
-                    'grade' => $row['grade'],
+                    'severityTotal' => (int)$row['severityTotal'],
+                    'grade' => $this->gradeForSeverity((int)$row['severityTotal']),
                     'violationTitles' => $violationTitles
                 ];
             }
