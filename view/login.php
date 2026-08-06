@@ -43,11 +43,11 @@ if (isset($_SESSION['userID']) && isset($_SESSION['role'])) {
 
                     <div class="form-group">
                         <label id="emailLabel" for="email">E-mail</label>
-                        <input type="email" name="email" id="email" required>
+                        <input type="email" name="email" id="email" placeholder="Type andrea_prestoza@inspector.com" required>
                     </div>
                     <div class="form-group">
                         <label id="passwordLabel" for="password">Password:</label>
-                        <input type="password" name="password" id="password" required>
+                        <input type="password" name="password" id="password" placeholder="Type andreaprestoza" required>
 
                         <div class="togglePw">
                             <input type="checkbox" id="showPw">

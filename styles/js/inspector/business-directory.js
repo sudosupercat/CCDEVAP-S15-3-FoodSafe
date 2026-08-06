@@ -109,7 +109,7 @@ $(document).ready( function () {
         .then(data => {
             console.log('Server says:', data);
             modalAddEdit.hide();
-            location.reload();
+            //location.reload();
         })
         .catch(error => console.error('Error:', error));
     }

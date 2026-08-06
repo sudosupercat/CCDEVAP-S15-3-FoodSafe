@@ -150,8 +150,4 @@ if (isset($_POST['action'])){
 
 }
 
-// if (isset($_GET['action']) && $_GET['action'] === 'view'){
-    // $controller->showPage($pdo);
-// }
-
 ?>
